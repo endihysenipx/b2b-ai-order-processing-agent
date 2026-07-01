@@ -6,7 +6,9 @@ Date: July 1, 2026
 
 ## Repository URL
 
-Hosted GitHub repository URL: not configured from this local environment.
+Hosted GitHub repository URL: https://github.com/endihysenipx/b2b-ai-order-processing-agent
+
+Visibility: private
 
 Local repository path:
 
@@ -16,10 +18,17 @@ C:\Users\Admin\Documents\GitHub\FlowForge
 
 ## Branches
 
-Planned workflow branches:
+Created and pushed branches:
 
 - `main`
 - `develop`
+- `feature/project-foundation`
+- `feature/database-models`
+- `feature/orders-api`
+- `feature/frontend-layout`
+- `feature/orders-page`
+- `feature/mock-extraction`
+- `feature/docker-setup`
 
 Feature branch naming documented in `CONTRIBUTING.md`.
 
@@ -39,7 +48,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Local fallback used for verification because Docker Desktop Linux engine was unavailable:
+Local fallback commands:
 
 ```bash
 cd backend
@@ -97,13 +106,25 @@ npm run dev -- --host 127.0.0.1
 
 ## Project Board and Issues
 
-Local project board equivalent:
+Hosted backlog:
+
+- Repository issues: https://github.com/endihysenipx/b2b-ai-order-processing-agent/issues
+- 17 Week 3 issues created with owners and acceptance criteria.
+- Required labels created, including `frontend`, `backend`, `database`, `ai`, `ocr`, `email`, `xml`, `documentation`, `testing`, `infrastructure`, priorities, `week-3`, and `future`.
+- Required milestones created:
+  - `Week 3 - Foundation`
+  - `Sprint 2 - AI and Document Processing`
+  - `Sprint 3 - Human Review and XML`
+  - `Final Integration and Testing`
+- Issues #1-#17 are assigned to the `Week 3 - Foundation` milestone.
+
+Local board equivalent:
 
 - `docs/project-board/README.md`
 - `docs/project-board/week-3-issues.md`
 - `docs/project-board/index.html`
 
-It includes the required columns, labels, milestones, 17 Week 3 issues, owners, and acceptance criteria.
+It includes the required columns, labels, milestones, 17 Week 3 issues, owners, and acceptance criteria. A hosted GitHub Project was not created because the authenticated token does not have the required `project`/`read:project` scope. The hosted GitHub Issues backlog plus the local board artifact are the Week 3 board equivalent.
 
 ## Screenshots
 
@@ -164,6 +185,13 @@ POST /api/v1/orders/{id}/send-xml: XMLs Sent
 GET /api/v1/orders?status=Waiting for Reply: 1 order
 ```
 
+GitHub Actions:
+
+```text
+CI workflow on main: completed successfully
+CI workflow on develop and feature branches: completed successfully
+```
+
 ## Fully Implemented
 
 - Repository structure, `.gitignore`, `.env.example`, README, contribution guide, license, CI workflow, issue template, and pull request template.
@@ -177,6 +205,7 @@ GET /api/v1/orders?status=Waiting for Reply: 1 order
 - Order Details page with header editing, item editing, approval, rejection, feedback issue reporting, XML generation, and separate XML sending action.
 - Backend and frontend automated tests.
 - Screenshot evidence for local UI/API views.
+- Hosted GitHub repository with description, topics, pushed branches, labels, milestones, and 17 Week 3 issues.
 
 ## Mocked or Simulated
 
@@ -184,7 +213,7 @@ GET /api/v1/orders?status=Waiting for Reply: 1 order
 - OpenAI extraction through a mock extraction service.
 - OCR through a mock OCR interface.
 - ERP XML transmission through `simulate_send_xml`.
-- Project board as local documentation and HTML, not a hosted GitHub Project.
+- Hosted GitHub Issues backlog and local HTML board are used as the Week 3 board equivalent instead of a GitHub Project.
 
 ## Partially Implemented
 
@@ -193,7 +222,7 @@ GET /api/v1/orders?status=Waiting for Reply: 1 order
 - Authentication protects approval but broader role-based authorization is not complete.
 - Document processing service functions are scaffolded for PDF, Word, Excel, CSV, and image/OCR paths, but full ingestion orchestration is future work.
 - Waiting-for-Reply continuity is represented in data design with conversation IDs, but live reply ingestion is not implemented in Week 3.
-- Hosted GitHub repository and hosted GitHub Project board were not created because no GitHub remote, GitHub CLI, or GitHub token is available in the current environment.
+- Hosted GitHub Project board is not created because the current GitHub token lacks `project` and `read:project` scopes.
 
 ## Planned for Future Sprints
 
@@ -204,7 +233,8 @@ GET /api/v1/orders?status=Waiting for Reply: 1 order
 - Prompt versioning, email templates, processing logs, extracted fields, and audit history tables.
 - Role-based authorization for administration, approvals, prompt changes, and XML sending.
 - Real ERP adapter after the employee clicks `Send XMLs`.
-- Hosted GitHub repository, hosted GitHub Project board, and repository protection rules.
+- Hosted GitHub Project board if project OAuth scope is granted.
+- Repository protection rules if repository permissions and course workflow require them.
 
 ## Known Limitations
 
@@ -212,4 +242,5 @@ GET /api/v1/orders?status=Waiting for Reply: 1 order
 - No credentials are committed.
 - The app does not claim real Outlook, OpenAI, OCR, or ERP operation.
 - Generated XML files are simple sample XML files for Week 3 validation.
-- Hosted GitHub setup still requires authenticated GitHub access.
+- The hosted repository is private. Mentor/reviewer access must be granted from GitHub if external review is required.
+- Creating a hosted GitHub Project requires refreshing GitHub CLI auth with `gh auth refresh -h github.com -s project,read:project`.
