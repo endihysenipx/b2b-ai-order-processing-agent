@@ -1,0 +1,66 @@
+import type { OrderDetail, OrderListResponse } from "../src/types/order";
+
+export const orderList: OrderListResponse = {
+  total: 1,
+  page: 1,
+  page_size: 10,
+  items: [
+    {
+      id: "order-1",
+      ticket_number: "TCK-10001",
+      commission_number: "COM-5001",
+      customer_name: "Northwind Retail Group",
+      delivery_week: "2026-W29",
+      status: "OK",
+      created_at: "2026-07-01T10:00:00",
+      client: {
+        id: "client-1",
+        client_name: "Northwind Retail Group",
+        customer_number: "CUST-1001",
+        default_email: "orders@northwind.example",
+        email_domain: "northwind.example",
+        extraction_prompt: "Extract Northwind order fields.",
+        required_fields: ["ticket_number"],
+        validation_rules: {},
+        is_active: true,
+      },
+    },
+  ],
+};
+
+export const orderDetail: OrderDetail = {
+  ...orderList.items[0],
+  customer_number: "CUST-1001",
+  commission_name: "Store rollout",
+  store_address: "1 Market Street",
+  delivery_address: "1 Warehouse Avenue",
+  order_date: "2026-06-30",
+  requested_delivery_date: "2026-07-10",
+  contact_person: "Buyer 1",
+  phone_number: "+1-555-0101",
+  total_price: "500.00",
+  currency: "EUR",
+  approved_at: null,
+  email: {
+    sender_email: "buyer@northwind.example",
+    reply_to_email: "buyer@northwind.example",
+    mail_to_email: "orders@supplier.example",
+    subject: "Purchase order TCK-10001",
+    received_at: "2026-07-01T10:00:00",
+    classification_status: "order",
+  },
+  items: [
+    {
+      id: "item-1",
+      article_number: "ART-01",
+      model_number: "MODEL-A",
+      quantity: 4,
+      unit_price: "80.00",
+      total_price: "320.00",
+      currency: "EUR",
+    },
+  ],
+  attachments: [{ id: "att-1", file_name: "order.pdf", file_type: "pdf", file_path: "storage/attachments/order.pdf", is_scanned: false }],
+  validation_issues: [],
+  generated_xmls: [],
+};
