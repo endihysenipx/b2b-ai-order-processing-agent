@@ -1,0 +1,12 @@
+[
+  {
+    "client_name": "Northwind Retail Group",
+    "customer_number": "CUST-1001",
+    "email_domain": "northwind.example"
+  },
+  {
+    "client_name": "Contoso Interior Supply",
+    "customer_number": "CUST-2002",
+    "email_domain": "contoso.example"
+  }
+]

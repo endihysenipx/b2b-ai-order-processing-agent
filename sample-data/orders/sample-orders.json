@@ -1,0 +1,7 @@
+[
+  { "ticket_number": "TCK-10001", "status": "OK" },
+  { "ticket_number": "TCK-10002", "status": "Human in the Loop" },
+  { "ticket_number": "TCK-10003", "status": "Waiting for Reply" },
+  { "ticket_number": "TCK-10004", "status": "Failed" },
+  { "ticket_number": "TCK-10005", "status": "ERP Ready" }
+]
