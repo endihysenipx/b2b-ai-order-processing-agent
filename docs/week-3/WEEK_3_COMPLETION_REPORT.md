@@ -140,9 +140,28 @@ python -m app.db.seed: passed
 Docker:
 
 ```text
-docker compose up --build: not verified
-Reason: Docker Desktop Linux engine was not running.
-Observed error: dockerDesktopLinuxEngine pipe not found.
+docker compose up --build -d: passed
+PostgreSQL container: healthy
+Backend container: running on port 8000
+Frontend container: running on port 5173
+Alembic migration: ran against PostgreSQL
+Seed command: ran during backend startup
+```
+
+Containerized smoke test:
+
+```text
+GET /health: ok
+GET /openapi.json: 200
+GET frontend /: 200
+POST /api/v1/auth/login: admin@example.com authenticated
+GET /api/v1/orders: 5 seeded orders
+GET /api/v1/orders/{id}: returned 2 items for sample order
+PATCH /api/v1/orders/{id}: edited delivery address
+POST /api/v1/orders/{id}/approve: Approved
+POST /api/v1/orders/{id}/generate-xml: ERP Ready, 2 files
+POST /api/v1/orders/{id}/send-xml: XMLs Sent
+GET /api/v1/orders?status=Waiting for Reply: 1 order
 ```
 
 ## Fully Implemented
@@ -169,12 +188,12 @@ Observed error: dockerDesktopLinuxEngine pipe not found.
 
 ## Partially Implemented
 
-- Docker Compose files are present, but the stack could not be run in this environment because Docker Desktop Linux engine was unavailable.
 - Data Export page is a UI shell; real Excel export is planned later.
 - User and Settings pages are functional shells only.
 - Authentication protects approval but broader role-based authorization is not complete.
 - Document processing service functions are scaffolded for PDF, Word, Excel, CSV, and image/OCR paths, but full ingestion orchestration is future work.
 - Waiting-for-Reply continuity is represented in data design with conversation IDs, but live reply ingestion is not implemented in Week 3.
+- Hosted GitHub repository and hosted GitHub Project board were not created because no GitHub remote, GitHub CLI, or GitHub token is available in the current environment.
 
 ## Planned for Future Sprints
 
@@ -192,5 +211,5 @@ Observed error: dockerDesktopLinuxEngine pipe not found.
 - No real customer data is included.
 - No credentials are committed.
 - The app does not claim real Outlook, OpenAI, OCR, or ERP operation.
-- The Docker demo gate remains unverified until Docker Desktop is running.
 - Generated XML files are simple sample XML files for Week 3 validation.
+- Hosted GitHub setup still requires authenticated GitHub access.
