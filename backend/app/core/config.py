@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./dev.db"
     frontend_url: str = "http://localhost:5173"
     storage_root: str = "storage"
+    aws_region: str = "eu-central-1"
+    aws_profile: str | None = None
+    aws_s3_bucket: str | None = None
     openai_api_key: str | None = None
     openai_model: str | None = None
     service_name: str = Field(default="b2b-ai-order-processing-agent")
