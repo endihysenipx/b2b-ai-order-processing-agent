@@ -1,0 +1,610 @@
+[
+  {
+    "email_name": "#1028460 Bestellung KVZBL2 von Lutz (3!2026070732116).eml",
+    "attachment_name": "EX-00030.TIF",
+    "page_count": 3,
+    "job_id": "8c01658d06d5b9a0d1c20814cf95e0cfe2000ae0c74b246b934543651178c7a9",
+    "status": "SUCCEEDED",
+    "email_preview": {
+      "client_profile": "lesnina",
+      "client_detection": {
+        "client_profile": "lesnina",
+        "confidence": 1.0,
+        "evidence": [
+          "Contains a Lesnina TIFF scan attachment.",
+          "Contains Lesnina company text.",
+          "Contains a Croatian or Serbian delivery address.",
+          "Contains Lesnina Croatian order wording."
+        ],
+        "is_manual_override": false
+      },
+      "message_type": "order",
+      "next_action": "needs_ocr",
+      "subject": "#1028460 Bestellung KVZBL2 von Lutz (3!2026070732116)",
+      "sender_email": "crm@staudmoebel.de",
+      "attachment_names": [
+        "EX-00030.TIF"
+      ],
+      "ocr_attachment_names": [
+        "EX-00030.TIF"
+      ],
+      "orders": [
+        {
+          "store_address": null,
+          "delivery_address": "Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "SABOLIC",
+          "commission_number": "KVZBL2-1",
+          "items": []
+        }
+      ],
+      "reference_codes": [
+        "HR7824840081105568861",
+        "HR36998794856"
+      ],
+      "notes": [
+        "Order headers were extracted from the email body.",
+        "Lesnina line items are expected in TIFF scans and require OCR before validation."
+      ]
+    },
+    "table_count": 2,
+    "line_count": 93,
+    "mapping": {
+      "items": [],
+      "requires_review": true,
+      "issues": [
+        "No Lesnina item table with article and quantity columns was found."
+      ]
+    },
+    "merged_order": {
+      "order": {
+        "store_address": null,
+        "delivery_address": "Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00",
+        "preferred_delivery_week": "KW38/2026",
+        "commission_name": "SABOLIC",
+        "commission_number": "KVZBL2-1",
+        "items": []
+      },
+      "item_details": [],
+      "requires_review": true,
+      "issues": [
+        "No Lesnina item table with article and quantity columns was found."
+      ]
+    }
+  },
+  {
+    "email_name": "#1024679 Bestellung KJPAZ9 von Lutz (3!2026062621946).eml",
+    "attachment_name": "EX-00008.TIF",
+    "page_count": 4,
+    "job_id": "1baa87258eedb0140c3c1902c75e4e5e953141d46a62357aebf21c28d32bfc4f",
+    "status": "SUCCEEDED",
+    "email_preview": {
+      "client_profile": "lesnina",
+      "client_detection": {
+        "client_profile": "lesnina",
+        "confidence": 1.0,
+        "evidence": [
+          "Contains a Lesnina TIFF scan attachment.",
+          "Contains Lesnina company text.",
+          "Contains a Croatian or Serbian delivery address.",
+          "Contains Lesnina Croatian order wording."
+        ],
+        "is_manual_override": false
+      },
+      "message_type": "order",
+      "next_action": "needs_ocr",
+      "subject": "#1024679 Bestellung KJPAZ9 von Lutz (3!2026062621946)",
+      "sender_email": "crm@staudmoebel.de",
+      "attachment_names": [
+        "EX-00008.TIF"
+      ],
+      "ocr_attachment_names": [
+        "EX-00008.TIF"
+      ],
+      "orders": [
+        {
+          "store_address": null,
+          "delivery_address": "Slavonska avenija 106, HR-10373 Ivanja Reka",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "BEBEK",
+          "commission_number": "KJPAZ9-1",
+          "items": []
+        }
+      ],
+      "reference_codes": [
+        "HR7824840081105568861",
+        "HR36998794856"
+      ],
+      "notes": [
+        "Order headers were extracted from the email body.",
+        "Lesnina line items are expected in TIFF scans and require OCR before validation."
+      ]
+    },
+    "table_count": 3,
+    "line_count": 103,
+    "mapping": {
+      "items": [],
+      "requires_review": true,
+      "issues": [
+        "No Lesnina item table with article and quantity columns was found."
+      ]
+    },
+    "merged_order": {
+      "order": {
+        "store_address": null,
+        "delivery_address": "Slavonska avenija 106, HR-10373 Ivanja Reka",
+        "preferred_delivery_week": "KW36/2026",
+        "commission_name": "BEBEK",
+        "commission_number": "KJPAZ9-1",
+        "items": []
+      },
+      "item_details": [],
+      "requires_review": true,
+      "issues": [
+        "No Lesnina item table with article and quantity columns was found."
+      ]
+    }
+  },
+  {
+    "email_name": "#1028408 Bestellung KNCADJ von Lutz (3!2026070731851).eml",
+    "attachment_name": "EX-00008.TIF",
+    "page_count": 7,
+    "job_id": "f057192c7a5ef19d63759faca555d34b6645292079bac252aeba8e1739055eed",
+    "status": "SUCCEEDED",
+    "email_preview": {
+      "client_profile": "lesnina",
+      "client_detection": {
+        "client_profile": "lesnina",
+        "confidence": 1.0,
+        "evidence": [
+          "Contains a Lesnina TIFF scan attachment.",
+          "Contains Lesnina company text.",
+          "Contains a Croatian or Serbian delivery address.",
+          "Contains Lesnina Croatian order wording."
+        ],
+        "is_manual_override": false
+      },
+      "message_type": "order",
+      "next_action": "needs_ocr",
+      "subject": "#1028408 Bestellung KNCADJ von Lutz (3!2026070731851)",
+      "sender_email": "crm@staudmoebel.de",
+      "attachment_names": [
+        "EX-00008.TIF"
+      ],
+      "ocr_attachment_names": [
+        "EX-00008.TIF"
+      ],
+      "orders": [
+        {
+          "store_address": null,
+          "delivery_address": "Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "STAHOVIC",
+          "commission_number": "KNCADJ-1",
+          "items": []
+        }
+      ],
+      "reference_codes": [
+        "HR7824840081105568861",
+        "HR36998794856"
+      ],
+      "notes": [
+        "Order headers were extracted from the email body.",
+        "Lesnina line items are expected in TIFF scans and require OCR before validation."
+      ]
+    },
+    "table_count": 8,
+    "line_count": 184,
+    "mapping": {
+      "items": [
+        {
+          "model_number": "CQSP18TA",
+          "article_number": "55784",
+          "quantity": 1,
+          "position": "1",
+          "source_page": 2,
+          "source_row": 3,
+          "confidence": 98.56285858154297,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "33828",
+          "quantity": 1,
+          "position": "1.1",
+          "source_page": 2,
+          "source_row": 5,
+          "confidence": 98.39604187011719,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "12638",
+          "quantity": 1,
+          "position": "1.2",
+          "source_page": 2,
+          "source_row": 6,
+          "confidence": 98.35539245605469,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ00",
+          "article_number": "13076",
+          "quantity": 1,
+          "position": "1.3",
+          "source_page": 2,
+          "source_row": 7,
+          "confidence": 96.96368408203125,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "33829",
+          "quantity": 1,
+          "position": "1.4",
+          "source_page": 2,
+          "source_row": 8,
+          "confidence": 98.79563903808594,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "CQSL1899",
+          "article_number": "72152",
+          "quantity": 1,
+          "position": "2",
+          "source_page": 2,
+          "source_row": 9,
+          "confidence": 98.7452163696289,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "CQSL1899",
+          "article_number": "72152",
+          "quantity": 1,
+          "position": "3",
+          "source_page": 2,
+          "source_row": 10,
+          "confidence": 98.3936538696289,
+          "requires_review": false,
+          "review_reasons": []
+        }
+      ],
+      "requires_review": false,
+      "issues": []
+    },
+    "merged_order": {
+      "order": {
+        "store_address": null,
+        "delivery_address": "Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo",
+        "preferred_delivery_week": "KW38/2026",
+        "commission_name": "STAHOVIC",
+        "commission_number": "KNCADJ-1",
+        "items": [
+          {
+            "model_number": "CQSP18TA",
+            "article_number": "55784",
+            "quantity": 1,
+            "position": "1"
+          },
+          {
+            "model_number": "OJ99",
+            "article_number": "33828",
+            "quantity": 1,
+            "position": "1.1"
+          },
+          {
+            "model_number": "OJ99",
+            "article_number": "12638",
+            "quantity": 1,
+            "position": "1.2"
+          },
+          {
+            "model_number": "OJ00",
+            "article_number": "13076",
+            "quantity": 1,
+            "position": "1.3"
+          },
+          {
+            "model_number": "OJ99",
+            "article_number": "33829",
+            "quantity": 1,
+            "position": "1.4"
+          },
+          {
+            "model_number": "CQSL1899",
+            "article_number": "72152",
+            "quantity": 1,
+            "position": "2"
+          },
+          {
+            "model_number": "CQSL1899",
+            "article_number": "72152",
+            "quantity": 1,
+            "position": "3"
+          }
+        ]
+      },
+      "item_details": [
+        {
+          "model_number": "CQSP18TA",
+          "article_number": "55784",
+          "quantity": 1,
+          "position": "1",
+          "source_page": 2,
+          "source_row": 3,
+          "confidence": 98.56285858154297,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "33828",
+          "quantity": 1,
+          "position": "1.1",
+          "source_page": 2,
+          "source_row": 5,
+          "confidence": 98.39604187011719,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "12638",
+          "quantity": 1,
+          "position": "1.2",
+          "source_page": 2,
+          "source_row": 6,
+          "confidence": 98.35539245605469,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ00",
+          "article_number": "13076",
+          "quantity": 1,
+          "position": "1.3",
+          "source_page": 2,
+          "source_row": 7,
+          "confidence": 96.96368408203125,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "33829",
+          "quantity": 1,
+          "position": "1.4",
+          "source_page": 2,
+          "source_row": 8,
+          "confidence": 98.79563903808594,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "CQSL1899",
+          "article_number": "72152",
+          "quantity": 1,
+          "position": "2",
+          "source_page": 2,
+          "source_row": 9,
+          "confidence": 98.7452163696289,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "CQSL1899",
+          "article_number": "72152",
+          "quantity": 1,
+          "position": "3",
+          "source_page": 2,
+          "source_row": 10,
+          "confidence": 98.3936538696289,
+          "requires_review": false,
+          "review_reasons": []
+        }
+      ],
+      "requires_review": false,
+      "issues": []
+    }
+  },
+  {
+    "email_name": "#1025877 Bestellung HVSTW5 von Lutz (3!2026063032200).eml",
+    "attachment_name": "EX-00001.TIF",
+    "page_count": 11,
+    "job_id": "13a55b32990570022931c9b33cdc1b4e63fc1f7ebb101bed10f63fe76ba842e6",
+    "status": "SUCCEEDED",
+    "email_preview": {
+      "client_profile": "lesnina",
+      "client_detection": {
+        "client_profile": "lesnina",
+        "confidence": 1.0,
+        "evidence": [
+          "Contains a Lesnina TIFF scan attachment.",
+          "Contains Lesnina company text.",
+          "Contains a Croatian or Serbian delivery address.",
+          "Contains Lesnina Croatian order wording."
+        ],
+        "is_manual_override": false
+      },
+      "message_type": "order",
+      "next_action": "needs_ocr",
+      "subject": "#1025877 Bestellung HVSTW5 von Lutz (3!2026063032200)",
+      "sender_email": "crm@staudmoebel.de",
+      "attachment_names": [
+        "EX-00001.TIF"
+      ],
+      "ocr_attachment_names": [
+        "EX-00001.TIF"
+      ],
+      "orders": [
+        {
+          "store_address": null,
+          "delivery_address": "Šijanska cesta 60, HR-52215 Vodnjan",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "KEVRA",
+          "commission_number": "HVSTW5-1",
+          "items": []
+        }
+      ],
+      "reference_codes": [
+        "HR7824840081105568861",
+        "HR36998794856"
+      ],
+      "notes": [
+        "Order headers were extracted from the email body.",
+        "Lesnina line items are expected in TIFF scans and require OCR before validation."
+      ]
+    },
+    "table_count": 3,
+    "line_count": 205,
+    "mapping": {
+      "items": [
+        {
+          "model_number": "OGAW81SP96",
+          "article_number": "24907",
+          "quantity": 1,
+          "position": "1",
+          "source_page": 2,
+          "source_row": 3,
+          "confidence": 92.78678894042969,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "14323",
+          "quantity": 2,
+          "position": "1.1",
+          "source_page": 2,
+          "source_row": 5,
+          "confidence": 98.63201141357422,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ00",
+          "article_number": "30155",
+          "quantity": 1,
+          "position": "1.2",
+          "source_page": 2,
+          "source_row": 6,
+          "confidence": 68.89130401611328,
+          "requires_review": true,
+          "review_reasons": [
+            "Confidence 68.9% is below the 90.0% review threshold."
+          ]
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "14323",
+          "quantity": 2,
+          "position": "1.1",
+          "source_page": 7,
+          "source_row": 5,
+          "confidence": 98.52220153808594,
+          "requires_review": false,
+          "review_reasons": []
+        }
+      ],
+      "requires_review": true,
+      "issues": [
+        "Page 7 row 3: invalid or missing quantity for 'OGAW81SP96-24907'.",
+        "Page 7 row 6: invalid or missing quantity for 'OJ00-30155'."
+      ]
+    },
+    "merged_order": {
+      "order": {
+        "store_address": null,
+        "delivery_address": "Šijanska cesta 60, HR-52215 Vodnjan",
+        "preferred_delivery_week": "KW37/2026",
+        "commission_name": "KEVRA",
+        "commission_number": "HVSTW5-1",
+        "items": [
+          {
+            "model_number": "OGAW81SP96",
+            "article_number": "24907",
+            "quantity": 1,
+            "position": "1"
+          },
+          {
+            "model_number": "OJ99",
+            "article_number": "14323",
+            "quantity": 2,
+            "position": "1.1"
+          },
+          {
+            "model_number": "OJ00",
+            "article_number": "30155",
+            "quantity": 1,
+            "position": "1.2"
+          },
+          {
+            "model_number": "OJ99",
+            "article_number": "14323",
+            "quantity": 2,
+            "position": "1.1"
+          }
+        ]
+      },
+      "item_details": [
+        {
+          "model_number": "OGAW81SP96",
+          "article_number": "24907",
+          "quantity": 1,
+          "position": "1",
+          "source_page": 2,
+          "source_row": 3,
+          "confidence": 92.78678894042969,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "14323",
+          "quantity": 2,
+          "position": "1.1",
+          "source_page": 2,
+          "source_row": 5,
+          "confidence": 98.63201141357422,
+          "requires_review": false,
+          "review_reasons": []
+        },
+        {
+          "model_number": "OJ00",
+          "article_number": "30155",
+          "quantity": 1,
+          "position": "1.2",
+          "source_page": 2,
+          "source_row": 6,
+          "confidence": 68.89130401611328,
+          "requires_review": true,
+          "review_reasons": [
+            "Confidence 68.9% is below the 90.0% review threshold."
+          ]
+        },
+        {
+          "model_number": "OJ99",
+          "article_number": "14323",
+          "quantity": 2,
+          "position": "1.1",
+          "source_page": 7,
+          "source_row": 5,
+          "confidence": 98.52220153808594,
+          "requires_review": false,
+          "review_reasons": []
+        }
+      ],
+      "requires_review": true,
+      "issues": [
+        "Page 7 row 3: invalid or missing quantity for 'OGAW81SP96-24907'.",
+        "Page 7 row 6: invalid or missing quantity for 'OJ00-30155'."
+      ]
+    }
+  }
+]

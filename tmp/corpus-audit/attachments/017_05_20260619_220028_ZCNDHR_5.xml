@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>ZCNDHR  5</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>ROD</Commission>
+    <OrderDate Type="102">20260619</OrderDate>
+    <RequestedDeliveryDate Type="616">202636</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019013299</AdressGLN>
+      <Name1>MX-Jihlava</Name1>
+      <Name2></Name2>
+      <Street1>Vrchlickeho 5826/74</Street1>
+      <Street2></Street2>
+      <PostalCode>58601</PostalCode>
+      <City>Jihlava</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>CERMAKOVA VENDULA</AdministratorName>
+      <AdministratorCode>1BP0</AdministratorCode>
+      <AdministratorPhone>00420 - 561207411</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.sleeping.zc@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9007019013299</AdressGLN>
+      <Name1>SC-MX-Jihlava</Name1>
+      <Name2></Name2>
+      <Street1>Vrchlickeho 5826/74</Street1>
+      <Street2></Street2>
+      <PostalCode>58601</PostalCode>
+      <City>Jihlava</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>CHOUTKA JAKUB</AdministratorName>
+      <AdministratorCode>321H</AdministratorCode>
+      <AdministratorPhone>00420 - 561207411</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.zc@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>38337</ProductNumber>
+      <ProductName>38337</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Sonate, Set, 4-teilig, für 3- und 4-türige Schränke, auch Panoramaschränke
+Öffnungs- und Schließdämpfer
+2x Schließdämpfer
+2x Öffnungsdämpfer
+für Außentüren
+3-türig
+4-türig
+für Schwebetürenschränke mit Griffleiste
+nicht für Media, Media light
+  Zubehör: Neutral (ZB00) 
+Fixe Breite: 0.0 cm
+Fixe Tiefe: 0.0 cm
+Fixe Höhe: 0.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB00</OptionNumber>
+        <OptionDescription>Neutral</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260619</SendingDate>
+      <SendingTime>2200</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

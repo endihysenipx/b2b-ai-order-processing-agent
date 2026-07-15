@@ -1,0 +1,2064 @@
+========================================================================================================================
+[001] Email Samples / #1029187 Bestellung W71G84 von Lutz (0!2026070829640).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=W7_1QTY_9622-1.dhp, W7_1QTY_9622-1_05310017-YB.pdf
+SOURCE EVIDENCE:
+  Filiale: 9400 Wolfsberg, Klagenfurter Strasse 32
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019016641
+  ILN-Anl : 9007019019017
+  ANLIEFERUNG: Werksstraße 1, A-9020 Klagenfurt
+  Liefertermin: KW39/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: W71G84-4 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 30401/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQEG4158G1-85982 (5) Startelement 112/240 A.3
+  1 x CQ58-86087 (5.1) Aussenseite Standard 240 D
+  1 x CQEG58TP-60748 (4) Schrägelement 48/240 Ausf.
+  1 x CQEG58TP-74418 (6) Schwebetürenschrank 167/24
+  1 x OJ00-72286 (6.3) LED-Aufbauleuchte Jetline
+  1 x OJ99-25342 (6.1) Schubkasteneinsatz 81 3 Sc
+  1 x OJ99-84944 (6.2) Schmuckschubkasten 81 mit
+  1 x OJ00-30155 (6.4) Schließ- und Öffnungsdämpf
+  1 x CQEG58TP-74586 (7) Schwebetürenschrank 298/24
+  1 x OJ99-25344 (7.1) Schubkasteneinsatz 97 3 Sc
+  1 x OJ00-30156 (7.3) Schließ- und Öffnungsdämpf
+  1 x OJ00-72287 (7.2) LED-Aufbauleuchte Jetline
+  1 x OJ00-15237 (7.4) Mitteltürdämpfer für 3-trg
+  Details zur Bestellung:
+  1 x CQEG4158G1-85982 (FPos: 5)
+  1 x CQ58-86087 (FPos: 5.1)
+  1 x CQEG58TP-60748 (FPos: 4)
+  Griff/Zierleisten Drehtüren: breit Graphit
+  1 x CQEG58TP-74418 (FPos: 6)
+  Griff/Zierleisten Schwebetüren: breit Graphit
+  1 x OJ00-72286 (FPos: 6.3)
+  LED-Aufbauleuchte Jetline 2-er Set
+  1 x OJ99-25342 (FPos: 6.1)
+  1 x OJ99-84944 (FPos: 6.2)
+  1 x OJ00-30155 (FPos: 6.4)
+  1 x CQEG58TP-74586 (FPos: 7)
+  Griff/Zierleisten Schwebetüren: breit Graphit
+  1 x OJ99-25344 (FPos: 7.1)
+  1 x OJ00-30156 (FPos: 7.3)
+  1 x OJ00-72287 (FPos: 7.2)
+  LED-Aufbauleuchte Jetline 3-er Set
+  1 x OJ00-15237 (FPos: 7.4)
+PARSED:
+  ORDER {'store': '9400 Wolfsberg, Klagenfurter Strasse 32', 'delivery': 'Werksstraße 1, A-9020 Klagenfurt', 'week': 'KW39/2026', 'name': 'GOLLNER', 'number': 'W71G84-4', 'items': [('CQEG4158G1', '85982', 1, '5'), ('CQ58', '86087', 1, '5.1'), ('CQEG58TP', '60748', 1, '4'), ('CQEG58TP', '74418', 1, '6'), ('OJ00', '72286', 1, '6.3'), ('OJ99', '25342', 1, '6.1'), ('OJ99', '84944', 1, '6.2'), ('OJ00', '30155', 1, '6.4'), ('CQEG58TP', '74586', 1, '7'), ('OJ99', '25344', 1, '7.1'), ('OJ00', '30156', 1, '7.3'), ('OJ00', '72287', 1, '7.2'), ('OJ00', '15237', 1, '7.4')]}
+========================================================================================================================
+[002] Email Samples / #1029190 Bestellung RJNJ3H von Lutz (15!2026070828214).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=RJ_1X65_22456-1.dhp, RJ_1X65_22456-1_05310017-YB.pdf
+SOURCE EVIDENCE:
+  Mehrwertsteuer/UID CHE-340.352.613 MWST
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019017969
+  ILN-Anl : 9007019017969
+  ANLIEFERUNG: RÖSSLIWEG 43, CH-4852 ROTHRIST
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: RJNJ3H-3 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 30401/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQEG9199-76931C (2) Schubkastenkommode Glasfr
+  1 x CQGS91XB-75344 (1) Schwebetürenschrank 336/24
+  1 x OJ00-30156 (1.3) Schließ- und Öffnungsdämpf
+  1 x OJ00-15237 (1.4) Mitteltürdämpfer für 3-trg
+  1 x OJ00-11934 (1.1) KLEIDERSTANGE MIT HALTER 1
+  1 x OJ99-66018 (1.2) Inneneinteilung 110-er 2 S
+  Details zur Bestellung:
+  1 x CQEG9199-76931C (FPos: 2)
+  1 x CQGS91XB-75344 (FPos: 1)
+  Griff/Zierleisten Schwebetüren: schmal
+  1 x OJ00-30156 (FPos: 1.3)
+  1 x OJ00-15237 (FPos: 1.4)
+  1 x OJ00-11934 (FPos: 1.1)
+  1 x OJ99-66018 (FPos: 1.2)
+PARSED:
+  ORDER {'store': None, 'delivery': 'RÖSSLIWEG 43, CH-4852 ROTHRIST', 'week': 'KW36/2026', 'name': 'DIBKE', 'number': 'RJNJ3H-3', 'items': [('CQEG9199', '76931C', 1, '2'), ('CQGS91XB', '75344', 1, '1'), ('OJ00', '30156', 1, '1.3'), ('OJ00', '15237', 1, '1.4'), ('OJ00', '11934', 1, '1.1'), ('OJ99', '66018', 1, '1.2')]}
+========================================================================================================================
+[003] Email Samples / #1029195 Bestellung 21RQFP von Lutz (0!2026070829633).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=21_4BK_52707.dhp, 21_4BK_52707_05310017-YB.pdf
+SOURCE EVIDENCE:
+  Filiale: 5301 Eugendorf, Möbelstraße 9
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019010557
+  ILN-Anl : 9007019000978
+  ANLIEFERUNG: Landesstrasse 14, 5302 Henndorf
+  Liefertermin: KW34/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: 21RQFP-2 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 30301/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  2 x OJ99-33829 (2.2) Fachboden 54 cm (2Stk.) 22mm
+  1 x CQSP16TP-48230 (2) Schwebetürenschrank 150/22
+  1 x OJ00-13076 (2.1) Schwebetürendämpfer 2-er S
+  Details zur Bestellung:
+  2 x OJ99-33829 (FPos: 2.2)
+  1 x CQSP16TP-48230 (FPos: 2)
+  Griff/Zierleisten Schwebetüren: breit Graphit
+  1 x OJ00-13076 (FPos: 2.1)
+PARSED:
+  ORDER {'store': '5301 Eugendorf, Möbelstraße 9', 'delivery': 'Landesstrasse 14, 5302 Henndorf', 'week': 'KW34/2026', 'name': 'PROCK', 'number': '21RQFP-2', 'items': [('OJ99', '33829', 2, '2.2'), ('CQSP16TP', '48230', 1, '2'), ('OJ00', '13076', 1, '2.1')]}
+========================================================================================================================
+[004] Email Samples / #1029205 Bestellung 1EBAF6 von Lutz (0!2026070829631).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=1E_D74_15957.dhp, 1E_D74_15957_05310017-YB.pdf
+SOURCE EVIDENCE:
+  Filiale: 7000 Eisenstadt, Rusterstraße
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019001968
+  ILN-Anl : 9007019010571
+  ANLIEFERUNG: LOBÄCKERSTRASSE 8 A-7000 EISENSTADT
+  Liefertermin: KW41/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: 1EBAF6-2 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 30301/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQSN16TA-69361 (1) Schwebetürenschrank 280/22
+  1 x OJ00-13076 (1.3) Schwebetürendämpfer 2-er S
+  1 x OJ99-66016 (1.2) Inneneinteilung 91-er 2 Sc
+  1 x OJ99-12638 (1.1) T-Einteilung für Sockel 91
+  Details zur Bestellung:
+  1 x CQSN16TA-69361 (FPos: 1)
+  Dekor/Glasband Schwebetüren: Dekor Artisan
+  Griff/Zierleisten Schwebetüren: breit
+  1 x OJ00-13076 (FPos: 1.3)
+  1 x OJ99-66016 (FPos: 1.2)
+  1 x OJ99-12638 (FPos: 1.1)
+  T-Einteilung für Sockel 91cm 4 Fächer/1
+PARSED:
+  ORDER {'store': '7000 Eisenstadt, Rusterstraße', 'delivery': 'LOBÄCKERSTRASSE 8 A-7000 EISENSTADT', 'week': 'KW41/2026', 'name': 'ONDRAG', 'number': '1EBAF6-2', 'items': [('CQSN16TA', '69361', 1, '1'), ('OJ00', '13076', 1, '1.3'), ('OJ99', '66016', 1, '1.2'), ('OJ99', '12638', 1, '1.1')]}
+========================================================================================================================
+[005] Email Samples / #1029347 WG_ Bestellung NAXIWH von Lutz (17!2026070830281).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=NA_IIF_69843.dhp, NA_IIF_69843_05310127-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-90461 Nürnberg, Ingolstädter Strasse 20-22
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019003702
+  ILN-Anl : 9007019003726
+  Anlieferung: Ingolstädter Strasse 20-22, D-90461 Nürnberg
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: NAXIWH-1 Gebiet: ND1 (ArtNr: 05310127/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x PD76717696-80002 (2) Schwebetürenschrank 3-tr
+  1 x OJ00-15237 (2.1) Mitteltürdämpfer für 3-trg
+  Details zur Bestellung:
+  1 x PD76717696-80002 (FPos: 2)
+  Griff/Zierleisten: alufarbig
+  Kranz/Passepartout: Dekor Artisan Eiche
+  1 x OJ00-15237 (FPos: 2.1)
+PARSED:
+  ORDER {'store': 'D-90461 Nürnberg, Ingolstädter Strasse 20-22', 'delivery': 'Ingolstädter Strasse 20-22, D-90461 Nürnberg', 'week': 'KW36/2026', 'name': 'HELMSCHROTT', 'number': 'NAXIWH-1', 'items': [('PD76717696', '80002', 1, '2'), ('OJ00', '15237', 1, '2.1')]}
+========================================================================================================================
+[006] Email Samples / #1029348 WG_ Bestellung RKA558 von Lutz (17!2026070830283).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=RK_L7A_34943.dhp, RK_L7A_34943_05310214-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-46047 Oberhausen,Straßburger Str.52-60
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019012100
+  ILN-Anl : 9007019012148
+  Anlieferung: Hagelkreuzstraße 103, D-46149 Oberhausen
+  Liefertermin: KW36/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: RKA558-1 Gebiet: RL0 (ArtNr: 05310214/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  3 x OJ99-12738 (1.5) Fachboden 91 cm (2 Stk.) 22m
+  1 x CQSL22XP-56649 (1) Schwebetürenschrank 280/22
+  1 x OJ00-15237 (1.3) Mitteltürdämpfer für 3-trg
+  1 x OJ00-30156 (1.2) Schließ- und Öffnungsdämpf
+  1 x OJ99-53875 (1.1) Inneneinteilung für Schrän
+  1 x OJ2222-53642 (1.4) Passepartout 280/222 mit
+  Details zur Bestellung:
+  3 x OJ99-12738 (FPos: 1.5)
+  1 x CQSL22XP-56649 (FPos: 1)
+  Griff/Zierleisten Schwebetüren: schmal graphit
+  1 x OJ00-15237 (FPos: 1.3)
+  1 x OJ00-30156 (FPos: 1.2)
+  1 x OJ99-53875 (FPos: 1.1)
+  2 Schubkasten und Fachboden oben,
+  1 x OJ2222-53642 (FPos: 1.4)
+PARSED:
+  ORDER {'store': 'D-46047 Oberhausen,Straßburger Str.52-60', 'delivery': 'Hagelkreuzstraße 103, D-46149 Oberhausen', 'week': 'KW36/2026', 'name': 'VAN WAHNEM', 'number': 'RKA558-1', 'items': [('OJ99', '12738', 3, '1.5'), ('CQSL22XP', '56649', 1, '1'), ('OJ00', '15237', 1, '1.3'), ('OJ00', '30156', 1, '1.2'), ('OJ99', '53875', 1, '1.1'), ('OJ2222', '53642', 1, '1.4')]}
+========================================================================================================================
+[007] Email Samples / #1029360 WG_ Bestellung PAKMQI von Lutz (17!2026070830278).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=PA_W7U_52559.dhp, PA_W7U_52559_05310173-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-94036 Passau, Steinbachstraße 42
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019000329
+  ILN-Anl : 9007019001579
+  Anlieferung: Fatting 7, D-94113 Tiefenbach
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: PAKMQI-1 Gebiet: PO3 (ArtNr: 05310173/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK PRIMO
+  1 x PD44713644-54433 (1) Schwebetürenschrank 2-tr
+  Details zur Bestellung:
+  1 x PD44713644-54433 (FPos: 1)
+  Griff/Zierleisten: alufarbig
+PARSED:
+  ORDER {'store': 'D-94036 Passau, Steinbachstraße 42', 'delivery': 'Fatting 7, D-94113 Tiefenbach', 'week': 'KW36/2026', 'name': 'HAIDINGER', 'number': 'PAKMQI-1', 'items': [('PD44713644', '54433', 1, '1')]}
+========================================================================================================================
+[008] Email Samples / #1029367 WG_ Bestellung KR69IW von Lutz (17!2026070830276).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=KR_6DK_94154.dhp, KR_6DK_94154_05310214-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-76137 Karlsruhe, Durlacher Allee 109
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019005263
+  ILN-Anl : 9007019005348
+  Anlieferung: Spreewaldallee 38, 68309 Mannheim
+  Liefertermin: KW36/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: KR69IW-1 Gebiet: MA1 (ArtNr: 05310214/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQSP96TP-48362 (1) Schwebetürenschrank 249/22
+  Details zur Bestellung:
+  1 x CQSP96TP-48362 (FPos: 1)
+  Griff/Zierleisten Schwebetüren: breit Graphit
+PARSED:
+  ORDER {'store': 'D-76137 Karlsruhe, Durlacher Allee 109', 'delivery': 'Spreewaldallee 38, 68309 Mannheim', 'week': 'KW36/2026', 'name': 'RICHTER', 'number': 'KR69IW-1', 'items': [('CQSP96TP', '48362', 1, '1')]}
+========================================================================================================================
+[009] Email Samples / #1029373 WG_ Bestellung ANDIX3 von Lutz (17!2026070830269).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=AN_3LJP_69456.dhp, AN_3LJP_69456_05310173-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-85609 Aschheim, Eichendorffstr. 40
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006864
+  ILN-Anl : 9007019010298
+  Anlieferung: Gewerbepark 12, D-85646 Anzing
+  Liefertermin: KW36/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: ANDIX3-1 Gebiet: KA1 (ArtNr: 05310173/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK PRIMO
+  1 x PD16619116-54433 (2) Schwebetürenschrank 2-tr
+  1 x OJ00-30155 (2.1) Tür-Öffnungs- und Schließ
+  1 x PD16619116-54433 (1) Schwebetürenschrank 2-tr
+  1 x OJ00-30155 (1.1) Tür-Öffnungs- und Schließ
+  1 x PD16619116-54433 (3) Schwebetürenschrank 2-tr
+  1 x OJ00-30155 (3.1) Tür-Öffnungs- und Schließ
+  Details zur Bestellung:
+  1 x PD16619116-54433 (FPos: 2)
+  Griff/Zierleisten: schwarz matt
+  T-Einteilung Sockelbreite 97
+  1 x OJ00-30155 (FPos: 2.1)
+  2-trg. Schrä
+  1 x PD16619116-54433 (FPos: 1)
+  Griff/Zierleisten: schwarz matt
+  1 x OJ00-30155 (FPos: 1.1)
+  2-trg. Schrä
+  1 x PD16619116-54433 (FPos: 3)
+  Griff/Zierleisten: schwarz matt
+  1 x OJ00-30155 (FPos: 3.1)
+  2-trg. Schrä
+PARSED:
+  ORDER {'store': 'D-85609 Aschheim, Eichendorffstr. 40', 'delivery': 'Gewerbepark 12, D-85646 Anzing', 'week': 'KW36/2026', 'name': 'HERRMANN', 'number': 'ANDIX3-1', 'items': [('PD16619116', '54433', 1, '2'), ('OJ00', '30155', 1, '2.1'), ('PD16619116', '54433', 1, '1'), ('OJ00', '30155', 1, '1.1'), ('PD16619116', '54433', 1, '3'), ('OJ00', '30155', 1, '3.1')]}
+========================================================================================================================
+[010] Email Samples / #1029377 WG_ Bestellung UH51E6 von Lutz (17!2026070830280).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=UH_3Z5X_28429.dhp, UH_3Z5X_28429_05310214-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-36043 Fulda, Heidelsteinstraße 18
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013596
+  ILN-Anl : 9007019013633
+  Anlieferung: Dieselstr. 3-5, D-36041 Fulda/Rodges
+  Liefertermin: KW36/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: UH51E6-1 Gebiet: MJ6 (ArtNr: 05310214/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQ9696XA-60945 (2) Grundelement 84/222 Ausf.
+  1 x OJ00-11937 (2.1) KLEIDERSTANGE MIT HALTER 8
+  1 x CQ9696XA-85375 (4) Schwebetürenschrank 200/22
+  1 x OJ00-30155 (4.1) Schließ- und Öffnungsdämpf
+  1 x CQ969699-72133 (3) XL-Großkommode Dekorfront
+  1 x CQ9696XA-60725 (1) Schrägelement 48/222 Ausf.
+  1 x OJ99-14328 (4.2) Fachboden 97 cm (2 Stk.) 22m
+  Details zur Bestellung:
+  1 x CQ9696XA-60945 (FPos: 2)
+  Griff/Zierleisten Drehtüren: schmal alufarbig
+  1 x OJ00-11937 (FPos: 2.1)
+  1 x CQ9696XA-85375 (FPos: 4)
+  Griff/Zierleisten Schwebetüren: schmal
+  1 x OJ00-30155 (FPos: 4.1)
+  1 x CQ969699-72133 (FPos: 3)
+  XL-Großkommode Dekorfront Vollauszug 4
+  1 x CQ9696XA-60725 (FPos: 1)
+  Griff/Zierleisten Drehtüren: schmal alufarbig
+  1 x OJ99-14328 (FPos: 4.2)
+PARSED:
+  ORDER {'store': 'D-36043 Fulda, Heidelsteinstraße 18', 'delivery': 'Dieselstr. 3-5, D-36041 Fulda/Rodges', 'week': 'KW36/2026', 'name': 'KEIL', 'number': 'UH51E6-1', 'items': [('CQ9696XA', '60945', 1, '2'), ('OJ00', '11937', 1, '2.1'), ('CQ9696XA', '85375', 1, '4'), ('OJ00', '30155', 1, '4.1'), ('CQ969699', '72133', 1, '3'), ('CQ9696XA', '60725', 1, '1'), ('OJ99', '14328', 1, '4.2')]}
+========================================================================================================================
+[011] Email Samples / #1029379 WG_ Bestellung M1FGMA von Lutz (17!2026070830277).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=M1_GCX_56665.dhp, M1_GCX_56665_05310023-YB.pdf, M1_GCX_56665_05310214-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-68309 Mannheim, Spreewaldallee 40
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019005300
+  ILN-Anl : 9007019005348
+  Anlieferung: Spreewaldallee 38, 68309 Mannheim
+  Liefertermin: KW36/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: M1FGMA-1 Gebiet: MA2 (ArtNr: 05310023/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK DELTA
+  1 x OF961899-27523G (2) Konsole m. Softeinzug 3
+  1 x OF961899-12841G (3) Großkombikommode m. Soft
+  Details zur Bestellung:
+  1 x OF961899-27523G (FPos: 2)
+  1 x OF961899-12841G (FPos: 3)
+  Liefertermin: KW37/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: M1FGMA-2 Gebiet: MA2 (ArtNr: 05310214/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  1 x CQ9618XP-61744 (1) Schwebetürenschrank 280/20
+  1 x OJ00-15237 (1.3) Mitteltürdämpfer für 3-trg
+  1 x OJ00-30156 (1.2) Schließ- und Öffnungsdämpf
+  2 x OJ99-12638 (1.1) T-Einteilung für Sockel 91
+  Details zur Bestellung:
+  1 x CQ9618XP-61744 (FPos: 1)
+  Griff/Zierleisten Schwebetüren: schmal graphit
+  1 x OJ00-15237 (FPos: 1.3)
+  1 x OJ00-30156 (FPos: 1.2)
+  2 x OJ99-12638 (FPos: 1.1)
+  T-Einteilung für Sockel 91cm 4 Fächer/1
+PARSED:
+  ORDER {'store': 'D-68309 Mannheim, Spreewaldallee 40', 'delivery': 'Spreewaldallee 38, 68309 Mannheim', 'week': 'KW36/2026', 'name': 'JUNGE', 'number': 'M1FGMA-1', 'items': [('OF961899', '27523G', 1, '2'), ('OF961899', '12841G', 1, '3')]}
+  ORDER {'store': 'D-68309 Mannheim, Spreewaldallee 40', 'delivery': 'Spreewaldallee 38, 68309 Mannheim', 'week': 'KW37/2026', 'name': 'JUNGE', 'number': 'M1FGMA-2', 'items': [('CQ9618XP', '61744', 1, '1'), ('OJ00', '15237', 1, '1.3'), ('OJ00', '30156', 1, '1.2'), ('OJ99', '12638', 2, '1.1')]}
+========================================================================================================================
+[012] Email Samples / #1029396 WG_ Bestellung REDTXA von Lutz (17!2026070830282).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=RE_IXP_49667-1.dhp, RE_IXP_49667-1_05310060-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-45127 Essen, Hans Böckler Straße 80
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019012094
+  ILN-Anl : 9007019012148
+  Anlieferung: Hagelkreuzstraße 103, D-46149 Oberhausen
+  Liefertermin: KW29/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: REDTXA-4 Gebiet: (ArtNr: 05310060/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  PRIMO-GLAS
+  Primo-Glas
+  1 x PDAW81AW96-57392 (8) Schwebetürenschrank 3-tr
+  59199 BOENEN
+  Details zur Bestellung:
+  Primo-Glas
+  1 x PDAW81AW96-57392 (FPos: 8)
+  Griff/Zierleisten: chromfarbig
+PARSED:
+  ORDER {'store': 'D-45127 Essen, Hans Böckler Straße 80', 'delivery': 'Hagelkreuzstraße 103, D-46149 Oberhausen', 'week': 'KW29/2026', 'name': 'RÜFFER', 'number': 'REDTXA-4', 'items': [('PDAW81AW96', '57392', 1, '8')]}
+========================================================================================================================
+[013] Email Samples / #1029397 WG_ Bestellung PAKMR7 von Lutz (17!2026070830279).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=PA_W7U_52571.dhp, PA_W7U_52571_05310060-YB.pdf
+SOURCE EVIDENCE:
+  E-Mail: Lisa.Maier@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-94036 Passau, Steinbachstraße 42
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019000329
+  ILN-Anl : 9007019001579
+  Anlieferung: Fatting 7, D-94113 Tiefenbach
+  Liefertermin: KW36/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: PAKMR7-1 Gebiet: PA4 (ArtNr: 05310060/YB)
+  BFQ-Schluessel: 30103/
+  1.00 BEREICH SLZ/BETTEN/SCHRAENK
+  PRIMO-GLAS
+  Primo-Glas
+  1 x PDSP71AW96-57381 (1) Schwebetürenschrank 2-tr
+  Details zur Bestellung:
+  Primo-Glas
+  1 x PDSP71AW96-57381 (FPos: 1)
+  Griff/Zierleisten: alufarbig
+PARSED:
+  ORDER {'store': 'D-94036 Passau, Steinbachstraße 42', 'delivery': 'Fatting 7, D-94113 Tiefenbach', 'week': 'KW36/2026', 'name': 'KETZINGER', 'number': 'PAKMR7-1', 'items': [('PDSP71AW96', '57381', 1, '1')]}
+========================================================================================================================
+[014] Email Samples / #1029640 WG_ Bestellung UH4Z6A von Lutz (17!2026070924732).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=UH_CTW_27745-2.dhp, UH_CTW_27745-2_05310214-YC.pdf
+SOURCE EVIDENCE:
+  E-Mail: Matthias.Arnold@staudmoebel.de
+  Martin-Staud-Str. 1
+  D-88348 Bad Saulgau (Germany)
+  Filiale: D-36043 Fulda, Heidelsteinstraße 18
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013596
+  ILN-Anl : 9007019021157
+  Anlieferung: Industriestr. 25, D-21493 Schwarzenbek
+  Liefertermin: KW26/2026, NICHT FRUEHER NICHT SPAETER
+  Komm: UH4Z6A-4 Gebiet: 1C4 (ArtNr: 05310214/YC)AB-Nr: 3552460 vom 28.05.26
+  1.00 BEREICH JUGENDZIMME SYSTEM ONE
+  1 x CQ9696TA-04617 (1) Schwebetürenschrank 3-trg/
+  2 x OJ00-11937 (1.1) Kleiderstange Sockelbreite
+  1 x OJ00-15237 (1.4) Tür-Schließdämpfer Mittelt
+  1 x OJ00-11945 (1.2) Krawattenhalter
+  1 x OJ00-30156 (1.3) Tür-Öffnungs- und Schließd
+  Details zur Bestellung:
+  1 x CQ9696TA-04617 (FPos: 1)
+  Griff/Zierleisten Schwebetüren: breit
+  2 x OJ00-11937 (FPos: 1.1)
+  1 x OJ00-15237 (FPos: 1.4)
+  1 x OJ00-11945 (FPos: 1.2)
+  1 x OJ00-30156 (FPos: 1.3)
+  4er-Set, für 3-trg. bis 4-trg. Schränke
+  2x öffnen, 2x schließen
+PARSED:
+  ORDER {'store': 'D-36043 Fulda, Heidelsteinstraße 18', 'delivery': 'Industriestr. 25, D-21493 Schwarzenbek', 'week': 'KW26/2026', 'name': 'SARNES', 'number': 'UH4Z6A-4', 'items': [('CQ9696TA', '04617', 1, '1'), ('OJ00', '11937', 2, '1.1'), ('OJ00', '15237', 1, '1.4'), ('OJ00', '11945', 1, '1.2'), ('OJ00', '30156', 1, '1.3')]}
+========================================================================================================================
+[015] Email Samples\NEW LUTZ SAMPLES / #1018591 Bestellung PRKLYQ von Lutz (10!202606143289).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008011
+  ILN-Anl : 9007019008011
+  ANLIEFERUNG: XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4
+  Liefertermin: KW35/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: PRKLYQ-1 (ArtNr: 05310173/50)
+  BFQ-Schluessel: 30103/
+  1.00 SKRÍN S POSOUVACÍMI DVERMI
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4', 'week': 'KW35/2026', 'name': 'HÁJKOVÁ', 'number': 'PRKLYQ-1', 'items': [('PDSU71SP96', '57384', 1, 'body')]}
+========================================================================================================================
+[016] Email Samples\NEW LUTZ SAMPLES / #1021649 Bestellung ZPNWLH von Lutz (10!2026061826417).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260618_220037_ZPNWLH_1.xml, EX-00032.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019006055
+  ANLIEFERUNG: Mvbelix CZ-19000 Praha, Kolbenova 50
+  Liefertermin: KW35/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWLH-1 (ArtNr: 05310041/YK)
+  BFQ-Schluessel: 13106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI SONATE
+  --Übersetzung zu oben angeführtem Text--
+  1 x 28139
+  3 Schubkästen
+  1 x 28139
+  3 Schubkästen
+  1 x 49036
+  58 cm
+  1 x 49036
+  58 cm
+  XML ORDER {'number': 'ZPNWLH  1', 'commission': 'NOVAKOVA', 'week': '202635', 'items': [{'position': '1', 'series': '14', 'article': '28139', 'quantity': '1'}, {'position': '2', 'series': '14', 'article': '28139', 'quantity': '1'}, {'position': '3', 'series': '14', 'article': '49036', 'quantity': '1'}, {'position': '4', 'series': '14', 'article': '49036', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha', 'week': 'KW35/2026', 'name': 'NOVAKOVA', 'number': 'ZPNWLH-1', 'items': [(None, '28139', 1, '1'), (None, '28139', 1, '2'), (None, '49036', 1, '3'), (None, '49036', 1, '4')]}
+========================================================================================================================
+[017] Email Samples\NEW LUTZ SAMPLES / #1022126 Bestellung ZCNDHR von Lutz (10!2026061924245).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260619_220028_ZCNDHR_1.xml, 20260619_220028_ZCNDHR_2.xml, 20260619_220028_ZCNDHR_3.xml, 20260619_220028_ZCNDHR_4.xml, 20260619_220028_ZCNDHR_5.xml, EX-00025.jpg, EX-00026.jpg, EX-00027.jpg, EX-00028.jpg, EX-00029.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013299
+  ILN-Anl : 9007019013299
+  ANLIEFERUNG: CZ-58601 Jihlava, Vrchlickeho 5826/74
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZCNDHR-1 (ArtNr: 05310041/YB)
+  BFQ-Schluessel: 30102/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 37679
+  1 x 37679
+  3 Türen
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZCNDHR-2 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30102/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 76399
+  1 x 76399
+  2 Schubkästen
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZCNDHR-3 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30102/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 56848
+  1 x 56848
+  T-Einteilung
+  91 cm
+  1 Mittelseite
+  1 Kleiderstange
+  4 Fachböden
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZCNDHR-4 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30102/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 46518
+  1 x 46518
+  3-türig
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZCNDHR-5 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30102/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 38337
+  1 x 38337
+  2x Schließdämpfer
+  2x Öffnungsdämpfer
+  3-türig
+  4-türig
+  XML ORDER {'number': 'ZCNDHR  1', 'commission': 'ROD', 'week': '202636', 'items': [{'position': '1', 'series': '5', 'article': '37679', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZCNDHR  2', 'commission': 'ROD', 'week': '202636', 'items': [{'position': '1', 'series': '99', 'article': '76399', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZCNDHR  3', 'commission': 'ROD', 'week': '202636', 'items': [{'position': '1', 'series': '99', 'article': '56848', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZCNDHR  4', 'commission': 'ROD', 'week': '202636', 'items': [{'position': '1', 'series': '99', 'article': '46518', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZCNDHR  5', 'commission': 'ROD', 'week': '202636', 'items': [{'position': '1', 'series': '99', 'article': '38337', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'delivery': 'SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'week': 'KW36/2026', 'name': 'ROD', 'number': 'ZCNDHR-1', 'items': [(None, '37679', 1, '1')]}
+  ORDER {'store': 'MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'delivery': 'SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'week': 'KW36/2026', 'name': 'ROD', 'number': 'ZCNDHR-2', 'items': [(None, '76399', 1, '1')]}
+  ORDER {'store': 'MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'delivery': 'SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'week': 'KW36/2026', 'name': 'ROD', 'number': 'ZCNDHR-3', 'items': [(None, '56848', 1, '1')]}
+  ORDER {'store': 'MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'delivery': 'SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'week': 'KW36/2026', 'name': 'ROD', 'number': 'ZCNDHR-4', 'items': [(None, '46518', 1, '1')]}
+  ORDER {'store': 'MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'delivery': 'SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava', 'week': 'KW36/2026', 'name': 'ROD', 'number': 'ZCNDHR-5', 'items': [(None, '38337', 1, '1')]}
+========================================================================================================================
+[018] Email Samples\NEW LUTZ SAMPLES / #1022274 Bestellung BCRKE6 von Lutz (10!202606208391).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=BC_B7O_4733-2.dhp, BC_B7O_4733-2_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9009852030679
+  ILN-Anl : 9007019011196
+  ANLIEFERUNG: XXXLUTZ CZ-61900 Brno, Videnska 151/123
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: BCRKE6-4 (ArtNr: 05310017/YB)
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQEG12XP-60940 (1) Základní jednotka 51/240 v
+  2 x OJ99-61470 (1.1) Police, sada 2 írka soklu 48
+  1 x CQEG12XP-60812 (3) Rohová skrínka 112/240 ver
+  1 x CQEG12XP-74446 (2) atní skrín s posuvnými dve
+  2 x OJ00-11936 (2.2) írka podstavce pro veák na
+  1 x OJ00-30155 (2.3) Sada otevírání a zavírání
+  1 x OJ99-12737 (2.1) írka podstavce police 91
+  --Übersetzung zu oben angeführtem Text--
+  1 x CQEG12XP-60940 (1) Basiseinheit 51/240 V
+  2 x OJ99-61470 (1.1) Regalböden, 2er-Set, Sockelbreite 48:
+  1 x CQEG12XP-60812 (3) Eckschrank 112/240 ver:
+  1 x CQG 12XP-74446 (2) Kleiderschrank mit Schiebetüren:
+  2 x OJ00-11936 (2,2) Breite der Basis für den Ventilator auf:
+  1 x OJ00-30155 (2.3) Öffnungs- und Schließset:
+  1 x OJ99-12737 (2.1) Regalsockel Irish 91 :
+  Detaily k objednávce :
+  1 x CQEG12XP-60940 (FPos: 1)
+  2 x OJ99-61470 (FPos: 1.1)
+  1 x CQEG12XP-60812 (FPos: 3)
+  1 x CQEG12XP-74446 (FPos: 2)
+  27 pravé dvere sklo slonová kost
+  2 x OJ00-11936 (FPos: 2.2)
+  1 x OJ00-30155 (FPos: 2.3)
+  1 x OJ99-12737 (FPos: 2.1)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ CZ-61900 Brno, Videnska 151/123', 'week': 'KW36/2026', 'name': 'BEHROVA', 'number': 'BCRKE6-4', 'items': [('CQEG12XP', '60940', 1, '1'), ('OJ99', '61470', 2, '1.1'), ('CQEG12XP', '60812', 1, '3'), ('CQEG12XP', '74446', 1, '2'), ('OJ00', '11936', 2, '2.2'), ('OJ00', '30155', 1, '2.3'), ('OJ99', '12737', 1, '2.1')]}
+========================================================================================================================
+[019] Email Samples\NEW LUTZ SAMPLES / #1023347 Bestellung ZPNWM4 von Lutz (10!2026062325476).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260623_220951_ZPNWM4_9.xml, EX-00025.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019006055
+  ANLIEFERUNG: Mvbelix CZ-19000 Praha, Kolbenova 50
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWM4-9 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 13106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 23018
+  LED-Jetline
+  1 x 23018
+  LED-Jetline
+  XML ORDER {'number': 'ZPNWM4  9', 'commission': 'MANDÍKOVÁ', 'week': '202636', 'items': [{'position': '1', 'series': '99', 'article': '23018', 'quantity': '1'}, {'position': '2', 'series': '99', 'article': '23018', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha', 'week': 'KW36/2026', 'name': 'MANDÍKOVÁ', 'number': 'ZPNWM4-9', 'items': [(None, '23018', 1, '1'), (None, '23018', 1, '2')]}
+========================================================================================================================
+[020] Email Samples\NEW LUTZ SAMPLES / #1024085 Fwd_ AB_WE Offene Bestellungen LF 0531.eml
+TYPE=confirmation_request PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Hi, bitte hier Kunde informieren. Danke SG Peter Odoslané z iPhonu Zaciatok preposlanej správy: Od: Infocenter T9 <Info.T9@xxxlutz.sk> Dátum: 25. júna 2026, 9:14:19 SELC Pre: Peter Brat <Peter.Brat@staudmoebel.de> Predmet: AB/WE Offene Bestellungen LF 0531 ? Guten Tag, wir bitten Sie, uns die Liefertermine für die folgenden Bestellungen mitzuteilen: Lieferant Nummer Position Anliefer-Filiale Artikel Ausführung Artikelname AB Nummer AB Liefertermin 531 91NJ53 1 AKW/HL-LU OSTRAVA 5310017 YB SYSTEM ONE 9586940 KW 31/2026 531 XZTTKT 1 AWY/2MH-LU RET. SÜD 5310067 81 DELTA 531 03YP2 500 PQ/LU Praha 
+========================================================================================================================
+[021] Email Samples\NEW LUTZ SAMPLES / #1024683 Bestellung DGRPQ von Lutz (10!2026062621666).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019007908
+  ILN-Anl : 9007019007908
+  ANLIEFERUNG: Möbelix CZ 70030 Ostrava. Horni 79
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGRPQ-1 0531/UR/AHO/260626/DISPO (Art.c: 05310041/02)
+  1.00 EINLEGEBODENSET SONATE, 2ER SET
+  TYP: ZB99-88060, TEXLINE 2ER SET, INKLUSVE BODENTRÄGER
+  Lagerbestellung: DGRPQ-2 0531/UR/AHO/260626/DISPO (Art.c: 05310041/03)
+  1.00 INNENEINTEILUNG SONATE
+  TYP: ZB99-85360, TEXLINE T-EINTEILUNG
+  B/H/T CA. 97/151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ 70030 Ostrava. Horni 79', 'week': 'KW37/2026', 'name': None, 'number': 'DGRPQ-1', 'items': [('ZB99', '88060', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ 70030 Ostrava. Horni 79', 'week': 'KW37/2026', 'name': 'BREITE CA.97CM, 22M DICKE', 'number': 'DGRPQ-2', 'items': [('ZB99', '85360', 1, 'body')]}
+========================================================================================================================
+[022] Email Samples\NEW LUTZ SAMPLES / #1024704 Bestellung DGRNS von Lutz (10!2026062621667).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-251 01 Cestlice, k Chotobuzi 331
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019020150
+  ILN-Anl : 9007019020150
+  Anlieferung: k Chotobuzi 331, CZ-251 01 Cestlice
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGRNS-1 0531/CN/AHO/260626/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-251 01 Cestlice, k Chotobuzi 331', 'delivery': 'k Chotobuzi 331, CZ-251 01 Cestlice', 'week': 'KW37/2026', 'name': None, 'number': 'DGRNS-1', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[023] Email Samples\NEW LUTZ SAMPLES / #1024705 Bestellung DGRPM von Lutz (10!2026062621668).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019006055
+  ANLIEFERUNG: Mvbelix CZ-19000 Praha, Kolbenova 50
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGRPM-1 0531/S5/AHO/260626/DISPO (Art.c: 05310180/04)
+  2.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Mvbelix CZ-19000 Praha, Kolbenova 50', 'week': 'KW37/2026', 'name': None, 'number': 'DGRPM-1', 'items': [('ZB00', '84006', 2, 'body')]}
+========================================================================================================================
+[024] Email Samples\NEW LUTZ SAMPLES / #1024714 Bestellung DGRPB von Lutz (10!2026062621664).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008028
+  ILN-Anl : 9007019008028
+  ANLIEFERUNG: Möbelix CZ-15800 Praha 5, Narozni 1390/4
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGRPB-1 0531/P9/AHO/260626/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ-15800 Praha 5, Narozni 1390/4', 'week': 'KW37/2026', 'name': None, 'number': 'DGRPB-1', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[025] Email Samples\NEW LUTZ SAMPLES / #1024718 Bestellung DGRNU von Lutz (10!2026062621665).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019011486
+  ILN-Anl : 9007019011486
+  ANLIEFERUNG: CZ-36211 Jenisov u Karlovych Varu, Obchodni
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGRNU-1 0531/DJ/AHO/260626/DISPO (Art.c: 05310183/05)
+  1.00 SCHWEBETÜRENSCHRANK
+  TYP: LUSN7191-92440, SAND- GLAS, INKL. MITTEL-
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-36211 Jenisov u Karlovych Varu, Obchodni', 'week': 'KW37/2026', 'name': None, 'number': 'DGRNU-1', 'items': [('LUSN7191', '92440', 1, 'body')]}
+========================================================================================================================
+[026] Email Samples\NEW LUTZ SAMPLES / #1024835 Bestellung RIM92D von Lutz (10!202606275867).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=RI_3HY4_149.dhp, RI_3HY4_149_05310278-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019017518
+  ILN-Anl : 9007019008011
+  ANLIEFERUNG: XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: RIM92D-1 (ArtNr: 05310278/YB)
+  BFQ-Schluessel: 30103/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  Primo-Glas
+  1 x PDSN819191-13505 (2) Konzola s mechanismem ti
+  1 x PDSN00-12356 (2.1) Sklenená horní pomocná j
+  1 x PDSN819191-13505 (1) Konzola s mechanismem ti
+  1 x PDSN00-12356 (1.1) Sklenená horní pomocná j
+  --Übersetzung zu oben angeführtem Text--
+  Primo-Glas
+  1 x PDSN819191-13505 (2) Halterung mit Kippmechanismus
+  1 x PDSN00-12356 (2.1) Glas-Oberteil-Zusatzgerät j
+  1 x PDSN819191-13505 (1) Halterung mit Kippmechanismus
+  1 x PDSN00-12356 (1.1) Oberes Hilfsglas j
+  Detaily k objednávce :
+  Primo-Glas
+  1 x PDSN819191-13505 (FPos: 2)
+  1 x PDSN00-12356 (FPos: 2.1)
+  1 x PDSN819191-13505 (FPos: 1)
+  1 x PDSN00-12356 (FPos: 1.1)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4', 'week': 'KW37/2026', 'name': 'PAKANYC', 'number': 'RIM92D-1', 'items': [('PDSN819191', '13505', 1, '2'), ('PDSN00', '12356', 1, '2.1'), ('PDSN819191', '13505', 1, '1'), ('PDSN00', '12356', 1, '1.1')]}
+========================================================================================================================
+[027] Email Samples\NEW LUTZ SAMPLES / #1025337 Bestellung QPQ8LN von Lutz (10!2026062929334).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9009852029345
+  ILN-Anl : 9009852029345
+  ANLIEFERUNG: Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen
+  Liefertermin: KW33/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: QPQ8LN-1 (ArtNr: 05310180/04)
+  BFQ-Schluessel: 15302/
+  1.00 TLUMIC DOVÍRÁNÍ SONATE/LUMOS
+  ZB00/84006 NEUTRÁLNÍ DEKOR 2-DÍLNÁ SADA, POUZE PRO
+  --Übersetzung zu oben angeführtem Text--
+  SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR
+  Liefertermin: KW33/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: QPQ8LN-3 (ArtNr: 05310183/02)
+  BFQ-Schluessel: 15302/
+  1.00 SKRÍN S POSOUVACÍMI DVERMI LUMOS
+  TYP: LUSN71SP91-92626,PÍSKOVÉ SKLO,ZRCADLO, STRED.TLUMIC
+  --Übersetzung zu oben angeführtem Text--
+  TYP: LUSN71SP91-92626, SAND-
+  Liefertermin: KW33/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: QPQ8LN-4 (ArtNr: 05310158/01)
+  BFQ-Schluessel: 15302/
+  1.00 VKLÁDACÍ POLICE TEXLINE, 2-SET
+  TYP: ZB99-59725, TEXLINE PRO SKRÍNÉ: ŠÍRKA 249 CM
+  --Übersetzung zu oben angeführtem Text--
+  TYP: ZB99-59725, TEXLINE
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen', 'week': 'KW33/2026', 'name': 'JUDÁK', 'number': 'QPQ8LN-1', 'items': [('ZB00', '84006', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen', 'week': 'KW33/2026', 'name': 'JUDÁK', 'number': 'QPQ8LN-3', 'items': [('LUSN71SP91', '92626', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen', 'week': 'KW33/2026', 'name': 'JUDÁK', 'number': 'QPQ8LN-4', 'items': [('2', 'SET', 1, 'body')]}
+========================================================================================================================
+[028] Email Samples\NEW LUTZ SAMPLES / #1025345 Bestellung PRKMBE von Lutz (10!2026062929333).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=PR_5GA_5648.dhp, PR_5GA_5648_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008011
+  ILN-Anl : 9007019008011
+  ANLIEFERUNG: XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: PRKMBE-1 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 15302/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQAW1899-76947C (4) Konzolové sklenené celo s
+  1 x CQSL00-09387 (4.1) Sklenená deska
+  1 x CQAW1899-72216C (2) Velká komoda se skleneným
+  1 x OJ00-40264 (2.2) Zásuvková prepáka 4 pomocn
+  1 x CQSL00-12535 (2.1) Sklenená deska
+  1 x CQAW1899-76947C (5) Konzolové sklenené celo s
+  1 x CQSL00-09387 (5.1) Sklenená deska
+  1 x CQAW1899-72216C (3) Velká komoda se skleneným
+  1 x CQSL00-12535 (3.1) Sklenená deska
+  1 x OJ00-40264 (3.2) Zásuvková prepáka 4 pomocn
+  1 x CQAW1899-72204C (1) Komoda se skleneným celem
+  --Übersetzung zu oben angeführtem Text--
+  1 x CQAW1899-76947C (4) Glasfront mit Konsolen und
+  1 x CQSL00-09387 (4.1) Glasplatte
+  1 x CQAW1899-72216C (2) Große Kommode mit Glas
+  1 x OJ00-40264 (2.2) Steckbare Trennwand 4 Hilfs-
+  1 x CQSL00-12535 (2.1) Glasplatte
+  1 x CQAW1899-76947C (5) Glasfront mit Konsolen und
+  1 x CQSL00-09387 (5.1) Glasplatte
+  1 x CQAW1899-72216C (3) Große Kommode mit Glasse
+  1 x CQSL00-12535 (3.1) Glasplatte
+  1 x OJ00-40264 (3.2) Steckbare Trennwand 4 Hilfs-
+  1 x CQAW1899-72204C (1) Kommode mit Glasfront
+  Detaily k objednávce :
+  1 x CQAW1899-76947C (FPos: 4)
+  1 x CQSL00-09387 (FPos: 4.1)
+  1 x CQAW1899-72216C (FPos: 2)
+  1 x OJ00-40264 (FPos: 2.2)
+  1 x CQSL00-12535 (FPos: 2.1)
+  1 x CQAW1899-76947C (FPos: 5)
+  1 x CQSL00-09387 (FPos: 5.1)
+  1 x CQAW1899-72216C (FPos: 3)
+  1 x CQSL00-12535 (FPos: 3.1)
+  1 x OJ00-40264 (FPos: 3.2)
+  1 x CQAW1899-72204C (FPos: 1)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4', 'week': 'KW37/2026', 'name': 'EMBASSY', 'number': 'PRKMBE-1', 'items': [('CQAW1899', '76947C', 1, '4'), ('CQSL00', '09387', 1, '4.1'), ('CQAW1899', '72216C', 1, '2'), ('OJ00', '40264', 1, '2.2'), ('CQSL00', '12535', 1, '2.1'), ('CQAW1899', '76947C', 1, '5'), ('CQSL00', '09387', 1, '5.1'), ('CQAW1899', '72216C', 1, '3'), ('CQSL00', '12535', 1, '3.1'), ('OJ00', '40264', 1, '3.2'), ('CQAW1899', '72204C', 1, '1')]}
+========================================================================================================================
+[029] Email Samples\NEW LUTZ SAMPLES / #1025406 Bestellung LTP7Z6 von Lutz (10!2026062929332).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=LT_1LH3_3910.dhp, LT_1LH3_3910_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019016672
+  ILN-Anl : 9007019016672
+  ANLIEFERUNG: XXXLUTZ 25101 Cestlice, Pražská 135
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: LTP7Z6-1 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 15302/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQ9116XP-04613 (1) Skrín s posuvnými dvermi 1
+  1 x OJ00-30155 (1.1) Sada otevírání a zavírání
+  4 x OJ99-12738 (1.2) Police, sada 2 írka soklu 91
+  --Übersetzung zu oben angeführtem Text--
+  1 x CQ9116XP-04613 (1) Schrank mit Schiebetüren
+  1 x OJ00-30155 (1.1) Set zum Öffnen und Schließen
+  4 x OJ99-12738 (1.2)
+  Detaily k objednávce :
+  1 x CQ9116XP-04613 (FPos: 1)
+  1 x OJ00-30155 (FPos: 1.1)
+  4 x OJ99-12738 (FPos: 1.2)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 25101 Cestlice, Pražská 135', 'week': 'KW37/2026', 'name': 'CIHLÁROVÁ', 'number': 'LTP7Z6-1', 'items': [('CQ9116XP', '04613', 1, '1'), ('OJ00', '30155', 1, '1.1'), ('OJ99', '12738', 4, '1.2')]}
+========================================================================================================================
+[030] Email Samples\NEW LUTZ SAMPLES / #1025745 MAIL VON S LUTZ  (A! S 2026063026804).eml
+TYPE=unknown PROFILE=lutz ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Mail:OFFICE-LUTZ@LUTZ.AT -------------------------------------------------------------------------------- Firma XLCZ Nábytek s.r.o. MARTIN STAUD GMBH (0531) Prazska 135 z.H. Verkaufsleitung CZ-25101 Cestlice MARTIN STAUD STRASSE 1 CZ27127133 DE452303687 Mail: 2NQK@xxxlutz.cz 25.06.26/2NQK Belastungsanzeige Schadenersatzpauschale wegen LIEFERVERZUG Beleg Nr.: KVCM0526 S05318412600010 Zeitraum: Mai 26 - Mai 26 Sehr geehrte Damen und Herren, bedauerlicherweise mussten wir feststellen, dass Sie die vertraglich vereinbarte Lieferzeit samt der gewährten Nachfrist in mehreren Fällen nicht eingehalten
+========================================================================================================================
+[031] Email Samples\NEW LUTZ SAMPLES / #1025809 Bestellung ATNKDH von Lutz (10!2026063031297).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=AT_47K0_1781.dhp, AT_47K0_1781_05310150-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019017617
+  ILN-Anl : 9007019017624
+  ANLIEFERUNG: XXXLUTZ 19900 Praha 9, Veselská 709
+  Liefertermin: KW37/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: ATNKDH-1 (ArtNr: 05310150/YB)
+  BFQ-Schluessel: 13106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x JOAW61S818-65807 (1) Skrín s posuvnými dvermi
+  1 x JO00-11135 (1.1) Otevírací a zavírací klapk
+  --Übersetzung zu oben angeführtem Text--
+  1 x JOAW61S818-65807 (1) Schrank mit Schiebetüren
+  1 x JO00-11135 (1.1) Öffnungs- und Schließklappe
+  Detaily k objednávce :
+  1 x JOAW61S818-65807 (FPos: 1)
+  1 x JO00-11135 (FPos: 1.1)
+  2-dverové skríne
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 19900 Praha 9, Veselská 709', 'week': 'KW37/2026', 'name': 'UTESIL', 'number': 'ATNKDH-1', 'items': [('JOAW61S818', '65807', 1, '1'), ('JO00', '11135', 1, '1.1')]}
+========================================================================================================================
+[032] Email Samples\NEW LUTZ SAMPLES / #1025843 WG_ AB_WE Offene Bestellungen LF 0531.eml
+TYPE=confirmation_request PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Hi, s. unten, bitte um Rückantwort. Danke Von: Mochan Petr <2N8@xxxlutz.cz> Gesendet: Montag, 29. Juni 2026 09:10 An: Kundendienst1 <Kundendienst1@staudmoebel.de> Cc: Peter Brat <Peter.Brat@staudmoebel.de> Betreff: FW: AB/WE Offene Bestellungen LF 0531 Guten Tag, wir bitten Sie, uns die Liefertermine für die folgenden Bestellungen mitzuteilen: Lieferant Nummer Position Anliefer-Filiale AB Nummer AB Liefertermin 531 4MMZ1R 500 AKS/HL-LU OLOMOUC 3424181 (Bezugs-AB: 3424180) KW 26/2026 531 91NCQB 503 AKW/HL-LU OSTRAVA 3557910 (Bezugs-AB: 3254280) KW 26/2026 531 ATNG56 501 AKM/HL-LU PRAHA 9 336630
+========================================================================================================================
+[033] Email Samples\NEW LUTZ SAMPLES / #1026247 Bestellung ZPNWQV von Lutz (10!2026070130260).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260701_220029_ZPNWQV_1.xml, EX-00025.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019006055
+  ANLIEFERUNG: Mvbelix CZ-19000 Praha, Kolbenova 50
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWQV-1 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 11106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 76405
+  3 Schubkästen
+  XML ORDER {'number': 'ZPNWQV  1', 'commission': 'HORÁK', 'week': '202637', 'items': [{'position': '1', 'series': '99', 'article': '76405', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha', 'week': 'KW37/2026', 'name': 'HORÁK', 'number': 'ZPNWQV-1', 'items': [(None, '76405', 1, '1')]}
+========================================================================================================================
+[034] Email Samples\NEW LUTZ SAMPLES / #1026266 Bestellung RMN3C5 von Lutz (10!2026070130259).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=RM_1LLX_792.dhp, RM_1LLX_792_05310017-YB.pdf, RM_1LLX_794.dhp, RM_1LLX_794_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019017631
+  ILN-Anl : 9007019017631
+  ANLIEFERUNG: XXXLUTZ 66442 Modrice, Olympia Brno, U Dálnice 1048
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: RMN3C5-1 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 11106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x OJ99-12740 (1.4) Police, sada 2 írka soklu 11
+  1 x CQ0606TP-04597 (1) atní skrín s posuvnými dve
+  1 x OJ99-12739 (1.1) írka podstavce police 110
+  1 x OJ00-15237 (1.3) Stredový tlumic dverí pro
+  1 x OJ00-30156 (1.2) Sada uzamykacích a otevíra
+  --Übersetzung zu oben angeführtem Text--
+  SCHLAFZIMMER/BETT/KLEIDERSCHRANK
+  1 x OJ99-12740 (1,4) Regal, 2er-Set, Sockelbreite 11
+  1 x CQ0606TP-04597 (1) Kleiderschrank mit Schiebetüren
+  1 x OJ99-12739 (1,1) Regalboden, Sockelbreite 110
+  1 x OJ00-15237 (1.3) Türdämpfer
+  1 x OJ00-30156 (1.2) Verriegelungs- und Öffnungsset
+  Detaily k objednávce :
+  1 x OJ99-12740 (FPos: 1.4)
+  1 x CQ0606TP-04597 (FPos: 1)
+  1 x OJ99-12739 (FPos: 1.1)
+  1 x OJ00-15237 (FPos: 1.3)
+  1 x OJ00-30156 (FPos: 1.2)
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: RMN3C5-2 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 11106/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQ0606TP-04597K (1) atní skrín s posuvnými dv
+  1 x OJ00-30156 (1.2) Sada uzamykacích a otevíra
+  1 x OJ99-63828 (1.1) Police, sada 1 írka soklu
+  2 x OJ99-14328 (2.3) Police, sada 2 írka soklu 97
+  1 x OJ99-63829 (1.3) Police, sada 2 írka soklu 11
+  1 x CQ0606TP-04631 (2) atní skrín s posuvnými dve
+  1 x OJ00-30156 (2.1) Sada uzamykacích a otevíra
+  1 x OJ00-33830 (2.2) Tlumic dverí, stredová sad
+  --Übersetzung zu oben angeführtem Text--
+  SCHLAFZIMMER/BETT/KLEIDERSCHRANK
+  1 x CQ0606TP-04597K (1) Kleiderschrank mit Schiebetüren
+  1 x OJ00-30156 (1.2) Verriegelungs- und Öffnungsset
+  1 x OJ99-63828 (1.1) Regalset, 1 Sockelbreite
+  2 x OJ99-14328 (2.3) Regalböden, 2er-Set, Sockelbreite 97
+  1 x OJ99-63829 (1.3) Regalböden, Set 2, Sockelbreite 11
+  1 x CQ0606TP-04631 (2) Kleiderschrank mit Schiebetüren
+  1 x OJ00-30156 (2.1) Verriegelungs- und Öffnungsset
+  1 x OJ00-33830 (2.2) Türdämpfer, Mittelset
+  Detaily k objednávce :
+  1 x CQ0606TP-04597K (FPos: 1)
+  1 x OJ00-30156 (FPos: 1.2)
+  1 x OJ99-63828 (FPos: 1.1)
+  2 x OJ99-14328 (FPos: 2.3)
+  1 x OJ99-63829 (FPos: 1.3)
+  1 x CQ0606TP-04631 (FPos: 2)
+  1 x OJ00-30156 (FPos: 2.1)
+  1 x OJ00-33830 (FPos: 2.2)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 66442 Modrice, Olympia Brno, U Dálnice 1048', 'week': 'KW37/2026', 'name': 'GALECKA', 'number': 'RMN3C5-1', 'items': [('OJ99', '12740', 1, '1.4'), ('CQ0606TP', '04597', 1, '1'), ('OJ99', '12739', 1, '1.1'), ('OJ00', '15237', 1, '1.3'), ('OJ00', '30156', 1, '1.2')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 66442 Modrice, Olympia Brno, U Dálnice 1048', 'week': 'KW37/2026', 'name': 'GALECKA', 'number': 'RMN3C5-2', 'items': [('CQ0606TP', '04597K', 1, '1'), ('OJ00', '30156', 1, '1.2'), ('OJ99', '63828', 1, '1.1'), ('OJ99', '14328', 2, '2.3'), ('OJ99', '63829', 1, '1.3'), ('CQ0606TP', '04631', 1, '2'), ('OJ00', '30156', 1, '2.1'), ('OJ00', '33830', 1, '2.2')]}
+========================================================================================================================
+[035] Email Samples\NEW LUTZ SAMPLES / #1026598 2D0IQ - pos.1.eml
+TYPE=unknown PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Hallo, könnten Sie mir bitte mitteilen, wann die Ware aus der Bestellung 2D0IQ - Position 1 geliefert wird? Danke. -- [cid:2DE-6A466700-11D-3CA72B80] S pozdravem / Mit freundlichen Grüßen / Best regards Hana Ložková vedoucí kanceláre Obchodní 102, 362 11 Jenišov u Karlových Varu, Cesko tel.: (+420) 354 780 220 mail: store.dj@moebelix.cz Jsme IN na www.moebelix.cz<http://www.moebelix.cz/> –––––––––––––––––––––––––––––––––––––––––– Headoffice / Zentrale / Sídlo: Petra Legnera 6850/1, 84106 Bratislava Bory, Slovakia Invoicing Data / Rechnungsadressen / Fakturacní údaje: XLCZ Nábytek, s.r.o. Pražs
+========================================================================================================================
+[036] Email Samples\NEW LUTZ SAMPLES / #1026607 WG_ AB_WE Offene Bestellungen LF 0531.eml
+TYPE=confirmation_request PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Bitte auch Kunde informieren. danke Von: Infocenter T9 <Info.T9@xxxlutz.sk> Gesendet: Donnerstag, 2. Juli 2026 10:18 An: Peter Brat <Peter.Brat@staudmoebel.de> Betreff: AB/WE Offene Bestellungen LF 0531 Guten Tag, wir bitten Sie, uns die Liefertermine für die folgenden Bestellungen mitzuteilen: Lieferant Nummer Position Anliefer-Filiale Artikel Ausführung Artikelname (Spalte Mod. Bez. Kunde) AB Nummer AB Liefertermin 531 03YP2 500 PQ/LU Praha II 5310168 1 OMEGA 531 VUPE5M 5 QC/SC-LU IVANKA PRI DUN 5310238 YB SYSTEM ONE Die AB Nummern und Liefertermine können Sie in die obenstehende Tabelle ein
+========================================================================================================================
+[037] Email Samples\NEW LUTZ SAMPLES / #1027000 Bestellung DGSGP von Lutz (10!2026070325791).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9009852029345
+  ILN-Anl : 9009852029345
+  ANLIEFERUNG: Möbelix, CZ-30100 Plzen, Folmavská 1270 / 12
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSGP-1 0531/QP/AHO/030726/DISPO (Art.c: 05310158/01)
+  2.00 VKLÁDACÍ POLICE TEXLINE, 2-SET
+  TYP: ZB99-59725, TEXLINE PRO SKRÍNÉ: ŠÍRKA 249 CM
+  Lagerbestellung: DGSGP-2 0531/QP/AHO/030726/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix, CZ-30100 Plzen, Folmavská 1270 / 12', 'week': 'KW38/2026', 'name': None, 'number': 'DGSGP-1', 'items': [('2', 'SET', 2, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix, CZ-30100 Plzen, Folmavská 1270 / 12', 'week': 'KW38/2026', 'name': 'Š/V: CCA 80/22 CM', 'number': 'DGSGP-2', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[038] Email Samples\NEW LUTZ SAMPLES / #1027037 Bestellung DGSGZ von Lutz (10!2026070325792).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019006055
+  ANLIEFERUNG: Mvbelix CZ-19000 Praha, Kolbenova 50
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSGZ-1 0531/ZP/AHO/030726/DISPO (Art.c: 05310071/25)
+  1.00 INNENEINTEILUNG ZUBEHÖR
+  TYP: 56847-ZB99, BESTEHEND AUS: 4 FB, 1 KS,
+  H/T: 151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Mvbelix CZ-19000 Praha, Kolbenova 50', 'week': 'KW38/2026', 'name': None, 'number': 'DGSGZ-1', 'items': [(None, '56847', 1, 'body')]}
+========================================================================================================================
+[039] Email Samples\NEW LUTZ SAMPLES / #1027043 Bestellung DGSFZ von Lutz (10!2026070325790).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013251
+  ILN-Anl : 9007019013251
+  ANLIEFERUNG: Velebudická 3414/5a, CZ-43401 Most
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSFZ-1 0531/AE/AHO/030726/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Velebudická 3414/5a, CZ-43401 Most', 'week': 'KW38/2026', 'name': None, 'number': 'DGSFZ-1', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[040] Email Samples\NEW LUTZ SAMPLES / #1027171 Bestellung LTP848 von Lutz (10!202607053096).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=LT_1LH3_3916.dhp, LT_1LH3_3916_05310148-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019016672
+  ILN-Anl : 9007019016672
+  ANLIEFERUNG: XXXLUTZ 25101 Cestlice, Pražská 135
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: LTP848-1 (ArtNr: 05310148/YB)
+  BFQ-Schluessel: 30103/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x GKAW7196-80975 (1) Velká komoda Sklenené celo
+  1 x GKAW-80956 (1.1) Pomocná skrínka se sklenen
+  --Übersetzung zu oben angeführtem Text--
+  1 x GKAW7196-80975 (1)Große Kommode mit Glasfronten
+  1 x GKAW-80956 (1.1) Beistellschrank mit Glas
+  Detaily k objednávce :
+  1 x GKAW7196-80975 (FPos: 1)
+  1 x GKAW-80956 (FPos: 1.1)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 25101 Cestlice, Pražská 135', 'week': 'KW36/2026', 'name': 'KOPS', 'number': 'LTP848-1', 'items': [('GKAW7196', '80975', 1, '1'), ('GKAW', '80956', 1, '1.1')]}
+========================================================================================================================
+[041] Email Samples\NEW LUTZ SAMPLES / #1027728 MAIL VON  S LUTZ  (A! S 2026070624381).eml
+TYPE=unknown PROFILE=lutz ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Mail:OFFICE-LUTZ@LUTZ.AT -------------------------------------------------------------------------------- Firma XLCZ Nábytek s.r.o. MARTIN STAUD GMBH (0531) Prazska 135 z.H. Verkaufsleitung CZ-25101 Cestlice MARTIN STAUD STRASSE 1 CZ27127133 DE452303687 Mail: KRIS@moemax.si 02.07.26/KRIS Belastungsanzeige Schadenersatzpauschale wegen LIEFERVERZUG Beleg Nr.: KV0626TM S05318412600011 Zeitraum: Juni 26 - Juni 26 Neuausstellung der Belastungsanzeige vom 06.07.26 Sehr geehrte Damen und Herren, bedauerlicherweise mussten wir feststellen, dass Sie die vertraglich vereinbarte Lieferzeit samt der gewäh
+========================================================================================================================
+[042] Email Samples\NEW LUTZ SAMPLES / #1027807 MAIL VON  S LUTZ (A! S 2026070628970).eml
+TYPE=unknown PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Mail:OFFICE-LUTZ@LUTZ.AT -------------------------------------------------------------------------------- MARTIN STAUD GMBH MARTIN STAUD STRASSE 1 D-88348 BAD SAULGAU KOMM: 01CLU - 1 0531/ZP/331X/0531/EA/LAGER/331 Bestellung vom :15.04.26 AB-Nr :3491620 AB-DAT :17.04.26 beim oben genannten Wareneingang des Modells VKLÁDACÍ POLICE TEXLINE, 2-SET TYP: ZB99-59725, TEXLINE mussten wir feststellen, dass nachstehende Teile fehlten bzw. beschädigt waren: GELIEFERT NUR 3 STK GLS SPEDITION Wir bitten um schnellste Nachlieferung oder Austausch, da wir die Auslieferung zum Endkunden vorläufig aufgrund de
+========================================================================================================================
+[043] Email Samples\NEW LUTZ SAMPLES / #1027817 Bestellung LTP86X von Lutz (10!2026070631930).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=LT_1LHR_3922.dhp, LT_1LHR_3922_05310168-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019016672
+  ILN-Anl : 9007019017624
+  ANLIEFERUNG: XXXLUTZ 19900 Praha 9, Veselská 709
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: LTP86X-1 (ArtNr: 05310168/YB)
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x OESP71EG12-84692 (1) atní skrín s posuvnými d
+  1 x OJ00-84717 (1.1) Zavírání a otevírání klape
+  1 x OJ99-33828 (1.2) írka podstavce police 54
+  1 x OJ99-33829 (1.3) Police, sada 2 írka soklu 54
+  --Übersetzung zu oben angeführtem Text--
+  1 x OESP71EG12-84692 (1)Kleiderschrank mit Schiebetüren
+  1 x OJ00-84717 (1.1) Das Schließen und Öffnen der Klappe
+  1 x OJ99-33828 (1.2)Breite des Regalbodens 54
+  1 x OJ99-33829 (1.3) Regal, 2er-Set, Sockelbreite 54
+  Detaily k objednávce :
+  1 x OESP71EG12-84692 (FPos: 1)
+  1 x OJ00-84717 (FPos: 1.1)
+  1 x OJ99-33828 (FPos: 1.2)
+  1 x OJ99-33829 (FPos: 1.3)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 19900 Praha 9, Veselská 709', 'week': 'KW36/2026', 'name': 'BEHALOVA', 'number': 'LTP86X-1', 'items': [('OESP71EG12', '84692', 1, '1'), ('OJ00', '84717', 1, '1.1'), ('OJ99', '33828', 1, '1.2'), ('OJ99', '33829', 1, '1.3')]}
+========================================================================================================================
+[044] Email Samples\NEW LUTZ SAMPLES / #1027832 Bestellung AENA71 von Lutz (10!2026070631928).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260706_220103_AENA71_1.xml, EX-00033.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013251
+  ILN-Anl : 9007019013251
+  ANLIEFERUNG: Velebudická 3414/5a, CZ-43401 Most
+  Liefertermin: KW35/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: AENA71-1 (ArtNr: 05310041/98)
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 18096
+  2 Türen
+  XML ORDER {'number': 'AENA71  1', 'commission': 'JAHODOVA', 'week': '202635', 'items': [{'position': '1', 'series': '10', 'article': '18096', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Most, Velebudická 3414/5a, CZ-43401 Most', 'delivery': 'HL-MX Most 3414/5a, Velebudická 3414/5a, CZ-43401 Most', 'week': 'KW35/2026', 'name': 'JAHODOVA', 'number': 'AENA71-1', 'items': [(None, '18096', 1, '1')]}
+========================================================================================================================
+[045] Email Samples\NEW LUTZ SAMPLES / #1027836 Bestellung 91NJIE von Lutz (10!2026070631929).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=91_2GRW_2497.dhp, 91_2GRW_2497_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019016733
+  ILN-Anl : 9007019016733
+  ANLIEFERUNG: XXXLUTZ 70030 Ostrava, Rudná 3185/71
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: 91NJIE-1 (ArtNr: 05310017/YB)
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQ9616XA-00856 (1) Skrín s posuvnými dvermi 3
+  1 x OJ99-12739 (1.1) Police 110 cm (1 ks) 22 mm
+  1 x OJ00-15237 (1.3) Tlumicy pro skríne s 3-trg
+  1 x OJ00-30156 (1.2) Sada tlumicu zavírání a ot
+  2 x OJ99-12740 (1.4) Police 110 cm (2 ks) 22 mm
+  --Übersetzung zu oben angeführtem Text--
+  SCHLAFZIMMER/BETT/KLEIDERSCHRANK
+  1 x CQ9616XA-00856 (1)
+  1 x OJ99-12739 (1.1) FACH 110CM(1SZTUK)22MM
+  1 x OJ00-15237 (1.3)
+  1 x OJ00-30156 (1.2)
+  2 x OJ99-12740 (1.4) FACH 110CM(2SZTUCK) 22MM
+  Detaily k objednávce :
+  1 x CQ9616XA-00856 (FPos: 1)
+  1 x OJ99-12739 (FPos: 1.1)
+  1 x OJ00-15237 (FPos: 1.3)
+  1 x OJ00-30156 (FPos: 1.2)
+  2 x OJ99-12740 (FPos: 1.4)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ 70030 Ostrava, Rudná 3185/71', 'week': 'KW38/2026', 'name': 'YOURSMILE S.R.O.', 'number': '91NJIE-1', 'items': [('CQ9616XA', '00856', 1, '1'), ('OJ99', '12739', 1, '1.1'), ('OJ00', '15237', 1, '1.3'), ('OJ00', '30156', 1, '1.2'), ('OJ99', '12740', 2, '1.4')]}
+========================================================================================================================
+[046] Email Samples\NEW LUTZ SAMPLES / #1027890 Retoure Endfrist.eml
+TYPE=return PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=XLCZ Nábytek s.r.o. CZ-25101 Cestlice, Prazská 135 Tel.: 00420581832000 Mail: store.cq@moebelix.cz zaps. v OR u MS v Praze, odd. C, vl. 98298 SWIFT: GIBACZPX IBAN: CZ94 0800 0000 0000 0242 3242 cislo úctu: 2423242/0800 Retoure Endfrist ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Endfrist Sehr geehrte Damen und Herren, da wir bis heute keine Reaktion bezüglich Abholung der Retourware von Ihnen erhalten haben, setzen wir Ihnen eine ENDFRIST von 2 Wochen. Sollten Sie auch auf dieses Schreiben nicht reagieren, wird die Ware von uns ohne weitere Ankündigung vernichtet. Eventuelle Forderungen (Kostenersatz) I
+========================================================================================================================
+[047] Email Samples\NEW LUTZ SAMPLES / #1029153 Bestellung DGSYW von Lutz (10!2026070828022).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008035
+  ILN-Anl : 9007019008035
+  ANLIEFERUNG: Möbelix K Bauhausu 612, CZ-46011 Liberec
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSYW-1 0531/LR/SFW/080726/DISPO (Art.c: 05310071/03)
+  1.00 SCHUBKASTENEINSATZ ZUBEHÖR
+  TYP:ZB99/76395, 2 LADEN MIT SOFTEINZUG,
+  Lagerbestellung: DGSYW-2 0531/LR/SFW/080726/DISPO (Art.c: 05310071/25)
+  1.00 INNENEINTEILUNG ZUBEHÖR
+  TYP: 56847-ZB99, BESTEHEND AUS: 4 FB, 1 KS,
+  H/T: 151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix K Bauhausu 612, CZ-46011 Liberec', 'week': 'KW38/2026', 'name': None, 'number': 'DGSYW-1', 'items': [('ZB99', '76395', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix K Bauhausu 612, CZ-46011 Liberec', 'week': 'KW38/2026', 'name': 'FÜR SOCKELBREITE 81CM', 'number': 'DGSYW-2', 'items': [(None, '56847', 1, 'body')]}
+========================================================================================================================
+[048] Email Samples\NEW LUTZ SAMPLES / #1029154 Bestellung DGSYV von Lutz (10!2026070828020).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019011486
+  ILN-Anl : 9007019011486
+  ANLIEFERUNG: CZ-36211 Jenisov u Karlovych Varu, Obchodni
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSYV-1 0531/DJ/SFW/080726/DISPO (Art.c: 05310041/03)
+  1.00 INNENEINTEILUNG SONATE
+  TYP: ZB99-85360, TEXLINE T-EINTEILUNG
+  B/H/T CA. 97/151/47CM
+  Lagerbestellung: DGSYV-2 0531/DJ/SFW/080726/DISPO (Art.c: 05310071/03)
+  1.00 SCHUBKASTENEINSATZ ZUBEHÖR
+  TYP:ZB99/76395, 2 LADEN MIT SOFTEINZUG,
+  Lagerbestellung: DGSYV-3 0531/DJ/SFW/080726/DISPO (Art.c: 05310071/25)
+  1.00 INNENEINTEILUNG ZUBEHÖR
+  TYP: 56847-ZB99, BESTEHEND AUS: 4 FB, 1 KS,
+  H/T: 151/47CM
+  Lagerbestellung: DGSYV-4 0531/DJ/SFW/080726/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-36211 Jenisov u Karlovych Varu, Obchodni', 'week': 'KW38/2026', 'name': None, 'number': 'DGSYV-1', 'items': [('ZB99', '85360', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-36211 Jenisov u Karlovych Varu, Obchodni', 'week': 'KW38/2026', 'name': 'B/H/T CA. 97/151/47CM', 'number': 'DGSYV-2', 'items': [('ZB99', '76395', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-36211 Jenisov u Karlovych Varu, Obchodni', 'week': 'KW38/2026', 'name': 'FÜR SOCKELBREITE 81CM', 'number': 'DGSYV-3', 'items': [(None, '56847', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-36211 Jenisov u Karlovych Varu, Obchodni', 'week': 'KW38/2026', 'name': 'H/T: 151/47CM', 'number': 'DGSYV-4', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[049] Email Samples\NEW LUTZ SAMPLES / #1029157 Bestellung DGSZ6 von Lutz (10!2026070828024).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013299
+  ILN-Anl : 9007019013268
+  ANLIEFERUNG: CZ-58601 Jihlava, Vrchlickeho 5826/74
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSZ6-1 0531/ZC/SFW/080726/DISPO (Art.c: 05310041/03)
+  1.00 INNENEINTEILUNG SONATE
+  TYP: ZB99-85360, TEXLINE T-EINTEILUNG
+  B/H/T CA. 97/151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'CZ-58601 Jihlava, Vrchlickeho 5826/74', 'week': 'KW38/2026', 'name': None, 'number': 'DGSZ6-1', 'items': [('ZB99', '85360', 1, 'body')]}
+========================================================================================================================
+[050] Email Samples\NEW LUTZ SAMPLES / #1029176 Bestellung DGSYU von Lutz (10!2026070828025).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9009852030648
+  ILN-Anl : 9009852030648
+  ANLIEFERUNG:Möbelix CZ-66442 Modrice, Splaviská 1154
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSYU-1 0531/BX/SFW/080726/DISPO (Art.c: 05310041/03)
+  1.00 INNENEINTEILUNG SONATE
+  TYP: ZB99-85360, TEXLINE T-EINTEILUNG
+  B/H/T CA. 97/151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ-66442 Modrice, Splaviská 1154', 'week': 'KW38/2026', 'name': None, 'number': 'DGSYU-1', 'items': [('ZB99', '85360', 1, 'body')]}
+========================================================================================================================
+[051] Email Samples\NEW LUTZ SAMPLES / #1029193 Bestellung DGSZ3 von Lutz (10!2026070828023).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019007908
+  ILN-Anl : 9007019007908
+  ANLIEFERUNG: Möbelix CZ 70030 Ostrava. Horni 79
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSZ3-1 0531/UR/SFW/080726/DISPO (Art.c: 05310180/04)
+  1.00 TÜRDÄMPFER SONATE/LUMOS
+  ZB00/84006 NEUTRAL DEKOR 2ER SET FÜR STS
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ 70030 Ostrava. Horni 79', 'week': 'KW38/2026', 'name': None, 'number': 'DGSZ3-1', 'items': [('ZB00', '84006', 1, 'body')]}
+========================================================================================================================
+[052] Email Samples\NEW LUTZ SAMPLES / #1029211 Bestellung DGSYZ von Lutz (10!2026070828021).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019011493
+  ILN-Anl : 9007019011493
+  Anlieferung: Podebradska 298, CZ-53009 Pardubice VII
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSYZ-1 0531/PB/SFW/080726/DISPO (Art.c: 05310071/03)
+  1.00 SCHUBKASTENEINSATZ ZUBEHÖR
+  TYP:ZB99/76395, 2 LADEN MIT SOFTEINZUG,
+  Lagerbestellung: DGSYZ-2 0531/PB/SFW/080726/DISPO (Art.c: 05310071/25)
+  1.00 INNENEINTEILUNG ZUBEHÖR
+  TYP: 56847-ZB99, BESTEHEND AUS: 4 FB, 1 KS,
+  H/T: 151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Podebradska 298, CZ-53009 Pardubice VII', 'week': 'KW38/2026', 'name': None, 'number': 'DGSYZ-1', 'items': [('ZB99', '76395', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Podebradska 298, CZ-53009 Pardubice VII', 'week': 'KW38/2026', 'name': 'FÜR SOCKELBREITE 81CM', 'number': 'DGSYZ-2', 'items': [(None, '56847', 1, 'body')]}
+========================================================================================================================
+[053] Email Samples\NEW LUTZ SAMPLES / #1029213 Bestellung PRKMJW von Lutz (10!2026070827933).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008011
+  ILN-Anl : 9007019008011
+  ANLIEFERUNG: XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: PRKMJW-1 (ArtNr: 05310168/03)
+  BFQ-Schluessel: 30152/
+  1.00 KOMODA OMEGA
+  TYP:80976,PROV:DEKOR SAND FR:SANDGLAS
+  --Übersetzung zu oben angeführtem Text--
+  TYP:80976,PROV:DEKOR SAND
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4', 'week': 'KW36/2026', 'name': 'SEVIDOV', 'number': 'PRKMJW-1', 'items': [(None, '80976', 1, 'body')]}
+========================================================================================================================
+[054] Email Samples\NEW LUTZ SAMPLES / #1029237 Bestellung DGSZ2 von Lutz (10!2026070828019).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019008134
+  ILN-Anl : 9007019008134
+  ANLIEFERUNG: Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Lagerbestellung: DGSZ2-1 0531/UI/SFW/080726/DISPO (Art.c: 05310071/03)
+  1.00 SCHUBKASTENEINSATZ ZUBEHÖR
+  TYP:ZB99/76395, 2 LADEN MIT SOFTEINZUG,
+  Lagerbestellung: DGSZ2-2 0531/UI/SFW/080726/DISPO (Art.c: 05310071/25)
+  1.00 INNENEINTEILUNG ZUBEHÖR
+  TYP: 56847-ZB99, BESTEHEND AUS: 4 FB, 1 KS,
+  H/T: 151/47CM
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4', 'week': 'KW38/2026', 'name': None, 'number': 'DGSZ2-1', 'items': [('ZB99', '76395', 1, 'body')]}
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4', 'week': 'KW38/2026', 'name': 'FÜR SOCKELBREITE 81CM', 'number': 'DGSZ2-2', 'items': [(None, '56847', 1, 'body')]}
+========================================================================================================================
+[055] Email Samples\NEW LUTZ SAMPLES / #1029511 AB_WE Offene Bestellungen LF 0531.eml
+TYPE=confirmation_request PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Guten Tag, wir bitten Sie, uns die Liefertermine für die folgenden Bestellungen mitzuteilen: Lieferant Nummer Position Anliefer-Filiale Artikel Ausführung Artikelname AB Nummer AB Liefertermin 0531 RMN3C5 1 AKO/HL-LU MODRICE 05310017 YB SYSTEM ONE 0531 RMN3C5 2 AKO/HL-LU MODRICE 05310017 YB SYSTEM ONE 0531 03V3P 501 LT/LU CESTLICE 05310168 01 OMEGA 3386883/002 KW 27/2026 0531 03YP2 500 PQ/LU Praha II 05310168 01 OMEGA 0531 PVMUKE 1 N5/SC-LU-Poprad 05310238 YB SYSTEM ONE 3534980 KW 27/2026 Die AB Nummern und Liefertermine können Sie in die obenstehende Tabelle eintragen. Wenn die Spalten „AB Nu
+========================================================================================================================
+[056] Email Samples\NEW LUTZ SAMPLES / #1029568 AW_ 32124010.eml
+TYPE=unknown PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Hallo Matthias, hatte dich im Verteiler vergessen. Mit freundlichen Grüßen / Best regards Joerg Grober Gebietsverkaufsleiter E-Mail: Joerg.Grober@staudmoebel.de<mailto:Joerg.Grober@staudmoebel.de> Telefon: +49 (151) 14850531 Web: www.staudmoebel.de<http://www.staudmoebel.de/> [cid:image001.jpg@01DD0F8E.CB64B390] Martin Staud GmbH Martin-Staud-Str. 1 D-88348 Bad Saulgau (Germany) Amtsgericht Ulm HRB 749578 Geschäftsführer: Dirk Schmidtmeier, Benedikt Lohnert Vertraulichkeitshinweis: Diese Nachricht ist ausschliesslich für die Personen bestimmt, an die sie adressiert ist. Sie kann vertrauliche u
+========================================================================================================================
+[057] Email Samples\NEW LUTZ SAMPLES / #1029791 Bestellung 8K07H4 von Lutz (10!2026070927648).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260709_220039_8K07H4_1.xml, 20260709_220039_8K07H4_2.xml, EX-00002.jpg, EX-00003.jpg
+SOURCE EVIDENCE:
+  CZ-68604 Kunovice, Obchodní 841
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019020105
+  ILN-Anl : 9009852030068
+  ANLIEFERUNG: Möbelix, Trida 3.Kvetna 1300, CZ-76302 Zlin
+  Liefertermin: CA. KW38/2026 KW
+  Komm: 8K07H4-1 (ArtNr: 05310041/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 18100
+  3 Türen
+  Liefertermin: CA. KW38/2026 KW
+  Komm: 8K07H4-2 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 84837
+  1 x 84837
+  1 x 84837
+  XML ORDER {'number': '8K07H4  1', 'commission': 'SOVKOVA', 'week': '202638', 'items': [{'position': '1', 'series': '10', 'article': '18100', 'quantity': '1'}]}
+  XML ORDER {'number': '8K07H4  2', 'commission': 'SOVKOVA', 'week': '202638', 'items': [{'position': '1', 'series': '99', 'article': '84837', 'quantity': '1'}, {'position': '2', 'series': '99', 'article': '84837', 'quantity': '1'}, {'position': '3', 'series': '99', 'article': '84837', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX KUNOVICE, Obchodní 841, CZ-68604 Kunovice', 'delivery': 'RVZ-MX ZLIN, Trida 3.Kvetna 1300, CZ-76302 Zlin', 'week': 'KW38/2026', 'name': 'SOVKOVA', 'number': '8K07H4-1', 'items': [(None, '18100', 1, '1')]}
+  ORDER {'store': 'MX KUNOVICE, Obchodní 841, CZ-68604 Kunovice', 'delivery': 'RVZ-MX ZLIN, Trida 3.Kvetna 1300, CZ-76302 Zlin', 'week': 'KW38/2026', 'name': 'SOVKOVA', 'number': '8K07H4-2', 'items': [(None, '84837', 1, '1'), (None, '84837', 1, '2'), (None, '84837', 1, '3')]}
+========================================================================================================================
+[058] Email Samples\NEW LUTZ SAMPLES / #1029796 Retoure Vernichtung.eml
+TYPE=return PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=XLCZ Nábytek s.r.o. CZ-38601 Strakonice, Katovická 1306 Tel.: 00420/3896055-00, Mail: store.tc@moebelix.cz zaps. v OR u MS v Praze, odd. C, vl. 98298 SWIFT: GIBACZPX IBAN: CZ94 0800 0000 0000 0242 3242 cislo úctu: 2423242/0800 Retoure Vernichtung ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Vernichtung Sehr geehrte Damen und Herren, da Sie weder auf unsere Abholaufforderung noch auf unsere Endfrist geantwortet haben und die Retourware bis heute nicht abgeholt wurde, haben wir diese nun vernichtet. ACHTUNG AUTOMATISCHES E-MAIL! AUF DIESE ADRESSE NICHT ANTWORTEN! LB-Nr. 0036V Pos. 500 vom 01.06.26 Unsere R
+========================================================================================================================
+[059] Email Samples\NEW LUTZ SAMPLES / #1029812 Bestellung ZPNWV6 von Lutz (10!2026070927650).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260709_220039_ZPNWV6_1.xml, 20260709_220039_ZPNWV6_2.xml, EX-00026.jpg, EX-00027.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019008134
+  ANLIEFERUNG: Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWV6-1 (ArtNr: 05310041/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 18094
+  2 Türen
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWV6-2 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 40835
+  2 Schubkästen
+  1 x 59725
+  1 x 59725
+  1 x 84006
+  XML ORDER {'number': 'ZPNWV6  1', 'commission': 'MUSÍLEK', 'week': '202638', 'items': [{'position': '1', 'series': '10', 'article': '18094', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZPNWV6  2', 'commission': 'MUSÍLEK', 'week': '202638', 'items': [{'position': '1', 'series': '99', 'article': '40835', 'quantity': '1'}, {'position': '2', 'series': '99', 'article': '59725', 'quantity': '1'}, {'position': '3', 'series': '99', 'article': '59725', 'quantity': '1'}, {'position': '4', 'series': '99', 'article': '84006', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem', 'week': 'KW38/2026', 'name': 'MUSÍLEK', 'number': 'ZPNWV6-1', 'items': [(None, '18094', 1, '1')]}
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem', 'week': 'KW38/2026', 'name': 'MUSÍLEK', 'number': 'ZPNWV6-2', 'items': [(None, '40835', 1, '1'), (None, '59725', 1, '2'), (None, '59725', 1, '3'), (None, '84006', 1, '4')]}
+========================================================================================================================
+[060] Email Samples\NEW LUTZ SAMPLES / #1029817 Bestellung ZPNWV3 von Lutz (10!2026070927649).eml
+TYPE=order PROFILE=lutz ACTION=waiting_for_reply
+ATTACHMENTS=20260709_220039_ZPNWV3_1.xml, 20260709_220039_ZPNWV3_2.xml, EX-00024.jpg, EX-00025.jpg
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019006055
+  ILN-Anl : 9007019008134
+  ANLIEFERUNG: Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWV3-1 (ArtNr: 05310041/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 18094
+  2 Türen
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZPNWV3-2 (ArtNr: 05310108/98)
+  BFQ-Schluessel: 30213/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  --Übersetzung zu oben angeführtem Text--
+  1 x 40835
+  2 Schubkästen
+  1 x 59725
+  1 x 59725
+  1 x 84006
+  XML ORDER {'number': 'ZPNWV3  1', 'commission': 'MUSÍLEK', 'week': '202638', 'items': [{'position': '1', 'series': '10', 'article': '18094', 'quantity': '1'}]}
+  XML ORDER {'number': 'ZPNWV3  2', 'commission': 'MUSÍLEK', 'week': '202638', 'items': [{'position': '1', 'series': '99', 'article': '40835', 'quantity': '1'}, {'position': '2', 'series': '99', 'article': '59725', 'quantity': '1'}, {'position': '3', 'series': '99', 'article': '59725', 'quantity': '1'}, {'position': '4', 'series': '99', 'article': '84006', 'quantity': '1'}]}
+PARSED:
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem', 'week': 'KW38/2026', 'name': 'MUSÍLEK', 'number': 'ZPNWV3-1', 'items': [(None, '18094', 1, '1')]}
+  ORDER {'store': 'MX-Praha I, Kolbenova 50, CZ-19000 Praha', 'delivery': 'SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem', 'week': 'KW38/2026', 'name': 'MUSÍLEK', 'number': 'ZPNWV3-2', 'items': [(None, '40835', 1, '1'), (None, '59725', 1, '2'), (None, '59725', 1, '3'), (None, '84006', 1, '4')]}
+========================================================================================================================
+[061] Email Samples\NEW LUTZ SAMPLES / #1030148 MAIL VON  S LUTZ (A! S 2026071017783).eml
+TYPE=unknown PROFILE=None ACTION=manual_review
+ATTACHMENTS=
+BODY_START=Mail:OFFICE-LUTZ@LUTZ.AT -------------------------------------------------------------------------------- MARTIN STAUD GMBH MARTIN STAUD STRASSE 1 D-88348 BAD SAULGAU KOMM: 03V3P - 501 0531/LT-1/AUSSTELLUNG Bestellung vom :25.05.26 AB-Nr :3386883/002 AB-DAT :25.06.26 o.g. Kommission bestellten wir bei Ihnen am 25.05.26 zur Lieferung in der 24KW 26 Leider konnten wir bis jetzt den Eingang der Auftrags- bestaetigung nicht feststellen. Es handelt sich dabei um folgenden Artikel: Artikel-Nummer: 0005310168 Bezeichnung: SKØÍÒ S POSOUVACÍMI DVEØMI Modell: OMEGA TYP:84693,PROV:OESP61EG12 DK Da auch w
+========================================================================================================================
+[062] Email Samples\NEW LUTZ SAMPLES / #1030310 Bestellung E50GMK von Lutz (10!2026071024744).eml
+TYPE=order PROFILE=lutz ACTION=ready_for_validation
+ATTACHMENTS=E5_3PLK_1431.dhp, E5_3PLK_1431_05310017-YB.pdf
+SOURCE EVIDENCE:
+  CZ-25101 Cestlice, Prazská 135
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019020136
+  ILN-Anl : 9007019020136
+  Anlieferung: Rovná 1789, CZ-50332 Hradec Králové
+  Liefertermin: KW39/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: E50GMK-1 (ArtNr: 05310017/YB)
+  BFQ-Schluessel: 30301/
+  1.00 Oblast LOZNICE/POSTEL/SKRI
+  1 x CQAW06TA-83944K (2) atní skrín s posuvnými dv
+  1 x CQAW06TA-83948 (1) atní skrín s posuvnými dve
+  1 x OJ00-13076 (1.1) Sada tlumicu posuvných dve
+  1 x OJ99-33829 (1.2) Police 54 cm (2 ks) 22 mm te
+  1 x CQ0606-09365 (3) Rám postele Comfort 180/200
+  1 x CQ0696-09418 (3.1) Celo postele 180 bez LED
+  1 x OJ99-63829 (2.1) Police 110 cm, sada 2 ks, zk
+  --Übersetzung zu oben angeführtem Text--
+  1 x CQAW06TA-83944K (2) Wandschrank mit Schiebetüren
+  1 x CQAW06TA-83948 (1) Schrank mit Schiebetüren
+  1 x OJ00-13076 (1.1) Dämpfersatz für Schiebetüren
+  1 x OJ99-33829 (1.2) Regalböden 54 cm (2 Stück) 22 mm dick
+  1 x CQ0606-09365 (3) Bettrahmen Comfort 180/200
+  1 x CQ0696-09418 (3.1) Kopfteil 180 ohne LED
+  1 x OJ99-63829 (2.1) Regal 110 cm, 2er-Set
+  Detaily k objednávce :
+  1 x CQAW06TA-83944K (FPos: 2)
+  27 pravé dvere zrcadlo
+  1 x CQAW06TA-83948 (FPos: 1)
+  27 pravé dvere zrcadlo
+  1 x OJ00-13076 (FPos: 1.1)
+  1 x OJ99-33829 (FPos: 1.2)
+  1 x CQ0606-09365 (FPos: 3)
+  1 x CQ0696-09418 (FPos: 3.1)
+  1 x OJ99-63829 (FPos: 2.1)
+PARSED:
+  ORDER {'store': 'CZ-25101 Cestlice, Prazská 135', 'delivery': 'Rovná 1789, CZ-50332 Hradec Králové', 'week': 'KW39/2026', 'name': 'KMONICEK', 'number': 'E50GMK-1', 'items': [('CQAW06TA', '83944K', 1, '2'), ('CQAW06TA', '83948', 1, '1'), ('OJ00', '13076', 1, '1.1'), ('OJ99', '33829', 1, '1.2'), ('CQ0606', '09365', 1, '3'), ('CQ0696', '09418', 1, '3.1'), ('OJ99', '63829', 1, '2.1')]}
+========================================================================================================================
+[063] Lesnina / #1014183 Bestellung KJP9B1 von Lutz (3!2026060234829).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00014.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW30/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJP9B1-3 (ArtNr: 05310015/2V)
+  BFQ-Schluessel: 14213/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW30/2026', 'name': 'IVANDIJA', 'number': 'KJP9B1-3', 'items': []}
+========================================================================================================================
+[064] Lesnina / #1023878 Bestellung KUFMJP von Lutz (3!2026062435221).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00013.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013039
+  ILN-Anl : 9007019013039
+  ANLIEFERUNG: Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje
+  MO-FR 9:00 - 20:30 UHR
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KUFMJP-1 (ArtNr: 05310015/1J)
+  BFQ-Schluessel: 30201/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje', 'week': 'KW36/2026', 'name': 'TURKOVIC', 'number': 'KUFMJP-1', 'items': []}
+========================================================================================================================
+[065] Lesnina / #1024291 Bestellung ZJXFVS von Lutz (3!2026062522826).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00012.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013121
+  ILN-Anl : 9007019013121
+  Anlieferung: Murvica Jug 16, HR-23241 Policnik
+  MO-FR 8:30 - 20:30 UHR
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: ZJXFVS-1 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30213/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Murvica Jug 16, HR-23241 Policnik', 'week': 'KW36/2026', 'name': 'KERUM', 'number': 'ZJXFVS-1', 'items': []}
+========================================================================================================================
+[066] Lesnina / #1024319 Bestellung IP1G7M von Lutz (3!2026062522827).eml
+TYPE=order PROFILE=lesnina ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019015842
+  ILN-Anl : 9007019015842
+  ANLIEFERUNG: Moemax Split, Sv. Leopolda Mandica 2, HR-21204 Dugopolje
+  MO-FR 10:00 - 16:00 UHR
+  Liefertermin: KW35/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: IP1G7M-1 (ArtNr: 05310183/13)
+  BFQ-Schluessel: 30213/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  TIP: LUAW71SP96-92764, BIJELO STAKLO/OGLEDALO, 3 VRATA
+  --Übersetzung zu oben angeführtem Text--
+  TYP: LUAW71SP96-92764, ALPIN-
+PARSED:
+  ORDER {'store': None, 'delivery': 'Moemax Split, Sv. Leopolda Mandica 2, HR-21204 Dugopolje', 'week': 'KW35/2026', 'name': 'PUTNIK', 'number': 'IP1G7M-1', 'items': [('LUAW71SP96', '92764', 1, 'body')]}
+========================================================================================================================
+[067] Lesnina / #1024613 AUFTRAGSBESTAETIGUNG - KUFKPK KUFKQH.eml
+TYPE=confirmation_request PROFILE=lesnina ACTION=confirmation_response
+ATTACHMENTS=
+BODY_START=Sehr geehrte Damen und Herren, Wir bitten um eine Auftragsbestaetigung fuer die Bestellung: KUFKPK fuer die Positionen 4 KUFKQH fuer die Positionen 1 Danke im vorraus. MfG! -- Srdacan pozdrav /Mit freundlichen Grüßen / Best regards Jasminka Jakus Lesnina H.d.o.o. Sv. Leopolda Mandica 2 HR- 21204 Dugopolje Tel.: 021/707 406 Fax.:021/707 403 E-mail: sb.ku@xxxlesnina.hr<mailto:sb.ku@xxxlesnina.hr> podaci za placanje: Raiffeisenbank Austria d.d. IBAN HR7824840081105568861 SWIFT: RZBHHR2X model placanja: 00 36998794856 Ova poruka i privici podliježu napomeni o povjerljivosti i zaštiti podataka obja
+========================================================================================================================
+[068] Lesnina / #1024679 Bestellung KJPAZ9 von Lutz (3!2026062621946).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00008.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019012940
+  ANLIEFERUNG: Slavonska avenija 106, HR-10373 Ivanja Reka
+  MO-FR 10:00 - 16:00 UHR
+  Liefertermin: KW36/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPAZ9-1 (ArtNr: 05310222/97)
+  BFQ-Schluessel: 30401/
+  1.00 ORMAR S KLIZNIM VRATIMA SIGMA ROM
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Slavonska avenija 106, HR-10373 Ivanja Reka', 'week': 'KW36/2026', 'name': 'BEBEK', 'number': 'KJPAZ9-1', 'items': []}
+========================================================================================================================
+[069] Lesnina / #1024689 Bestellung KJPARZ von Lutz (3!2026062621947).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00005.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019013145
+  ANLIEFERUNG: Ulica Dušana Vukotica 7, HR-10090 ZAGREB
+  MO-SO 10:00 - 20:00 UHR
+  Liefertermin: KW34/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPARZ-1 (ArtNr: 05310154/11)
+  BFQ-Schluessel: 30401/
+  1.00 KOMODA DELTA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Ulica Dušana Vukotica 7, HR-10090 ZAGREB', 'week': 'KW34/2026', 'name': 'LEMAJIC', 'number': 'KJPARZ-1', 'items': []}
+========================================================================================================================
+[070] Lesnina / #1024700 Bestellung HVSTUE von Lutz (3!2026062621945).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00001.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013183
+  ILN-Anl : 9007019013183
+  ANLIEFERUNG: Šijanska cesta 60, HR-52215 Vodnjan
+  MO-SA 9:00 - 20:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: HVSTUE-1 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30401/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Šijanska cesta 60, HR-52215 Vodnjan', 'week': 'KW37/2026', 'name': 'ROSSI', 'number': 'HVSTUE-1', 'items': []}
+========================================================================================================================
+[071] Lesnina / #1024834 Bestellung KNC9UC von Lutz (3!202606276233).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00016.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNC9UC-1 (ArtNr: 05310015/1J)
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW37/2026', 'name': 'MATIJEVIC', 'number': 'KNC9UC-1', 'items': []}
+========================================================================================================================
+[072] Lesnina / #1025395 Bestellung KUFMVE von Lutz (3!2026062929629).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00017.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013039
+  ILN-Anl : 9007019013039
+  ANLIEFERUNG: Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje
+  MO-FR 9:00 - 20:30 UHR
+  Liefertermin: KW40/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KUFMVE-2 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30102/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  CQGS12XB-74527,12735,30156, 15237,12736,12736,
+  CQEG1299-76907C,CQEG00-12532,
+  --Übersetzung zu oben angeführtem Text--
+  CQGS12XB-74527,12735,30156,
+  CQEG1299-76907C,CQEG00-12532
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje', 'week': 'KW40/2026', 'name': 'PEHAR', 'number': 'KUFMVE-2', 'items': [('CQGS12XB', '74527', 1, 'body')]}
+========================================================================================================================
+[073] Lesnina / #1025412 Retoure Endfrist.eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=LES-MMS d.o.o., Cesta na Bokalce 40, SI-1000 Ljubljana Tel: +386/18284-311 Uprava, SI-1000 Ljubljana, Cesta na Bokalce 40 IBAN:SI56029220010985633 BIC:LJBASI2X Osnovni kapital znaša: 12.063.847.03 EUR Retoure Endfrist ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Endfrist Sehr geehrte Damen und Herren, da wir bis heute keine Reaktion bezüglich Abholung der Retourware von Ihnen erhalten haben, setzen wir Ihnen eine ENDFRIST von 2 Wochen. Sollten Sie auch auf dieses Schreiben nicht reagieren, wird die Ware von uns ohne weitere Ankündigung vernichtet. Eventuelle Forderungen (Kostenersatz) Ihrerseits in diese
+========================================================================================================================
+[074] Lesnina / #1025802 Bestellung KJPBCY von Lutz (3!2026063032204).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00024.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019013145
+  ANLIEFERUNG: Ulica Dušana Vukotica 7, HR-10090 ZAGREB
+  MO-SO 10:00 - 20:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPBCY-1 (ArtNr: 05310222/97)
+  BFQ-Schluessel: 30105/
+  1.00 ORMAR S KLIZNIM VRATIMA SIGMA ROM
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Ulica Dušana Vukotica 7, HR-10090 ZAGREB', 'week': 'KW37/2026', 'name': 'HODŽIC', 'number': 'KJPBCY-1', 'items': []}
+========================================================================================================================
+[075] Lesnina / #1025829 Bestellung KBDSH4 von Lutz (3!2026063032201).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00014.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019012940
+  ILN-Anl : 9007019012940
+  ANLIEFERUNG: Slavonska avenija 106, HR-10373 Ivanja Reka
+  MO-FR 10:00 - 16:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KBDSH4-2 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30105/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Slavonska avenija 106, HR-10373 Ivanja Reka', 'week': 'KW37/2026', 'name': 'PEKARNA ZAGREB', 'number': 'KBDSH4-2', 'items': []}
+========================================================================================================================
+[076] Lesnina / #1025837 Bestellung NB1DDF von Lutz (6!2026063031201).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00002.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019021003
+  ILN-Anl : 9007019021034
+  Anlieferung: Lesnina, Megarska 9, RS-11070 Novi Beograd
+  PO-SU 10:00 - 20:00 Sat.
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: NB1DDF-1 (ArtNr: 05310222/97)
+  BFQ-Schluessel: 15301/
+  1.00 ORMAR - VISECA KLIZNA VRATA
+  FIOKAR-53879^ USPORIVACI-30156, 15237^ RAM SA RASV
+  ETOM-0J9696-53657
+  --Übersetzung zu oben angeführtem Text--
+  B/H/T: 300X240X68 CM
+  0J9696-53657
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina, Megarska 9, RS-11070 Novi Beograd', 'week': 'KW37/2026', 'name': 'SPASOJEVIC', 'number': 'NB1DDF-1', 'items': [('OGSP7196', '12555', 1, 'body')]}
+========================================================================================================================
+[077] Lesnina / #1025853 Bestellung NB1DDX von Lutz (6!2026063031202).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00004.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019021003
+  ILN-Anl : 9007019021034
+  Anlieferung: Lesnina, Megarska 9, RS-11070 Novi Beograd
+  PO-SU 10:00 - 20:00 Sat.
+  Liefertermin: KW37/2026, NICHT FRUEHER,NICHT SPAETER
+  Komm: NB1DDX-8 (ArtNr: 05310235/72)
+  BFQ-Schluessel: 15301/
+  1.00 KOMODA SYSTEM ONE
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina, Megarska 9, RS-11070 Novi Beograd', 'week': 'KW37/2026', 'name': 'SPASOJEVIC', 'number': 'NB1DDX-8', 'items': [('CQAW9696', '76502', 1, 'body')]}
+========================================================================================================================
+[078] Lesnina / #1025877 Bestellung HVSTW5 von Lutz (3!2026063032200).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00001.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013183
+  ILN-Anl : 9007019013183
+  ANLIEFERUNG: Šijanska cesta 60, HR-52215 Vodnjan
+  MO-SA 9:00 - 20:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: HVSTW5-1 (ArtNr: 05310222/97)
+  BFQ-Schluessel: 30105/
+  1.00 ORMAR S KLIZNIM VRATIMA SIGMA ROM
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Šijanska cesta 60, HR-52215 Vodnjan', 'week': 'KW37/2026', 'name': 'KEVRA', 'number': 'HVSTW5-1', 'items': []}
+========================================================================================================================
+[079] Lesnina / #1026187 AB.eml
+TYPE=confirmation_request PROFILE=lesnina ACTION=confirmation_response
+ATTACHMENTS=
+BODY_START=Hallo, ich bitte Sie um AB für KNC7V8 und KNC84W. -- Lijepi pozdrav / Kind regards / Mit freundlichen Grüßen Gabrijela Maric Služba za kupce Lesnina Rijeka Ova elektronicka pošta i sadržani privici smiju se koristiti u skladu s pravilima navedenim na slijedecoj poveznici: https://www.xxxlesnina.hr/c/email-povjerljivost-email-disclaimer This email and its attachments are subject to the disclaimer statement posted on https://www.xxxlesnina.hr/c/email-povjerljivost-email-disclaimer
+========================================================================================================================
+[080] Lesnina / #1026234 Bestellung NB1DDP von Lutz (6!2026070130157).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00003.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019021003
+  ILN-Anl : 9007019021034
+  Anlieferung: Lesnina, Megarska 9, RS-11070 Novi Beograd
+  PO-SU 10:00 - 20:00 Sat.
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: NB1DDP-2 (ArtNr: 05310222/97)
+  BFQ-Schluessel: 30102/
+  1.00 ORMAR - VISECA KLIZNA VRATA
+  USPORIVACI-30155^ RAM SA RASVETOM-0J9696-53650
+  --Übersetzung zu oben angeführtem Text--
+  B/H/T: 188X240X68 CM
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina, Megarska 9, RS-11070 Novi Beograd', 'week': 'KW37/2026', 'name': 'SPASOJEVIC', 'number': 'NB1DDP-2', 'items': [('OGAW7193', '12684', 1, 'body')]}
+========================================================================================================================
+[081] Lesnina / #1026260 Retoure Endfrist.eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=Lesnina H. d.o.o. Slavonska avenija 106, 10000 Zagreb Tel.:(051) 550-011, Direktor: Rajko Magdalenc PC Rijeka, Kukuljanovo, HR-51227 Kukuljanovo IBAN: HR7824840081105568861 SWIFT: RZBHHR2X RaiffeisenBank Austria d.d. Retoure Endfrist ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Endfrist Sehr geehrte Damen und Herren, da wir bis heute keine Reaktion bezüglich Abholung der Retourware von Ihnen erhalten haben, setzen wir Ihnen eine ENDFRIST von 2 Wochen. Sollten Sie auch auf dieses Schreiben nicht reagieren, wird die Ware von uns ohne weitere Ankündigung vernichtet. Eventuelle Forderungen (Kostenersatz) Ihr
+========================================================================================================================
+[082] Lesnina / #1026263 Bestellung KNCA0M von Lutz (3!2026070130876).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00005.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 16:00 UHR
+  Liefertermin: KW37/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNCA0M-1 (ArtNr: 05310015/1J)
+  BFQ-Schluessel: 30102/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW37/2026', 'name': 'ZAHARIJA', 'number': 'KNCA0M-1', 'items': []}
+========================================================================================================================
+[083] Lesnina / #1026522 Re_ KJP8PC.eml
+TYPE=confirmation_request PROFILE=lesnina ACTION=confirmation_response
+ATTACHMENTS=
+BODY_START=Hallo, bitte schicken sie uns die AB. Danke. -- Srdacan pozdrav / Mit freundlichen Grüßen / Best regards / Cordiali saluti Služba za kupce Lesnina H d.o.o. Ulica Dušana Vukotica 7 10090 Zagreb Mail: clerk.kj@xxxlesnina.hr<mailto:clerk.kj@xxxlesnina.hr> Tel: +385 1 5777 521 +385 1 5777 522 +385 1 5777 523 Napomena: Ovaj email i svi prilozi su povjerljivi i namijenjeni iskljucivo za korištenje osobe ili subjekta kojima su upuceni. Ako ste ovu poruku primili greškom, molimo vas da odmah obavijestite pošiljatelja i izbrišete je iz svog sustava. Neovlaštena upotreba, otkrivanje ili kopiranje ovog e
+========================================================================================================================
+[084] Lesnina / #1026656 Abholaufforderung Retoure (1).eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=Lesnina H. d.o.o. Slavonska avenija 106, 10000 Zagreb Tel.:(021) 773-011 PC Split, Sv. Leopolda Mandica 2, HR-21204 Dugopolje IBAN: HR7824840081105568861 SWIFT: RZBHHR2X RaiffeisenBank Austria d.d. Abholaufforderung Retoure ? ? ? ? ? ? ? ? ? ? ? ? ? Abholaufforderung Retoure Sehr geehrte Damen und Herren, die Retourware aus u.a. Bestellung steht zur Abholung bereit und ist binnen 2 Wochen abzuholen. Wird die Retourware in diesem Zeitraum nicht abgeholt, nehmen wir an, dass Sie auf die Rücknahme sowie auf die Berechnung verzichten. Die Ware wird in diesem Fall von uns vernichtet und die Kosten 
+========================================================================================================================
+[085] Lesnina / #1026656 Abholaufforderung Retoure.eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=Lesnina H. d.o.o. Slavonska avenija 106, 10000 Zagreb Tel.:(021) 773-011 PC Split, Sv. Leopolda Mandica 2, HR-21204 Dugopolje IBAN: HR7824840081105568861 SWIFT: RZBHHR2X RaiffeisenBank Austria d.d. Abholaufforderung Retoure ? ? ? ? ? ? ? ? ? ? ? ? ? Abholaufforderung Retoure Sehr geehrte Damen und Herren, die Retourware aus u.a. Bestellung steht zur Abholung bereit und ist binnen 2 Wochen abzuholen. Wird die Retourware in diesem Zeitraum nicht abgeholt, nehmen wir an, dass Sie auf die Rücknahme sowie auf die Berechnung verzichten. Die Ware wird in diesem Fall von uns vernichtet und die Kosten 
+========================================================================================================================
+[086] Lesnina / #1027057 Bestellung KVZBFI von Lutz (3!2026070326451).eml
+TYPE=order PROFILE=lesnina ACTION=ready_for_validation
+ATTACHMENTS=
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013053
+  ILN-Anl : 9007019013053
+  ANLIEFERUNG:Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KVZBFI-1 (ArtNr: 05310184/25)
+  BFQ-Schluessel: 30103/401/208/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  TIP:04599,MOD:CQ9696-TA, IZV:2 SREDNJA VR. BIJELA
+  --Übersetzung zu oben angeführtem Text--
+  TYP:04599,CQ9696TA, AF.2
+PARSED:
+  ORDER {'store': None, 'delivery': 'Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00', 'week': 'KW38/2026', 'name': 'VURADIN', 'number': 'KVZBFI-1', 'items': [('CQ9696', 'TA', 1, 'body')]}
+========================================================================================================================
+[087] Lesnina / #1027154 Bestellung KNCA7Y von Lutz (3!202607048943).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00005.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNCA7Y-5 (ArtNr: 05310015/04)
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW38/2026', 'name': 'PETROVIC', 'number': 'KNCA7Y-5', 'items': []}
+========================================================================================================================
+[088] Lesnina / #1027825 Bestellung KJPBM6 von Lutz (3!2026070632257).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00012.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019013145
+  ANLIEFERUNG: Ulica Dušana Vukotica 7, HR-10090 ZAGREB
+  MO-SO 10:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPBM6-3 (ArtNr: 05310060/44)
+  BFQ-Schluessel: 30201/
+  1.00 ORMAR S KLIZNIM VRATIMA PRIMO
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Ulica Dušana Vukotica 7, HR-10090 ZAGREB', 'week': 'KW38/2026', 'name': 'BABOJELIC', 'number': 'KJPBM6-3', 'items': []}
+========================================================================================================================
+[089] Lesnina / #1027881 Bestellung KUFN6J von Lutz (3!2026070632256).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00024.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013039
+  ILN-Anl : 9007019013039
+  ANLIEFERUNG: Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje
+  MO-FR 9:00 - 20:30 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KUFN6J-1 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30201/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje', 'week': 'KW38/2026', 'name': 'BARTH', 'number': 'KUFN6J-1', 'items': []}
+========================================================================================================================
+[090] Lesnina / #1027885 Bestellung HVSU8X von Lutz (3!2026070632255).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00004.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013183
+  ILN-Anl : 9007019013183
+  ANLIEFERUNG: Šijanska cesta 60, HR-52215 Vodnjan
+  MO-SA 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: HVSU8X-1 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30201/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Šijanska cesta 60, HR-52215 Vodnjan', 'week': 'KW38/2026', 'name': 'WEISSEISEN', 'number': 'HVSU8X-1', 'items': []}
+========================================================================================================================
+[091] Lesnina / #1028408 Bestellung KNCADJ von Lutz (3!2026070731851).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00008.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNCADJ-1 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30105/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW38/2026', 'name': 'STAHOVIC', 'number': 'KNCADJ-1', 'items': []}
+========================================================================================================================
+[092] Lesnina / #1028415 Bestellung KUFN63 von Lutz (3!2026070732115).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00025.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013039
+  ILN-Anl : 9007019013039
+  ANLIEFERUNG: Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje
+  MO-FR 9:00 - 20:30 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KUFN63-6 (ArtNr: 05310015/04)
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Split, Sv Leopolda Mandica 2, HR-21204 Dugopolje', 'week': 'KW38/2026', 'name': 'ŽUVELA', 'number': 'KUFN63-6', 'items': []}
+========================================================================================================================
+[093] Lesnina / #1028428 Retoure Vernichtung.eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=LES-MMS d.o.o., Cesta na Bokalce 40, SI-1000 Ljubljana Tel: 00386/58281-211, Mail: store.eu@lesnina.si PE Koper, SI-6000 Koper, Ljubljanska 5a IBAN:SI56029220010985633 BIC:LJBASI2X Osnovni kapital znaša: 12.063.847.03 EUR Retoure Vernichtung ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Vernichtung Sehr geehrte Damen und Herren, da Sie weder auf unsere Abholaufforderung noch auf unsere Endfrist geantwortet haben und die Retourware bis heute nicht abgeholt wurde, haben wir diese nun vernichtet. ACHTUNG AUTOMATISCHES E-MAIL! AUF DIESE ADRESSE NICHT ANTWORTEN! KV-Nr. EUP2Z0 Pos. 500 vom 27.03.26 Unsere Retou
+========================================================================================================================
+[094] Lesnina / #1028460 Bestellung KVZBL2 von Lutz (3!2026070732116).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00030.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013053
+  ILN-Anl : 9007019013053
+  ANLIEFERUNG:Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KVZBL2-1 (ArtNr: 05310015/1J)
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Gospodarska 37, HR-42000 Varazdin, MO-FR 10:00 - 21:00', 'week': 'KW38/2026', 'name': 'SABOLIC', 'number': 'KVZBL2-1', 'items': []}
+========================================================================================================================
+[095] Lesnina / #1028509 Bestellung KNCADW von Lutz (3!2026070732114).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00022.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNCADW-1 (ArtNr: 05310015/04)
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW38/2026', 'name': 'STAHOVIC', 'number': 'KNCADW-1', 'items': []}
+========================================================================================================================
+[096] Lesnina / #1029174 Bestellung KJPBYZ von Lutz (3!2026070828797).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00005.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013145
+  ILN-Anl : 9007019013145
+  ANLIEFERUNG: Ulica Dušana Vukotica 7, HR-10090 ZAGREB
+  MO-SO 10:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPBYZ-1 (ArtNr: 05310015/1M)
+  BFQ-Schluessel: 30203/
+  1.00 ORMAR S KLASICNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KJPBYZ-2 (ArtNr: 05310015/04)
+  BFQ-Schluessel: 30203/
+  1.00 ORMAR S KLIZNIM VRATIMA
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Ulica Dušana Vukotica 7, HR-10090 ZAGREB', 'week': 'KW38/2026', 'name': 'ZELIC', 'number': 'KJPBYZ-1', 'items': []}
+  ORDER {'store': None, 'delivery': 'Ulica Dušana Vukotica 7, HR-10090 ZAGREB', 'week': 'KW38/2026', 'name': 'ZELIC', 'number': 'KJPBYZ-2', 'items': []}
+========================================================================================================================
+[097] Lesnina / #1029198 Bestellung KNCAKW von Lutz (3!2026070828796).eml
+TYPE=order PROFILE=lesnina ACTION=needs_ocr
+ATTACHMENTS=EX-00012.TIF
+SOURCE EVIDENCE:
+  D-88348 BAD SAULGAU
+  ILN-Lief: 4039262000004/ 0531
+  ILN-Fil : 9007019013046
+  ILN-Anl : 9007019013046
+  ANLIEFERUNG: Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo
+  MO-FR 9:00 - 20:00 UHR
+  Liefertermin: KW38/2026, NICHT FRUEHER, NICHT SPAETER
+  Komm: KNCAKW-4 (ArtNr: 05310015/1L)
+  BFQ-Schluessel: 30203/
+  1.00 KUTNI ORMAR ZA ODJECU SYSTEM ONE
+  --Übersetzung zu oben angeführtem Text--
+PARSED:
+  ORDER {'store': None, 'delivery': 'Lesnina Rijeka, Kukuljanovo 345, HR-51227 Kukuljanovo', 'week': 'KW38/2026', 'name': 'DZUNIC', 'number': 'KNCAKW-4', 'items': []}
+========================================================================================================================
+[098] Lesnina / #1029221 Retoure Endfrist.eml
+TYPE=return PROFILE=lesnina ACTION=return_review
+ATTACHMENTS=
+BODY_START=Lesnina H. d.o.o. Slavonska avenija 106, 10000 Zagreb Tel.:(021) 773-011 PC Split, Sv. Leopolda Mandica 2, HR-21204 Dugopolje IBAN: HR7824840081105568861 SWIFT: RZBHHR2X RaiffeisenBank Austria d.d. Retoure Endfrist ? ? ? ? ? ? ? ? ? ? ? ? ? Retoure Endfrist Sehr geehrte Damen und Herren, da wir bis heute keine Reaktion bezüglich Abholung der Retourware von Ihnen erhalten haben, setzen wir Ihnen eine ENDFRIST von 2 Wochen. Sollten Sie auch auf dieses Schreiben nicht reagieren, wird die Ware von uns ohne weitere Ankündigung vernichtet. Eventuelle Forderungen (Kostenersatz) Ihrerseits in diesem Z

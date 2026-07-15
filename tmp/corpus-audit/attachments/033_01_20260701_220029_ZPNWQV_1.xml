@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>ZPNWQV  1</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>HORÁK</Commission>
+    <OrderDate Type="102">20260701</OrderDate>
+    <RequestedDeliveryDate Type="616">202637</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019006055</AdressGLN>
+      <Name1>MX-Praha I        </Name1>
+      <Name2></Name2>
+      <Street1>Kolbenova 50</Street1>
+      <Street2></Street2>
+      <PostalCode>19000</PostalCode>
+      <City>Praha</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KUKLOVA JIRINA</AdministratorName>
+      <AdministratorCode>CWQ</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.sleeping.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9007019006055</AdressGLN>
+      <Name1>RVZ-MX PRAHA</Name1>
+      <Name2></Name2>
+      <Street1>Kolbenova 50</Street1>
+      <Street2></Street2>
+      <PostalCode>19000</PostalCode>
+      <City>Praha</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KARPISEK STANISLAV</AdministratorName>
+      <AdministratorCode>4BL</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>76405</ProductNumber>
+      <ProductName>76405</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Schubkasteneinsatz
+3 Schubkästen
+für Sockelbreite 97 cm
+mit Softeinzug
+  Zubehör: Texline (ZB99) 
+Fixe Breite: 97.0 cm
+Fixe Tiefe: 48.0 cm
+Fixe Höhe: 45.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB99</OptionNumber>
+        <OptionDescription>Texline</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260701</SendingDate>
+      <SendingTime>2200</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

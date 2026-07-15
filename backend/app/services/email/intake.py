@@ -23,6 +23,7 @@ class EmailMessageType(StrEnum):
 
 class IntakeNextAction(StrEnum):
     READY_FOR_VALIDATION = "ready_for_validation"
+    WAITING_FOR_REPLY = "waiting_for_reply"
     NEEDS_OCR = "needs_ocr"
     RETURN_REVIEW = "return_review"
     CONFIRMATION_RESPONSE = "confirmation_response"
@@ -121,6 +122,8 @@ class ClientEmailIntakeService:
                 notes.append("No TIFF attachment or text-only item reference was found; route this order to review.")
         else:
             notes.append("Lutz line items were extracted from the email body.")
+            if any(item.model_number is None for order in orders for item in order.items):
+                notes.append("At least one item has no model number; request the missing value from the customer.")
 
         return EmailIntakePreview(
             client_profile=detected_profile,
@@ -144,12 +147,11 @@ class ClientEmailIntakeService:
             for index, next_index in zip(commission_indexes, commission_indexes[1:] + [len(lines)], strict=True)
             if self._commission_pattern.match(lines[index])
         }
-        return [
-            order
-            if order.items
-            else order.model_copy(update={"items": self._extract_lesnina_tip_items(order_sections.get(order.commission_number, []))})
-            for order in orders
-        ]
+        updated_orders: list[LutzOrder] = []
+        for order in orders:
+            extracted_items = self._extract_lesnina_tip_items(order_sections.get(order.commission_number, []))
+            updated_orders.append(order.model_copy(update={"items": extracted_items}) if extracted_items else order)
+        return updated_orders
 
     def _extract_lesnina_tip_items(self, lines: list[str]) -> list[LutzOrderItem]:
         text = "\n".join(lines)
@@ -220,6 +222,8 @@ class ClientEmailIntakeService:
     ) -> IntakeNextAction:
         if client_profile is ClientProfile.LESNINA and ocr_attachment_names:
             return IntakeNextAction.NEEDS_OCR
+        if any(item.model_number is None for order in orders for item in order.items):
+            return IntakeNextAction.WAITING_FOR_REPLY
         if all(order.items for order in orders):
             return IntakeNextAction.READY_FOR_VALIDATION
         return IntakeNextAction.MANUAL_REVIEW

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>8K07H4  1</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>SOVKOVA</Commission>
+    <OrderDate Type="102">20260709</OrderDate>
+    <RequestedDeliveryDate Type="616">202638</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019020105</AdressGLN>
+      <Name1>MX KUNOVICE</Name1>
+      <Name2></Name2>
+      <Street1>Obchodní 841</Street1>
+      <Street2></Street2>
+      <PostalCode>68604</PostalCode>
+      <City>Kunovice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>PAVELKOVA VERONIKA</AdministratorName>
+      <AdministratorCode>33YZ</AdministratorCode>
+      <AdministratorPhone>00420 - 572151000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>furniture.8k@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9009852030068</AdressGLN>
+      <Name1>RVZ-MX ZLIN       </Name1>
+      <Name2></Name2>
+      <Street1>Trida 3.Kvetna 1300</Street1>
+      <Street2></Street2>
+      <PostalCode>76302</PostalCode>
+      <City>Zlin</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>MORAVEC MICHAL</AdministratorName>
+      <AdministratorCode>CGO</AdministratorCode>
+      <AdministratorPhone>00420 - 572151000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.8k@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>10</SeriesNumber>
+      <SeriesName>Sonate Rom</SeriesName>
+      <ProductNumber>18100</ProductNumber>
+      <ProductName>18100</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Rom</LineText>
+        <LineText Type="ZZZ">Rom
+Schwebetürenschrank
+3 Türen
+Innenausstattung Texline
+  Aussentüren: Saphirglas (SU) 
+  Mitteltüre(n): Spiegel (SP) 
+  Griff: Griff alufarbig (71) 
+  Korpusfarbe: Dekor Saphir (44) 
+Fixe Breite: 298.0 cm
+Fixe Tiefe: 68.0 cm
+Fixe Höhe: 240.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>121</FeatureNumber>
+        <FeatureDescription>Aussentüren</FeatureDescription>
+        <OptionNumber>SU</OptionNumber>
+        <OptionDescription>Saphirglas</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>1</FeatureLineNumber>
+        <FeatureNumber>122</FeatureNumber>
+        <FeatureDescription>Mitteltüre(n)</FeatureDescription>
+        <OptionNumber>SP</OptionNumber>
+        <OptionDescription>Spiegel</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>2</FeatureLineNumber>
+        <FeatureNumber>300</FeatureNumber>
+        <FeatureDescription>Griff</FeatureDescription>
+        <OptionNumber>71</OptionNumber>
+        <OptionDescription>Griff alufarbig</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>3</FeatureLineNumber>
+        <FeatureNumber>202</FeatureNumber>
+        <FeatureDescription>Korpusfarbe</FeatureDescription>
+        <OptionNumber>44</OptionNumber>
+        <OptionDescription>Dekor Saphir</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260709</SendingDate>
+      <SendingTime>2200</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>ZPNWV3  2</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>MUSÍLEK</Commission>
+    <OrderDate Type="102">20260709</OrderDate>
+    <RequestedDeliveryDate Type="616">202638</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019006055</AdressGLN>
+      <Name1>MX-Praha I        </Name1>
+      <Name2></Name2>
+      <Street1>Kolbenova 50</Street1>
+      <Street2></Street2>
+      <PostalCode>19000</PostalCode>
+      <City>Praha</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KRONDAKOVA JIRINA</AdministratorName>
+      <AdministratorCode>CWC</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>furniture.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9007019008134</AdressGLN>
+      <Name1>SC-MX Usti</Name1>
+      <Name2></Name2>
+      <Street1>K Zahrádkám 388 / 4</Street1>
+      <Street2></Street2>
+      <PostalCode>40010</PostalCode>
+      <City>Usti nad Labem</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KARPISEK STANISLAV</AdministratorName>
+      <AdministratorCode>4BL</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>40835</ProductNumber>
+      <ProductName>40835</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Schubkasteneinsatz 81 cm
+2 Schubkästen
+mit hoher Zarge und Dekorvorderstück
+mit Softeinzug
+für Schwebetürenschränke
+Breite 167 cm
+
+Breite 249 cm
+Breite 278 cm
+
+Breite 331 cm
+  Zubehör: Texline (ZB99) 
+Fixe Breite: 81.0 cm
+Fixe Tiefe: 48.0 cm
+Fixe Höhe: 45.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB99</OptionNumber>
+        <OptionDescription>Texline</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>2</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>59725</ProductNumber>
+      <ProductName>59725</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Fachboden 2er Set
+Dekor Texline
+für Schwebetürenschränke
+Breite 167 cm
+
+Breite 249 cm
+Breite 331 cm
+  Zubehör: Texline (ZB99) 
+Fixe Breite: 81.0 cm
+Fixe Tiefe: 48.0 cm
+Fixe Höhe: 2.2 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB99</OptionNumber>
+        <OptionDescription>Texline</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>3</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>59725</ProductNumber>
+      <ProductName>59725</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Fachboden 2er Set
+Dekor Texline
+für Schwebetürenschränke
+Breite 167 cm
+
+Breite 249 cm
+Breite 331 cm
+  Zubehör: Texline (ZB99) 
+Fixe Breite: 81.0 cm
+Fixe Tiefe: 48.0 cm
+Fixe Höhe: 2.2 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB99</OptionNumber>
+        <OptionDescription>Texline</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>4</LineItemNumber>
+      <SeriesNumber>99</SeriesNumber>
+      <SeriesName>Zubehör Texline</SeriesName>
+      <ProductNumber>84006</ProductNumber>
+      <ProductName>84006</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Zubehör Texline</LineText>
+        <LineText Type="ZZZ">Sonate, 2er Set Schließdämpfer für alle Schrankgrößen
+Schließdämpfer
+für Außentüren
+für Schwebetürenschränke mit Griffleiste
+nicht für Media, Media light
+  Zubehör: Neutral (ZB00) 
+Fixe Breite: 0.0 cm
+Fixe Tiefe: 0.0 cm
+Fixe Höhe: 0.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1104</FeatureNumber>
+        <FeatureDescription>Zubehör</FeatureDescription>
+        <OptionNumber>ZB00</OptionNumber>
+        <OptionDescription>Neutral</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260709</SendingDate>
+      <SendingTime>2200</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

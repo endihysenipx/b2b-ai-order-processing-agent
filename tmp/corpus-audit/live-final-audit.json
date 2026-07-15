@@ -1,0 +1,991 @@
+{
+  "emails": [
+    {
+      "index": 1,
+      "email": "#1029187 Bestellung W71G84 von Lutz (0!2026070829640).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 13
+    },
+    {
+      "index": 2,
+      "email": "#1029190 Bestellung RJNJ3H von Lutz (15!2026070828214).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 6
+    },
+    {
+      "index": 3,
+      "email": "#1029195 Bestellung 21RQFP von Lutz (0!2026070829633).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 3
+    },
+    {
+      "index": 4,
+      "email": "#1029205 Bestellung 1EBAF6 von Lutz (0!2026070829631).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 4
+    },
+    {
+      "index": 5,
+      "email": "#1029347 WG_ Bestellung NAXIWH von Lutz (17!2026070830281).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 2
+    },
+    {
+      "index": 6,
+      "email": "#1029348 WG_ Bestellung RKA558 von Lutz (17!2026070830283).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 6
+    },
+    {
+      "index": 7,
+      "email": "#1029360 WG_ Bestellung PAKMQI von Lutz (17!2026070830278).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 8,
+      "email": "#1029367 WG_ Bestellung KR69IW von Lutz (17!2026070830276).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 9,
+      "email": "#1029373 WG_ Bestellung ANDIX3 von Lutz (17!2026070830269).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 6
+    },
+    {
+      "index": 10,
+      "email": "#1029377 WG_ Bestellung UH51E6 von Lutz (17!2026070830280).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 7
+    },
+    {
+      "index": 11,
+      "email": "#1029379 WG_ Bestellung M1FGMA von Lutz (17!2026070830277).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 6
+    },
+    {
+      "index": 12,
+      "email": "#1029396 WG_ Bestellung REDTXA von Lutz (17!2026070830282).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 13,
+      "email": "#1029397 WG_ Bestellung PAKMR7 von Lutz (17!2026070830279).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 14,
+      "email": "#1029640 WG_ Bestellung UH4Z6A von Lutz (17!2026070924732).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 5
+    },
+    {
+      "index": 15,
+      "email": "#1018591 Bestellung PRKLYQ von Lutz (10!202606143289).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 16,
+      "email": "#1021649 Bestellung ZPNWLH von Lutz (10!2026061826417).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 1,
+      "items": 4
+    },
+    {
+      "index": 17,
+      "email": "#1022126 Bestellung ZCNDHR von Lutz (10!2026061924245).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 5,
+      "items": 5
+    },
+    {
+      "index": 18,
+      "email": "#1022274 Bestellung BCRKE6 von Lutz (10!202606208391).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 7
+    },
+    {
+      "index": 19,
+      "email": "#1023347 Bestellung ZPNWM4 von Lutz (10!2026062325476).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 1,
+      "items": 2
+    },
+    {
+      "index": 20,
+      "email": "#1024085 Fwd_ AB_WE Offene Bestellungen LF 0531.eml",
+      "message_type": "confirmation_request",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 21,
+      "email": "#1024683 Bestellung DGRPQ von Lutz (10!2026062621666).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 2
+    },
+    {
+      "index": 22,
+      "email": "#1024704 Bestellung DGRNS von Lutz (10!2026062621667).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 23,
+      "email": "#1024705 Bestellung DGRPM von Lutz (10!2026062621668).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 24,
+      "email": "#1024714 Bestellung DGRPB von Lutz (10!2026062621664).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 25,
+      "email": "#1024718 Bestellung DGRNU von Lutz (10!2026062621665).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 26,
+      "email": "#1024835 Bestellung RIM92D von Lutz (10!202606275867).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 4
+    },
+    {
+      "index": 27,
+      "email": "#1025337 Bestellung QPQ8LN von Lutz (10!2026062929334).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 3,
+      "items": 3
+    },
+    {
+      "index": 28,
+      "email": "#1025345 Bestellung PRKMBE von Lutz (10!2026062929333).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 11
+    },
+    {
+      "index": 29,
+      "email": "#1025406 Bestellung LTP7Z6 von Lutz (10!2026062929332).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 3
+    },
+    {
+      "index": 30,
+      "email": "#1025745 MAIL VON S LUTZ  (A! S 2026063026804).eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 31,
+      "email": "#1025809 Bestellung ATNKDH von Lutz (10!2026063031297).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 2
+    },
+    {
+      "index": 32,
+      "email": "#1025843 WG_ AB_WE Offene Bestellungen LF 0531.eml",
+      "message_type": "confirmation_request",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 33,
+      "email": "#1026247 Bestellung ZPNWQV von Lutz (10!2026070130260).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 34,
+      "email": "#1026266 Bestellung RMN3C5 von Lutz (10!2026070130259).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 13
+    },
+    {
+      "index": 35,
+      "email": "#1026598 2D0IQ - pos.1.eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 36,
+      "email": "#1026607 WG_ AB_WE Offene Bestellungen LF 0531.eml",
+      "message_type": "confirmation_request",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 37,
+      "email": "#1027000 Bestellung DGSGP von Lutz (10!2026070325791).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 2
+    },
+    {
+      "index": 38,
+      "email": "#1027037 Bestellung DGSGZ von Lutz (10!2026070325792).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 39,
+      "email": "#1027043 Bestellung DGSFZ von Lutz (10!2026070325790).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 40,
+      "email": "#1027171 Bestellung LTP848 von Lutz (10!202607053096).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 2
+    },
+    {
+      "index": 41,
+      "email": "#1027728 MAIL VON  S LUTZ  (A! S 2026070624381).eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 42,
+      "email": "#1027807 MAIL VON  S LUTZ (A! S 2026070628970).eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 43,
+      "email": "#1027817 Bestellung LTP86X von Lutz (10!2026070631930).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 4
+    },
+    {
+      "index": 44,
+      "email": "#1027832 Bestellung AENA71 von Lutz (10!2026070631928).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 45,
+      "email": "#1027836 Bestellung 91NJIE von Lutz (10!2026070631929).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 5
+    },
+    {
+      "index": 46,
+      "email": "#1027890 Retoure Endfrist.eml",
+      "message_type": "return",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 47,
+      "email": "#1029153 Bestellung DGSYW von Lutz (10!2026070828022).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 2
+    },
+    {
+      "index": 48,
+      "email": "#1029154 Bestellung DGSYV von Lutz (10!2026070828020).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 4,
+      "items": 4
+    },
+    {
+      "index": 49,
+      "email": "#1029157 Bestellung DGSZ6 von Lutz (10!2026070828024).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 50,
+      "email": "#1029176 Bestellung DGSYU von Lutz (10!2026070828025).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 51,
+      "email": "#1029193 Bestellung DGSZ3 von Lutz (10!2026070828023).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 52,
+      "email": "#1029211 Bestellung DGSYZ von Lutz (10!2026070828021).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 2
+    },
+    {
+      "index": 53,
+      "email": "#1029213 Bestellung PRKMJW von Lutz (10!2026070827933).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 54,
+      "email": "#1029237 Bestellung DGSZ2 von Lutz (10!2026070828019).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 2,
+      "items": 2
+    },
+    {
+      "index": 55,
+      "email": "#1029511 AB_WE Offene Bestellungen LF 0531.eml",
+      "message_type": "confirmation_request",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 56,
+      "email": "#1029568 AW_ 32124010.eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 57,
+      "email": "#1029791 Bestellung 8K07H4 von Lutz (10!2026070927648).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 2,
+      "items": 4
+    },
+    {
+      "index": 58,
+      "email": "#1029796 Retoure Vernichtung.eml",
+      "message_type": "return",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 59,
+      "email": "#1029812 Bestellung ZPNWV6 von Lutz (10!2026070927650).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 2,
+      "items": 5
+    },
+    {
+      "index": 60,
+      "email": "#1029817 Bestellung ZPNWV3 von Lutz (10!2026070927649).eml",
+      "message_type": "order",
+      "action": "waiting_for_reply",
+      "orders": 2,
+      "items": 5
+    },
+    {
+      "index": 61,
+      "email": "#1030148 MAIL VON  S LUTZ (A! S 2026071017783).eml",
+      "message_type": "unknown",
+      "action": "manual_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 62,
+      "email": "#1030310 Bestellung E50GMK von Lutz (10!2026071024744).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 7
+    },
+    {
+      "index": 63,
+      "email": "#1014183 Bestellung KJP9B1 von Lutz (3!2026060234829).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 64,
+      "email": "#1023878 Bestellung KUFMJP von Lutz (3!2026062435221).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 65,
+      "email": "#1024291 Bestellung ZJXFVS von Lutz (3!2026062522826).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 66,
+      "email": "#1024319 Bestellung IP1G7M von Lutz (3!2026062522827).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 67,
+      "email": "#1024613 AUFTRAGSBESTAETIGUNG - KUFKPK KUFKQH.eml",
+      "message_type": "confirmation_request",
+      "action": "confirmation_response",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 68,
+      "email": "#1024679 Bestellung KJPAZ9 von Lutz (3!2026062621946).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 69,
+      "email": "#1024689 Bestellung KJPARZ von Lutz (3!2026062621947).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 70,
+      "email": "#1024700 Bestellung HVSTUE von Lutz (3!2026062621945).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 71,
+      "email": "#1024834 Bestellung KNC9UC von Lutz (3!202606276233).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 72,
+      "email": "#1025395 Bestellung KUFMVE von Lutz (3!2026062929629).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 73,
+      "email": "#1025412 Retoure Endfrist.eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 74,
+      "email": "#1025802 Bestellung KJPBCY von Lutz (3!2026063032204).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 75,
+      "email": "#1025829 Bestellung KBDSH4 von Lutz (3!2026063032201).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 76,
+      "email": "#1025837 Bestellung NB1DDF von Lutz (6!2026063031201).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 77,
+      "email": "#1025853 Bestellung NB1DDX von Lutz (6!2026063031202).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 78,
+      "email": "#1025877 Bestellung HVSTW5 von Lutz (3!2026063032200).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 79,
+      "email": "#1026187 AB.eml",
+      "message_type": "confirmation_request",
+      "action": "confirmation_response",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 80,
+      "email": "#1026234 Bestellung NB1DDP von Lutz (6!2026070130157).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 81,
+      "email": "#1026260 Retoure Endfrist.eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 82,
+      "email": "#1026263 Bestellung KNCA0M von Lutz (3!2026070130876).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 83,
+      "email": "#1026522 Re_ KJP8PC.eml",
+      "message_type": "confirmation_request",
+      "action": "confirmation_response",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 84,
+      "email": "#1026656 Abholaufforderung Retoure (1).eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 85,
+      "email": "#1026656 Abholaufforderung Retoure.eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 86,
+      "email": "#1027057 Bestellung KVZBFI von Lutz (3!2026070326451).eml",
+      "message_type": "order",
+      "action": "ready_for_validation",
+      "orders": 1,
+      "items": 1
+    },
+    {
+      "index": 87,
+      "email": "#1027154 Bestellung KNCA7Y von Lutz (3!202607048943).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 88,
+      "email": "#1027825 Bestellung KJPBM6 von Lutz (3!2026070632257).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 89,
+      "email": "#1027881 Bestellung KUFN6J von Lutz (3!2026070632256).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 90,
+      "email": "#1027885 Bestellung HVSU8X von Lutz (3!2026070632255).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 91,
+      "email": "#1028408 Bestellung KNCADJ von Lutz (3!2026070731851).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 92,
+      "email": "#1028415 Bestellung KUFN63 von Lutz (3!2026070732115).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 93,
+      "email": "#1028428 Retoure Vernichtung.eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    },
+    {
+      "index": 94,
+      "email": "#1028460 Bestellung KVZBL2 von Lutz (3!2026070732116).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 95,
+      "email": "#1028509 Bestellung KNCADW von Lutz (3!2026070732114).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 96,
+      "email": "#1029174 Bestellung KJPBYZ von Lutz (3!2026070828797).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 2,
+      "items": 0
+    },
+    {
+      "index": 97,
+      "email": "#1029198 Bestellung KNCAKW von Lutz (3!2026070828796).eml",
+      "message_type": "order",
+      "action": "needs_ocr",
+      "orders": 1,
+      "items": 0
+    },
+    {
+      "index": 98,
+      "email": "#1029221 Retoure Endfrist.eml",
+      "message_type": "return",
+      "action": "return_review",
+      "orders": 0,
+      "items": 0
+    }
+  ],
+  "textract": [
+    {
+      "index": 1,
+      "email": "#1014183 Bestellung KJP9B1 von Lutz (3!2026060234829).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": false
+    },
+    {
+      "index": 2,
+      "email": "#1023878 Bestellung KUFMJP von Lutz (3!2026062435221).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": false
+    },
+    {
+      "index": 3,
+      "email": "#1024291 Bestellung ZJXFVS von Lutz (3!2026062522826).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": false
+    },
+    {
+      "index": 4,
+      "email": "#1024679 Bestellung KJPAZ9 von Lutz (3!2026062621946).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 2,
+      "requires_review": false
+    },
+    {
+      "index": 5,
+      "email": "#1024689 Bestellung KJPARZ von Lutz (3!2026062621947).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": true
+    },
+    {
+      "index": 6,
+      "email": "#1024700 Bestellung HVSTUE von Lutz (3!2026062621945).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": false
+    },
+    {
+      "index": 7,
+      "email": "#1024834 Bestellung KNC9UC von Lutz (3!202606276233).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": false
+    },
+    {
+      "index": 8,
+      "email": "#1025395 Bestellung KUFMVE von Lutz (3!2026062929629).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 11,
+      "requires_review": false
+    },
+    {
+      "index": 9,
+      "email": "#1025802 Bestellung KJPBCY von Lutz (3!2026063032204).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 5,
+      "requires_review": true
+    },
+    {
+      "index": 10,
+      "email": "#1025829 Bestellung KBDSH4 von Lutz (3!2026063032201).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": false
+    },
+    {
+      "index": 11,
+      "email": "#1025837 Bestellung NB1DDF von Lutz (6!2026063031201).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 5,
+      "requires_review": true
+    },
+    {
+      "index": 12,
+      "email": "#1025853 Bestellung NB1DDX von Lutz (6!2026063031202).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 2,
+      "requires_review": false
+    },
+    {
+      "index": 13,
+      "email": "#1025877 Bestellung HVSTW5 von Lutz (3!2026063032200).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": true
+    },
+    {
+      "index": 14,
+      "email": "#1026234 Bestellung NB1DDP von Lutz (6!2026070130157).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": false
+    },
+    {
+      "index": 15,
+      "email": "#1026263 Bestellung KNCA0M von Lutz (3!2026070130876).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 5,
+      "requires_review": false
+    },
+    {
+      "index": 16,
+      "email": "#1027154 Bestellung KNCA7Y von Lutz (3!202607048943).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 6,
+      "requires_review": false
+    },
+    {
+      "index": 17,
+      "email": "#1027825 Bestellung KJPBM6 von Lutz (3!2026070632257).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 2,
+      "requires_review": false
+    },
+    {
+      "index": 18,
+      "email": "#1027881 Bestellung KUFN6J von Lutz (3!2026070632256).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 2,
+      "requires_review": false
+    },
+    {
+      "index": 19,
+      "email": "#1027885 Bestellung HVSU8X von Lutz (3!2026070632255).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": true
+    },
+    {
+      "index": 20,
+      "email": "#1028408 Bestellung KNCADJ von Lutz (3!2026070731851).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 7,
+      "requires_review": false
+    },
+    {
+      "index": 21,
+      "email": "#1028415 Bestellung KUFN63 von Lutz (3!2026070732115).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 2,
+      "requires_review": false
+    },
+    {
+      "index": 22,
+      "email": "#1028460 Bestellung KVZBL2 von Lutz (3!2026070732116).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 4,
+      "requires_review": false
+    },
+    {
+      "index": 23,
+      "email": "#1028509 Bestellung KNCADW von Lutz (3!2026070732114).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 6,
+      "requires_review": false
+    },
+    {
+      "index": 24,
+      "email": "#1029174 Bestellung KJPBYZ von Lutz (3!2026070828797).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 2,
+      "items": 5,
+      "requires_review": false
+    },
+    {
+      "index": 25,
+      "email": "#1029198 Bestellung KNCAKW von Lutz (3!2026070828796).eml",
+      "job_status": "SUCCEEDED",
+      "orders": 1,
+      "items": 3,
+      "requires_review": false
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>AENA71  1</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>JAHODOVA</Commission>
+    <OrderDate Type="102">20260706</OrderDate>
+    <RequestedDeliveryDate Type="616">202635</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019013251</AdressGLN>
+      <Name1>MX-Most</Name1>
+      <Name2></Name2>
+      <Street1>Velebudická 3414/5a</Street1>
+      <Street2></Street2>
+      <PostalCode>43401</PostalCode>
+      <City>Most</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>SIMOVA LUCIE</AdministratorName>
+      <AdministratorCode>2MP8</AdministratorCode>
+      <AdministratorPhone>00420 - 412154800</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>trnmoeb.ae@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9007019013251</AdressGLN>
+      <Name1>HL-MX Most 3414/5a</Name1>
+      <Name2></Name2>
+      <Street1>Velebudická 3414/5a</Street1>
+      <Street2></Street2>
+      <PostalCode>43401</PostalCode>
+      <City>Most</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KRAUS PETR</AdministratorName>
+      <AdministratorCode>2M2L</AdministratorCode>
+      <AdministratorPhone>00420 - 412154800</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.ae@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>10</SeriesNumber>
+      <SeriesName>Sonate Rom</SeriesName>
+      <ProductNumber>18096</ProductNumber>
+      <ProductName>18096</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Rom</LineText>
+        <LineText Type="ZZZ">Rom
+Schwebetürenschrank
+2 Türen
+Innenausstattung Texline
+  rechte Türe: Vulkanglas (VK) 
+  linke Türe: Spiegel (SP) 
+  Griff: Griff chromfarbig (81) 
+  Korpusfarbe: Dekor Vulkan (36) 
+Fixe Breite: 200.0 cm
+Fixe Tiefe: 68.0 cm
+Fixe Höhe: 240.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>102</FeatureNumber>
+        <FeatureDescription>rechte Türe</FeatureDescription>
+        <OptionNumber>VK</OptionNumber>
+        <OptionDescription>Vulkanglas</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>1</FeatureLineNumber>
+        <FeatureNumber>103</FeatureNumber>
+        <FeatureDescription>linke Türe</FeatureDescription>
+        <OptionNumber>SP</OptionNumber>
+        <OptionDescription>Spiegel</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>2</FeatureLineNumber>
+        <FeatureNumber>300</FeatureNumber>
+        <FeatureDescription>Griff</FeatureDescription>
+        <OptionNumber>81</OptionNumber>
+        <OptionDescription>Griff chromfarbig</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>3</FeatureLineNumber>
+        <FeatureNumber>202</FeatureNumber>
+        <FeatureDescription>Korpusfarbe</FeatureDescription>
+        <OptionNumber>36</OptionNumber>
+        <OptionDescription>Dekor Vulkan</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260706</SendingDate>
+      <SendingTime>2201</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

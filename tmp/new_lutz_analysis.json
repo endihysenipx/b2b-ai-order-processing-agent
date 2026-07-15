@@ -1,0 +1,2402 @@
+{
+  "summary": {
+    "email_count": 48,
+    "subject_order_count": 40,
+    "message_types": {
+      "order": 36,
+      "confirmation_request": 4,
+      "unknown": 6,
+      "return": 2
+    },
+    "detected_profiles": {
+      "lutz": 38,
+      "None": 10
+    },
+    "next_actions": {
+      "ready_for_validation": 22,
+      "waiting_for_reply": 14,
+      "manual_review": 12
+    },
+    "attachment_extensions": {
+      ".xml": 15,
+      ".jpg": 15,
+      ".dhp": 11,
+      ".pdf": 11
+    },
+    "parser_success_count": 36,
+    "parsed_order_blocks": 54,
+    "parsed_items": 113,
+    "orders_missing_store": 0,
+    "orders_missing_delivery": 0,
+    "orders_missing_week": 0,
+    "orders_missing_name": 15,
+    "orders_without_items": 0
+  },
+  "records": [
+    {
+      "filename": "#1018591 Bestellung PRKLYQ von Lutz (10!202606143289).eml",
+      "subject": "#1018591 Bestellung PRKLYQ von Lutz (10!202606143289)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.65,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4",
+          "preferred_delivery_week": "KW35/2026",
+          "commission_name": "HÁJKOVÁ",
+          "commission_number": "PRKLYQ-1",
+          "items": [
+            {
+              "model_number": "PDSU71SP96",
+              "article_number": "57384",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1021649 Bestellung ZPNWLH von Lutz (10!2026061826417).eml",
+      "subject": "#1021649 Bestellung ZPNWLH von Lutz (10!2026061826417)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260618_220037_ZPNWLH_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 9137
+        },
+        {
+          "filename": "EX-00032.jpg",
+          "content_type": "application/octet-stream",
+          "size": 62571
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha",
+          "preferred_delivery_week": "KW35/2026",
+          "commission_name": "NOVAKOVA",
+          "commission_number": "ZPNWLH-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "28139",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": null,
+              "article_number": "28139",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": null,
+              "article_number": "49036",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": null,
+              "article_number": "49036",
+              "quantity": 1,
+              "position": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1022126 Bestellung ZCNDHR von Lutz (10!2026061924245).eml",
+      "subject": "#1022126 Bestellung ZCNDHR von Lutz (10!2026061924245)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260619_220028_ZCNDHR_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 5727
+        },
+        {
+          "filename": "20260619_220028_ZCNDHR_2.xml",
+          "content_type": "application/octet-stream",
+          "size": 4756
+        },
+        {
+          "filename": "20260619_220028_ZCNDHR_3.xml",
+          "content_type": "application/octet-stream",
+          "size": 4859
+        },
+        {
+          "filename": "20260619_220028_ZCNDHR_4.xml",
+          "content_type": "application/octet-stream",
+          "size": 4922
+        },
+        {
+          "filename": "20260619_220028_ZCNDHR_5.xml",
+          "content_type": "application/octet-stream",
+          "size": 4942
+        },
+        {
+          "filename": "EX-00025.jpg",
+          "content_type": "application/octet-stream",
+          "size": 66480
+        },
+        {
+          "filename": "EX-00026.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        },
+        {
+          "filename": "EX-00027.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        },
+        {
+          "filename": "EX-00028.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        },
+        {
+          "filename": "EX-00029.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "delivery_address": "SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "ROD",
+          "commission_number": "ZCNDHR-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "37679",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "delivery_address": "SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "ROD",
+          "commission_number": "ZCNDHR-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "76399",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "delivery_address": "SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "ROD",
+          "commission_number": "ZCNDHR-3",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56848",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "delivery_address": "SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "ROD",
+          "commission_number": "ZCNDHR-4",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "46518",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "delivery_address": "SC-MX-Jihlava, Vrchlickeho 5826/74, CZ-58601 Jihlava",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "ROD",
+          "commission_number": "ZCNDHR-5",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "38337",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1022274 Bestellung BCRKE6 von Lutz (10!202606208391).eml",
+      "subject": "#1022274 Bestellung BCRKE6 von Lutz (10!202606208391)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "BC_B7O_4733-2.dhp",
+          "content_type": "application/octet-stream",
+          "size": 48121
+        },
+        {
+          "filename": "BC_B7O_4733-2_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 473724
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ CZ-61900 Brno, Videnska 151/123",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "BEHROVA",
+          "commission_number": "BCRKE6-4",
+          "items": [
+            {
+              "model_number": "CQEG12XP",
+              "article_number": "60940",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "61470",
+              "quantity": 2,
+              "position": "1.1"
+            },
+            {
+              "model_number": "CQEG12XP",
+              "article_number": "60812",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": "CQEG12XP",
+              "article_number": "74446",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "11936",
+              "quantity": 2,
+              "position": "2.2"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30155",
+              "quantity": 1,
+              "position": "2.3"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "12737",
+              "quantity": 1,
+              "position": "2.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1023347 Bestellung ZPNWM4 von Lutz (10!2026062325476).eml",
+      "subject": "#1023347 Bestellung ZPNWM4 von Lutz (10!2026062325476)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260623_220951_ZPNWM4_9.xml",
+          "content_type": "application/octet-stream",
+          "size": 5070
+        },
+        {
+          "filename": "EX-00025.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "MANDÍKOVÁ",
+          "commission_number": "ZPNWM4-9",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "23018",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": null,
+              "article_number": "23018",
+              "quantity": 1,
+              "position": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024085 Fwd_ AB_WE Offene Bestellungen LF 0531.eml",
+      "subject": "#1024085 Fwd: AB/WE Offene Bestellungen LF 0531",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.0,
+      "detection_evidence": [],
+      "message_type": "confirmation_request",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1024683 Bestellung DGRPQ von Lutz (10!2026062621666).eml",
+      "subject": "#1024683 Bestellung DGRPQ von Lutz (10!2026062621666)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ 70030 Ostrava. Horni 79",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": null,
+          "commission_number": "DGRPQ-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "88060",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ 70030 Ostrava. Horni 79",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "BREITE CA.97CM, 22M DICKE",
+          "commission_number": "DGRPQ-2",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "85360",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024704 Bestellung DGRNS von Lutz (10!2026062621667).eml",
+      "subject": "#1024704 Bestellung DGRNS von Lutz (10!2026062621667)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-251 01 Cestlice, k Chotobuzi 331",
+          "delivery_address": "k Chotobuzi 331, CZ-251 01 Cestlice",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": null,
+          "commission_number": "DGRNS-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024705 Bestellung DGRPM von Lutz (10!2026062621668).eml",
+      "subject": "#1024705 Bestellung DGRPM von Lutz (10!2026062621668)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Mvbelix CZ-19000 Praha, Kolbenova 50",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": null,
+          "commission_number": "DGRPM-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 2,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024714 Bestellung DGRPB von Lutz (10!2026062621664).eml",
+      "subject": "#1024714 Bestellung DGRPB von Lutz (10!2026062621664)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ-15800 Praha 5, Narozni 1390/4",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": null,
+          "commission_number": "DGRPB-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024718 Bestellung DGRNU von Lutz (10!2026062621665).eml",
+      "subject": "#1024718 Bestellung DGRNU von Lutz (10!2026062621665)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-36211 Jenisov u Karlovych Varu, Obchodni",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": null,
+          "commission_number": "DGRNU-1",
+          "items": [
+            {
+              "model_number": "LUSN7191",
+              "article_number": "92440",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1024835 Bestellung RIM92D von Lutz (10!202606275867).eml",
+      "subject": "#1024835 Bestellung RIM92D von Lutz (10!202606275867)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "RI_3HY4_149.dhp",
+          "content_type": "application/octet-stream",
+          "size": 16330
+        },
+        {
+          "filename": "RI_3HY4_149_05310278-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 187124
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "PAKANYC",
+          "commission_number": "RIM92D-1",
+          "items": [
+            {
+              "model_number": "PDSN819191",
+              "article_number": "13505",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": "PDSN00",
+              "article_number": "12356",
+              "quantity": 1,
+              "position": "2.1"
+            },
+            {
+              "model_number": "PDSN819191",
+              "article_number": "13505",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "PDSN00",
+              "article_number": "12356",
+              "quantity": 1,
+              "position": "1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1025337 Bestellung QPQ8LN von Lutz (10!2026062929334).eml",
+      "subject": "#1025337 Bestellung QPQ8LN von Lutz (10!2026062929334)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.65,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen",
+          "preferred_delivery_week": "KW33/2026",
+          "commission_name": "JUDÁK",
+          "commission_number": "QPQ8LN-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen",
+          "preferred_delivery_week": "KW33/2026",
+          "commission_name": "JUDÁK",
+          "commission_number": "QPQ8LN-3",
+          "items": [
+            {
+              "model_number": "LUSN71SP91",
+              "article_number": "92626",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix, Folmavská 1270 / 12, CZ-30100 Plzen",
+          "preferred_delivery_week": "KW33/2026",
+          "commission_name": "JUDÁK",
+          "commission_number": "QPQ8LN-4",
+          "items": [
+            {
+              "model_number": "2",
+              "article_number": "SET",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1025345 Bestellung PRKMBE von Lutz (10!2026062929333).eml",
+      "subject": "#1025345 Bestellung PRKMBE von Lutz (10!2026062929333)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "PR_5GA_5648.dhp",
+          "content_type": "application/octet-stream",
+          "size": 48601
+        },
+        {
+          "filename": "PR_5GA_5648_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 577200
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "EMBASSY",
+          "commission_number": "PRKMBE-1",
+          "items": [
+            {
+              "model_number": "CQAW1899",
+              "article_number": "76947C",
+              "quantity": 1,
+              "position": "4"
+            },
+            {
+              "model_number": "CQSL00",
+              "article_number": "09387",
+              "quantity": 1,
+              "position": "4.1"
+            },
+            {
+              "model_number": "CQAW1899",
+              "article_number": "72216C",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "40264",
+              "quantity": 1,
+              "position": "2.2"
+            },
+            {
+              "model_number": "CQSL00",
+              "article_number": "12535",
+              "quantity": 1,
+              "position": "2.1"
+            },
+            {
+              "model_number": "CQAW1899",
+              "article_number": "76947C",
+              "quantity": 1,
+              "position": "5"
+            },
+            {
+              "model_number": "CQSL00",
+              "article_number": "09387",
+              "quantity": 1,
+              "position": "5.1"
+            },
+            {
+              "model_number": "CQAW1899",
+              "article_number": "72216C",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": "CQSL00",
+              "article_number": "12535",
+              "quantity": 1,
+              "position": "3.1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "40264",
+              "quantity": 1,
+              "position": "3.2"
+            },
+            {
+              "model_number": "CQAW1899",
+              "article_number": "72204C",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1025406 Bestellung LTP7Z6 von Lutz (10!2026062929332).eml",
+      "subject": "#1025406 Bestellung LTP7Z6 von Lutz (10!2026062929332)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "LT_1LH3_3910.dhp",
+          "content_type": "application/octet-stream",
+          "size": 24456
+        },
+        {
+          "filename": "LT_1LH3_3910_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 205273
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 25101 Cestlice, Pražská 135",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "CIHLÁROVÁ",
+          "commission_number": "LTP7Z6-1",
+          "items": [
+            {
+              "model_number": "CQ9116XP",
+              "article_number": "04613",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30155",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "12738",
+              "quantity": 4,
+              "position": "1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1025745 MAIL VON S LUTZ  (A! S 2026063026804).eml",
+      "subject": "#1025745 MAIL VON S LUTZ  (A! S 2026063026804)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.65,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1025809 Bestellung ATNKDH von Lutz (10!2026063031297).eml",
+      "subject": "#1025809 Bestellung ATNKDH von Lutz (10!2026063031297)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "AT_47K0_1781.dhp",
+          "content_type": "application/octet-stream",
+          "size": 29272
+        },
+        {
+          "filename": "AT_47K0_1781_05310150-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 224095
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 19900 Praha 9, Veselská 709",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "UTESIL",
+          "commission_number": "ATNKDH-1",
+          "items": [
+            {
+              "model_number": "JOAW61S818",
+              "article_number": "65807",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "JO00",
+              "article_number": "11135",
+              "quantity": 1,
+              "position": "1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1025843 WG_ AB_WE Offene Bestellungen LF 0531.eml",
+      "subject": "#1025843 WG: AB/WE Offene Bestellungen LF 0531",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.0,
+      "detection_evidence": [],
+      "message_type": "confirmation_request",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1026247 Bestellung ZPNWQV von Lutz (10!2026070130260).eml",
+      "subject": "#1026247 Bestellung ZPNWQV von Lutz (10!2026070130260)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260701_220029_ZPNWQV_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 4748
+        },
+        {
+          "filename": "EX-00025.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "RVZ-MX PRAHA, Kolbenova 50, CZ-19000 Praha",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "HORÁK",
+          "commission_number": "ZPNWQV-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "76405",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1026266 Bestellung RMN3C5 von Lutz (10!2026070130259).eml",
+      "subject": "#1026266 Bestellung RMN3C5 von Lutz (10!2026070130259)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "RM_1LLX_792.dhp",
+          "content_type": "application/octet-stream",
+          "size": 28363
+        },
+        {
+          "filename": "RM_1LLX_792_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 256178
+        },
+        {
+          "filename": "RM_1LLX_794.dhp",
+          "content_type": "application/octet-stream",
+          "size": 54296
+        },
+        {
+          "filename": "RM_1LLX_794_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 432855
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 66442 Modrice, Olympia Brno, U Dálnice 1048",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "GALECKA",
+          "commission_number": "RMN3C5-1",
+          "items": [
+            {
+              "model_number": "OJ99",
+              "article_number": "12740",
+              "quantity": 1,
+              "position": "1.4"
+            },
+            {
+              "model_number": "CQ0606TP",
+              "article_number": "04597",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "12739",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "15237",
+              "quantity": 1,
+              "position": "1.3"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30156",
+              "quantity": 1,
+              "position": "1.2"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 66442 Modrice, Olympia Brno, U Dálnice 1048",
+          "preferred_delivery_week": "KW37/2026",
+          "commission_name": "GALECKA",
+          "commission_number": "RMN3C5-2",
+          "items": [
+            {
+              "model_number": "CQ0606TP",
+              "article_number": "04597K",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30156",
+              "quantity": 1,
+              "position": "1.2"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "63828",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "14328",
+              "quantity": 2,
+              "position": "2.3"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "63829",
+              "quantity": 1,
+              "position": "1.3"
+            },
+            {
+              "model_number": "CQ0606TP",
+              "article_number": "04631",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30156",
+              "quantity": 1,
+              "position": "2.1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "33830",
+              "quantity": 1,
+              "position": "2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1026598 2D0IQ - pos.1.eml",
+      "subject": "#1026598 2D0IQ - pos.1",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.5,
+      "detection_evidence": [
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1026607 WG_ AB_WE Offene Bestellungen LF 0531.eml",
+      "subject": "#1026607 WG: AB/WE Offene Bestellungen LF 0531",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.0,
+      "detection_evidence": [],
+      "message_type": "confirmation_request",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1027000 Bestellung DGSGP von Lutz (10!2026070325791).eml",
+      "subject": "#1027000 Bestellung DGSGP von Lutz (10!2026070325791)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix, CZ-30100 Plzen, Folmavská 1270 / 12",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSGP-1",
+          "items": [
+            {
+              "model_number": "2",
+              "article_number": "SET",
+              "quantity": 2,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix, CZ-30100 Plzen, Folmavská 1270 / 12",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "Š/V: CCA 80/22 CM",
+          "commission_number": "DGSGP-2",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027037 Bestellung DGSGZ von Lutz (10!2026070325792).eml",
+      "subject": "#1027037 Bestellung DGSGZ von Lutz (10!2026070325792)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Mvbelix CZ-19000 Praha, Kolbenova 50",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSGZ-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56847",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027043 Bestellung DGSFZ von Lutz (10!2026070325790).eml",
+      "subject": "#1027043 Bestellung DGSFZ von Lutz (10!2026070325790)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Velebudická 3414/5a, CZ-43401 Most",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSFZ-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027171 Bestellung LTP848 von Lutz (10!202607053096).eml",
+      "subject": "#1027171 Bestellung LTP848 von Lutz (10!202607053096)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "LT_1LH3_3916.dhp",
+          "content_type": "application/octet-stream",
+          "size": 13448
+        },
+        {
+          "filename": "LT_1LH3_3916_05310148-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 182369
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 25101 Cestlice, Pražská 135",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "KOPS",
+          "commission_number": "LTP848-1",
+          "items": [
+            {
+              "model_number": "GKAW7196",
+              "article_number": "80975",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "GKAW",
+              "article_number": "80956",
+              "quantity": 1,
+              "position": "1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027728 MAIL VON  S LUTZ  (A! S 2026070624381).eml",
+      "subject": "#1027728 MAIL VON  S LUTZ  (A! S 2026070624381)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.65,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1027807 MAIL VON  S LUTZ (A! S 2026070628970).eml",
+      "subject": "#1027807 MAIL VON  S LUTZ (A! S 2026070628970)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.15,
+      "detection_evidence": [
+        "Contains the original Lutz sender address."
+      ],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1027817 Bestellung LTP86X von Lutz (10!2026070631930).eml",
+      "subject": "#1027817 Bestellung LTP86X von Lutz (10!2026070631930)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "LT_1LHR_3922.dhp",
+          "content_type": "application/octet-stream",
+          "size": 34080
+        },
+        {
+          "filename": "LT_1LHR_3922_05310168-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 241347
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 19900 Praha 9, Veselská 709",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "BEHALOVA",
+          "commission_number": "LTP86X-1",
+          "items": [
+            {
+              "model_number": "OESP71EG12",
+              "article_number": "84692",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "84717",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "33828",
+              "quantity": 1,
+              "position": "1.2"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "33829",
+              "quantity": 1,
+              "position": "1.3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027832 Bestellung AENA71 von Lutz (10!2026070631928).eml",
+      "subject": "#1027832 Bestellung AENA71 von Lutz (10!2026070631928)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260706_220103_AENA71_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 5655
+        },
+        {
+          "filename": "EX-00033.jpg",
+          "content_type": "application/octet-stream",
+          "size": 67033
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Most, Velebudická 3414/5a, CZ-43401 Most",
+          "delivery_address": "HL-MX Most 3414/5a, Velebudická 3414/5a, CZ-43401 Most",
+          "preferred_delivery_week": "KW35/2026",
+          "commission_name": "JAHODOVA",
+          "commission_number": "AENA71-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "18096",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027836 Bestellung 91NJIE von Lutz (10!2026070631929).eml",
+      "subject": "#1027836 Bestellung 91NJIE von Lutz (10!2026070631929)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "91_2GRW_2497.dhp",
+          "content_type": "application/octet-stream",
+          "size": 28016
+        },
+        {
+          "filename": "91_2GRW_2497_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 220629
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ 70030 Ostrava, Rudná 3185/71",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "YOURSMILE S.R.O.",
+          "commission_number": "91NJIE-1",
+          "items": [
+            {
+              "model_number": "CQ9616XA",
+              "article_number": "00856",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "12739",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "15237",
+              "quantity": 1,
+              "position": "1.3"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "30156",
+              "quantity": 1,
+              "position": "1.2"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "12740",
+              "quantity": 2,
+              "position": "1.4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1027890 Retoure Endfrist.eml",
+      "subject": "#1027890 Retoure Endfrist",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.5,
+      "detection_evidence": [
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "return",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1029153 Bestellung DGSYW von Lutz (10!2026070828022).eml",
+      "subject": "#1029153 Bestellung DGSYW von Lutz (10!2026070828022)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix K Bauhausu 612, CZ-46011 Liberec",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSYW-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "76395",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix K Bauhausu 612, CZ-46011 Liberec",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "FÜR SOCKELBREITE 81CM",
+          "commission_number": "DGSYW-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56847",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029154 Bestellung DGSYV von Lutz (10!2026070828020).eml",
+      "subject": "#1029154 Bestellung DGSYV von Lutz (10!2026070828020)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-36211 Jenisov u Karlovych Varu, Obchodni",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSYV-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "85360",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-36211 Jenisov u Karlovych Varu, Obchodni",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "B/H/T CA. 97/151/47CM",
+          "commission_number": "DGSYV-2",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "76395",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-36211 Jenisov u Karlovych Varu, Obchodni",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "FÜR SOCKELBREITE 81CM",
+          "commission_number": "DGSYV-3",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56847",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-36211 Jenisov u Karlovych Varu, Obchodni",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "H/T: 151/47CM",
+          "commission_number": "DGSYV-4",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029157 Bestellung DGSZ6 von Lutz (10!2026070828024).eml",
+      "subject": "#1029157 Bestellung DGSZ6 von Lutz (10!2026070828024)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "CZ-58601 Jihlava, Vrchlickeho 5826/74",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSZ6-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "85360",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029176 Bestellung DGSYU von Lutz (10!2026070828025).eml",
+      "subject": "#1029176 Bestellung DGSYU von Lutz (10!2026070828025)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ-66442 Modrice, Splaviská 1154",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSYU-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "85360",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029193 Bestellung DGSZ3 von Lutz (10!2026070828023).eml",
+      "subject": "#1029193 Bestellung DGSZ3 von Lutz (10!2026070828023)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ 70030 Ostrava. Horni 79",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSZ3-1",
+          "items": [
+            {
+              "model_number": "ZB00",
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029211 Bestellung DGSYZ von Lutz (10!2026070828021).eml",
+      "subject": "#1029211 Bestellung DGSYZ von Lutz (10!2026070828021)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Podebradska 298, CZ-53009 Pardubice VII",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSYZ-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "76395",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Podebradska 298, CZ-53009 Pardubice VII",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "FÜR SOCKELBREITE 81CM",
+          "commission_number": "DGSYZ-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56847",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029213 Bestellung PRKMJW von Lutz (10!2026070827933).eml",
+      "subject": "#1029213 Bestellung PRKMJW von Lutz (10!2026070827933)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.65,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4",
+          "preferred_delivery_week": "KW36/2026",
+          "commission_name": "SEVIDOV",
+          "commission_number": "PRKMJW-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "80976",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029237 Bestellung DGSZ2 von Lutz (10!2026070828019).eml",
+      "subject": "#1029237 Bestellung DGSZ2 von Lutz (10!2026070828019)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a Lutz warehouse-order block."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": null,
+          "commission_number": "DGSZ2-1",
+          "items": [
+            {
+              "model_number": "ZB99",
+              "article_number": "76395",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        },
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Möbelix CZ-40010 Usti nad Labem, K Zahrádkám 388/4",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "FÜR SOCKELBREITE 81CM",
+          "commission_number": "DGSZ2-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "56847",
+              "quantity": 1,
+              "position": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029511 AB_WE Offene Bestellungen LF 0531.eml",
+      "subject": "#1029511 AB/WE Offene Bestellungen LF 0531",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.0,
+      "detection_evidence": [],
+      "message_type": "confirmation_request",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1029568 AW_ 32124010.eml",
+      "subject": "#1029568 AW: 32124010",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.0,
+      "detection_evidence": [],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1029791 Bestellung 8K07H4 von Lutz (10!2026070927648).eml",
+      "subject": "#1029791 Bestellung 8K07H4 von Lutz (10!2026070927648)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260709_220039_8K07H4_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 5667
+        },
+        {
+          "filename": "20260709_220039_8K07H4_2.xml",
+          "content_type": "application/octet-stream",
+          "size": 6300
+        },
+        {
+          "filename": "EX-00002.jpg",
+          "content_type": "application/octet-stream",
+          "size": 70493
+        },
+        {
+          "filename": "EX-00003.jpg",
+          "content_type": "application/octet-stream",
+          "size": 60836
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX KUNOVICE, Obchodní 841, CZ-68604 Kunovice",
+          "delivery_address": "RVZ-MX ZLIN, Trida 3.Kvetna 1300, CZ-76302 Zlin",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "SOVKOVA",
+          "commission_number": "8K07H4-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "18100",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX KUNOVICE, Obchodní 841, CZ-68604 Kunovice",
+          "delivery_address": "RVZ-MX ZLIN, Trida 3.Kvetna 1300, CZ-76302 Zlin",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "SOVKOVA",
+          "commission_number": "8K07H4-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "84837",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": null,
+              "article_number": "84837",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": null,
+              "article_number": "84837",
+              "quantity": 1,
+              "position": "3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029796 Retoure Vernichtung.eml",
+      "subject": "#1029796 Retoure Vernichtung",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.5,
+      "detection_evidence": [
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "return",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1029812 Bestellung ZPNWV6 von Lutz (10!2026070927650).eml",
+      "subject": "#1029812 Bestellung ZPNWV6 von Lutz (10!2026070927650)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260709_220039_ZPNWV6_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 5663
+        },
+        {
+          "filename": "20260709_220039_ZPNWV6_2.xml",
+          "content_type": "application/octet-stream",
+          "size": 7545
+        },
+        {
+          "filename": "EX-00026.jpg",
+          "content_type": "application/octet-stream",
+          "size": 66257
+        },
+        {
+          "filename": "EX-00027.jpg",
+          "content_type": "application/octet-stream",
+          "size": 31202
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "MUSÍLEK",
+          "commission_number": "ZPNWV6-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "18094",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "MUSÍLEK",
+          "commission_number": "ZPNWV6-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "40835",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": null,
+              "article_number": "59725",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": null,
+              "article_number": "59725",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": null,
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1029817 Bestellung ZPNWV3 von Lutz (10!2026070927649).eml",
+      "subject": "#1029817 Bestellung ZPNWV3 von Lutz (10!2026070927649)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "20260709_220039_ZPNWV3_1.xml",
+          "content_type": "application/octet-stream",
+          "size": 5663
+        },
+        {
+          "filename": "20260709_220039_ZPNWV3_2.xml",
+          "content_type": "application/octet-stream",
+          "size": 7545
+        },
+        {
+          "filename": "EX-00024.jpg",
+          "content_type": "application/octet-stream",
+          "size": 66257
+        },
+        {
+          "filename": "EX-00025.jpg",
+          "content_type": "application/octet-stream",
+          "size": 31202
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 0.9,
+      "detection_evidence": [
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header.",
+        "Contains a structured XML attachment for a Lutz order."
+      ],
+      "message_type": "order",
+      "next_action": "waiting_for_reply",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "MUSÍLEK",
+          "commission_number": "ZPNWV3-1",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "18094",
+              "quantity": 1,
+              "position": "1"
+            }
+          ]
+        },
+        {
+          "store_address": "MX-Praha I, Kolbenova 50, CZ-19000 Praha",
+          "delivery_address": "SC-MX Usti, K Zahrádkám 388 / 4, CZ-40010 Usti nad Labem",
+          "preferred_delivery_week": "KW38/2026",
+          "commission_name": "MUSÍLEK",
+          "commission_number": "ZPNWV3-2",
+          "items": [
+            {
+              "model_number": null,
+              "article_number": "40835",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": null,
+              "article_number": "59725",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": null,
+              "article_number": "59725",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": null,
+              "article_number": "84006",
+              "quantity": 1,
+              "position": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "#1030148 MAIL VON  S LUTZ (A! S 2026071017783).eml",
+      "subject": "#1030148 MAIL VON  S LUTZ (A! S 2026071017783)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [],
+      "detected_profile": null,
+      "detection_confidence": 0.15,
+      "detection_evidence": [
+        "Contains the original Lutz sender address."
+      ],
+      "message_type": "unknown",
+      "next_action": "manual_review",
+      "intake_error": null,
+      "parser_success": false,
+      "parser_error": "No Lutz commission block was found in this email.",
+      "orders": []
+    },
+    {
+      "filename": "#1030310 Bestellung E50GMK von Lutz (10!2026071024744).eml",
+      "subject": "#1030310 Bestellung E50GMK von Lutz (10!2026071024744)",
+      "sender": "crm <crm@staudmoebel.de>",
+      "attachments": [
+        {
+          "filename": "E5_3PLK_1431.dhp",
+          "content_type": "application/octet-stream",
+          "size": 38976
+        },
+        {
+          "filename": "E5_3PLK_1431_05310017-YB.pdf",
+          "content_type": "application/octet-stream",
+          "size": 501968
+        }
+      ],
+      "detected_profile": "lutz",
+      "detection_confidence": 1.0,
+      "detection_evidence": [
+        "Contains Lutz structured item lines.",
+        "Contains a Lutz DHP planning attachment.",
+        "Contains the original Lutz sender address.",
+        "Contains the Czech XLCZ Lutz company header."
+      ],
+      "message_type": "order",
+      "next_action": "ready_for_validation",
+      "intake_error": null,
+      "parser_success": true,
+      "parser_error": null,
+      "orders": [
+        {
+          "store_address": "CZ-25101 Cestlice, Prazská 135",
+          "delivery_address": "Rovná 1789, CZ-50332 Hradec Králové",
+          "preferred_delivery_week": "KW39/2026",
+          "commission_name": "KMONICEK",
+          "commission_number": "E50GMK-1",
+          "items": [
+            {
+              "model_number": "CQAW06TA",
+              "article_number": "83944K",
+              "quantity": 1,
+              "position": "2"
+            },
+            {
+              "model_number": "CQAW06TA",
+              "article_number": "83948",
+              "quantity": 1,
+              "position": "1"
+            },
+            {
+              "model_number": "OJ00",
+              "article_number": "13076",
+              "quantity": 1,
+              "position": "1.1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "33829",
+              "quantity": 1,
+              "position": "1.2"
+            },
+            {
+              "model_number": "CQ0606",
+              "article_number": "09365",
+              "quantity": 1,
+              "position": "3"
+            },
+            {
+              "model_number": "CQ0696",
+              "article_number": "09418",
+              "quantity": 1,
+              "position": "3.1"
+            },
+            {
+              "model_number": "OJ99",
+              "article_number": "63829",
+              "quantity": 1,
+              "position": "2.1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

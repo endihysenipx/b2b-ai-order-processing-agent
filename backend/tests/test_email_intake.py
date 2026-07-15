@@ -90,6 +90,52 @@ def test_lutz_profile_is_detected_from_body_and_attachment_signals():
     assert result.next_action == "ready_for_validation"
 
 
+def test_lutz_order_with_missing_model_waits_for_customer_reply():
+    result = parse_email_intake(
+        build_email(
+            "Bestellung PRKMJW von Lutz",
+            """
+            Mail: OFFICE-LUTZ@LUTZ.AT
+            XLCZ Nábytek s.r.o.
+            CZ-25101 Cestlice, Prazská 135
+            ANLIEFERUNG: XXXLUTZ CZ-15800 Praha 5, Narozni 1390/4
+            Liefertermin: KW36/2026
+            SEVIDOV
+            Komm: PRKMJW-1
+            1.00 KOMODA OMEGA
+            TYP:80976,PROV:DEKOR SAND
+            """,
+        )
+    )
+
+    assert result.next_action == "waiting_for_reply"
+    assert result.orders[0].items[0].model_number is None
+    assert result.orders[0].items[0].article_number == "80976"
+    assert "request the missing value" in result.notes[-1]
+
+
+def test_lesnina_pc_store_address_and_tip_mod_order_are_extracted():
+    result = parse_email_intake(
+        build_email(
+            "Bestellung KVZBFI von Lutz",
+            """
+            Lesnina H. d.o.o. Slavonska avenija 106, 10000 Zagreb
+            PC Varazdin, Gospodarska 37, HR-42000 Varazdin
+            ANLIEFERUNG: Gospodarska 37, HR-42000 Varazdin
+            Liefertermin: KW38/2026
+            VURADIN
+            Komm: KVZBFI-1
+            TIP:04599,MOD:CQ9696-TA, IZV:2
+            """,
+        ),
+        ClientProfile.LESNINA,
+    )
+
+    assert result.orders[0].store_address == "Varazdin, Gospodarska 37, HR-42000 Varazdin"
+    assert result.orders[0].items[0].model_number == "CQ9696-TA"
+    assert result.orders[0].items[0].article_number == "04599"
+
+
 def test_unknown_client_format_routes_to_manual_review():
     result = parse_email_intake(build_email("Question", "Can you help with this document?"))
 

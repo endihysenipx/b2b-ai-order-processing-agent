@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERS>
+  <HEAD>
+    <VersionNumber>
+      <VersionName>XML.EANCOM.MBO</VersionName>
+      <VersionNo>8.1</VersionNo>
+    </VersionNumber>
+    <DocumentType>220</DocumentType>
+    <DocumentFunctionSymbol>9</DocumentFunctionSymbol>
+    <TestFlag>0</TestFlag>
+    <VATId>CZ27127133</VATId>
+    <TechnicalReceiver>4039262000004</TechnicalReceiver>
+    <TechnicalSender>9007019009810</TechnicalSender>
+    <GroupingOrderNumber></GroupingOrderNumber>
+    <OrderNumber>ZPNWLH  1</OrderNumber>
+    <OrderNumberPreCustomer></OrderNumberPreCustomer>
+    <BlanketOrderNumber></BlanketOrderNumber>
+    <Commission>NOVAKOVA</Commission>
+    <OrderDate Type="102">20260618</OrderDate>
+    <RequestedDeliveryDate Type="616">202635</RequestedDeliveryDate>
+    <Currency></Currency>
+    <PartialDelivery>X1</PartialDelivery>
+    <OrderType>FURN050</OrderType>
+    <CatalogNumber>MX0531</CatalogNumber>
+    <ReferenceOriginalOrder></ReferenceOriginalOrder>
+    <StateText></StateText>
+    <BarcodeNumber></BarcodeNumber>
+    <NAD>
+      <FlagOfParty>SU</FlagOfParty>
+      <AdressGLN>4039262000004</AdressGLN>
+      <Name1>MARTIN STAUD GMBH</Name1>
+      <Name2></Name2>
+      <Street1>MARTIN STAUD STRASSE 1</Street1>
+      <Street2></Street2>
+      <PostalCode>88348</PostalCode>
+      <City>BAD SAULGAU</City>
+      <ISOCountryCode>DE</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>BY</FlagOfParty>
+      <AdressGLN>9007019006055</AdressGLN>
+      <Name1>MX-Praha I        </Name1>
+      <Name2></Name2>
+      <Street1>Kolbenova 50</Street1>
+      <Street2></Street2>
+      <PostalCode>19000</PostalCode>
+      <City>Praha</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KUKLOVA JIRINA</AdministratorName>
+      <AdministratorCode>CWQ</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.sleeping.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>IV</FlagOfParty>
+      <AdressGLN>9007019018041</AdressGLN>
+      <Name1>XLCZ Nábytek s.r.o.</Name1>
+      <Name2></Name2>
+      <Street1>Prazska 135</Street1>
+      <Street2></Street2>
+      <PostalCode>25101</PostalCode>
+      <City>Cestlice</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName></AdministratorName>
+      <AdministratorCode></AdministratorCode>
+      <AdministratorPhone></AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail></AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <NAD>
+      <FlagOfParty>DP</FlagOfParty>
+      <AdressGLN>9007019006055</AdressGLN>
+      <Name1>RVZ-MX PRAHA</Name1>
+      <Name2></Name2>
+      <Street1>Kolbenova 50</Street1>
+      <Street2></Street2>
+      <PostalCode>19000</PostalCode>
+      <City>Praha</City>
+      <ISOCountryCode>CZ</ISOCountryCode>
+      <FurtherReferences></FurtherReferences>
+      <AdministratorName>KARPISEK STANISLAV</AdministratorName>
+      <AdministratorCode>4BL</AdministratorCode>
+      <AdministratorPhone>00420 - 234456000</AdministratorPhone>
+      <AdministratorFax></AdministratorFax>
+      <AdministratorEmail>mgr.warehouse.zp@moebelix.cz</AdministratorEmail>
+      <ContractNumber></ContractNumber>
+    </NAD>
+    <LINE>
+      <LineItemNumber>1</LineItemNumber>
+      <SeriesNumber>14</SeriesNumber>
+      <SeriesName>Sonate Beimöbel</SeriesName>
+      <ProductNumber>28139</ProductNumber>
+      <ProductName>28139</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Beimöbel</LineText>
+        <LineText Type="ZZZ">Konsole
+3 Schubkästen
+Front vollverglast
+mit Softeinzug
+Gleiter unabhängig der Griffe schwarz
+  Frontfarbe: Alpinweißglas (AW) 
+  Griff: Griff chromfarbig (81) 
+  Korpusfarbe: Dekor Weiß (96) 
+  Platte: Dekor Weiß (96) 
+Fixe Breite: 58.0 cm
+Fixe Tiefe: 40.0 cm
+Fixe Höhe: 52.5 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>101</FeatureNumber>
+        <FeatureDescription>Frontfarbe</FeatureDescription>
+        <OptionNumber>AW</OptionNumber>
+        <OptionDescription>Alpinweißglas</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>1</FeatureLineNumber>
+        <FeatureNumber>300</FeatureNumber>
+        <FeatureDescription>Griff</FeatureDescription>
+        <OptionNumber>81</OptionNumber>
+        <OptionDescription>Griff chromfarbig</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>2</FeatureLineNumber>
+        <FeatureNumber>202</FeatureNumber>
+        <FeatureDescription>Korpusfarbe</FeatureDescription>
+        <OptionNumber>96</OptionNumber>
+        <OptionDescription>Dekor Weiß</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>3</FeatureLineNumber>
+        <FeatureNumber>621</FeatureNumber>
+        <FeatureDescription>Platte</FeatureDescription>
+        <OptionNumber>96</OptionNumber>
+        <OptionDescription>Dekor Weiß</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>2</LineItemNumber>
+      <SeriesNumber>14</SeriesNumber>
+      <SeriesName>Sonate Beimöbel</SeriesName>
+      <ProductNumber>28139</ProductNumber>
+      <ProductName>28139</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Beimöbel</LineText>
+        <LineText Type="ZZZ">Konsole
+3 Schubkästen
+Front vollverglast
+mit Softeinzug
+Gleiter unabhängig der Griffe schwarz
+  Frontfarbe: Alpinweißglas (AW) 
+  Griff: Griff chromfarbig (81) 
+  Korpusfarbe: Dekor Weiß (96) 
+  Platte: Dekor Weiß (96) 
+Fixe Breite: 58.0 cm
+Fixe Tiefe: 40.0 cm
+Fixe Höhe: 52.5 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>101</FeatureNumber>
+        <FeatureDescription>Frontfarbe</FeatureDescription>
+        <OptionNumber>AW</OptionNumber>
+        <OptionDescription>Alpinweißglas</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>1</FeatureLineNumber>
+        <FeatureNumber>300</FeatureNumber>
+        <FeatureDescription>Griff</FeatureDescription>
+        <OptionNumber>81</OptionNumber>
+        <OptionDescription>Griff chromfarbig</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>2</FeatureLineNumber>
+        <FeatureNumber>202</FeatureNumber>
+        <FeatureDescription>Korpusfarbe</FeatureDescription>
+        <OptionNumber>96</OptionNumber>
+        <OptionDescription>Dekor Weiß</OptionDescription>
+      </OPT>
+      <OPT>
+        <FeatureLineNumber>3</FeatureLineNumber>
+        <FeatureNumber>621</FeatureNumber>
+        <FeatureDescription>Platte</FeatureDescription>
+        <OptionNumber>96</OptionNumber>
+        <OptionDescription>Dekor Weiß</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>3</LineItemNumber>
+      <SeriesNumber>14</SeriesNumber>
+      <SeriesName>Sonate Beimöbel</SeriesName>
+      <ProductNumber>49036</ProductNumber>
+      <ProductName>49036</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Beimöbel</LineText>
+        <LineText Type="ZZZ">Glasplatte
+für Beimöbel
+58 cm
+  Glasplatte: Alpinweißglas (AW00) 
+Fixe Breite: 58.0 cm
+Fixe Tiefe: 40.0 cm
+Fixe Höhe: 0.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1503</FeatureNumber>
+        <FeatureDescription>Glasplatte</FeatureDescription>
+        <OptionNumber>AW00</OptionNumber>
+        <OptionDescription>Alpinweißglas</OptionDescription>
+      </OPT>
+    </LINE>
+    <LINE>
+      <LineItemNumber>4</LineItemNumber>
+      <SeriesNumber>14</SeriesNumber>
+      <SeriesName>Sonate Beimöbel</SeriesName>
+      <ProductNumber>49036</ProductNumber>
+      <ProductName>49036</ProductName>
+      <OrderQuantity Unit="PCE">1</OrderQuantity>
+      <LTXT>
+        <LineText Type="PRD">Sonate Beimöbel</LineText>
+        <LineText Type="ZZZ">Glasplatte
+für Beimöbel
+58 cm
+  Glasplatte: Alpinweißglas (AW00) 
+Fixe Breite: 58.0 cm
+Fixe Tiefe: 40.0 cm
+Fixe Höhe: 0.0 cm</LineText>
+      </LTXT>
+      <OPT>
+        <FeatureLineNumber>0</FeatureLineNumber>
+        <FeatureNumber>1503</FeatureNumber>
+        <FeatureDescription>Glasplatte</FeatureDescription>
+        <OptionNumber>AW00</OptionNumber>
+        <OptionDescription>Alpinweißglas</OptionDescription>
+      </OPT>
+    </LINE>
+    <FOOT>
+      <SendingDate Type="102">20260618</SendingDate>
+      <SendingTime>2200</SendingTime>
+    </FOOT>
+  </HEAD>
+</ORDERS>

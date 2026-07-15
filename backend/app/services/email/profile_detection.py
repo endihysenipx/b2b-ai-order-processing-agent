@@ -76,6 +76,15 @@ class ClientProfileDetector:
         if "office-lutz@" in text:
             score += 0.15
             evidence.append("Contains the original Lutz sender address.")
+        if "xlcz n" in text:
+            score += 0.5
+            evidence.append("Contains the Czech XLCZ Lutz company header.")
+        if "lagerbestellung:" in text:
+            score += 0.25
+            evidence.append("Contains a Lutz warehouse-order block.")
+        if any(filename.endswith(".xml") for filename in attachment_names_lower) and "bestellung" in text:
+            score += 0.25
+            evidence.append("Contains a structured XML attachment for a Lutz order.")
         return score, evidence
 
     def _score_lesnina(self, text: str, body: str, attachment_names: list[str]) -> tuple[float, list[str]]:

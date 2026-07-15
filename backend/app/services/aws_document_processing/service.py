@@ -11,6 +11,7 @@ from botocore.exceptions import BotoCoreError, ClientError
 from pydantic import BaseModel, Field
 
 from app.core.config import Settings
+from app.services.aws_document_processing.lesnina_mapper import LesninaTableMapper, LesninaTableMapping
 
 SUPPORTED_DOCUMENT_SUFFIXES = {".pdf", ".tif", ".tiff"}
 CONTENT_TYPES = {
@@ -56,6 +57,7 @@ class TextractJobResult(BaseModel):
     pages: int | None = None
     lines: list[TextractLine] = Field(default_factory=list)
     tables: list[TextractTable] = Field(default_factory=list)
+    lesnina_mapping: LesninaTableMapping | None = None
     warnings: list[dict[str, Any]] = Field(default_factory=list)
 
 
@@ -143,12 +145,14 @@ class AwsDocumentProcessingService:
             next_token = page.get("NextToken")
 
         blocks = [block for response in responses for block in response.get("Blocks", [])]
+        tables = self._extract_tables(blocks)
         return TextractJobResult(
             job_id=job_id,
             status=status,
             pages=first_page.get("DocumentMetadata", {}).get("Pages"),
             lines=self._extract_lines(blocks),
-            tables=self._extract_tables(blocks),
+            tables=tables,
+            lesnina_mapping=LesninaTableMapper().map_tables(tables),
             warnings=[warning for response in responses for warning in response.get("Warnings", [])],
         )
 
@@ -177,10 +181,13 @@ class AwsDocumentProcessingService:
                 if not cell or cell.get("BlockType") != "CELL":
                     continue
                 words: list[str] = []
+                word_confidences: list[float] = []
                 for child_id in AwsDocumentProcessingService._relationship_ids(cell, "CHILD"):
                     child = by_id.get(child_id, {})
                     if child.get("BlockType") == "WORD" and child.get("Text"):
                         words.append(child["Text"])
+                        if child.get("Confidence") is not None:
+                            word_confidences.append(child["Confidence"])
                     elif child.get("BlockType") == "SELECTION_ELEMENT" and child.get("SelectionStatus") == "SELECTED":
                         words.append("X")
                 cells.append(
@@ -188,7 +195,7 @@ class AwsDocumentProcessingService:
                         row=cell.get("RowIndex", 0),
                         column=cell.get("ColumnIndex", 0),
                         text=" ".join(words),
-                        confidence=cell.get("Confidence"),
+                        confidence=min(word_confidences) if word_confidences else cell.get("Confidence"),
                     )
                 )
             tables.append(TextractTable(page=table_block.get("Page"), cells=sorted(cells, key=lambda item: (item.row, item.column))))

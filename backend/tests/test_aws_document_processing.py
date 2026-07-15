@@ -67,13 +67,13 @@ def test_get_table_analysis_reconstructs_lines_and_table_cells_across_pages():
                     "Confidence": 98.1,
                     "Relationships": [{"Type": "CHILD", "Ids": ["word-1", "word-2"]}],
                 },
-                {"Id": "word-1", "BlockType": "WORD", "Text": "Br.art."},
+                {"Id": "word-1", "BlockType": "WORD", "Text": "Br.art.", "Confidence": 97.4},
             ],
         },
         {
             "JobStatus": "SUCCEEDED",
             "Blocks": [
-                {"Id": "word-2", "BlockType": "WORD", "Text": "04617"},
+                {"Id": "word-2", "BlockType": "WORD", "Text": "04617", "Confidence": 96.7},
                 {"Id": "line-2", "BlockType": "LINE", "Page": 2, "Text": "CQ9696TA", "Confidence": 97.5},
             ],
         },
@@ -85,7 +85,7 @@ def test_get_table_analysis_reconstructs_lines_and_table_cells_across_pages():
     assert result.status == "SUCCEEDED"
     assert result.pages == 2
     assert [line.text for line in result.lines] == ["Poz. Br.art. Opis", "CQ9696TA"]
-    assert result.tables[0].cells[0].model_dump() == {"row": 1, "column": 1, "text": "Br.art. 04617", "confidence": 98.1}
+    assert result.tables[0].cells[0].model_dump() == {"row": 1, "column": 1, "text": "Br.art. 04617", "confidence": 96.7}
 
 
 def test_get_table_analysis_returns_without_blocks_while_job_is_running():
