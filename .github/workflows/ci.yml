@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   backend:
     runs-on: ubuntu-latest
@@ -36,3 +39,86 @@ jobs:
       - run: npm run lint
       - run: npm test -- --run
       - run: npm run build
+
+  deploy-production:
+    name: Deploy to Lightsail
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs:
+      - backend
+      - frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: false
+    steps:
+      - name: Configure pinned SSH connection
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.LIGHTSAIL_SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.LIGHTSAIL_KNOWN_HOSTS }}
+        run: |
+          test -n "$SSH_PRIVATE_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > "$HOME/.ssh/lightsail"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" | tr -d '\r' > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/lightsail" "$HOME/.ssh/known_hosts"
+
+      - name: Deploy and verify
+        run: |
+          ssh \
+            -i "$HOME/.ssh/lightsail" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            ubuntu@3.74.232.11 'bash -se' <<'REMOTE'
+          set -Eeuo pipefail
+
+          readonly app_dir="/home/ubuntu/b2b-ai-order-processing-agent"
+          readonly compose_file="docker-compose.prod.yml"
+          readonly health_url="https://3.74.232.11/health"
+
+          cd "$app_dir"
+          exec 9>"/tmp/b2b-order-agent-deploy.lock"
+          flock -n 9 || {
+            echo "Another deployment is already running."
+            exit 1
+          }
+
+          previous_commit="$(git rev-parse HEAD)"
+
+          rollback() {
+            echo "Deployment failed; rolling back to ${previous_commit}."
+            git reset --hard "$previous_commit"
+            docker compose -f "$compose_file" up -d --build --remove-orphans
+          }
+
+          git diff --quiet
+          git diff --cached --quiet
+          git fetch --prune origin main
+          git merge --ff-only origin/main
+
+          if ! docker compose -f "$compose_file" up -d --build --remove-orphans; then
+            rollback
+            exit 1
+          fi
+
+          healthy=false
+          for _ in $(seq 1 30); do
+            if curl --fail --silent --show-error "$health_url" >/dev/null; then
+              healthy=true
+              break
+            fi
+            sleep 5
+          done
+
+          if [ "$healthy" != "true" ]; then
+            rollback
+            exit 1
+          fi
+
+          docker compose -f "$compose_file" ps
+          docker image prune --force
+          echo "Deployment completed successfully."
+          REMOTE
