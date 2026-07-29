@@ -8,7 +8,7 @@ export function SettingsPage() {
       </div>
       <div>
         <h3>AI Extraction</h3>
-        <p>Mock extraction is active unless a future OpenAI implementation and key are configured.</p>
+        <p>AI extraction uses the provider selected by AI_PROVIDER. Amazon Bedrock and local mock modes are supported.</p>
       </div>
       <div>
         <h3>XML and ERP</h3>

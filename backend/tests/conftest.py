@@ -19,7 +19,7 @@ def prepare_database():
     Path("test.db").unlink(missing_ok=True)
     Base.metadata.create_all(bind=engine)
     with SessionLocal() as db:
-        seed_database(db)
+        seed_database(db, include_demo_data=True)
     yield
     Base.metadata.drop_all(bind=engine)
     engine.dispose()

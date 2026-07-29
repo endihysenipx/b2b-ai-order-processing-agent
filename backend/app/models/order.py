@@ -31,7 +31,7 @@ class Order(IdMixin, TimestampMixin, Base):
     approved_by_user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
     approved_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
-    email = relationship("Email", back_populates="order")
+    email = relationship("Email", back_populates="orders")
     client = relationship("Client", back_populates="orders")
     approved_by = relationship("User", back_populates="approved_orders")
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")

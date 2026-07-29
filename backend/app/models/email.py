@@ -22,5 +22,5 @@ class Email(IdMixin, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
     client = relationship("Client", back_populates="emails")
-    order = relationship("Order", back_populates="email", uselist=False)
+    orders = relationship("Order", back_populates="email")
     attachments = relationship("Attachment", back_populates="email")

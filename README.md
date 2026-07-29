@@ -6,7 +6,7 @@ AI-powered B2B order-processing platform that classifies customer order emails, 
 
 This Week 3 implementation provides the project foundation and a working local vertical slice. A user can log in, view seeded orders, open an order, edit order data, approve it, generate Header and Items XML files, and separately simulate XML sending.
 
-Outlook, OpenAI, OCR, and ERP integrations are represented by interfaces and mock or simulated implementations for Week 3.
+Amazon Bedrock structured extraction and AWS Textract/S3 document analysis are available alongside mock or simulated Outlook, OCR, and ERP boundaries.
 
 ## Problem
 
@@ -21,14 +21,14 @@ The system stores client-specific prompts and rules, processes order evidence in
 - FastAPI API with JWT login, clients, orders, feedback, reports, and XML endpoints.
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
-- Mock AI extraction and email service interfaces.
+- Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
 - Validation and decision services aligned with the Week 2 design.
 - Separate approval, XML generation, and simulated XML sending actions.
 - Docker Compose environment for PostgreSQL, backend, and frontend.
 
 ## Architecture Summary
 
-The MVP is a modular FastAPI monolith with a React dashboard, PostgreSQL database, and local file storage. External Outlook, OpenAI, OCR, and ERP dependencies are isolated behind service interfaces so real integrations can replace Week 3 mocks in later sprints.
+The MVP is a modular FastAPI monolith with a React dashboard, PostgreSQL database, and local file storage. AI extraction is isolated behind a provider interface with Amazon Bedrock and mock implementations; other external dependencies remain behind replaceable service interfaces.
 
 ## Technology Stack
 
@@ -78,11 +78,65 @@ The services run on:
 - Swagger API docs: http://localhost:8000/docs
 - PostgreSQL: localhost:5432
 
-The backend container waits for PostgreSQL, applies Alembic migrations, seeds demo data, and starts FastAPI.
+The backend container waits for PostgreSQL, applies Alembic migrations, creates the required login users, and starts FastAPI. Demo orders are disabled by default; set `SEED_DEMO_DATA=true` only in an isolated demonstration environment.
 
 ## Environment Variables
 
-Use `.env.example` as the source of placeholders. Do not commit `.env`. `OPENAI_API_KEY`, Microsoft Graph credentials, and ERP details are optional placeholders during Week 3.
+Use `.env.example` as the source of placeholders. Do not commit `.env`. Microsoft Graph and OpenAI values remain optional placeholders.
+
+### Amazon Bedrock extraction
+
+The backend calls Amazon Bedrock through Boto3's `bedrock-runtime` client and the model-neutral Converse API. Set these values in `.env`:
+
+```dotenv
+AI_PROVIDER=bedrock
+AWS_REGION=eu-central-1
+AWS_PROFILE=your-local-aws-profile
+BEDROCK_MODEL_ID=your-enabled-model-or-inference-profile-id
+BEDROCK_MAX_TOKENS=4096
+BEDROCK_TEMPERATURE=0
+```
+
+`AWS_PROFILE` is optional. Boto3 can instead use its standard credential chain, including `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`, an ECS task role, or an EC2 instance role. The active principal needs `bedrock:InvokeModel` permission for the configured model or inference profile, and that model must be available in the selected region.
+
+After login, call `POST /api/v1/extraction/order` with extracted document text:
+
+```json
+{
+  "client_prompt": "Extract the purchase order fields and line items.",
+  "email_content": "The order email body",
+  "documents": [
+    {
+      "file_name": "order.txt",
+      "content": "Text previously extracted from the attachment"
+    }
+  ]
+}
+```
+
+The endpoint returns fields with their source, source filename, and confidence. Set `AI_PROVIDER=mock` to use the deterministic local fallback without contacting AWS.
+
+### Gmail automatic email intake
+
+Gmail inbox retrieval uses IMAP over TLS. SMTP is used only when the application later sends acknowledgements or clarification requests. Enable two-step verification on the Google account, create a Google App Password, and configure:
+
+```dotenv
+GMAIL_INGESTION_ENABLED=true
+GMAIL_USERNAME=orders@example.com
+GMAIL_APP_PASSWORD=your-16-character-google-app-password
+GMAIL_IMAP_FOLDER=INBOX
+GMAIL_SEARCH_CRITERIA=UNSEEN
+GMAIL_POLL_INTERVAL_SECONDS=60
+GMAIL_MAX_MESSAGES_PER_POLL=25
+GMAIL_MARK_AS_READ=true
+```
+
+When enabled, the backend polls Gmail, stores the raw `.eml` and attachments, prevents duplicate imports using `Message-ID`, classifies the email, and creates database orders from supported Lutz/Lesnina body formats. Recognized customers are matched by sender domain; a minimal profile client is created on first intake if no matching client exists. TIFF/image orders are stored and routed to Human in the Loop while Textract processing is completed.
+
+After login, the connection can be checked without waiting for the timer:
+
+- `GET /api/v1/emails/gmail/status` reports configuration without exposing the password.
+- `POST /api/v1/emails/gmail/poll` performs one immediate inbox poll.
 
 ## Database Migration and Seed
 
@@ -126,13 +180,14 @@ Implemented foundation:
 - Backend API, models, migration, seed data, tests
 - Frontend dashboard pages and tests
 - Docker Compose environment
-- Mocked AI/email/OCR integration boundaries
+- Amazon Bedrock and mock AI extraction providers
+- Mocked email/OCR integration boundaries
 - Simulated ERP XML sending
 
 ## Current Limitations
 
 - Outlook ingestion is not connected to Microsoft Graph.
-- OpenAI extraction uses a mock mode unless future credentials and implementation are added.
+- Bedrock extraction requires valid AWS credentials, model access, and an explicitly configured model ID.
 - OCR service interface is present, but real Tesseract execution is not required for the Week 3 demo.
 - ERP transmission is simulated and does not contact a real ERP.
 - Excel export page is a UI foundation only.
@@ -140,7 +195,7 @@ Implemented foundation:
 ## Future Roadmap
 
 - Real Microsoft Graph inbox monitoring and reply matching.
-- Real OpenAI structured extraction with client-specific prompts.
+- Persist Bedrock extraction results into the end-to-end email-to-order workflow.
 - OCR execution and richer document parsing pipeline.
 - Audit log expansion and role-based access controls.
 - Excel report generation and ERP adapter integration.

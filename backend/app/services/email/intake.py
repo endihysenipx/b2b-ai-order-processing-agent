@@ -56,7 +56,8 @@ class ClientEmailIntakeService:
         r"\bTIP\s*:\s*(?P<article>[A-Z0-9]+)\s*,\s*MOD\s*:\s*(?P<model>[A-Z0-9]+(?:-[A-Z0-9]+)+)\b",
         re.IGNORECASE,
     )
-    _reference_pattern = re.compile(r"\b[A-Z]{2,}\d[A-Z0-9]{2,}\b", re.IGNORECASE)
+    _reference_pattern = re.compile(r"\b[A-Z]{2,}[A-Z0-9]*\d[A-Z0-9]*\b", re.IGNORECASE)
+    _hash_ticket_pattern = re.compile(r"(?<!\w)#\s*(?P<number>\d{4,})\b")
 
     def __init__(self) -> None:
         self._lutz_parser = LutzEmailParser()
@@ -196,7 +197,9 @@ class ClientEmailIntakeService:
 
     @classmethod
     def _find_reference_codes(cls, text: str) -> list[str]:
-        return list(dict.fromkeys(match.group(0).upper() for match in cls._reference_pattern.finditer(text)))
+        hash_tickets = [match.group("number") for match in cls._hash_ticket_pattern.finditer(text)]
+        general_references = [match.group(0).upper() for match in cls._reference_pattern.finditer(text)]
+        return list(dict.fromkeys([*hash_tickets, *general_references]))
 
     @staticmethod
     def _next_action_for_non_order(message_type: EmailMessageType) -> IntakeNextAction:

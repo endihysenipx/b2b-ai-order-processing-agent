@@ -4,6 +4,7 @@ from decimal import Decimal
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.core.security import hash_password
 from app.db.session import SessionLocal, engine
 from app.models.attachment import Attachment
@@ -18,20 +19,34 @@ from app.models.user import User
 from app.models.validation_issue import ValidationIssue
 
 
-def seed_database(db: Session) -> None:
-    if db.scalar(select(User).where(User.email == "admin@example.com")):
-        return
+def seed_database(db: Session, *, include_demo_data: bool = False) -> None:
+    admin = db.scalar(select(User).where(User.email == "admin@example.com"))
+    if admin is None:
+        admin = User(
+            full_name="Endi Hyseni",
+            email="admin@example.com",
+            password_hash=hash_password("Admin123!"),
+            role="admin",
+        )
+        db.add(admin)
 
-    admin = User(
-        full_name="Endi Hyseni", email="admin@example.com", password_hash=hash_password("Admin123!"), role="admin"
-    )
-    operator = User(
-        full_name="Imane Operator",
-        email="operator@example.com",
-        password_hash=hash_password("Operator123!"),
-        role="operator",
-    )
-    db.add_all([admin, operator])
+    operator = db.scalar(select(User).where(User.email == "operator@example.com"))
+    if operator is None:
+        operator = User(
+            full_name="Imane Operator",
+            email="operator@example.com",
+            password_hash=hash_password("Operator123!"),
+            role="operator",
+        )
+        db.add(operator)
+    db.flush()
+
+    if not include_demo_data:
+        db.commit()
+        return
+    if db.scalar(select(Email).where(Email.external_message_id == "MSG-W3-1")):
+        db.commit()
+        return
 
     required_fields = [
         "ticket_number",
@@ -191,7 +206,7 @@ def seed_database(db: Session) -> None:
 def main() -> None:
     Base.metadata.create_all(bind=engine)
     with SessionLocal() as db:
-        seed_database(db)
+        seed_database(db, include_demo_data=settings.seed_demo_data)
 
 
 if __name__ == "__main__":

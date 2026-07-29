@@ -19,7 +19,7 @@ services:
     build:
       context: ./backend
     env_file:
-      - .env.example
+      - .env
     environment:
       DATABASE_URL: postgresql+psycopg://order_agent:change-me@postgres:5432/order_agent
       STORAGE_ROOT: /app/storage

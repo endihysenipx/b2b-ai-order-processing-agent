@@ -90,6 +90,42 @@ def test_lutz_profile_is_detected_from_body_and_attachment_signals():
     assert result.next_action == "ready_for_validation"
 
 
+def test_short_ticket_reference_is_extracted_from_subject():
+    result = parse_email_intake(
+        build_email(
+            "Bestellung TEST01 von Lutz",
+            """
+            Filiale: Test Store Budapest
+            Anlieferung: Test Warehouse, Budapest
+            TEST CUSTOMER
+            Komm: TEST01-1
+            2 x MODEL01-ART01 (1) Test product
+            Details zur Bestellung:
+            """,
+        )
+    )
+
+    assert result.reference_codes[0] == "TEST01"
+
+
+def test_hash_ticket_in_subject_has_priority_over_body_references():
+    result = parse_email_intake(
+        build_email(
+            "WG: #1037231 Bestellung WMZHNY von Lutz (17!2026072830625)",
+            """
+            Filiale: D-52146 Wuerselen
+            Anlieferung: Am Weiweg 11, D-52146 Wuerselen
+            Komm: WMZHNY-1
+            1 x PDSL61SL36-57392 (1) Test product
+            Details zur Bestellung:
+            IBAN: DE45 7012 0700 1001 2790 49
+            """,
+        )
+    )
+
+    assert result.reference_codes[0] == "1037231"
+
+
 def test_unknown_client_format_routes_to_manual_review():
     result = parse_email_intake(build_email("Question", "Can you help with this document?"))
 
