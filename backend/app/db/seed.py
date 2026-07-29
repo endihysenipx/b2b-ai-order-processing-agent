@@ -20,25 +20,35 @@ from app.models.validation_issue import ValidationIssue
 
 
 def seed_database(db: Session, *, include_demo_data: bool = False) -> None:
-    admin = db.scalar(select(User).where(User.email == "admin@example.com"))
+    is_production = settings.app_env.casefold() == "production"
+    admin = db.scalar(select(User).where(User.email == settings.bootstrap_admin_email))
     if admin is None:
+        if is_production and not settings.bootstrap_admin_password:
+            raise RuntimeError("BOOTSTRAP_ADMIN_PASSWORD is required when APP_ENV=production")
         admin = User(
             full_name="Endi Hyseni",
-            email="admin@example.com",
-            password_hash=hash_password("Admin123!"),
+            email=settings.bootstrap_admin_email,
+            password_hash=hash_password(settings.bootstrap_admin_password or "Admin123!"),
             role="admin",
         )
         db.add(admin)
+    elif settings.bootstrap_admin_password:
+        admin.password_hash = hash_password(settings.bootstrap_admin_password)
 
     operator = db.scalar(select(User).where(User.email == "operator@example.com"))
-    if operator is None:
+    if operator is None and (not is_production or settings.bootstrap_operator_password):
         operator = User(
             full_name="Imane Operator",
             email="operator@example.com",
-            password_hash=hash_password("Operator123!"),
+            password_hash=hash_password(settings.bootstrap_operator_password or "Operator123!"),
             role="operator",
         )
         db.add(operator)
+    elif operator is not None and settings.bootstrap_operator_password:
+        operator.password_hash = hash_password(settings.bootstrap_operator_password)
+        operator.is_active = True
+    elif operator is not None and is_production:
+        operator.is_active = False
     db.flush()
 
     if not include_demo_data:

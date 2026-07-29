@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     app_env: str = "development"
     secret_key: str = "change-me"
     access_token_expire_minutes: int = 60
+    bootstrap_admin_email: str = "admin@example.com"
+    bootstrap_admin_password: str | None = None
+    bootstrap_operator_password: str | None = None
     database_url: str = "sqlite:///./dev.db"
     seed_demo_data: bool = False
     frontend_url: str = "http://localhost:5173"
