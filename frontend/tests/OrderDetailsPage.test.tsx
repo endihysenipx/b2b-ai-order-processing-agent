@@ -24,7 +24,14 @@ describe("OrderDetailsPage", () => {
     );
 
     expect(await screen.findByDisplayValue("TCK-10001")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("1 Market Street")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("2026-W29")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Store rollout")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Buyer 1")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("500.00")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("EUR")).toBeInTheDocument();
     expect(screen.getByText("ART-01")).toBeInTheDocument();
     expect(screen.getByText("Purchase order TCK-10001")).toBeInTheDocument();
+    expect(screen.getByText("EUR")).toBeInTheDocument();
   });
 });
