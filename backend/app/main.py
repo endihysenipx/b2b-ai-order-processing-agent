@@ -44,13 +44,14 @@ async def monitor_textract() -> None:
     while True:
         try:
             summary = await asyncio.to_thread(processor.poll_once)
-            if summary.checked:
+            if summary.checked or summary.mapped_items:
                 logger.info(
-                    "Textract poll completed: checked=%s completed=%s in_progress=%s failed=%s",
+                    "Textract poll completed: checked=%s completed=%s in_progress=%s failed=%s mapped_items=%s",
                     summary.checked,
                     summary.completed,
                     summary.in_progress,
                     summary.failed,
+                    summary.mapped_items,
                 )
         except asyncio.CancelledError:
             raise

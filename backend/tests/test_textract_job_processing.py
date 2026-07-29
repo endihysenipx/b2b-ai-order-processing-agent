@@ -62,7 +62,13 @@ def test_textract_processor_starts_tracks_and_persists_results(tmp_path):
 
     summary = processor.poll_once()
 
-    assert summary.model_dump() == {"checked": 1, "completed": 1, "in_progress": 0, "failed": 0}
+    assert summary.model_dump() == {
+        "checked": 1,
+        "completed": 1,
+        "in_progress": 0,
+        "failed": 0,
+        "mapped_items": 0,
+    }
     with SessionLocal() as db:
         attachment = db.get(Attachment, attachment_id)
         assert attachment.processing_status == "succeeded"
