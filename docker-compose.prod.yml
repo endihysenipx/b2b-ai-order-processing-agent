@@ -62,8 +62,14 @@ services:
         VITE_API_BASE_URL: /api/v1
     restart: unless-stopped
     init: true
+    environment:
+      PUBLIC_HOST: ${PUBLIC_HOST}
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot/www:/var/www/certbot:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       backend:
         condition: service_healthy

@@ -23,6 +23,9 @@ storage/xml/*
 !storage/attachments/.gitkeep
 !storage/xml/.gitkeep
 
+certbot/www/*
+!certbot/www/.gitkeep
+
 *.log
 .DS_Store
 Thumbs.db
