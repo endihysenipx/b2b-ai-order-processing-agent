@@ -22,6 +22,7 @@ from app.models.email import Email
 from app.models.order import Order
 from app.models.order_item import OrderItem
 from app.models.validation_issue import ValidationIssue
+from app.services.aws_document_processing import TextractJobProcessor
 from app.services.decision.service import decide_order_status
 from app.services.email.gmail import GmailGateway, GmailImapGateway, GmailMessage
 from app.services.email.intake import EmailIntakeParseError, EmailIntakePreview, IntakeNextAction, parse_email_intake
@@ -61,6 +62,7 @@ class GmailIngestionService:
         self.settings = settings
         self.session_factory = session_factory
         self.gateway_factory = gateway_factory or (lambda: GmailImapGateway(settings))
+        self.textract_processor = TextractJobProcessor(settings, session_factory)
 
     def status(self) -> GmailIngestionStatus:
         return GmailIngestionStatus(
@@ -128,6 +130,8 @@ class GmailIngestionService:
 
             attachments = self._store_message_files(stored_email, parsed, gmail_message.content)
             orders_created = self._create_orders(db, stored_email, client, preview, attachments)
+            db.flush()
+            self.textract_processor.start_for_attachments(db, attachments)
             manual_review = int(
                 preview is None
                 or preview.next_action

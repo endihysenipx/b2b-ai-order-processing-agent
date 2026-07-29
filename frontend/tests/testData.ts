@@ -60,7 +60,20 @@ export const orderDetail: OrderDetail = {
       currency: "EUR",
     },
   ],
-  attachments: [{ id: "att-1", file_name: "order.pdf", file_type: "pdf", file_path: "storage/attachments/order.pdf", is_scanned: false }],
+  attachments: [
+    {
+      id: "att-1",
+      file_name: "order.pdf",
+      file_type: "pdf",
+      file_path: "storage/attachments/order.pdf",
+      is_scanned: false,
+      processing_status: "succeeded",
+      textract_job_id: "job-1",
+      extracted_text: "Extracted order text",
+      processing_error: null,
+      processed_at: "2026-07-01T10:01:00",
+    },
+  ],
   validation_issues: [],
   generated_xmls: [],
 };

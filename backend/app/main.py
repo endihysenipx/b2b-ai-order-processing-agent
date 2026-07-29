@@ -11,6 +11,7 @@ from app.core.config import settings
 from app.core.logging import configure_logging
 from app.db import base as _models  # noqa: F401
 from app.db.session import SessionLocal
+from app.services.aws_document_processing import TextractJobProcessor
 from app.services.email.ingestion import GmailIngestionService
 
 configure_logging()
@@ -38,16 +39,39 @@ async def monitor_gmail() -> None:
         await asyncio.sleep(settings.gmail_poll_interval_seconds)
 
 
+async def monitor_textract() -> None:
+    processor = TextractJobProcessor(settings, SessionLocal)
+    while True:
+        try:
+            summary = await asyncio.to_thread(processor.poll_once)
+            if summary.checked:
+                logger.info(
+                    "Textract poll completed: checked=%s completed=%s in_progress=%s failed=%s",
+                    summary.checked,
+                    summary.completed,
+                    summary.in_progress,
+                    summary.failed,
+                )
+        except asyncio.CancelledError:
+            raise
+        except Exception:
+            logger.exception("Textract polling failed; the next scheduled poll will retry")
+        await asyncio.sleep(settings.textract_poll_interval_seconds)
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     gmail_task = asyncio.create_task(monitor_gmail()) if settings.gmail_ingestion_enabled else None
+    textract_task = asyncio.create_task(monitor_textract()) if settings.textract_auto_processing_enabled else None
     try:
         yield
     finally:
-        if gmail_task is not None:
-            gmail_task.cancel()
+        tasks = [task for task in (gmail_task, textract_task) if task is not None]
+        for task in tasks:
+            task.cancel()
+        for task in tasks:
             try:
-                await gmail_task
+                await task
             except asyncio.CancelledError:
                 pass
 

@@ -25,6 +25,11 @@ class AttachmentOut(BaseModel):
     file_type: str
     file_path: str
     is_scanned: bool
+    processing_status: str
+    textract_job_id: str | None
+    extracted_text: str | None
+    processing_error: str | None
+    processed_at: datetime | None
 
     model_config = {"from_attributes": True}
 

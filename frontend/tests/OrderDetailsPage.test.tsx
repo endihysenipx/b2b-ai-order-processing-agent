@@ -33,5 +33,7 @@ describe("OrderDetailsPage", () => {
     expect(screen.getByText("ART-01")).toBeInTheDocument();
     expect(screen.getByText("Purchase order TCK-10001")).toBeInTheDocument();
     expect(screen.getByText("EUR")).toBeInTheDocument();
+    expect(screen.getByText("succeeded")).toBeInTheDocument();
+    expect(screen.getByText("View extracted text")).toBeInTheDocument();
   });
 });

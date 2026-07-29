@@ -131,12 +131,25 @@ GMAIL_MAX_MESSAGES_PER_POLL=25
 GMAIL_MARK_AS_READ=true
 ```
 
-When enabled, the backend polls Gmail, stores the raw `.eml` and attachments, prevents duplicate imports using `Message-ID`, classifies the email, and creates database orders from supported Lutz/Lesnina body formats. Recognized customers are matched by sender domain; a minimal profile client is created on first intake if no matching client exists. TIFF/image orders are stored and routed to Human in the Loop while Textract processing is completed.
+When enabled, the backend polls Gmail, stores the raw `.eml` and attachments, prevents duplicate imports using `Message-ID`, classifies the email, and creates database orders from supported Lutz/Lesnina body formats. Recognized customers are matched by sender domain; a minimal profile client is created on first intake if no matching client exists.
+
+When `TEXTRACT_AUTO_PROCESSING_ENABLED=true`, PDF, TIFF, PNG, and JPEG attachments are uploaded to the configured S3 bucket and submitted to Amazon Textract automatically. The background worker persists job state, detected text, completion time, and errors. Order Details shows the processing status and extracted text. Scanned orders remain in Human in the Loop until their OCR evidence is reviewed or mapped into structured order fields.
 
 After login, the connection can be checked without waiting for the timer:
 
 - `GET /api/v1/emails/gmail/status` reports configuration without exposing the password.
 - `POST /api/v1/emails/gmail/poll` performs one immediate inbox poll.
+
+For local S3 and Textract access, configure a dedicated least-privilege IAM identity:
+
+```dotenv
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_S3_BUCKET=
+TEXTRACT_AUTO_PROCESSING_ENABLED=true
+TEXTRACT_POLL_INTERVAL_SECONDS=15
+TEXTRACT_MAX_JOBS_PER_POLL=20
+```
 
 ## Database Migration and Seed
 
@@ -188,7 +201,7 @@ Implemented foundation:
 
 - Outlook ingestion is not connected to Microsoft Graph.
 - Bedrock extraction requires valid AWS credentials, model access, and an explicitly configured model ID.
-- OCR service interface is present, but real Tesseract execution is not required for the Week 3 demo.
+- Textract OCR text is persisted, but client-specific mapping from arbitrary scanned tables into order items still requires review or AI extraction.
 - ERP transmission is simulated and does not contact a real ERP.
 - Excel export page is a UI foundation only.
 

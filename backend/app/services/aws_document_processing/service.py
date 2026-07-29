@@ -12,11 +12,14 @@ from pydantic import BaseModel, Field
 
 from app.core.config import Settings
 
-SUPPORTED_DOCUMENT_SUFFIXES = {".pdf", ".tif", ".tiff"}
+SUPPORTED_DOCUMENT_SUFFIXES = {".pdf", ".tif", ".tiff", ".png", ".jpg", ".jpeg"}
 CONTENT_TYPES = {
     ".pdf": "application/pdf",
     ".tif": "image/tiff",
     ".tiff": "image/tiff",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
 }
 
 
@@ -86,7 +89,7 @@ class AwsDocumentProcessingService:
     def start_table_analysis(self, filename: str, content: bytes) -> TextractJobStart:
         suffix = Path(filename).suffix.casefold()
         if suffix not in SUPPORTED_DOCUMENT_SUFFIXES:
-            raise AwsDocumentProcessingError("Textract accepts only .pdf, .tif, or .tiff files here.")
+            raise AwsDocumentProcessingError("Textract accepts only .pdf, .tif, .tiff, .png, .jpg, or .jpeg files here.")
         if not content:
             raise AwsDocumentProcessingError("The uploaded document is empty.")
 

@@ -1,3 +1,4 @@
+from app.services.aws_document_processing.processing import TextractJobProcessor, TextractPollSummary
 from app.services.aws_document_processing.service import (
     AwsDocumentProcessingError,
     AwsDocumentProcessingService,
@@ -10,4 +11,6 @@ __all__ = [
     "AwsDocumentProcessingService",
     "TextractJobResult",
     "TextractJobStart",
+    "TextractJobProcessor",
+    "TextractPollSummary",
 ]

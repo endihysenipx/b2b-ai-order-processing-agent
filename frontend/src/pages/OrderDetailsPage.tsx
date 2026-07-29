@@ -213,11 +213,29 @@ export function OrderDetailsPage() {
       <section className="detail-grid">
         <div className="section-panel">
           <h3>Attachments</h3>
-          {order.attachments.map((attachment) => (
-            <p key={attachment.id}>
-              {attachment.file_name} {attachment.is_scanned ? "(scanned)" : ""}
-            </p>
-          ))}
+          {order.attachments.length === 0 ? (
+            <p className="empty-state">No attachments.</p>
+          ) : (
+            order.attachments.map((attachment) => (
+              <article className="attachment-card" key={attachment.id}>
+                <div className="section-heading">
+                  <strong>
+                    {attachment.file_name} {attachment.is_scanned ? "(scanned)" : ""}
+                  </strong>
+                  <span className={`processing-status processing-${attachment.processing_status}`}>
+                    {attachment.processing_status.replaceAll("_", " ")}
+                  </span>
+                </div>
+                {attachment.processing_error && <p className="error-message">{attachment.processing_error}</p>}
+                {attachment.extracted_text && (
+                  <details>
+                    <summary>View extracted text</summary>
+                    <pre>{attachment.extracted_text}</pre>
+                  </details>
+                )}
+              </article>
+            ))
+          )}
         </div>
         <div className="section-panel">
           <h3>Validation Issues</h3>

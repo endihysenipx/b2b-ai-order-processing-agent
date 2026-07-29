@@ -49,7 +49,18 @@ export interface OrderDetail extends OrderListItem {
     classification_status: string;
   };
   items: OrderItem[];
-  attachments: Array<{ id: string; file_name: string; file_type: string; file_path: string; is_scanned: boolean }>;
+  attachments: Array<{
+    id: string;
+    file_name: string;
+    file_type: string;
+    file_path: string;
+    is_scanned: boolean;
+    processing_status: string;
+    textract_job_id: string | null;
+    extracted_text: string | null;
+    processing_error: string | null;
+    processed_at: string | null;
+  }>;
   validation_issues: Array<{ id: string; field_name: string; issue_type: string; message: string; severity: string; is_resolved: boolean }>;
   generated_xmls: Array<{ id: string; xml_type: string; file_path: string; status: string; generated_at: string; sent_at: string | null }>;
 }

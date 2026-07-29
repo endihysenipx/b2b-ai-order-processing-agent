@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     aws_region: str = "eu-central-1"
     aws_profile: str | None = None
     aws_s3_bucket: str | None = None
+    textract_auto_processing_enabled: bool = False
+    textract_poll_interval_seconds: int = Field(default=15, ge=5, le=3600)
+    textract_max_jobs_per_poll: int = Field(default=20, ge=1, le=200)
     ai_provider: Literal["mock", "bedrock"] = "mock"
     bedrock_model_id: str | None = None
     bedrock_max_tokens: int = Field(default=4096, ge=1, le=65536)
