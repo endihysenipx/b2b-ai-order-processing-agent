@@ -31,5 +31,6 @@ describe("OrdersPage", () => {
 
     expect(await screen.findByText("TCK-10001")).toBeInTheDocument();
     expect(screen.getAllByText("Northwind Retail Group").length).toBeGreaterThan(0);
+    expect(screen.getByRole("button", { name: "Approved" })).toBeInTheDocument();
   });
 });

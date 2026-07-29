@@ -6,7 +6,17 @@ import { StatusBadge } from "../components/common/StatusBadge";
 import type { Client } from "../types/client";
 import type { OrderListResponse } from "../types/order";
 
-const statuses = ["All", "OK", "Human in the Loop", "Waiting for Reply", "Failed", "ERP Ready", "XMLs Sent", "Rejected"];
+const statuses = [
+  "All",
+  "OK",
+  "Human in the Loop",
+  "Waiting for Reply",
+  "Failed",
+  "Approved",
+  "ERP Ready",
+  "XMLs Sent",
+  "Rejected",
+];
 
 export function OrdersPage() {
   const [orders, setOrders] = useState<OrderListResponse | null>(null);
@@ -65,7 +75,6 @@ export function OrdersPage() {
           <table>
             <thead>
               <tr>
-                <th>Order ID</th>
                 <th>Ticket</th>
                 <th>Commission</th>
                 <th>Client</th>
@@ -78,7 +87,6 @@ export function OrdersPage() {
             <tbody>
               {orders.items.map((order) => (
                 <tr key={order.id}>
-                  <td>{order.id.slice(0, 8)}</td>
                   <td>{order.ticket_number}</td>
                   <td>{order.commission_number ?? "Missing"}</td>
                   <td>{order.client.client_name}</td>

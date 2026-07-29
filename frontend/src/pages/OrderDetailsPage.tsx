@@ -73,9 +73,16 @@ export function OrderDetailsPage() {
 
   async function action(path: string, success: string) {
     if (!order) return;
-    const result = await apiRequest<OrderDetail | { message: string }>(`/orders/${order.id}/${path}`, { method: "POST" });
-    setMessage("message" in result ? result.message : success);
-    loadOrder();
+    setError("");
+    try {
+      const result = await apiRequest<OrderDetail | { message: string }>(`/orders/${order.id}/${path}`, {
+        method: "POST",
+      });
+      setMessage("message" in result ? result.message : success);
+      loadOrder();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "The order action failed");
+    }
   }
 
   if (error) return <p className="error-message">{error}</p>;

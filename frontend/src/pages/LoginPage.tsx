@@ -1,11 +1,12 @@
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
-import { apiRequest, setAccessToken } from "../api/client";
+import { apiRequest, getAccessToken, setAccessToken } from "../api/client";
 import type { User } from "../types/user";
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("admin@example.com");
   const [password, setPassword] = useState("Admin123!");
   const [error, setError] = useState("");
@@ -19,10 +20,20 @@ export function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       setAccessToken(result.access_token);
-      navigate("/");
+      const routeState = location.state as { from?: { pathname?: string; search?: string } } | null;
+      const stateRedirect = routeState?.from?.pathname
+        ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
+        : null;
+      const target = stateRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
+      sessionStorage.removeItem("post_login_redirect");
+      navigate(target, { replace: true });
     } catch (error) {
       setError(error instanceof Error ? error.message : "Login failed");
     }
+  }
+
+  if (getAccessToken()) {
+    return <Navigate to="/" replace />;
   }
 
   return (
