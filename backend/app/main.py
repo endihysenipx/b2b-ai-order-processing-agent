@@ -11,6 +11,8 @@ from app.core.config import settings
 from app.core.logging import configure_logging
 from app.db import base as _models  # noqa: F401
 from app.db.session import SessionLocal
+from app.mcp.server import http_app as mcp_http_app
+from app.mcp.server import lifespan_app as mcp_lifespan_app
 from app.services.aws_document_processing import TextractJobProcessor
 from app.services.email.ingestion import GmailIngestionService
 
@@ -65,7 +67,8 @@ async def lifespan(_: FastAPI):
     gmail_task = asyncio.create_task(monitor_gmail()) if settings.gmail_ingestion_enabled else None
     textract_task = asyncio.create_task(monitor_textract()) if settings.textract_auto_processing_enabled else None
     try:
-        yield
+        async with mcp_lifespan_app.router.lifespan_context(mcp_lifespan_app):
+            yield
     finally:
         tasks = [task for task in (gmail_task, textract_task) if task is not None]
         for task in tasks:
@@ -104,3 +107,7 @@ app.include_router(extraction.router, prefix=api_prefix)
 app.include_router(orders.router, prefix=api_prefix)
 app.include_router(feedback.router, prefix=api_prefix)
 app.include_router(reports.router, prefix=api_prefix)
+
+# Mount last so the MCP transport handles /mcp while the FastAPI routes above
+# retain precedence for the REST API, health endpoint, and documentation.
+app.mount("", mcp_http_app, name="mcp")

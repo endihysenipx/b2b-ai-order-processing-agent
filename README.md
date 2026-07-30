@@ -19,6 +19,7 @@ The system stores client-specific prompts and rules, processes order evidence in
 ## Core Features
 
 - FastAPI API with JWT login, clients, orders, feedback, reports, and XML endpoints.
+- Authenticated, read-only MCP server for order search, investigation, evidence, validation, and processing summaries.
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
 - Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
@@ -75,6 +76,7 @@ The services run on:
 
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8000
+- MCP server: http://localhost:8000/mcp
 - Swagger API docs: http://localhost:8000/docs
 - PostgreSQL: localhost:5432
 
@@ -184,6 +186,10 @@ npm run build
 ## API Documentation
 
 Swagger UI is available at http://localhost:8000/docs after the backend starts.
+
+## MCP Server
+
+The backend exposes five authenticated, read-only tools over Streamable HTTP at `/mcp`. It reuses application JWTs and the existing service/repository layer, and it intentionally excludes approval, email, XML generation, and ERP transmission. See [docs/mcp.md](docs/mcp.md) for client setup, security boundaries, testing, and production notes.
 
 ## Week 3 Implementation Status
 

@@ -26,9 +26,10 @@ def prepare_database():
     Path("test.db").unlink(missing_ok=True)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def client():
-    return TestClient(app)
+    with TestClient(app) as test_client:
+        yield test_client
 
 
 @pytest.fixture

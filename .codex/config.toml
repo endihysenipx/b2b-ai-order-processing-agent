@@ -1,0 +1,11 @@
+[mcp_servers.b2b_order_processing]
+url = "http://localhost:8000/mcp"
+bearer_token_env_var = "B2B_MCP_TOKEN"
+default_tools_approval_mode = "writes"
+enabled_tools = [
+  "search_orders",
+  "get_order_details",
+  "get_order_evidence",
+  "get_validation_issues",
+  "get_processing_summary",
+]
