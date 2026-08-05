@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,6 +10,9 @@ class Settings(BaseSettings):
 
     app_env: str = "development"
     secret_key: str = "change-me"
+    totp_encryption_key: str | None = None
+    token_issuer: str = "b2b-order-processing-agent"
+    token_audience: str = "b2b-order-processing"
     access_token_expire_minutes: int = 60
     bootstrap_admin_email: str = "admin@example.com"
     bootstrap_admin_password: str | None = None
@@ -43,6 +46,17 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     openai_model: str | None = None
     service_name: str = Field(default="b2b-ai-order-processing-agent")
+
+    @model_validator(mode="after")
+    def validate_production_security(self):
+        if self.app_env.casefold() == "production":
+            if self.secret_key.startswith("change-me"):
+                raise ValueError("SECRET_KEY must be set to a strong production secret")
+            if not self.totp_encryption_key or self.totp_encryption_key.startswith("change-me"):
+                raise ValueError("TOTP_ENCRYPTION_KEY is required in production")
+            if self.totp_encryption_key == self.secret_key:
+                raise ValueError("TOTP_ENCRYPTION_KEY must be different from SECRET_KEY")
+        return self
 
 
 @lru_cache

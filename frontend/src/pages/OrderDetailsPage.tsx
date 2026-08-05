@@ -1,9 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { apiRequest } from "../api/client";
+import { apiRequest, getAuthenticatedUser } from "../api/client";
 import { StatusBadge } from "../components/common/StatusBadge";
 import type { OrderDetail } from "../types/order";
+import type { User } from "../types/user";
 
 function optionalFormValue(formData: FormData, name: string) {
   const value = formData.get(name);
@@ -19,6 +20,7 @@ function displayDateTime(value: string | null) {
 }
 
 export function OrderDetailsPage() {
+  const isAdmin = getAuthenticatedUser<User>()?.role === "admin";
   const { orderId } = useParams();
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [message, setMessage] = useState("");
@@ -262,8 +264,8 @@ export function OrderDetailsPage() {
         <h3>XML Status</h3>
         <div className="action-row">
           <button onClick={() => action("approve", "Order approved.")}>Approve</button>
-          <button onClick={() => action("generate-xml", "XML generated.")}>Generate XML</button>
-          <button onClick={() => action("send-xml", "XML sent.")}>Send XMLs</button>
+          {isAdmin && <button onClick={() => action("generate-xml", "XML generated.")}>Generate XML</button>}
+          {isAdmin && <button onClick={() => action("send-xml", "XML sent.")}>Send XMLs</button>}
           <button
             onClick={() =>
               apiRequest(`/orders/${order.id}/reject`, { method: "POST", body: JSON.stringify({ reason: "Rejected during review" }) }).then(loadOrder)

@@ -14,7 +14,7 @@
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-router-dom": "latest"
+    "react-router-dom": "7.18.2"
   },
   "devDependencies": {
     "@eslint/js": "latest",
@@ -34,5 +34,8 @@
     "typescript-eslint": "latest",
     "vite": "latest",
     "vitest": "latest"
+  },
+  "overrides": {
+    "postcss": "8.5.25"
   }
 }

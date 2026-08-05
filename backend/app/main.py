@@ -2,11 +2,12 @@ import asyncio
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, orders, reports
+from app.api.dependencies import get_current_user
+from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, orders, reports, users
 from app.core.config import settings
 from app.core.logging import configure_logging
 from app.db import base as _models  # noqa: F401
@@ -93,20 +94,23 @@ app.add_middleware(
 
 @app.exception_handler(Exception)
 async def unhandled_exception_handler(_, exc: Exception):
-    return JSONResponse(status_code=500, content={"detail": "Unexpected server error", "error": str(exc)})
+    logger.exception("Unhandled application error", exc_info=exc)
+    return JSONResponse(status_code=500, content={"detail": "Unexpected server error"})
 
 
 app.include_router(health.router)
 
 api_prefix = "/api/v1"
 app.include_router(auth.router, prefix=api_prefix)
-app.include_router(clients.router, prefix=api_prefix)
-app.include_router(documents.router, prefix=api_prefix)
-app.include_router(emails.router, prefix=api_prefix)
-app.include_router(extraction.router, prefix=api_prefix)
-app.include_router(orders.router, prefix=api_prefix)
-app.include_router(feedback.router, prefix=api_prefix)
-app.include_router(reports.router, prefix=api_prefix)
+protected = [Depends(get_current_user)]
+app.include_router(clients.router, prefix=api_prefix, dependencies=protected)
+app.include_router(documents.router, prefix=api_prefix, dependencies=protected)
+app.include_router(emails.router, prefix=api_prefix, dependencies=protected)
+app.include_router(extraction.router, prefix=api_prefix, dependencies=protected)
+app.include_router(orders.router, prefix=api_prefix, dependencies=protected)
+app.include_router(feedback.router, prefix=api_prefix, dependencies=protected)
+app.include_router(reports.router, prefix=api_prefix, dependencies=protected)
+app.include_router(users.router, prefix=api_prefix, dependencies=protected)
 
 # Mount last so the MCP transport handles /mcp while the FastAPI routes above
 # retain precedence for the REST API, health endpoint, and documentation.

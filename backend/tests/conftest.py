@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import pyotp
 import pytest
 from fastapi.testclient import TestClient
 
@@ -32,8 +33,18 @@ def client():
         yield test_client
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def auth_headers(client):
     response = client.post("/api/v1/auth/login", json={"email": "admin@example.com", "password": "Admin123!"})
-    token = response.json()["access_token"]
+    login = response.json()
+    if login["requires_2fa_setup"]:
+        setup = client.post("/api/v1/auth/2fa/setup", json={"challenge_token": login["challenge_token"]}).json()
+        completed = client.post(
+            "/api/v1/auth/2fa/enable",
+            json={"challenge_token": login["challenge_token"], "code": pyotp.TOTP(setup["secret"]).now()},
+        )
+    else:
+        raise RuntimeError("The seeded admin was unexpectedly enrolled before the test session")
+    assert completed.status_code == 200, completed.text
+    token = completed.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}

@@ -409,6 +409,48 @@ a {
   padding: 28px;
 }
 
+.login-panel form {
+  display: grid;
+  gap: 14px;
+}
+
+.login-panel h2 {
+  margin-bottom: 0;
+}
+
+.totp-qr {
+  width: min(240px, 100%);
+  justify-self: center;
+  border: 1px solid #dbe4ee;
+  border-radius: 8px;
+  background: white;
+  padding: 8px;
+}
+
+.setup-secret {
+  display: block;
+  overflow-wrap: anywhere;
+  padding: 10px;
+  border-radius: 6px;
+  background: #f1f5f9;
+}
+
+.recovery-codes {
+  user-select: all;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.session-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.danger-button {
+  background: #b91c1c;
+}
+
 .settings-grid {
   display: grid;
   gap: 14px;

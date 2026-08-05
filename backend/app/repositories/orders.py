@@ -1,6 +1,6 @@
 from datetime import date
 
-from sqlalchemy import Select, func, or_, select
+from sqlalchemy import Select, false, func, or_, select
 from sqlalchemy.orm import Session, joinedload, selectinload
 
 from app.models.order import Order
@@ -17,8 +17,11 @@ def order_detail_options():
     )
 
 
-def get_order(db: Session, order_id: str) -> Order | None:
-    return db.scalar(select(Order).options(*order_detail_options()).where(Order.id == order_id))
+def get_order(db: Session, order_id: str, accessible_client_ids: set[str] | None = None) -> Order | None:
+    query = select(Order).options(*order_detail_options()).where(Order.id == order_id)
+    if accessible_client_ids is not None:
+        query = query.where(Order.client_id.in_(accessible_client_ids) if accessible_client_ids else false())
+    return db.scalar(query)
 
 
 def build_order_query(
@@ -27,12 +30,15 @@ def build_order_query(
     search: str | None = None,
     date_from: date | None = None,
     date_to: date | None = None,
+    accessible_client_ids: set[str] | None = None,
 ) -> Select[tuple[Order]]:
     query = select(Order).options(joinedload(Order.client)).order_by(Order.created_at.desc())
     if status and status != "All":
         query = query.where(Order.status == status)
     if client_id:
         query = query.where(Order.client_id == client_id)
+    if accessible_client_ids is not None:
+        query = query.where(Order.client_id.in_(accessible_client_ids) if accessible_client_ids else false())
     if search:
         pattern = f"%{search}%"
         query = query.where(

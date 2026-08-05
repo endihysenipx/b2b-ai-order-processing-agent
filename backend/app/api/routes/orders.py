@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.dependencies import get_current_user
+from app.api.dependencies import accessible_client_ids, get_current_user, require_admin
 from app.db.session import get_db
 from app.models.feedback_issue import FeedbackIssue
 from app.models.generated_xml import GeneratedXML
@@ -37,8 +37,16 @@ def list_orders(
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
 ) -> OrderListResponse:
-    query = build_order_query(status, client_id, search, date_from, date_to)
+    query = build_order_query(
+        status,
+        client_id,
+        search,
+        date_from,
+        date_to,
+        accessible_client_ids=accessible_client_ids(current_user),
+    )
     all_items = list(db.scalars(query).unique())
     start = (page - 1) * page_size
     return OrderListResponse(
@@ -47,27 +55,38 @@ def list_orders(
 
 
 @router.get("/{order_id}", response_model=OrderDetailOut)
-def get_order_detail(order_id: str, db: Session = Depends(get_db)) -> Order:
-    order = get_order(db, order_id)
+def get_order_detail(order_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)) -> Order:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
 
 
 @router.patch("/{order_id}", response_model=OrderDetailOut)
-def update_order(order_id: str, payload: OrderUpdate, db: Session = Depends(get_db)) -> Order:
-    order = get_order(db, order_id)
+def update_order(
+    order_id: str,
+    payload: OrderUpdate,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+) -> Order:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(order, field, value)
     db.commit()
-    return get_order(db, order_id)
+    return get_order(db, order_id, accessible_client_ids(current_user))
 
 
 @router.patch("/{order_id}/items/{item_id}", response_model=OrderDetailOut)
-def update_order_item(order_id: str, item_id: str, payload: OrderItemUpdate, db: Session = Depends(get_db)) -> Order:
-    order = get_order(db, order_id)
+def update_order_item(
+    order_id: str,
+    item_id: str,
+    payload: OrderItemUpdate,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+) -> Order:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     item = db.get(OrderItem, item_id)
@@ -78,7 +97,7 @@ def update_order_item(order_id: str, item_id: str, payload: OrderItemUpdate, db:
     if item.quantity is not None and item.unit_price is not None:
         item.total_price = item.quantity * item.unit_price
     db.commit()
-    return get_order(db, order_id)
+    return get_order(db, order_id, accessible_client_ids(current_user))
 
 
 @router.post("/{order_id}/approve", response_model=OrderDetailOut)
@@ -87,21 +106,26 @@ def approve_order(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ) -> Order:
-    order = get_order(db, order_id)
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     order.status = "Approved"
     order.approved_by_user_id = current_user.id
     order.approved_at = datetime.now(UTC).replace(tzinfo=None)
     db.commit()
-    return get_order(db, order_id)
+    return get_order(db, order_id, accessible_client_ids(current_user))
 
 
 @router.post("/{order_id}/reject", response_model=OrderDetailOut)
-def reject_order(order_id: str, payload: RejectRequest, db: Session = Depends(get_db)) -> Order:
+def reject_order(
+    order_id: str,
+    payload: RejectRequest,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+) -> Order:
     if not payload.reason.strip():
         raise HTTPException(status_code=400, detail="Rejection reason is required")
-    order = get_order(db, order_id)
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     order.status = "Rejected"
@@ -114,12 +138,17 @@ def reject_order(order_id: str, payload: RejectRequest, db: Session = Depends(ge
     )
     db.add(issue)
     db.commit()
-    return get_order(db, order_id)
+    return get_order(db, order_id, accessible_client_ids(current_user))
 
 
 @router.post("/{order_id}/report-issue", response_model=FeedbackIssueOut)
-def report_order_issue(order_id: str, payload: ReportIssueRequest, db: Session = Depends(get_db)) -> FeedbackIssue:
-    if get_order(db, order_id) is None:
+def report_order_issue(
+    order_id: str,
+    payload: ReportIssueRequest,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+) -> FeedbackIssue:
+    if get_order(db, order_id, accessible_client_ids(current_user)) is None:
         raise HTTPException(status_code=404, detail="Order not found")
     issue = FeedbackIssue(
         order_id=order_id,
@@ -135,8 +164,12 @@ def report_order_issue(order_id: str, payload: ReportIssueRequest, db: Session =
 
 
 @router.post("/{order_id}/validate", response_model=list[dict])
-def validate_order(order_id: str, db: Session = Depends(get_db)) -> list[dict]:
-    order = get_order(db, order_id)
+def validate_order(
+    order_id: str,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+) -> list[dict]:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     issues = validate_order_data(
@@ -164,8 +197,12 @@ def validate_order(order_id: str, db: Session = Depends(get_db)) -> list[dict]:
 
 
 @router.post("/{order_id}/generate-xml", response_model=XmlActionResponse)
-def generate_xml(order_id: str, db: Session = Depends(get_db)) -> XmlActionResponse:
-    order = get_order(db, order_id)
+def generate_xml(
+    order_id: str,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_admin),
+) -> XmlActionResponse:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     header_path = generate_header_xml(order)
@@ -192,8 +229,12 @@ def generate_xml(order_id: str, db: Session = Depends(get_db)) -> XmlActionRespo
 
 
 @router.post("/{order_id}/send-xml", response_model=XmlActionResponse)
-def send_xml(order_id: str, db: Session = Depends(get_db)) -> XmlActionResponse:
-    order = get_order(db, order_id)
+def send_xml(
+    order_id: str,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_admin),
+) -> XmlActionResponse:
+    order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     if len(order.generated_xmls) < 2:

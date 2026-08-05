@@ -1,57 +1,175 @@
 import { FormEvent, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
-import { apiRequest, getAccessToken, setAccessToken } from "../api/client";
+import { apiRequest, getAccessToken, setAccessToken, setAuthenticatedUser } from "../api/client";
 import type { User } from "../types/user";
+
+interface LoginResult {
+  access_token: string | null;
+  user: User | null;
+  challenge_token: string | null;
+  requires_2fa: boolean;
+  requires_2fa_setup: boolean;
+  recovery_codes?: string[] | null;
+}
+
+interface SetupResult {
+  secret: string;
+  provisioning_uri: string;
+  qr_code_data_url: string;
+}
+
+type Stage = "credentials" | "setup" | "verify" | "recovery";
 
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("admin@example.com");
-  const [password, setPassword] = useState("Admin123!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
+  const [challengeToken, setChallengeToken] = useState("");
+  const [setup, setSetup] = useState<SetupResult | null>(null);
+  const [recoveryCodes, setRecoveryCodes] = useState<string[]>([]);
+  const [stage, setStage] = useState<Stage>("credentials");
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
 
-  async function handleSubmit(event: FormEvent) {
+  function finishLogin(result: LoginResult) {
+    if (!result.access_token || !result.user) {
+      throw new Error("The server did not return a completed session");
+    }
+    setAccessToken(result.access_token);
+    setAuthenticatedUser(result.user);
+    if (result.recovery_codes?.length) {
+      setRecoveryCodes(result.recovery_codes);
+      setStage("recovery");
+      return;
+    }
+    navigateAfterLogin();
+  }
+
+  function navigateAfterLogin() {
+    const routeState = location.state as { from?: { pathname?: string; search?: string } } | null;
+    const stateRedirect = routeState?.from?.pathname
+      ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
+      : null;
+    const target = stateRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
+    sessionStorage.removeItem("post_login_redirect");
+    navigate(target, { replace: true });
+  }
+
+  async function submitCredentials(event: FormEvent) {
     event.preventDefault();
     setError("");
+    setBusy(true);
     try {
-      const result = await apiRequest<{ access_token: string; user: User }>("/auth/login", {
+      const result = await apiRequest<LoginResult>("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
-      setAccessToken(result.access_token);
-      const routeState = location.state as { from?: { pathname?: string; search?: string } } | null;
-      const stateRedirect = routeState?.from?.pathname
-        ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
-        : null;
-      const target = stateRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
-      sessionStorage.removeItem("post_login_redirect");
-      navigate(target, { replace: true });
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "Login failed");
+      if (!result.challenge_token) {
+        finishLogin(result);
+      } else if (result.requires_2fa_setup) {
+        setChallengeToken(result.challenge_token);
+        const setupResult = await apiRequest<SetupResult>("/auth/2fa/setup", {
+          method: "POST",
+          body: JSON.stringify({ challenge_token: result.challenge_token }),
+        });
+        setSetup(setupResult);
+        setStage("setup");
+      } else {
+        setChallengeToken(result.challenge_token);
+        setStage("verify");
+      }
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Login failed");
+    } finally {
+      setBusy(false);
     }
   }
 
-  if (getAccessToken()) {
+  async function submitCode(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+    setBusy(true);
+    try {
+      const endpoint = stage === "setup" ? "/auth/2fa/enable" : "/auth/2fa/verify";
+      const result = await apiRequest<LoginResult>(endpoint, {
+        method: "POST",
+        body: JSON.stringify({ challenge_token: challengeToken, code }),
+      });
+      finishLogin(result);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Verification failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (getAccessToken() && stage !== "recovery") {
     return <Navigate to="/" replace />;
   }
 
   return (
     <main className="login-page">
-      <form className="login-panel" onSubmit={handleSubmit}>
+      <section className="login-panel">
         <span className="eyebrow">FlowForge</span>
         <h1>Order Agent Login</h1>
         {error && <p className="error-message">{error}</p>}
-        <label>
-          Email
-          <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" />
-        </label>
-        <label>
-          Password
-          <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" />
-        </label>
-        <button type="submit">Log in</button>
-      </form>
+
+        {stage === "credentials" && (
+          <form onSubmit={submitCredentials}>
+            <label>
+              Email
+              <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="username" required />
+            </label>
+            <label>
+              Password
+              <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" autoComplete="current-password" required />
+            </label>
+            <button type="submit" disabled={busy}>{busy ? "Checking…" : "Continue"}</button>
+          </form>
+        )}
+
+        {stage === "setup" && setup && (
+          <form onSubmit={submitCode}>
+            <h2>Set up your authenticator</h2>
+            <p>Scan this QR code with Google Authenticator, Microsoft Authenticator, 1Password, or another TOTP app.</p>
+            <img className="totp-qr" src={setup.qr_code_data_url} alt="Authenticator setup QR code" />
+            <details>
+              <summary>Cannot scan the QR code?</summary>
+              <p>Enter this setup key manually:</p>
+              <code className="setup-secret">{setup.secret}</code>
+            </details>
+            <label>
+              Six-digit code
+              <input value={code} onChange={(event) => setCode(event.target.value)} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" required />
+            </label>
+            <button type="submit" disabled={busy}>{busy ? "Verifying…" : "Enable authenticator"}</button>
+          </form>
+        )}
+
+        {stage === "verify" && (
+          <form onSubmit={submitCode}>
+            <h2>Two-factor authentication</h2>
+            <p>Enter the six-digit code from your authenticator app. You may also enter one unused recovery code.</p>
+            <label>
+              Authenticator or recovery code
+              <input value={code} onChange={(event) => setCode(event.target.value)} autoComplete="one-time-code" required autoFocus />
+            </label>
+            <button type="submit" disabled={busy}>{busy ? "Verifying…" : "Log in"}</button>
+          </form>
+        )}
+
+        {stage === "recovery" && (
+          <div>
+            <h2>Save your recovery codes</h2>
+            <p>Store these somewhere secure. Each code works once and they will not be shown again.</p>
+            <pre className="recovery-codes">{recoveryCodes.join("\n")}</pre>
+            <button type="button" onClick={navigateAfterLogin}>I saved these codes</button>
+          </div>
+        )}
+      </section>
     </main>
   );
 }

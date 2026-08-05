@@ -1,5 +1,6 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000/api/v1";
 const ACCESS_TOKEN_KEY = "access_token";
+const USER_KEY = "auth_user";
 
 export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getAccessToken();
@@ -19,17 +20,30 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
     }
     throw new Error(error.detail ?? "Request failed");
   }
+  if (response.status === 204) {
+    return undefined as T;
+  }
   return response.json() as Promise<T>;
 }
 
 export function setAccessToken(token: string) {
-  localStorage.setItem(ACCESS_TOKEN_KEY, token);
+  sessionStorage.setItem(ACCESS_TOKEN_KEY, token);
+}
+
+export function setAuthenticatedUser(user: unknown) {
+  sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
+export function getAuthenticatedUser<T>() {
+  const value = sessionStorage.getItem(USER_KEY);
+  return value ? (JSON.parse(value) as T) : null;
 }
 
 export function getAccessToken() {
-  return localStorage.getItem(ACCESS_TOKEN_KEY);
+  return sessionStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
 export function clearAccessToken() {
-  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  sessionStorage.removeItem(ACCESS_TOKEN_KEY);
+  sessionStorage.removeItem(USER_KEY);
 }

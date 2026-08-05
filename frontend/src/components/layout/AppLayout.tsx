@@ -1,5 +1,7 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { ClipboardList, Database, FileDown, Gauge, MessageSquareWarning, Settings, Users } from "lucide-react";
+import { clearAccessToken, getAuthenticatedUser } from "../../api/client";
+import type { User } from "../../types/user";
 
 const navItems = [
   { to: "/", label: "Overview", icon: Gauge },
@@ -7,11 +9,20 @@ const navItems = [
   { to: "/clients", label: "Clients", icon: Database },
   { to: "/data-export", label: "Data Export", icon: FileDown },
   { to: "/feedback", label: "Feedback & Issues", icon: MessageSquareWarning },
-  { to: "/users", label: "Users", icon: Users },
+  { to: "/users", label: "Users", icon: Users, adminOnly: true },
   { to: "/settings", label: "Settings", icon: Settings },
 ];
 
 export function AppLayout() {
+  const navigate = useNavigate();
+  const user = getAuthenticatedUser<User>();
+  const visibleNavItems = navItems.filter((item) => !item.adminOnly || user?.role === "admin");
+
+  function logout() {
+    clearAccessToken();
+    navigate("/login", { replace: true });
+  }
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -23,7 +34,7 @@ export function AppLayout() {
           </div>
         </div>
         <nav>
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const Icon = item.icon;
             return (
               <NavLink key={item.to} to={item.to} className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
@@ -40,7 +51,10 @@ export function AppLayout() {
             <span className="eyebrow">Week 3 MVP</span>
             <h1>B2B AI Order Processing Agent</h1>
           </div>
-          <span className="mode-pill">Mock integrations enabled</span>
+          <div className="session-controls">
+            <span>{user?.full_name} · {user?.role}</span>
+            <button type="button" onClick={logout}>Log out</button>
+          </div>
         </header>
         <section className="content-area">
           <Outlet />

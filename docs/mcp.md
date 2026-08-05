@@ -14,13 +14,13 @@ Every tool is marked read-only, non-destructive, idempotent, and closed-world. T
 
 ## Authentication
 
-The MCP transport accepts the same short-lived JWT bearer tokens issued by `POST /api/v1/auth/login`. The token must belong to an active application user. This initial authentication model works well for local development and private clients such as Codex.
+The MCP transport accepts the same short-lived, MFA-verified JWT bearer tokens used by the web application. Password authentication alone never produces an access token. The token must belong to an active application user and MCP tools enforce the user's client grants.
 
 The server does not yet advertise an OAuth authorization flow. Add OAuth 2.1 and MCP protected-resource discovery before publishing this endpoint as a broadly available ChatGPT or third-party integration. Do not replace bearer authentication with an unauthenticated public endpoint.
 
 ## Connect Codex locally
 
-The committed `.codex/config.toml` registers the local MCP URL without containing a credential. Start the application and obtain a login token:
+The committed `.codex/config.toml` registers the local MCP URL without containing a credential. Complete authenticator enrollment in the web UI first. Then obtain a login challenge and verify it:
 
 ```powershell
 $loginBody = @{
@@ -34,7 +34,18 @@ $login = Invoke-RestMethod `
     -ContentType "application/json" `
     -Body $loginBody
 
-$env:B2B_MCP_TOKEN = $login.access_token
+$verificationBody = @{
+    challenge_token = $login.challenge_token
+    code = Read-Host "Authenticator code"
+} | ConvertTo-Json
+
+$verified = Invoke-RestMethod `
+    -Method Post `
+    -Uri "http://localhost:8000/api/v1/auth/2fa/verify" `
+    -ContentType "application/json" `
+    -Body $verificationBody
+
+$env:B2B_MCP_TOKEN = $verified.access_token
 ```
 
 Restart Codex from a terminal that inherits `B2B_MCP_TOKEN`. The project-scoped MCP configuration is loaded only when the repository is trusted. Use `/mcp` or the MCP server settings to confirm that `b2b_order_processing` and its five tools are available.
@@ -73,7 +84,7 @@ Production requirements:
 
 - Keep `/mcp` behind HTTPS.
 - Set `FRONTEND_URL` to the public HTTPS origin; the MCP transport derives its Host and Origin allowlist from this setting.
-- Keep application JWT signing material only in protected server configuration.
+- Keep application JWT signing material and the independent `TOTP_ENCRYPTION_KEY` only in protected server configuration.
 - Retain tool invocation logs without logging tokens or raw evidence.
 - Review and tune the Nginx MCP rate limit as real usage becomes known.
 - Add OAuth 2.1 before connecting hosted ChatGPT plugins or external customer workspaces.

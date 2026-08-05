@@ -18,8 +18,8 @@ The system stores client-specific prompts and rules, processes order evidence in
 
 ## Core Features
 
-- FastAPI API with JWT login, clients, orders, feedback, reports, and XML endpoints.
-- Authenticated, read-only MCP server for order search, investigation, evidence, validation, and processing summaries.
+- FastAPI API with password-plus-TOTP login, client-scoped authorization, clients, orders, feedback, reports, and XML endpoints.
+- MFA-authenticated, client-scoped, read-only MCP server for order search, investigation, evidence, validation, and processing summaries.
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
 - Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
@@ -85,6 +85,17 @@ The backend container waits for PostgreSQL, applies Alembic migrations, creates 
 ## Environment Variables
 
 Use `.env.example` as the source of placeholders. Do not commit `.env`. Microsoft Graph and OpenAI values remain optional placeholders.
+
+### Authentication and authorization
+
+Every active user must enroll a TOTP authenticator app at first login. Password verification returns only a five-minute challenge; the server issues an access token after the authenticator or a one-time recovery code is verified.
+
+- Authenticator secrets are encrypted at rest with `TOTP_ENCRYPTION_KEY`, which must be different from `SECRET_KEY` in production.
+- Ten single-use recovery codes are shown once during enrollment and stored only as keyed hashes.
+- Administrators can access all clients, manage user grants, run Gmail ingestion, and generate or send ERP XML.
+- Operators can access only explicitly assigned clients.
+- Existing operator visibility is converted to explicit client grants by the migration.
+- Browser tokens are held in session storage and cleared on logout or when the tab session ends.
 
 ### Amazon Bedrock extraction
 
@@ -216,5 +227,5 @@ Implemented foundation:
 - Real Microsoft Graph inbox monitoring and reply matching.
 - Persist Bedrock extraction results into the end-to-end email-to-order workflow.
 - OCR execution and richer document parsing pipeline.
-- Audit log expansion and role-based access controls.
+- Durable, queryable security audit events and phishing-resistant WebAuthn/passkey support.
 - Excel report generation and ERP adapter integration.

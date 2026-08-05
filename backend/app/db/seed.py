@@ -86,6 +86,8 @@ def seed_database(db: Session, *, include_demo_data: bool = False) -> None:
     )
     db.add_all([northwind, contoso])
     db.flush()
+    if operator is not None:
+        operator.clients.append(northwind)
 
     now = datetime.now(UTC).replace(tzinfo=None)
     scenarios = [

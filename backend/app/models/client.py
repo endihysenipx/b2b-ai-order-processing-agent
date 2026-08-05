@@ -18,3 +18,4 @@ class Client(IdMixin, TimestampMixin, Base):
 
     emails = relationship("Email", back_populates="client")
     orders = relationship("Order", back_populates="client")
+    users = relationship("User", secondary="user_client_access", back_populates="clients")

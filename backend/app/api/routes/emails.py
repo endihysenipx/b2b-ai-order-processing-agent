@@ -3,7 +3,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 
-from app.api.dependencies import get_current_user
+from app.api.dependencies import get_current_user, require_admin
 from app.core.config import settings
 from app.db.session import SessionLocal
 from app.services.email.gmail import GmailConfigurationError, GmailConnectionError
@@ -21,7 +21,7 @@ def get_gmail_ingestion_service() -> GmailIngestionService:
 
 @router.get("/gmail/status", response_model=GmailIngestionStatus)
 def gmail_status(
-    _current_user=Depends(get_current_user),
+    _current_user=Depends(require_admin),
     service: GmailIngestionService = Depends(get_gmail_ingestion_service),
 ) -> GmailIngestionStatus:
     return service.status()
@@ -29,7 +29,7 @@ def gmail_status(
 
 @router.post("/gmail/poll", response_model=GmailPollResult)
 async def poll_gmail(
-    _current_user=Depends(get_current_user),
+    _current_user=Depends(require_admin),
     service: GmailIngestionService = Depends(get_gmail_ingestion_service),
 ) -> GmailPollResult:
     try:

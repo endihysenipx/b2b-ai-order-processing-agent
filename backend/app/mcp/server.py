@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from urllib.parse import urlsplit
 
-from jose import JWTError, jwt
+from jose import JWTError
 from mcp.server import MCPServer
 from mcp.server.auth.middleware.auth_context import AuthContextMiddleware, get_access_token
 from mcp.server.auth.middleware.bearer_auth import BearerAuthBackend, RequireAuthMiddleware
@@ -15,7 +15,7 @@ from sqlalchemy import func, select
 from starlette.middleware.authentication import AuthenticationMiddleware
 
 from app.core.config import settings
-from app.core.security import ALGORITHM
+from app.core.security import decode_token
 from app.db.session import SessionLocal
 from app.models.attachment import Attachment
 from app.models.order import Order
@@ -142,20 +142,28 @@ class ApplicationJwtVerifier(TokenVerifier):
 
     async def verify_token(self, token: str) -> AccessToken | None:
         try:
-            payload = jwt.decode(token, settings.secret_key, algorithms=[ALGORITHM])
+            payload = decode_token(token)
             user_id = payload.get("sub")
             expires_at = payload.get("exp")
         except JWTError:
             return None
 
-        if not isinstance(user_id, str) or not user_id:
+        if (
+            not isinstance(user_id, str)
+            or not user_id
+            or payload.get("token_type") != "access"
+            or "otp" not in payload.get("amr", [])
+        ):
             return None
 
         with SessionLocal() as db:
             user = db.get(User, user_id)
             if user is None or not user.is_active:
                 return None
+            if payload.get("auth_version") != user.auth_version:
+                return None
             role = user.role
+            client_ids = [client.id for client in user.clients]
 
         return AccessToken(
             token=token,
@@ -163,7 +171,7 @@ class ApplicationJwtVerifier(TokenVerifier):
             scopes=["orders:read", f"role:{role}"],
             expires_at=int(expires_at) if expires_at is not None else None,
             subject=user_id,
-            claims={"role": role},
+            claims={"role": role, "client_ids": client_ids},
         )
 
 
@@ -213,6 +221,15 @@ def _audit(tool_name: str, order_id: str | None = None) -> None:
         token.subject if token else "unknown",
         order_id,
     )
+
+
+def _accessible_client_ids() -> set[str] | None:
+    token = get_access_token()
+    if token is None:
+        return set()
+    if token.claims.get("role") == "admin":
+        return None
+    return set(token.claims.get("client_ids", []))
 
 
 def _summary(order: Order) -> OrderSummary:
@@ -265,13 +282,20 @@ def search_orders(
 ) -> SearchOrdersResult:
     _audit("search_orders")
     with SessionLocal() as db:
-        query = build_order_query(status, client_id, search, date_from, date_to)
-        orders = list(db.scalars(query).unique())
-        selected = orders[:limit]
+        query = build_order_query(
+            status,
+            client_id,
+            search,
+            date_from,
+            date_to,
+            accessible_client_ids=_accessible_client_ids(),
+        )
+        total = db.scalar(select(func.count()).select_from(query.order_by(None).subquery())) or 0
+        selected = list(db.scalars(query.limit(limit)).unique())
         return SearchOrdersResult(
             orders=[_summary(order) for order in selected],
             returned=len(selected),
-            total=len(orders),
+            total=total,
         )
 
 
@@ -283,7 +307,7 @@ def search_orders(
 def get_order_details(order_id: str) -> OrderDetailResult:
     _audit("get_order_details", order_id)
     with SessionLocal() as db:
-        order = get_order(db, order_id)
+        order = get_order(db, order_id, _accessible_client_ids())
         if order is None:
             raise ValueError("Order not found")
 
@@ -347,7 +371,7 @@ def get_order_evidence(
 ) -> OrderEvidenceResult:
     _audit("get_order_evidence", order_id)
     with SessionLocal() as db:
-        order = get_order(db, order_id)
+        order = get_order(db, order_id, _accessible_client_ids())
         if order is None:
             raise ValueError("Order not found")
 
@@ -388,7 +412,7 @@ def get_order_evidence(
 def get_validation_issues(order_id: str) -> ValidationResult:
     _audit("get_validation_issues", order_id)
     with SessionLocal() as db:
-        order = get_order(db, order_id)
+        order = get_order(db, order_id, _accessible_client_ids())
         if order is None:
             raise ValueError("Order not found")
 
@@ -432,6 +456,9 @@ def get_processing_summary(
     _audit("get_processing_summary")
     with SessionLocal() as db:
         order_filters = []
+        allowed = _accessible_client_ids()
+        if allowed is not None:
+            order_filters.append(Order.client_id.in_(allowed) if allowed else Order.id.is_(None))
         if date_from is not None:
             order_filters.append(func.date(Order.created_at) >= date_from)
         if date_to is not None:
