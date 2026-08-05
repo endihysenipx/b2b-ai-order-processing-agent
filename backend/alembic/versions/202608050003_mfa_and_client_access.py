@@ -20,8 +20,6 @@ depends_on: str | Sequence[str] | None = None
 def upgrade() -> None:
     op.add_column("users", sa.Column("totp_secret_encrypted", sa.Text(), nullable=True))
     op.add_column("users", sa.Column("auth_version", sa.Integer(), nullable=False, server_default="0"))
-    op.add_column("users", sa.Column("is_deleted", sa.Boolean(), nullable=False, server_default=sa.false()))
-    op.add_column("users", sa.Column("must_change_password", sa.Boolean(), nullable=False, server_default=sa.false()))
     op.add_column("users", sa.Column("totp_pending_secret_encrypted", sa.Text(), nullable=True))
     op.add_column("users", sa.Column("totp_enabled", sa.Boolean(), nullable=False, server_default=sa.false()))
     op.add_column("users", sa.Column("totp_last_used_step", sa.BigInteger(), nullable=True))
@@ -41,8 +39,6 @@ def upgrade() -> None:
     )
     op.alter_column("users", "totp_enabled", server_default=None)
     op.alter_column("users", "auth_version", server_default=None)
-    op.alter_column("users", "is_deleted", server_default=None)
-    op.alter_column("users", "must_change_password", server_default=None)
     op.alter_column("users", "recovery_code_hashes", server_default=None)
 
 
@@ -54,5 +50,3 @@ def downgrade() -> None:
     op.drop_column("users", "totp_pending_secret_encrypted")
     op.drop_column("users", "totp_secret_encrypted")
     op.drop_column("users", "auth_version")
-    op.drop_column("users", "must_change_password")
-    op.drop_column("users", "is_deleted")
