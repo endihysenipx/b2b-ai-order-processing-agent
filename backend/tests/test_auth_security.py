@@ -88,3 +88,58 @@ def test_admin_can_change_operator_client_grants(client, auth_headers):
 
     assert response.status_code == 200
     assert response.json()["client_ids"] == [clients[0]["id"]]
+
+
+def test_admin_can_create_user_with_forced_password_change_and_delete_it(client, auth_headers):
+    clients = client.get("/api/v1/clients", headers=auth_headers).json()
+    created = client.post(
+        "/api/v1/users",
+        headers=auth_headers,
+        json={
+            "full_name": "New Operator",
+            "email": "new-operator@example.com",
+            "role": "operator",
+            "client_ids": [clients[0]["id"]],
+        },
+    )
+    assert created.status_code == 201, created.text
+    user = created.json()["user"]
+    temporary_password = created.json()["temporary_password"]
+
+    login = client.post(
+        "/api/v1/auth/login",
+        json={"email": user["email"], "password": temporary_password},
+    )
+    assert login.status_code == 200
+    assert login.json()["requires_password_change"] is True
+    assert login.json()["access_token"] is None
+
+    weak = client.post(
+        "/api/v1/auth/password/change",
+        json={"challenge_token": login.json()["challenge_token"], "new_password": "not-strong-enough"},
+    )
+    assert weak.status_code == 422
+    changed = client.post(
+        "/api/v1/auth/password/change",
+        json={"challenge_token": login.json()["challenge_token"], "new_password": "NewOperator123!"},
+    )
+    assert changed.status_code == 200
+    assert changed.json()["requires_2fa_setup"] is True
+    setup = client.post(
+        "/api/v1/auth/2fa/setup",
+        json={"challenge_token": changed.json()["challenge_token"]},
+    )
+    enabled = client.post(
+        "/api/v1/auth/2fa/enable",
+        json={
+            "challenge_token": changed.json()["challenge_token"],
+            "code": pyotp.TOTP(setup.json()["secret"]).now(),
+        },
+    )
+    user_headers = {"Authorization": f"Bearer {enabled.json()['access_token']}"}
+    assert client.get("/api/v1/auth/me", headers=user_headers).status_code == 200
+
+    deleted = client.delete(f"/api/v1/users/{user['id']}", headers=auth_headers)
+    assert deleted.status_code == 204
+    assert client.get("/api/v1/auth/me", headers=user_headers).status_code == 401
+    assert all(item["id"] != user["id"] for item in client.get("/api/v1/users", headers=auth_headers).json())

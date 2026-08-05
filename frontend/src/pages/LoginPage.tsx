@@ -10,6 +10,7 @@ interface LoginResult {
   challenge_token: string | null;
   requires_2fa: boolean;
   requires_2fa_setup: boolean;
+  requires_password_change: boolean;
   recovery_codes?: string[] | null;
 }
 
@@ -19,13 +20,15 @@ interface SetupResult {
   qr_code_data_url: string;
 }
 
-type Stage = "credentials" | "setup" | "verify" | "recovery";
+type Stage = "credentials" | "password" | "setup" | "verify" | "recovery";
 
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [code, setCode] = useState("");
   const [challengeToken, setChallengeToken] = useState("");
   const [setup, setSetup] = useState<SetupResult | null>(null);
@@ -69,6 +72,9 @@ export function LoginPage() {
       });
       if (!result.challenge_token) {
         finishLogin(result);
+      } else if (result.requires_password_change) {
+        setChallengeToken(result.challenge_token);
+        setStage("password");
       } else if (result.requires_2fa_setup) {
         setChallengeToken(result.challenge_token);
         const setupResult = await apiRequest<SetupResult>("/auth/2fa/setup", {
@@ -83,6 +89,37 @@ export function LoginPage() {
       }
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Login failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function submitNewPassword(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+    if (newPassword !== confirmPassword) {
+      setError("The new passwords do not match");
+      return;
+    }
+    setBusy(true);
+    try {
+      const changed = await apiRequest<LoginResult>("/auth/password/change", {
+        method: "POST",
+        body: JSON.stringify({ challenge_token: challengeToken, new_password: newPassword }),
+      });
+      if (!changed.challenge_token || !changed.requires_2fa_setup) {
+        throw new Error("The server did not start authenticator enrollment");
+      }
+      setChallengeToken(changed.challenge_token);
+      const setupResult = await apiRequest<SetupResult>("/auth/2fa/setup", {
+        method: "POST",
+        body: JSON.stringify({ challenge_token: changed.challenge_token }),
+      });
+      setSetup(setupResult);
+      setCode("");
+      setStage("setup");
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Could not change password");
     } finally {
       setBusy(false);
     }
@@ -146,6 +183,38 @@ export function LoginPage() {
               <input value={code} onChange={(event) => setCode(event.target.value)} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" required />
             </label>
             <button type="submit" disabled={busy}>{busy ? "Verifying…" : "Enable authenticator"}</button>
+          </form>
+        )}
+
+        {stage === "password" && (
+          <form onSubmit={submitNewPassword}>
+            <h2>Choose a new password</h2>
+            <p>Your administrator gave you a temporary password. Replace it before setting up your authenticator.</p>
+            <label>
+              New password
+              <input
+                value={newPassword}
+                onChange={(event) => setNewPassword(event.target.value)}
+                type="password"
+                autoComplete="new-password"
+                minLength={12}
+                required
+                autoFocus
+              />
+            </label>
+            <label>
+              Confirm new password
+              <input
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                type="password"
+                autoComplete="new-password"
+                minLength={12}
+                required
+              />
+            </label>
+            <small>Use at least 12 characters with uppercase, lowercase, a number, and a symbol.</small>
+            <button type="submit" disabled={busy}>{busy ? "Saving…" : "Set password and continue"}</button>
           </form>
         )}
 

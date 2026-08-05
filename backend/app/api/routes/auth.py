@@ -21,6 +21,7 @@ from app.core.security import (
     hash_password,
     hash_recovery_code,
     new_totp_secret,
+    validate_password_strength,
     verify_password,
     verify_totp,
 )
@@ -29,6 +30,7 @@ from app.models.user import User
 from app.schemas.auth import (
     LoginRequest,
     LoginResponse,
+    PasswordChangeRequest,
     TwoFactorChallengeRequest,
     TwoFactorLoginResponse,
     TwoFactorSetupRequest,
@@ -53,6 +55,11 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> LoginResponse
         raise HTTPException(status_code=401, detail="Invalid email or password")
     if not user.is_active:
         raise HTTPException(status_code=401, detail="Invalid email or password")
+    if user.must_change_password:
+        return LoginResponse(
+            challenge_token=create_auth_challenge_token(user.id, "password_change", user.auth_version),
+            requires_password_change=True,
+        )
     if not user.totp_enabled:
         return LoginResponse(
             challenge_token=create_auth_challenge_token(user.id, "2fa_setup", user.auth_version),
@@ -84,6 +91,25 @@ def _login_response(user: User, recovery_codes: list[str] | None = None) -> TwoF
         access_token=create_access_token(user.id, user.role, user.auth_version),
         user=user,
         recovery_codes=recovery_codes,
+    )
+
+
+@router.post("/password/change", response_model=LoginResponse)
+def change_temporary_password(payload: PasswordChangeRequest, db: Session = Depends(get_db)) -> LoginResponse:
+    user = _challenge_user(payload.challenge_token, "password_change", db)
+    if not user.must_change_password:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Password change is not required")
+    try:
+        validate_password_strength(payload.new_password)
+    except ValueError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(exc)) from exc
+    user.password_hash = hash_password(payload.new_password)
+    user.must_change_password = False
+    user.auth_version += 1
+    db.commit()
+    return LoginResponse(
+        challenge_token=create_auth_challenge_token(user.id, "2fa_setup", user.auth_version),
+        requires_2fa_setup=True,
     )
 
 

@@ -158,7 +158,7 @@ class ApplicationJwtVerifier(TokenVerifier):
 
         with SessionLocal() as db:
             user = db.get(User, user_id)
-            if user is None or not user.is_active:
+            if user is None or not user.is_active or user.must_change_password:
                 return None
             if payload.get("auth_version") != user.auth_version:
                 return None

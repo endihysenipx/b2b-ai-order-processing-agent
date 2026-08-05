@@ -19,6 +19,8 @@ class User(IdMixin, TimestampMixin, Base):
     password_hash: Mapped[str] = mapped_column(String(255))
     role: Mapped[str] = mapped_column(String(50))
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
+    must_change_password: Mapped[bool] = mapped_column(Boolean, default=False)
     auth_version: Mapped[int] = mapped_column(Integer, default=0)
     totp_secret_encrypted: Mapped[str | None] = mapped_column(Text, nullable=True)
     totp_pending_secret_encrypted: Mapped[str | None] = mapped_column(Text, nullable=True)

@@ -13,7 +13,7 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
   const response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
   if (!response.ok) {
     const error = await response.json().catch(() => ({ detail: "Request failed" }));
-    if (response.status === 401 && path !== "/auth/login") {
+    if (response.status === 401 && !path.startsWith("/auth/")) {
       clearAccessToken();
       sessionStorage.setItem("post_login_redirect", `${window.location.pathname}${window.location.search}`);
       window.location.assign("/login");

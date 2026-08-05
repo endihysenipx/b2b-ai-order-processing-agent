@@ -451,6 +451,23 @@ a {
   background: #b91c1c;
 }
 
+.temporary-password {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  background: #fffbeb;
+}
+
+.temporary-password code {
+  user-select: all;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  padding: 8px;
+  background: white;
+}
+
 .settings-grid {
   display: grid;
   gap: 14px;

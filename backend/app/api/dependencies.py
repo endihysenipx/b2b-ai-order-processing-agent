@@ -26,6 +26,8 @@ def get_current_user(
     user = db.get(User, user_id)
     if not user or not user.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
+    if user.must_change_password:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Password change required")
     if payload.get("auth_version") != user.auth_version:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Session has been revoked")
     return user

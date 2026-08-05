@@ -2,6 +2,7 @@ import base64
 import hashlib
 import hmac
 import secrets
+import string
 from datetime import UTC, datetime, timedelta
 
 import pyotp
@@ -112,3 +113,27 @@ def generate_recovery_codes(count: int = 10) -> list[str]:
 def hash_recovery_code(code: str) -> str:
     normalized = code.replace("-", "").strip().upper().encode()
     return hmac.new(settings.secret_key.encode(), b"recovery-code:" + normalized, hashlib.sha256).hexdigest()
+
+
+def generate_temporary_password(length: int = 20) -> str:
+    alphabet = string.ascii_letters + string.digits + "!@#$%^&*"
+    while True:
+        password = "".join(secrets.choice(alphabet) for _ in range(length))
+        if (
+            any(char.islower() for char in password)
+            and any(char.isupper() for char in password)
+            and any(char.isdigit() for char in password)
+            and any(char in "!@#$%^&*" for char in password)
+        ):
+            return password
+
+
+def validate_password_strength(password: str) -> None:
+    if (
+        len(password) < 12
+        or not any(char.islower() for char in password)
+        or not any(char.isupper() for char in password)
+        or not any(char.isdigit() for char in password)
+        or not any(not char.isalnum() for char in password)
+    ):
+        raise ValueError("Password must be at least 12 characters and include uppercase, lowercase, number, and symbol")

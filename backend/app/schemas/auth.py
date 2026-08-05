@@ -26,6 +26,7 @@ class LoginResponse(BaseModel):
     challenge_token: str | None = None
     requires_2fa: bool = False
     requires_2fa_setup: bool = False
+    requires_password_change: bool = False
 
 
 class TwoFactorChallengeRequest(BaseModel):
@@ -47,6 +48,11 @@ class TwoFactorLoginResponse(LoginResponse):
     recovery_codes: list[str] | None = None
 
 
+class PasswordChangeRequest(BaseModel):
+    challenge_token: str
+    new_password: str = Field(min_length=12, max_length=128)
+
+
 class UserAdminOut(UserOut):
     is_active: bool
 
@@ -55,3 +61,15 @@ class UserAccessUpdate(BaseModel):
     role: Literal["admin", "operator"]
     is_active: bool
     client_ids: list[str] = []
+
+
+class UserCreate(BaseModel):
+    full_name: str = Field(min_length=2, max_length=200)
+    email: EmailStr
+    role: Literal["admin", "operator"]
+    client_ids: list[str] = []
+
+
+class UserCreatedResponse(BaseModel):
+    user: UserAdminOut
+    temporary_password: str

@@ -92,7 +92,8 @@ Every active user must enroll a TOTP authenticator app at first login. Password 
 
 - Authenticator secrets are encrypted at rest with `TOTP_ENCRYPTION_KEY`, which must be different from `SECRET_KEY` in production.
 - Ten single-use recovery codes are shown once during enrollment and stored only as keyed hashes.
-- Administrators can access all clients, manage user grants, run Gmail ingestion, and generate or send ERP XML.
+- Administrators can create users, safely delete/revoke accounts, manage client grants, run Gmail ingestion, and generate or send ERP XML.
+- New users receive a generated temporary password, must replace it on first login, and then enroll their own authenticator.
 - Operators can access only explicitly assigned clients.
 - Existing operator visibility is converted to explicit client grants by the migration.
 - Browser tokens are held in session storage and cleared on logout or when the tab session ends.
