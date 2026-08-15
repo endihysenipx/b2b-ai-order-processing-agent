@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError
 from sqlalchemy.orm import Session
 
+from app.core.roles import ORGANIZATION_WIDE_READ_ROLES
 from app.core.security import decode_token
 from app.db.session import get_db
 from app.models.user import User
@@ -40,6 +41,6 @@ def require_admin(current_user: User = Depends(get_current_user)) -> User:
 
 
 def accessible_client_ids(user: User) -> set[str] | None:
-    if user.role == "admin":
+    if user.role in ORGANIZATION_WIDE_READ_ROLES:
         return None
     return {client.id for client in user.clients}

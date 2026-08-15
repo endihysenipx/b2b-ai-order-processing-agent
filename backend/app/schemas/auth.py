@@ -1,6 +1,6 @@
-from typing import Literal
-
 from pydantic import BaseModel, EmailStr, Field
+
+from app.core.roles import UserRole
 
 
 class LoginRequest(BaseModel):
@@ -58,7 +58,7 @@ class UserAdminOut(UserOut):
 
 
 class UserAccessUpdate(BaseModel):
-    role: Literal["admin", "operator"]
+    role: UserRole
     is_active: bool
     client_ids: list[str] = []
 
@@ -66,7 +66,7 @@ class UserAccessUpdate(BaseModel):
 class UserCreate(BaseModel):
     full_name: str = Field(min_length=2, max_length=200)
     email: EmailStr
-    role: Literal["admin", "operator"]
+    role: UserRole
     client_ids: list[str] = []
 
 

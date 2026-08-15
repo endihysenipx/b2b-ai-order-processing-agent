@@ -1,3 +1,11 @@
+from sqlalchemy import select
+
+from app.core.security import create_access_token
+from app.db.session import SessionLocal
+from app.models.client import Client
+from app.models.user import User
+
+
 def _mcp_request(client, auth_headers, method: str, params: dict | None = None, request_id: int = 1):
     return client.post(
         "/mcp",
@@ -60,9 +68,12 @@ def test_mcp_advertises_only_read_only_order_tools(client, auth_headers):
     assert response.status_code == 200, response.text
     tools = response.json()["result"]["tools"]
     assert {tool["name"] for tool in tools} == {
+        "get_attention_queue",
+        "get_daily_briefing",
         "search_orders",
         "get_order_details",
         "get_order_evidence",
+        "get_operations_report",
         "get_validation_issues",
         "get_processing_summary",
     }
@@ -131,6 +142,62 @@ def test_mcp_can_search_and_read_orders_without_exposing_storage_paths(client, a
     )
     assert summary_response.status_code == 200, summary_response.text
     assert summary_response.json()["result"]["structuredContent"]["total_orders"] >= 5
+
+
+def test_mcp_provides_role_aware_briefings_attention_queue_and_management_report(client, auth_headers):
+    briefing = _mcp_request(client, auth_headers, "tools/call", {"name": "get_daily_briefing", "arguments": {}})
+    attention = _mcp_request(client, auth_headers, "tools/call", {"name": "get_attention_queue", "arguments": {}})
+    report = _mcp_request(client, auth_headers, "tools/call", {"name": "get_operations_report", "arguments": {}})
+
+    assert briefing.status_code == 200, briefing.text
+    briefing_result = briefing.json()["result"]["structuredContent"]
+    assert briefing_result["viewer_role"] == "admin"
+    assert briefing_result["access_scope"] == "all organization clients"
+    assert briefing_result["timezone"] == "Europe/Warsaw"
+
+    assert attention.status_code == 200, attention.text
+    attention_result = attention.json()["result"]["structuredContent"]
+    assert attention_result["total_needing_attention"] >= 3
+    assert attention_result["orders"][0]["priority"] in {"critical", "high"}
+    assert attention_result["orders"][0]["reasons"]
+
+    assert report.status_code == 200, report.text
+    report_result = report.json()["result"]["structuredContent"]
+    assert report_result["total_orders"] >= 5
+    assert set(report_result["orders_by_client"]) == {"Contoso Interior Supply", "Northwind Retail Group"}
+    assert report_result["orders_needing_attention"] >= 3
+    assert 0 <= report_result["ready_or_completed_rate_percent"] <= 100
+
+
+def test_mcp_reports_enforce_operator_client_scope(client):
+    with SessionLocal() as db:
+        northwind = db.scalar(select(Client).where(Client.client_name == "Northwind Retail Group"))
+        operator = User(
+            full_name="MCP Scoped Operator",
+            email="mcp-operator@example.com",
+            password_hash="not-used-by-this-token-test",
+            role="operator",
+        )
+        operator.clients = [northwind]
+        db.add(operator)
+        db.commit()
+        db.refresh(operator)
+        token = create_access_token(operator.id, operator.role, operator.auth_version)
+
+    headers = {"Authorization": f"Bearer {token}"}
+    report = _mcp_request(client, headers, "tools/call", {"name": "get_operations_report", "arguments": {}})
+    attention = _mcp_request(client, headers, "tools/call", {"name": "get_attention_queue", "arguments": {}})
+
+    assert report.status_code == 200, report.text
+    report_result = report.json()["result"]["structuredContent"]
+    assert report_result["viewer_role"] == "operator"
+    assert report_result["access_scope"] == "1 assigned client"
+    assert set(report_result["orders_by_client"]) == {"Northwind Retail Group"}
+
+    assert attention.status_code == 200, attention.text
+    attention_orders = attention.json()["result"]["structuredContent"]["orders"]
+    assert attention_orders
+    assert all(item["order"]["client_name"] == "Northwind Retail Group" for item in attention_orders)
 
 
 def test_mcp_returns_a_tool_error_for_an_unknown_order(client, auth_headers):

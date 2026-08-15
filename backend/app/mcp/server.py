@@ -1,7 +1,8 @@
 import logging
-from datetime import date
+from datetime import UTC, date, datetime, time, timedelta
 from decimal import Decimal
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 from jose import JWTError
 from mcp.server import MCPServer
@@ -11,17 +12,19 @@ from mcp.server.auth.provider import AccessToken, TokenVerifier
 from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 from pydantic import BaseModel, Field
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from starlette.middleware.authentication import AuthenticationMiddleware
 
 from app.core.config import settings
+from app.core.roles import ORGANIZATION_WIDE_READ_ROLES
 from app.core.security import decode_token
 from app.db.session import SessionLocal
 from app.models.attachment import Attachment
+from app.models.client import Client
 from app.models.order import Order
 from app.models.user import User
 from app.models.validation_issue import ValidationIssue
-from app.repositories.orders import build_order_query, get_order
+from app.repositories.orders import build_order_query, get_order, order_detail_options
 from app.services.validation.service import validate_order_data
 
 logger = logging.getLogger(__name__)
@@ -42,6 +45,8 @@ class OrderSummary(BaseModel):
     client_name: str
     delivery_week: str | None
     status: str
+    total_price: str | None
+    currency: str | None
     created_at: str
 
 
@@ -137,6 +142,51 @@ class ProcessingSummaryResult(BaseModel):
     unresolved_validation_issues: int
 
 
+class DailyBriefingResult(BaseModel):
+    report_date: str
+    timezone: str
+    viewer_role: str
+    access_scope: str
+    total_orders: int
+    needs_attention: int
+    ready_or_completed: int
+    total_value_by_currency: dict[str, str]
+    orders: list[OrderSummary]
+    orders_truncated: bool
+
+
+class AttentionOrder(BaseModel):
+    order: OrderSummary
+    priority: str
+    reasons: list[str]
+    unresolved_issues: int
+
+
+class AttentionQueueResult(BaseModel):
+    viewer_role: str
+    access_scope: str
+    total_needing_attention: int
+    returned: int
+    orders: list[AttentionOrder]
+
+
+class OperationsReportResult(BaseModel):
+    date_from: str
+    date_to: str
+    timezone: str
+    viewer_role: str
+    access_scope: str
+    total_orders: int
+    orders_by_status: dict[str, int]
+    orders_by_client: dict[str, int]
+    order_value_by_currency: dict[str, str]
+    orders_needing_attention: int
+    unresolved_validation_issues: int
+    scanned_source_orders: int
+    ready_or_completed_orders: int
+    ready_or_completed_rate_percent: float
+
+
 class ApplicationJwtVerifier(TokenVerifier):
     """Validate the same short-lived JWT bearer tokens used by the web API."""
 
@@ -227,9 +277,51 @@ def _accessible_client_ids() -> set[str] | None:
     token = get_access_token()
     if token is None:
         return set()
-    if token.claims.get("role") == "admin":
+    if token.claims.get("role") in ORGANIZATION_WIDE_READ_ROLES:
         return None
     return set(token.claims.get("client_ids", []))
+
+
+def _viewer_role() -> str:
+    token = get_access_token()
+    return str(token.claims.get("role", "unknown")) if token else "unknown"
+
+
+def _access_scope() -> str:
+    allowed = _accessible_client_ids()
+    if allowed is None:
+        return "all organization clients"
+    if not allowed:
+        return "no assigned clients"
+    return f"{len(allowed)} assigned client{'s' if len(allowed) != 1 else ''}"
+
+
+def _business_today() -> date:
+    return datetime.now(ZoneInfo(settings.business_timezone)).date()
+
+
+def _business_day_bounds(day: date) -> tuple[datetime, datetime]:
+    timezone = ZoneInfo(settings.business_timezone)
+    start_local = datetime.combine(day, time.min, tzinfo=timezone)
+    end_local = start_local + timedelta(days=1)
+    return (
+        start_local.astimezone(UTC).replace(tzinfo=None),
+        end_local.astimezone(UTC).replace(tzinfo=None),
+    )
+
+
+def _access_filters(allowed: set[str] | None) -> list:
+    if allowed is None:
+        return []
+    return [Order.client_id.in_(allowed) if allowed else Order.id.is_(None)]
+
+
+def _attention_filter():
+    return or_(
+        Order.status.in_(("Human in the Loop", "Waiting for Reply", "Failed")),
+        Order.validation_issues.any(ValidationIssue.is_resolved.is_(False)),
+        Order.attachments.any(Attachment.processing_status == "failed"),
+    )
 
 
 def _summary(order: Order) -> OrderSummary:
@@ -241,7 +333,42 @@ def _summary(order: Order) -> OrderSummary:
         client_name=order.client.client_name,
         delivery_week=order.delivery_week,
         status=order.status,
+        total_price=_decimal(order.total_price),
+        currency=order.currency,
         created_at=order.created_at.isoformat(),
+    )
+
+
+def _attention_order(order: Order) -> AttentionOrder:
+    reasons: list[str] = []
+    priority = "medium"
+    failed_attachments = [attachment for attachment in order.attachments if attachment.processing_status == "failed"]
+    unresolved = [issue for issue in order.validation_issues if not issue.is_resolved]
+
+    if order.status == "Failed":
+        reasons.append("Order processing failed")
+        priority = "critical"
+    if failed_attachments:
+        reasons.append(f"{len(failed_attachments)} attachment processing failure(s)")
+        priority = "critical"
+    if order.status == "Waiting for Reply":
+        reasons.append("Waiting for customer information")
+        if priority != "critical":
+            priority = "high"
+    if any(issue.severity == "error" for issue in unresolved):
+        reasons.append("Unresolved validation error")
+        if priority != "critical":
+            priority = "high"
+    elif unresolved:
+        reasons.append("Unresolved validation warning")
+    if order.status == "Human in the Loop":
+        reasons.append("Human review required")
+
+    return AttentionOrder(
+        order=_summary(order),
+        priority=priority,
+        reasons=list(dict.fromkeys(reasons)),
+        unresolved_issues=len(unresolved),
     )
 
 
@@ -258,13 +385,150 @@ def _validation_issue(issue, *, is_resolved: bool | None = None) -> ValidationIs
 server = MCPServer(
     name="b2b-order-processing",
     title="B2B Order Processing",
-    version="1.0.0",
+    version="2.0.0",
     instructions=(
-        "Use these read-only tools to find and explain B2B orders. "
+        "Act as a concise B2B order operations assistant. For 'today' or a morning update, call get_daily_briefing. "
+        "For blockers or priorities, call get_attention_queue. For management KPIs and trends, call get_operations_report. "
+        "Use search_orders and the order investigation tools for drill-down. Respect the access scope returned by each tool. "
         "Never claim that an order was changed, approved, emailed, exported, or sent to ERP. "
         "Use get_order_evidence only when source evidence is necessary for the user's request."
     ),
 )
+
+
+@server.tool(
+    title="Get daily order briefing",
+    description=(
+        "Answer questions such as 'What orders came in today?' or 'Give me my morning briefing'. Returns the day's orders, "
+        "workload, value, and attention counts in the configured business timezone, limited to the caller's authorized scope."
+    ),
+    annotations=READ_ONLY,
+)
+def get_daily_briefing(
+    report_date: date | None = None,
+    limit: int = Field(default=25, ge=1, le=100),
+) -> DailyBriefingResult:
+    _audit("get_daily_briefing")
+    selected_date = report_date or _business_today()
+    start_utc, end_utc = _business_day_bounds(selected_date)
+    allowed = _accessible_client_ids()
+    filters = [Order.created_at >= start_utc, Order.created_at < end_utc, *_access_filters(allowed)]
+
+    with SessionLocal() as db:
+        query = select(Order).options(*order_detail_options()).where(*filters).order_by(Order.created_at.desc())
+        orders = list(db.scalars(query).unique())
+        attention_count = sum(1 for order in orders if _attention_order(order).reasons)
+        ready_count = sum(1 for order in orders if order.status in {"OK", "Approved", "ERP Ready", "XMLs Sent"})
+        values: dict[str, Decimal] = {}
+        for order in orders:
+            if order.total_price is not None:
+                currency = order.currency or "UNSPECIFIED"
+                values[currency] = values.get(currency, Decimal("0")) + order.total_price
+
+        return DailyBriefingResult(
+            report_date=selected_date.isoformat(),
+            timezone=settings.business_timezone,
+            viewer_role=_viewer_role(),
+            access_scope=_access_scope(),
+            total_orders=len(orders),
+            needs_attention=attention_count,
+            ready_or_completed=ready_count,
+            total_value_by_currency={currency: str(value) for currency, value in values.items()},
+            orders=[_summary(order) for order in orders[:limit]],
+            orders_truncated=len(orders) > limit,
+        )
+
+
+@server.tool(
+    title="Get prioritized attention queue",
+    description=(
+        "Answer questions such as 'What should I work on next?', 'Which orders are blocked?', or 'Show failed orders'. "
+        "Returns authorized orders ranked by critical, high, and medium priority with explicit reasons."
+    ),
+    annotations=READ_ONLY,
+)
+def get_attention_queue(limit: int = Field(default=20, ge=1, le=100)) -> AttentionQueueResult:
+    _audit("get_attention_queue")
+    filters = [_attention_filter(), *_access_filters(_accessible_client_ids())]
+    rank = {"critical": 0, "high": 1, "medium": 2}
+
+    with SessionLocal() as db:
+        query = select(Order).options(*order_detail_options()).where(*filters).order_by(Order.created_at.desc())
+        attention_orders = [_attention_order(order) for order in db.scalars(query).unique()]
+        attention_orders.sort(key=lambda item: (rank[item.priority], -datetime.fromisoformat(item.order.created_at).timestamp()))
+        return AttentionQueueResult(
+            viewer_role=_viewer_role(),
+            access_scope=_access_scope(),
+            total_needing_attention=len(attention_orders),
+            returned=min(len(attention_orders), limit),
+            orders=attention_orders[:limit],
+        )
+
+
+@server.tool(
+    title="Get management operations report",
+    description=(
+        "Create a management-ready order report for a date range, including workload by status and client, order value by "
+        "currency, exception workload, unresolved validation issues, scanned sources, and completion rate. Defaults to seven days."
+    ),
+    annotations=READ_ONLY,
+)
+def get_operations_report(
+    date_from: date | None = None,
+    date_to: date | None = None,
+) -> OperationsReportResult:
+    _audit("get_operations_report")
+    end_date = date_to or _business_today()
+    start_date = date_from or (end_date - timedelta(days=6))
+    if start_date > end_date:
+        raise ValueError("date_from must be on or before date_to")
+    if (end_date - start_date).days > 366:
+        raise ValueError("Report range cannot exceed 367 days")
+
+    start_utc, _ = _business_day_bounds(start_date)
+    _, end_utc = _business_day_bounds(end_date)
+    filters = [Order.created_at >= start_utc, Order.created_at < end_utc, *_access_filters(_accessible_client_ids())]
+
+    with SessionLocal() as db:
+        status_rows = db.execute(select(Order.status, func.count(Order.id)).where(*filters).group_by(Order.status))
+        orders_by_status = {status: count for status, count in status_rows}
+        client_rows = db.execute(
+            select(Client.client_name, func.count(Order.id))
+            .join(Order, Order.client_id == Client.id)
+            .where(*filters)
+            .group_by(Client.client_name)
+        )
+        value_rows = db.execute(
+            select(Order.currency, func.sum(Order.total_price))
+            .where(*filters, Order.total_price.is_not(None))
+            .group_by(Order.currency)
+        )
+        attention_count = db.scalar(select(func.count(Order.id)).where(*filters, _attention_filter())) or 0
+        unresolved_count = db.scalar(
+            select(func.count(ValidationIssue.id))
+            .join(Order, ValidationIssue.order_id == Order.id)
+            .where(*filters, ValidationIssue.is_resolved.is_(False))
+        ) or 0
+        scanned_count = db.scalar(select(func.count(Order.id)).where(*filters, Order.is_scanned_source.is_(True))) or 0
+        total_orders = sum(orders_by_status.values())
+        ready_count = sum(orders_by_status.get(status, 0) for status in ("OK", "Approved", "ERP Ready", "XMLs Sent"))
+
+        return OperationsReportResult(
+            date_from=start_date.isoformat(),
+            date_to=end_date.isoformat(),
+            timezone=settings.business_timezone,
+            viewer_role=_viewer_role(),
+            access_scope=_access_scope(),
+            total_orders=total_orders,
+            orders_by_status=orders_by_status,
+            orders_by_client={client: count for client, count in client_rows},
+            order_value_by_currency={(currency or "UNSPECIFIED"): str(value) for currency, value in value_rows},
+            orders_needing_attention=attention_count,
+            unresolved_validation_issues=unresolved_count,
+            scanned_source_orders=scanned_count,
+            ready_or_completed_orders=ready_count,
+            ready_or_completed_rate_percent=round((ready_count / total_orders) * 100, 1) if total_orders else 0.0,
+        )
 
 
 @server.tool(

@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./dev.db"
     seed_demo_data: bool = False
     frontend_url: str = "http://localhost:5173"
+    business_timezone: str = "Europe/Warsaw"
     storage_root: str = "storage"
     aws_region: str = "eu-central-1"
     aws_profile: str | None = None

@@ -1,7 +1,7 @@
 import pyotp
 from sqlalchemy import select
 
-from app.core.security import hash_password
+from app.core.security import create_access_token, hash_password
 from app.db.session import SessionLocal
 from app.models.client import Client
 from app.models.user import User
@@ -88,6 +88,30 @@ def test_admin_can_change_operator_client_grants(client, auth_headers):
 
     assert response.status_code == 200
     assert response.json()["client_ids"] == [clients[0]["id"]]
+
+
+def test_manager_has_organization_read_visibility_without_admin_privileges(client, auth_headers):
+    with SessionLocal() as db:
+        manager = User(
+            full_name="Operations Manager",
+            email="manager@example.com",
+            password_hash=hash_password("ManagerTest123!"),
+            role="manager",
+        )
+        db.add(manager)
+        db.commit()
+        db.refresh(manager)
+        token = create_access_token(manager.id, manager.role, manager.auth_version)
+
+    manager_headers = {"Authorization": f"Bearer {token}"}
+    admin_orders = client.get("/api/v1/orders", headers=auth_headers).json()
+    manager_orders = client.get("/api/v1/orders", headers=manager_headers)
+
+    assert manager_orders.status_code == 200
+    assert manager_orders.json()["total"] == admin_orders["total"]
+    assert client.get("/api/v1/users", headers=manager_headers).status_code == 403
+    order_id = manager_orders.json()["items"][0]["id"]
+    assert client.post(f"/api/v1/orders/{order_id}/generate-xml", headers=manager_headers).status_code == 403
 
 
 def test_admin_can_create_user_with_forced_password_change_and_delete_it(client, auth_headers):

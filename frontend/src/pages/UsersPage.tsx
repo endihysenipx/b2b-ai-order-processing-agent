@@ -103,7 +103,7 @@ export function UsersPage() {
           <label>Email<input name="email" type="email" required /></label>
           <label>Role
             <select name="new_role" value={createRole} onChange={(event) => setCreateRole(event.target.value)}>
-              <option value="operator">Operator</option><option value="admin">Administrator</option>
+              <option value="operator">Operator</option><option value="manager">Manager</option><option value="admin">Administrator</option>
             </select>
           </label>
         </div>
@@ -160,11 +160,11 @@ export function UsersPage() {
                 value={selected.role}
                 onChange={(event) => setSelected({ ...selected, role: event.target.value })}
               >
-                <option value="operator">Operator</option><option value="admin">Administrator</option>
+                <option value="operator">Operator</option><option value="manager">Manager</option><option value="admin">Administrator</option>
               </select>
             </label>
             <label><input type="checkbox" name="is_active" defaultChecked={selected.is_active} /> Active</label>
-            <fieldset disabled={selected.role === "admin"}>
+            <fieldset disabled={selected.role !== "operator"}>
               <legend>Client access</legend>
               {clients.map((client) => (
                 <label key={client.id}>

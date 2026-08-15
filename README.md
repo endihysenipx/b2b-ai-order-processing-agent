@@ -19,7 +19,7 @@ The system stores client-specific prompts and rules, processes order evidence in
 ## Core Features
 
 - FastAPI API with password-plus-TOTP login, client-scoped authorization, clients, orders, feedback, reports, and XML endpoints.
-- MFA-authenticated, client-scoped, read-only MCP server for order search, investigation, evidence, validation, and processing summaries.
+- MFA-authenticated, role-aware, read-only MCP operations assistant for daily briefings, priority queues, management reporting, order search, and evidence-backed investigation.
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
 - Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
@@ -93,8 +93,9 @@ Every active user must enroll a TOTP authenticator app at first login. Password 
 - Authenticator secrets are encrypted at rest with `TOTP_ENCRYPTION_KEY`, which must be different from `SECRET_KEY` in production.
 - Ten single-use recovery codes are shown once during enrollment and stored only as keyed hashes.
 - Administrators can create users, safely delete/revoke accounts, manage client grants, run Gmail ingestion, and generate or send ERP XML.
+- Managers have organization-wide read visibility for dashboards, reports, and MCP conversations without administrator privileges.
 - New users receive a generated temporary password, must replace it on first login, and then enroll their own authenticator.
-- Operators can access only explicitly assigned clients.
+- Operators can access only explicitly assigned clients, including through MCP tools and reports.
 - Existing operator visibility is converted to explicit client grants by the migration.
 - Browser tokens are held in session storage and cleared on logout or when the tab session ends.
 
@@ -201,7 +202,7 @@ Swagger UI is available at http://localhost:8000/docs after the backend starts.
 
 ## MCP Server
 
-The backend exposes five authenticated, read-only tools over Streamable HTTP at `/mcp`. It reuses application JWTs and the existing service/repository layer, and it intentionally excludes approval, email, XML generation, and ERP transmission. See [docs/mcp.md](docs/mcp.md) for client setup, security boundaries, testing, and production notes.
+The backend exposes eight authenticated, read-only tools over Streamable HTTP at `/mcp`. It reuses application JWTs and the existing service/repository layer, and it intentionally excludes approval, email, XML generation, and ERP transmission. See [docs/mcp.md](docs/mcp.md) for client setup, demo questions, security boundaries, testing, and production notes.
 
 ## Week 3 Implementation Status
 

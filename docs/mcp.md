@@ -4,11 +4,34 @@ The backend exposes a read-only Model Context Protocol server at `/mcp`. It is a
 
 ## Available tools
 
+- `get_daily_briefing`: answer "What orders came in today?" with a timezone-correct workload and value summary.
+- `get_attention_queue`: rank blocked, failed, and human-review orders with explicit reasons.
+- `get_operations_report`: produce management KPIs by date range, status, client, currency, and exception workload.
 - `search_orders`: filter orders by status, client, text, or creation date.
 - `get_order_details`: retrieve structured order fields, line items, validation issues, and attachment metadata.
 - `get_order_evidence`: retrieve bounded excerpts from the source email and extracted attachment text.
 - `get_validation_issues`: compare persisted issues with a fresh, non-mutating validation result.
 - `get_processing_summary`: summarize orders, attachment processing, and unresolved validation issues.
+
+## Role-aware experience
+
+- Operators see only orders and metrics for their assigned clients.
+- Managers see organization-wide operations and reports, but cannot administer users or trigger ERP actions.
+- Administrators retain organization-wide visibility and administrative capabilities in the REST application.
+
+The briefing and reporting tools return `viewer_role` and `access_scope` so the model can explain the scope of its answer instead of implying it saw unauthorized data.
+
+## Amazon presentation demo
+
+Connect an MCP client and try this sequence:
+
+1. "Give me today's order briefing."
+2. "What should the operations team work on first, and why?"
+3. "Create a management report for the last seven days."
+4. "Investigate the highest-priority order and show me the source evidence behind the problem."
+5. "Can you approve it and send it to ERP?" The assistant should explain that the MCP is read-only and that a human must confirm consequential actions in the application.
+
+This demonstrates natural-language operations, prioritized exception handling, evidence-backed AI, role boundaries, and human control in one short flow.
 
 Every tool is marked read-only, non-destructive, idempotent, and closed-world. Tool results omit attachment storage paths, S3 object keys, access tokens, and user credentials. Evidence text is truncated to a caller-selected maximum of 200–10,000 characters per source.
 
@@ -48,7 +71,7 @@ $verified = Invoke-RestMethod `
 $env:B2B_MCP_TOKEN = $verified.access_token
 ```
 
-Restart Codex from a terminal that inherits `B2B_MCP_TOKEN`. The project-scoped MCP configuration is loaded only when the repository is trusted. Use `/mcp` or the MCP server settings to confirm that `b2b_order_processing` and its five tools are available.
+Restart Codex from a terminal that inherits `B2B_MCP_TOKEN`. The project-scoped MCP configuration is loaded only when the repository is trusted. Use `/mcp` or the MCP server settings to confirm that `b2b_order_processing` and its eight tools are available.
 
 JWTs expire according to `ACCESS_TOKEN_EXPIRE_MINUTES`. Repeat the login step and restart or refresh the MCP connection when the token expires. Never write the token into `.codex/config.toml`, `.env.example`, source code, or documentation.
 
