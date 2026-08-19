@@ -27,8 +27,15 @@ export function OAuthAuthorizePage() {
   }
 
   if (!getAccessToken()) {
-    sessionStorage.setItem("post_login_redirect", `${location.pathname}${location.search}`);
-    return <Navigate to="/login" replace state={{ from: location }} />;
+    const postLoginRedirect = `${location.pathname}${location.search}`;
+    sessionStorage.setItem("post_login_redirect", postLoginRedirect);
+    return (
+      <Navigate
+        to={`/login?next=${encodeURIComponent(postLoginRedirect)}`}
+        replace
+        state={{ from: location }}
+      />
+    );
   }
 
   async function decide(approved: boolean) {

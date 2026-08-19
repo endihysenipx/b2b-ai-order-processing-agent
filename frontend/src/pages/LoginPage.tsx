@@ -56,7 +56,11 @@ export function LoginPage() {
     const stateRedirect = routeState?.from?.pathname
       ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
       : null;
-    const target = stateRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
+    const queryRedirect = new URLSearchParams(location.search).get("next");
+    const safeQueryRedirect = queryRedirect?.startsWith("/oauth/authorize?request=")
+      ? queryRedirect
+      : null;
+    const target = stateRedirect ?? safeQueryRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
     sessionStorage.removeItem("post_login_redirect");
     navigate(target, { replace: true });
   }
