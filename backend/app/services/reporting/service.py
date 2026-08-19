@@ -20,17 +20,22 @@ def get_summary(db: Session, accessible_client_ids: set[str] | None = None) -> d
     )
     recent_since = datetime.now(UTC).replace(tzinfo=None) - timedelta(days=7)
     recent_query = select(func.count(Order.id)).where(Order.created_at >= recent_since)
+    demo_query = select(func.count(Order.id)).where(Order.is_demo.is_(True))
     if access_filter is not None:
         total_query = total_query.where(access_filter)
         status_query = status_query.where(access_filter)
         client_query = client_query.where(access_filter)
         recent_query = recent_query.where(access_filter)
+        demo_query = demo_query.where(access_filter)
     total = db.scalar(total_query) or 0
     by_status = dict(db.execute(status_query).all())
     by_client_rows = db.execute(client_query).all()
     recent_order_count = db.scalar(recent_query) or 0
+    demo_order_count = db.scalar(demo_query) or 0
     return {
         "total_orders": total,
+        "real_order_count": total - demo_order_count,
+        "demo_order_count": demo_order_count,
         "count_by_status": by_status,
         "count_by_client": dict(by_client_rows),
         "recent_order_count": recent_order_count,

@@ -24,6 +24,7 @@ export function OrdersPage() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("All");
   const [clientId, setClientId] = useState("");
+  const [dataSource, setDataSource] = useState("all");
   const [page, setPage] = useState(1);
   const [error, setError] = useState("");
 
@@ -32,8 +33,10 @@ export function OrdersPage() {
     if (status !== "All") params.set("status", status);
     if (clientId) params.set("client_id", clientId);
     if (search) params.set("search", search);
+    if (dataSource === "demo") params.set("is_demo", "true");
+    if (dataSource === "real") params.set("is_demo", "false");
     return params.toString();
-  }, [clientId, page, search, status]);
+  }, [clientId, dataSource, page, search, status]);
 
   useEffect(() => {
     apiRequest<Client[]>("/clients").then(setClients).catch(() => setClients([]));
@@ -56,6 +59,11 @@ export function OrdersPage() {
               {client.client_name}
             </option>
           ))}
+        </select>
+        <select aria-label="Data source" value={dataSource} onChange={(event) => { setDataSource(event.target.value); setPage(1); }}>
+          <option value="all">All data</option>
+          <option value="real">Non-demo only</option>
+          <option value="demo">Demo only</option>
         </select>
       </div>
       <div className="status-tabs">
@@ -81,6 +89,7 @@ export function OrdersPage() {
                 <th>Received</th>
                 <th>Delivery Week</th>
                 <th>Status</th>
+                <th>Source</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -95,6 +104,7 @@ export function OrdersPage() {
                   <td>
                     <StatusBadge status={order.status} />
                   </td>
+                  <td>{order.is_demo ? <span className="demo-badge">Demo</span> : <span className="live-badge">Non-demo</span>}</td>
                   <td>
                     <Link className="text-action" to={`/orders/${order.id}`}>
                       View

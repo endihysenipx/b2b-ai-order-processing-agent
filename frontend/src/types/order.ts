@@ -17,6 +17,7 @@ export interface OrderListItem {
   customer_name: string | null;
   delivery_week: string | null;
   status: string;
+  is_demo: boolean;
   created_at: string;
   client: Client;
 }

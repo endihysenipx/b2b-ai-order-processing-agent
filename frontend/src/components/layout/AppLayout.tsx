@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { ClipboardList, Database, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Users } from "lucide-react";
+import { ClipboardList, Database, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Sparkles, Users } from "lucide-react";
 import { clearAccessToken, getAuthenticatedUser } from "../../api/client";
 import type { User } from "../../types/user";
 
@@ -7,6 +7,7 @@ const navItems = [
   { to: "/", label: "Overview", icon: Gauge },
   { to: "/orders", label: "Orders", icon: ClipboardList },
   { to: "/intelligence", label: "Order Intelligence", icon: ScanSearch, adminOnly: true },
+  { to: "/demo-data", label: "Demo Data", icon: Sparkles, adminOnly: true },
   { to: "/clients", label: "Clients", icon: Database },
   { to: "/data-export", label: "Data Export", icon: FileDown },
   { to: "/feedback", label: "Feedback & Issues", icon: MessageSquareWarning },

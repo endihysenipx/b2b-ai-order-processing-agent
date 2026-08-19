@@ -7,6 +7,8 @@ import type { OrderListResponse } from "../types/order";
 
 interface Summary {
   total_orders: number;
+  real_order_count: number;
+  demo_order_count: number;
   count_by_status: Record<string, number>;
   count_by_client: Record<string, number>;
   recent_order_count: number;
@@ -33,6 +35,16 @@ export function OverviewPage() {
 
   return (
     <div className="page-stack">
+      {summary.demo_order_count > 0 && (
+        <div className="demo-notice">
+          <strong>Demo dataset active</strong>
+          <span>
+            {summary.demo_order_count.toLocaleString()} synthetic orders and {summary.real_order_count.toLocaleString()} non-demo
+            orders are included in these KPIs.
+          </span>
+          <Link to="/demo-data">Manage demo data</Link>
+        </div>
+      )}
       <div className="kpi-grid">
         <article className="kpi-card">
           <span>Total orders</span>
@@ -70,7 +82,8 @@ export function OverviewPage() {
             {orders.items.map((order) => (
               <tr key={order.id}>
                 <td>
-                  <Link to={`/orders/${order.id}`}>{order.ticket_number}</Link>
+                  <Link to={`/orders/${order.id}`}>{order.ticket_number}</Link>{" "}
+                  {order.is_demo && <span className="demo-badge">Demo</span>}
                 </td>
                 <td>{order.client.client_name}</td>
                 <td>{order.delivery_week}</td>

@@ -488,6 +488,131 @@ a {
   gap: 14px;
 }
 
+.demo-badge,
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.demo-badge {
+  color: #7c2d12;
+  background: #ffedd5;
+  border: 1px solid #fdba74;
+}
+
+.live-badge {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.demo-notice,
+.demo-hero,
+.demo-guidance {
+  border: 1px solid #fdba74;
+  border-radius: 8px;
+  background: #fff7ed;
+}
+
+.demo-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.demo-notice span {
+  flex: 1;
+  color: #7c2d12;
+}
+
+.demo-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+}
+
+.demo-hero h2,
+.demo-hero p {
+  margin-bottom: 0;
+}
+
+.demo-hero p {
+  max-width: 720px;
+  color: #7c2d12;
+  line-height: 1.55;
+}
+
+.demo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 18px;
+}
+
+.demo-status-list,
+.demo-currency-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.demo-status-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+}
+
+.demo-status-list > div > div {
+  grid-column: 1 / -1;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.demo-status-list i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2a9d8f;
+}
+
+.demo-currency-list > div {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.demo-guidance {
+  padding: 14px;
+  color: #7c2d12;
+}
+
+.demo-guidance p {
+  margin: 6px 0 0;
+}
+
+.demo-safety ul {
+  margin-bottom: 0;
+  color: #475569;
+  line-height: 1.8;
+}
+
 .security-settings {
   max-width: 620px;
   padding: 18px;
@@ -848,7 +973,9 @@ pre {
 
   .detail-grid,
   .topbar,
-  .intelligence-hero {
+  .intelligence-hero,
+  .demo-grid,
+  .demo-hero {
     grid-template-columns: 1fr;
     display: grid;
   }

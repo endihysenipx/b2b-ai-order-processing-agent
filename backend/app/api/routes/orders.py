@@ -34,6 +34,7 @@ def list_orders(
     search: str | None = None,
     date_from: date | None = None,
     date_to: date | None = None,
+    is_demo: bool | None = None,
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
@@ -46,6 +47,7 @@ def list_orders(
         date_from,
         date_to,
         accessible_client_ids=accessible_client_ids(current_user),
+        is_demo=is_demo,
     )
     all_items = list(db.scalars(query).unique())
     start = (page - 1) * page_size

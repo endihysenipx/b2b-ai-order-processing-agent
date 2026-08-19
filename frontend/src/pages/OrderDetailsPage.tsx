@@ -95,7 +95,7 @@ export function OrderDetailsPage() {
       <div className="detail-heading">
         <div>
           <span className="eyebrow">Order {order.id.slice(0, 8)}</span>
-          <h2>{order.ticket_number}</h2>
+          <h2>{order.ticket_number} {order.is_demo && <span className="demo-badge">Demo data</span>}</h2>
         </div>
         <StatusBadge status={order.status} />
       </div>

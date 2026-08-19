@@ -44,6 +44,7 @@ class OrderSummary(BaseModel):
     client_name: str
     delivery_week: str | None
     status: str
+    is_demo: bool
     total_price: str | None
     currency: str | None
     created_at: str
@@ -98,6 +99,7 @@ class OrderDetailResult(BaseModel):
     currency: str | None
     status: str
     is_scanned_source: bool
+    is_demo: bool
     created_at: str
     approved_at: str | None
     email_subject: str
@@ -136,6 +138,7 @@ class ProcessingSummaryResult(BaseModel):
     date_from: str | None
     date_to: str | None
     total_orders: int
+    demo_orders: int
     orders_by_status: dict[str, int]
     attachments_by_processing_status: dict[str, int]
     unresolved_validation_issues: int
@@ -147,6 +150,7 @@ class DailyBriefingResult(BaseModel):
     viewer_role: str
     access_scope: str
     total_orders: int
+    demo_orders: int
     needs_attention: int
     ready_or_completed: int
     total_value_by_currency: dict[str, str]
@@ -176,6 +180,7 @@ class OperationsReportResult(BaseModel):
     viewer_role: str
     access_scope: str
     total_orders: int
+    demo_orders: int
     orders_by_status: dict[str, int]
     orders_by_client: dict[str, int]
     order_value_by_currency: dict[str, str]
@@ -340,6 +345,7 @@ def _summary(order: Order) -> OrderSummary:
         client_name=order.client.client_name,
         delivery_week=order.delivery_week,
         status=order.status,
+        is_demo=order.is_demo,
         total_price=_decimal(order.total_price),
         currency=order.currency,
         created_at=order.created_at.isoformat(),
@@ -444,6 +450,7 @@ def get_daily_briefing(
             viewer_role=_viewer_role(),
             access_scope=_access_scope(),
             total_orders=len(orders),
+            demo_orders=sum(1 for order in orders if order.is_demo),
             needs_attention=attention_count,
             ready_or_completed=ready_count,
             total_value_by_currency={currency: str(value) for currency, value in values.items()},
@@ -523,6 +530,7 @@ def get_operations_report(
             .where(*filters, ValidationIssue.is_resolved.is_(False))
         ) or 0
         scanned_count = db.scalar(select(func.count(Order.id)).where(*filters, Order.is_scanned_source.is_(True))) or 0
+        demo_count = db.scalar(select(func.count(Order.id)).where(*filters, Order.is_demo.is_(True))) or 0
         total_orders = sum(orders_by_status.values())
         ready_count = sum(orders_by_status.get(status, 0) for status in ("OK", "Approved", "ERP Ready", "XMLs Sent"))
 
@@ -533,6 +541,7 @@ def get_operations_report(
             viewer_role=_viewer_role(),
             access_scope=_access_scope(),
             total_orders=total_orders,
+            demo_orders=demo_count,
             orders_by_status=orders_by_status,
             orders_by_client={client: count for client, count in client_rows},
             order_value_by_currency={(currency or "UNSPECIFIED"): str(value) for currency, value in value_rows},
@@ -604,6 +613,7 @@ def get_order_details(order_id: str) -> OrderDetailResult:
             currency=order.currency,
             status=order.status,
             is_scanned_source=order.is_scanned_source,
+            is_demo=order.is_demo,
             created_at=order.created_at.isoformat(),
             approved_at=_iso(order.approved_at),
             email_subject=order.email.subject,
@@ -764,11 +774,16 @@ def get_processing_summary(
         if order_filters:
             unresolved_query = unresolved_query.where(*order_filters)
         unresolved = db.scalar(unresolved_query) or 0
+        demo_query = select(func.count(Order.id)).where(Order.is_demo.is_(True))
+        if order_filters:
+            demo_query = demo_query.where(*order_filters)
+        demo_orders = db.scalar(demo_query) or 0
 
         return ProcessingSummaryResult(
             date_from=date_from.isoformat() if date_from else None,
             date_to=date_to.isoformat() if date_to else None,
             total_orders=sum(orders_by_status.values()),
+            demo_orders=demo_orders,
             orders_by_status=orders_by_status,
             attachments_by_processing_status=attachments_by_status,
             unresolved_validation_issues=unresolved,

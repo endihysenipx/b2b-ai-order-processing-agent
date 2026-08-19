@@ -11,7 +11,7 @@ from mcp.server.auth.handlers.token import TokenHandler
 from mcp.server.auth.settings import ClientRegistrationOptions
 
 from app.api.dependencies import get_current_user
-from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, oauth, orders, reports, users
+from app.api.routes import auth, clients, demo_data, documents, emails, extraction, feedback, health, oauth, orders, reports, users
 from app.core.config import settings
 from app.core.logging import configure_logging
 from app.db import base as _models  # noqa: F401
@@ -110,6 +110,7 @@ app.include_router(auth.router, prefix=api_prefix)
 app.include_router(oauth.router, prefix=api_prefix)
 protected = [Depends(get_current_user)]
 app.include_router(clients.router, prefix=api_prefix, dependencies=protected)
+app.include_router(demo_data.router, prefix=api_prefix, dependencies=protected)
 app.include_router(documents.router, prefix=api_prefix, dependencies=protected)
 app.include_router(emails.router, prefix=api_prefix, dependencies=protected)
 app.include_router(extraction.router, prefix=api_prefix, dependencies=protected)

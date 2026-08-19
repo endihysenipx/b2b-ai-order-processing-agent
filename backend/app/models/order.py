@@ -28,6 +28,7 @@ class Order(IdMixin, TimestampMixin, Base):
     currency: Mapped[str | None] = mapped_column(String(10), nullable=True)
     status: Mapped[str] = mapped_column(String(50), index=True)
     is_scanned_source: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_demo: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     approved_by_user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
     approved_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 

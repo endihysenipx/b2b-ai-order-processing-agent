@@ -12,6 +12,7 @@ export const orderList: OrderListResponse = {
       customer_name: "Northwind Retail Group",
       delivery_week: "2026-W29",
       status: "OK",
+      is_demo: false,
       created_at: "2026-07-01T10:00:00",
       client: {
         id: "client-1",

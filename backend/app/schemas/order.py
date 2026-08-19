@@ -63,6 +63,7 @@ class OrderListOut(BaseModel):
     customer_name: str | None
     delivery_week: str | None
     status: str
+    is_demo: bool
     created_at: datetime
     client: ClientOut
 

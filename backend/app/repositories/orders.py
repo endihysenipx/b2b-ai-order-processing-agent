@@ -31,6 +31,7 @@ def build_order_query(
     date_from: date | None = None,
     date_to: date | None = None,
     accessible_client_ids: set[str] | None = None,
+    is_demo: bool | None = None,
 ) -> Select[tuple[Order]]:
     query = select(Order).options(joinedload(Order.client)).order_by(Order.created_at.desc())
     if status and status != "All":
@@ -39,6 +40,8 @@ def build_order_query(
         query = query.where(Order.client_id == client_id)
     if accessible_client_ids is not None:
         query = query.where(Order.client_id.in_(accessible_client_ids) if accessible_client_ids else false())
+    if is_demo is not None:
+        query = query.where(Order.is_demo.is_(is_demo))
     if search:
         pattern = f"%{search}%"
         query = query.where(

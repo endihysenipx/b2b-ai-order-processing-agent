@@ -4,6 +4,7 @@ import { getAccessToken } from "../api/client";
 import { AppLayout } from "../components/layout/AppLayout";
 import { ClientsPage } from "../pages/ClientsPage";
 import { DataExportPage } from "../pages/DataExportPage";
+import { DemoDataPage } from "../pages/DemoDataPage";
 import { FeedbackIssuesPage } from "../pages/FeedbackIssuesPage";
 import { LoginPage } from "../pages/LoginPage";
 import { OrderDetailsPage } from "../pages/OrderDetailsPage";
@@ -30,6 +31,7 @@ export function AppRoutes() {
             <Route path="/" element={<OverviewPage />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/intelligence" element={<OrderIntelligencePage />} />
+            <Route path="/demo-data" element={<DemoDataPage />} />
             <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
             <Route path="/clients" element={<ClientsPage />} />
             <Route path="/data-export" element={<DataExportPage />} />
