@@ -508,6 +508,327 @@ a {
   font-weight: 600;
 }
 
+.intelligence-page h2,
+.intelligence-page h3,
+.intelligence-page p {
+  margin-top: 0;
+}
+
+.intelligence-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  align-items: center;
+  gap: 28px;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 12px;
+  color: white;
+  background:
+    radial-gradient(circle at 85% 10%, rgb(42 157 143 / 45%), transparent 32%),
+    linear-gradient(135deg, #102a43 0%, #17486a 100%);
+}
+
+.intelligence-hero .eyebrow {
+  color: #8ee3d7;
+}
+
+.intelligence-hero h2 {
+  margin: 4px 0 10px;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.intelligence-hero p {
+  max-width: 720px;
+  margin-bottom: 0;
+  color: #dbeafe;
+  line-height: 1.65;
+}
+
+.intelligence-safety {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 9%);
+}
+
+.intelligence-safety svg {
+  flex: 0 0 auto;
+  color: #8ee3d7;
+}
+
+.intelligence-safety span {
+  display: block;
+  margin-top: 5px;
+  color: #dbeafe;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.intelligence-upload-panel form {
+  display: grid;
+  gap: 14px;
+}
+
+.intelligence-upload-panel h3,
+.intelligence-details h3,
+.clarification-panel h3,
+.section-heading h3 {
+  margin-bottom: 0;
+}
+
+.intelligence-upload-panel .tab,
+.clarification-panel .tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.intelligence-drop-zone {
+  display: grid;
+  place-items: center;
+  gap: 7px;
+  min-height: 190px;
+  border: 2px dashed #9fb6c8;
+  border-radius: 10px;
+  padding: 26px;
+  color: #475569;
+  background: #f8fafc;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+
+.intelligence-drop-zone:hover,
+.intelligence-drop-zone:focus-visible,
+.intelligence-drop-zone.drag-active {
+  outline: none;
+  border-color: #2a9d8f;
+  background: #effcf9;
+  transform: translateY(-1px);
+}
+
+.intelligence-drop-zone svg {
+  color: #2a9d8f;
+}
+
+.intelligence-drop-zone strong {
+  color: #163b56;
+  font-size: 1.05rem;
+}
+
+.file-input {
+  display: none;
+}
+
+.intelligence-upload-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.intelligence-upload-actions small {
+  color: #64748b;
+}
+
+.intelligence-upload-actions button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.intelligence-capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.intelligence-capabilities article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+}
+
+.intelligence-capabilities svg {
+  grid-row: 1 / span 2;
+  color: #2a9d8f;
+}
+
+.intelligence-capabilities span {
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.intelligence-notice {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 13px 16px;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  color: #115e59;
+  background: #f0fdfa;
+}
+
+.intelligence-kpis .kpi-card strong {
+  overflow-wrap: anywhere;
+  font-size: 1.45rem;
+  text-transform: capitalize;
+}
+
+.decision-card.needs-review {
+  border-color: #fcd34d;
+  background: #fffbeb;
+}
+
+.decision-card.ready {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.intelligence-timeline {
+  display: grid;
+  gap: 0;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.intelligence-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  gap: 12px;
+  min-height: 72px;
+}
+
+.intelligence-timeline li:not(:last-child)::before {
+  position: absolute;
+  top: 31px;
+  bottom: -7px;
+  left: 15px;
+  width: 2px;
+  background: #dbe4ee;
+  content: "";
+}
+
+.timeline-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: white;
+}
+
+.timeline-icon svg {
+  width: 22px;
+}
+
+.timeline-completed .timeline-icon {
+  color: #15803d;
+}
+
+.timeline-attention .timeline-icon {
+  color: #b45309;
+}
+
+.timeline-queued .timeline-icon {
+  color: #1d4ed8;
+}
+
+.intelligence-timeline p {
+  margin: 4px 0 0;
+  color: #64748b;
+}
+
+.intelligence-timeline small {
+  padding-top: 3px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.intelligence-details {
+  align-items: start;
+}
+
+.evidence-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.evidence-block ul {
+  margin: 9px 0 0;
+  padding-left: 20px;
+  color: #475569;
+}
+
+.evidence-block li + li {
+  margin-top: 5px;
+}
+
+.intelligence-order-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.intelligence-order-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  padding: 15px;
+  border: 1px solid #dbe4ee;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.intelligence-order-list article div span {
+  display: block;
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 0.84rem;
+}
+
+.intelligence-order-list p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #475569;
+  font-size: 0.88rem;
+}
+
+.intelligence-order-list a {
+  display: inline-flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+}
+
+.clarification-panel textarea {
+  min-height: 220px;
+  margin: 16px 0 8px;
+  line-height: 1.55;
+  background: #f8fafc;
+}
+
+.clarification-panel small {
+  color: #92400e;
+}
+
 pre {
   overflow: auto;
   background: #f8fafc;
@@ -526,9 +847,32 @@ pre {
   }
 
   .detail-grid,
-  .topbar {
+  .topbar,
+  .intelligence-hero {
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .intelligence-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .intelligence-upload-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .intelligence-upload-actions button {
+    justify-content: center;
+  }
+
+  .intelligence-timeline li {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+
+  .intelligence-timeline small {
+    grid-column: 2;
+    padding-top: 0;
   }
 
   .order-form-grid {

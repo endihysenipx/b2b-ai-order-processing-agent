@@ -22,6 +22,7 @@ The system stores client-specific prompts and rules, processes order evidence in
 - MFA-authenticated, role-aware, read-only MCP operations assistant for daily briefings, priority queues, management reporting, order search, and evidence-backed investigation.
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
+- Explainable Order Intelligence workflow for safe `.eml` uploads, duplicate-safe persistence, client detection, structured extraction, validation timelines, human-review routing, and unsent clarification drafts.
 - Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
 - Validation and decision services aligned with the Week 2 design.
 - Separate approval, XML generation, and simulated XML sending actions.
@@ -147,6 +148,8 @@ GMAIL_MARK_AS_READ=true
 ```
 
 When enabled, the backend polls Gmail, stores the raw `.eml` and attachments, prevents duplicate imports using `Message-ID`, classifies the email, and creates database orders from supported Lutz/Lesnina body formats. Recognized customers are matched by sender domain; a minimal profile client is created on first intake if no matching client exists.
+
+Administrators can also use the **Order Intelligence** page to upload an `.eml` message directly. The upload runs through the same production ingestion service as Gmail, enforces a 10 MB limit, reuses existing records when the Message-ID was already imported, and displays an explainable classification/extraction/validation timeline. Any uncertainty remains in the human-review workflow; the suggested clarification response is a draft and is never sent automatically.
 
 When `TEXTRACT_AUTO_PROCESSING_ENABLED=true`, PDF, TIFF, PNG, and JPEG attachments are uploaded to the configured S3 bucket and submitted to Amazon Textract automatically. The background worker persists job state, detected text, completion time, and errors. Order Details shows the processing status and extracted text. Scanned orders remain in Human in the Loop until their OCR evidence is reviewed or mapped into structured order fields.
 

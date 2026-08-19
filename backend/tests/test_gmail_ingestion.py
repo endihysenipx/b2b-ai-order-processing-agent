@@ -29,9 +29,9 @@ class FakeGmailGateway:
         self.closed = True
 
 
-def build_gmail_order() -> bytes:
+def build_gmail_order(message_id: str = "<gmail-intake-test@example.com>") -> bytes:
     message = EmailMessage()
-    message["Message-ID"] = "<gmail-intake-test@example.com>"
+    message["Message-ID"] = message_id
     message["From"] = "orders@lutz-test.example"
     message["To"] = "supplier@gmail.com"
     message["Subject"] = "Bestellung UH4Z6A von Lutz"
@@ -98,3 +98,45 @@ def test_gmail_status_endpoint_does_not_expose_password(client, auth_headers):
     assert response.status_code == 200
     assert "password" not in response.text.casefold()
     assert response.json()["folder"] == "INBOX"
+
+
+def test_order_intelligence_upload_creates_explainable_idempotent_order(client, auth_headers):
+    content = build_gmail_order("<order-intelligence-upload@example.com>")
+    files = {"file": ("mentor-demo.eml", content, "message/rfc822")}
+
+    response = client.post("/api/v1/emails/intelligence/import", files=files, headers=auth_headers)
+    duplicate = client.post("/api/v1/emails/intelligence/import", files=files, headers=auth_headers)
+
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    assert payload["duplicate"] is False
+    assert payload["classification"] == "order"
+    assert payload["client_profile"] == "lutz"
+    assert payload["client_confidence"] >= 0.65
+    assert payload["requires_review"] is False
+    assert payload["clarification_draft"] is None
+    assert len(payload["orders"]) == 1
+    assert payload["orders"][0]["status"] == "OK"
+    assert payload["orders"][0]["item_count"] == 1
+    assert [step["key"] for step in payload["timeline"]] == [
+        "received",
+        "classified",
+        "client",
+        "extracted",
+        "validated",
+        "review",
+    ]
+    assert all(step["status"] == "completed" for step in payload["timeline"])
+
+    assert duplicate.status_code == 200
+    assert duplicate.json()["duplicate"] is True
+    assert duplicate.json()["orders"][0]["id"] == payload["orders"][0]["id"]
+
+
+def test_order_intelligence_upload_is_admin_only(client):
+    response = client.post(
+        "/api/v1/emails/intelligence/import",
+        files={"file": ("order.eml", build_gmail_order("<unauthorized-upload@example.com>"), "message/rfc822")},
+    )
+
+    assert response.status_code == 401

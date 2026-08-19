@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import logging
 import re
 from datetime import UTC, datetime
@@ -8,12 +9,13 @@ from email.message import EmailMessage
 from email.parser import BytesParser
 from email.utils import getaddresses, parsedate_to_datetime
 from pathlib import Path
+from typing import Literal
 from uuid import uuid4
 
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.orm import Session, selectinload, sessionmaker
 
 from app.core.config import Settings
 from app.models.attachment import Attachment
@@ -51,6 +53,49 @@ class GmailIngestionStatus(BaseModel):
     poll_interval_seconds: int
 
 
+class IntelligenceTimelineStep(BaseModel):
+    key: str
+    label: str
+    status: Literal["completed", "attention", "queued"]
+    detail: str
+
+
+class IntelligenceAttachmentSummary(BaseModel):
+    file_name: str
+    is_scanned: bool
+    processing_status: str
+
+
+class IntelligenceOrderSummary(BaseModel):
+    id: str
+    ticket_number: str | None
+    commission_number: str | None
+    delivery_week: str | None
+    status: str
+    item_count: int
+    issue_count: int
+
+
+class OrderIntelligenceResult(BaseModel):
+    duplicate: bool
+    email_id: str
+    subject: str
+    sender_email: str
+    classification: str
+    client_profile: str | None
+    client_name: str | None
+    client_confidence: float
+    client_evidence: list[str] = Field(default_factory=list)
+    next_action: str
+    reference_codes: list[str] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    attachments: list[IntelligenceAttachmentSummary] = Field(default_factory=list)
+    orders: list[IntelligenceOrderSummary] = Field(default_factory=list)
+    requires_review: bool
+    clarification_draft: str | None = None
+    timeline: list[IntelligenceTimelineStep] = Field(default_factory=list)
+
+
 class GmailIngestionService:
     def __init__(
         self,
@@ -83,12 +128,12 @@ class GmailIngestionService:
             for message in messages:
                 try:
                     outcome = self._import_message(message)
-                    if outcome is None:
+                    if outcome.duplicate:
                         result.duplicates += 1
                     else:
                         result.imported += 1
-                        result.orders_created += outcome[0]
-                        result.manual_review += outcome[1]
+                        result.orders_created += len(outcome.orders)
+                        result.manual_review += int(outcome.requires_review)
                     if self.settings.gmail_mark_as_read:
                         gateway.mark_as_read(message.uid)
                 except Exception as exc:
@@ -99,14 +144,20 @@ class GmailIngestionService:
             gateway.close()
         return result
 
-    def _import_message(self, gmail_message: GmailMessage) -> tuple[int, int] | None:
+    def import_uploaded_message(self, content: bytes) -> OrderIntelligenceResult:
+        """Import one uploaded RFC 822 message through the production intake pipeline."""
+        digest = hashlib.sha256(content).hexdigest()
+        return self._import_message(GmailMessage(uid=f"upload:{digest}", content=content))
+
+    def _import_message(self, gmail_message: GmailMessage) -> OrderIntelligenceResult:
         parsed = BytesParser(policy=policy.default).parsebytes(gmail_message.content)
         external_id = self._external_message_id(parsed, gmail_message.uid)
+        preview, parse_error = self._preview(gmail_message.content)
         with self.session_factory() as db:
-            if db.scalar(select(Email.id).where(Email.external_message_id == external_id)):
-                return None
+            existing = db.scalar(select(Email).where(Email.external_message_id == external_id))
+            if existing is not None:
+                return self._build_intelligence_result(db, existing, preview, parse_error, duplicate=True)
 
-            preview, parse_error = self._preview(gmail_message.content)
             sender = self._first_address(parsed.get_all("From", []))
             client = self._resolve_client(db, preview, sender)
             stored_email = Email(
@@ -126,25 +177,19 @@ class GmailIngestionService:
                 db.flush()
             except IntegrityError:
                 db.rollback()
-                return None
+                existing = db.scalar(select(Email).where(Email.external_message_id == external_id))
+                if existing is None:
+                    raise
+                return self._build_intelligence_result(db, existing, preview, parse_error, duplicate=True)
 
             attachments = self._store_message_files(stored_email, parsed, gmail_message.content)
-            orders_created = self._create_orders(db, stored_email, client, preview, attachments)
+            self._create_orders(db, stored_email, client, preview, attachments)
             db.flush()
             self.textract_processor.start_for_attachments(db, attachments)
-            manual_review = int(
-                preview is None
-                or preview.next_action
-                in {
-                    IntakeNextAction.MANUAL_REVIEW,
-                    IntakeNextAction.NEEDS_OCR,
-                    IntakeNextAction.RETURN_REVIEW,
-                    IntakeNextAction.CONFIRMATION_RESPONSE,
-                }
-                or client is None
-            )
+            db.flush()
+            result = self._build_intelligence_result(db, stored_email, preview, parse_error, duplicate=False)
             db.commit()
-            return orders_created, manual_review
+            return result
 
     @staticmethod
     def _preview(content: bytes) -> tuple[EmailIntakePreview | None, str | None]:
@@ -236,12 +281,13 @@ class GmailIngestionService:
         client: Client | None,
         preview: EmailIntakePreview | None,
         attachments: list[Attachment],
-    ) -> int:
+    ) -> list[Order]:
         db.add_all(attachments)
         if client is None or preview is None or preview.message_type.value != "order":
-            return 0
+            return []
 
         is_scanned = any(attachment.is_scanned for attachment in attachments)
+        created_orders: list[Order] = []
         for index, parsed_order in enumerate(preview.orders):
             ticket_number = preview.reference_codes[0] if preview.reference_codes else None
             order = Order(
@@ -260,6 +306,7 @@ class GmailIngestionService:
             )
             db.add(order)
             db.flush()
+            created_orders.append(order)
             items = [
                 OrderItem(
                     order_id=order.id,
@@ -316,7 +363,184 @@ class GmailIngestionService:
             if index == 0:
                 for attachment in attachments:
                     attachment.order_id = order.id
-        return len(preview.orders)
+        return created_orders
+
+    def _build_intelligence_result(
+        self,
+        db: Session,
+        stored_email: Email,
+        preview: EmailIntakePreview | None,
+        parse_error: str | None,
+        *,
+        duplicate: bool,
+    ) -> OrderIntelligenceResult:
+        orders = list(
+            db.scalars(
+                select(Order)
+                .options(selectinload(Order.items), selectinload(Order.validation_issues))
+                .where(Order.email_id == stored_email.id)
+                .order_by(Order.created_at)
+            )
+        )
+        attachments = list(
+            db.scalars(select(Attachment).where(Attachment.email_id == stored_email.id).order_by(Attachment.created_at))
+        )
+        client = db.get(Client, stored_email.client_id) if stored_email.client_id else None
+        review_actions = {
+            IntakeNextAction.MANUAL_REVIEW,
+            IntakeNextAction.NEEDS_OCR,
+            IntakeNextAction.RETURN_REVIEW,
+            IntakeNextAction.CONFIRMATION_RESPONSE,
+        }
+        requires_review = (
+            preview is None
+            or client is None
+            or preview.next_action in review_actions
+            or any(order.status in {"Human in the Loop", "Waiting for Reply", "Failed"} for order in orders)
+        )
+        summaries = [
+            IntelligenceOrderSummary(
+                id=order.id,
+                ticket_number=order.ticket_number,
+                commission_number=order.commission_number,
+                delivery_week=order.delivery_week,
+                status=order.status,
+                item_count=len(order.items),
+                issue_count=sum(not issue.is_resolved for issue in order.validation_issues),
+            )
+            for order in orders
+        ]
+        notes = list(preview.notes if preview else [])
+        if parse_error:
+            notes.append(parse_error)
+        attachment_summaries = [
+            IntelligenceAttachmentSummary(
+                file_name=attachment.file_name,
+                is_scanned=attachment.is_scanned,
+                processing_status=attachment.processing_status or "not_required",
+            )
+            for attachment in attachments
+        ]
+        return OrderIntelligenceResult(
+            duplicate=duplicate,
+            email_id=stored_email.id,
+            subject=stored_email.subject,
+            sender_email=stored_email.sender_email,
+            classification=stored_email.classification_status,
+            client_profile=preview.client_profile.value if preview and preview.client_profile else None,
+            client_name=client.client_name if client else None,
+            client_confidence=preview.client_detection.confidence if preview else 0,
+            client_evidence=list(preview.client_detection.evidence if preview else []),
+            next_action=preview.next_action.value if preview else IntakeNextAction.MANUAL_REVIEW.value,
+            reference_codes=list(preview.reference_codes if preview else []),
+            notes=notes,
+            attachments=attachment_summaries,
+            orders=summaries,
+            requires_review=requires_review,
+            clarification_draft=self._clarification_draft(stored_email, orders, preview, requires_review),
+            timeline=self._intelligence_timeline(
+                stored_email,
+                preview,
+                parse_error,
+                client,
+                summaries,
+                attachment_summaries,
+                requires_review,
+                duplicate,
+            ),
+        )
+
+    @staticmethod
+    def _clarification_draft(
+        stored_email: Email,
+        orders: list[Order],
+        preview: EmailIntakePreview | None,
+        requires_review: bool,
+    ) -> str | None:
+        if not requires_review:
+            return None
+        references = [order.ticket_number or order.commission_number for order in orders]
+        reference = ", ".join(value for value in references if value) or stored_email.subject or "your order"
+        issue_messages = list(
+            dict.fromkeys(
+                issue.message
+                for order in orders
+                for issue in order.validation_issues
+                if not issue.is_resolved
+            )
+        )
+        if preview and preview.next_action is IntakeNextAction.NEEDS_OCR:
+            issue_messages.append("Please confirm the line items shown in the scanned attachment.")
+        if not issue_messages:
+            issue_messages.append("Please confirm the order details and provide any missing line-item information.")
+        bullets = "\n".join(f"- {message}" for message in dict.fromkeys(issue_messages))
+        return (
+            f"Hello,\n\nWe are reviewing {reference} and need the following information before processing:\n"
+            f"{bullets}\n\nPlease reply with the corrected or missing details.\n\nKind regards,\nOrder Processing Team"
+        )
+
+    @staticmethod
+    def _intelligence_timeline(
+        stored_email: Email,
+        preview: EmailIntakePreview | None,
+        parse_error: str | None,
+        client: Client | None,
+        orders: list[IntelligenceOrderSummary],
+        attachments: list[IntelligenceAttachmentSummary],
+        requires_review: bool,
+        duplicate: bool,
+    ) -> list[IntelligenceTimelineStep]:
+        issue_count = sum(order.issue_count for order in orders)
+        item_count = sum(order.item_count for order in orders)
+        ocr_attachments = [item for item in attachments if item.is_scanned]
+        extraction_status: Literal["completed", "attention", "queued"] = "completed"
+        extraction_detail = f"Extracted {len(orders)} order(s) and {item_count} line item(s)."
+        if ocr_attachments:
+            processing = {item.processing_status for item in ocr_attachments}
+            extraction_status = "queued" if processing & {"pending", "in_progress"} else "attention"
+            extraction_detail = f"{len(ocr_attachments)} scanned attachment(s) require OCR review."
+        elif not orders:
+            extraction_status = "attention"
+            extraction_detail = "No order record was created; manual classification is required."
+
+        return [
+            IntelligenceTimelineStep(
+                key="received",
+                label="Message received",
+                status="completed",
+                detail=("Previously imported; existing records were reused." if duplicate else "Stored safely with duplicate protection."),
+            ),
+            IntelligenceTimelineStep(
+                key="classified",
+                label="Message classified",
+                status="attention" if parse_error or preview is None else "completed",
+                detail=parse_error or f"Classified as {stored_email.classification_status.replace('_', ' ')}.",
+            ),
+            IntelligenceTimelineStep(
+                key="client",
+                label="Client identified",
+                status="completed" if client else "attention",
+                detail=(f"Matched {client.client_name}." if client else "No authorized client profile matched automatically."),
+            ),
+            IntelligenceTimelineStep(
+                key="extracted",
+                label="Evidence extracted",
+                status=extraction_status,
+                detail=extraction_detail,
+            ),
+            IntelligenceTimelineStep(
+                key="validated",
+                label="Business rules validated",
+                status="attention" if issue_count or not orders else "completed",
+                detail=(f"Found {issue_count} validation issue(s)." if issue_count else "Required order fields passed validation."),
+            ),
+            IntelligenceTimelineStep(
+                key="review",
+                label="Human decision",
+                status="attention" if requires_review else "completed",
+                detail=("Review is required before approval or ERP preparation." if requires_review else "Ready for an operator to approve explicitly."),
+            ),
+        ]
 
     @staticmethod
     def _external_message_id(message: EmailMessage, uid: str) -> str:
