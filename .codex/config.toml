@@ -3,6 +3,9 @@ url = "http://localhost:8000/mcp"
 bearer_token_env_var = "B2B_MCP_TOKEN"
 default_tools_approval_mode = "prompt"
 enabled_tools = [
+  "get_daily_briefing",
+  "get_attention_queue",
+  "get_operations_report",
   "search_orders",
   "get_order_details",
   "get_order_evidence",
