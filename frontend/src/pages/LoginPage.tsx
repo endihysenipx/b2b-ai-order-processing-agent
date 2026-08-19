@@ -38,6 +38,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const postLoginTarget = resolvePostLoginTarget(location);
+  const authenticatorWasReset = new URLSearchParams(location.search).get("mfa_reset") === "1";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -160,6 +161,9 @@ export function LoginPage() {
       <section className="login-panel">
         <span className="eyebrow">FlowForge</span>
         <h1>Order Agent Login</h1>
+        {authenticatorWasReset && stage === "credentials" && (
+          <p className="success-message">Your old authenticator was removed. Log in to enroll the new phone.</p>
+        )}
         {error && <p className="error-message">{error}</p>}
 
         {stage === "credentials" && (

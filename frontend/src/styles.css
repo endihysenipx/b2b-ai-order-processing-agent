@@ -488,6 +488,26 @@ a {
   gap: 14px;
 }
 
+.security-settings {
+  max-width: 620px;
+  padding: 18px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff7f7;
+}
+
+.security-settings form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.security-settings label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
 pre {
   overflow: auto;
   background: #f8fafc;

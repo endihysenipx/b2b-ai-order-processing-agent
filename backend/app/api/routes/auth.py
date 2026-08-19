@@ -1,6 +1,7 @@
 import base64
 import hmac
 import io
+import logging
 
 import pyotp
 import qrcode
@@ -33,6 +34,7 @@ from app.schemas.auth import (
     PasswordChangeRequest,
     TwoFactorChallengeRequest,
     TwoFactorLoginResponse,
+    TwoFactorResetRequest,
     TwoFactorSetupRequest,
     TwoFactorSetupResponse,
     UserOut,
@@ -40,6 +42,7 @@ from app.schemas.auth import (
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 DUMMY_PASSWORD_HASH = hash_password("not-a-real-user-password")
+logger = logging.getLogger(__name__)
 
 
 @router.get("/me", response_model=UserOut)
@@ -174,3 +177,41 @@ def verify_two_factor(payload: TwoFactorChallengeRequest, db: Session = Depends(
     user.recovery_code_hashes = recovery_hashes
     db.commit()
     return _login_response(user)
+
+
+@router.post("/2fa/reset", status_code=status.HTTP_204_NO_CONTENT)
+def reset_own_two_factor(
+    payload: TwoFactorResetRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> None:
+    """Remove the current user's authenticator after re-authentication.
+
+    Incrementing ``auth_version`` revokes existing REST and OAuth access. The
+    next password login enters the normal authenticator enrollment flow.
+    """
+    invalid_credentials = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid password or authenticator/recovery code",
+    )
+    if not verify_password(payload.password, current_user.password_hash):
+        raise invalid_credentials
+    if not current_user.totp_enabled or not current_user.totp_secret_encrypted:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Authenticator setup is not enabled")
+
+    secret = decrypt_totp_secret(current_user.totp_secret_encrypted)
+    used_step = verify_totp(secret, payload.code, current_user.totp_last_used_step)
+    if used_step is None:
+        candidate = hash_recovery_code(payload.code)
+        recovery_hashes = list(current_user.recovery_code_hashes or [])
+        if not any(hmac.compare_digest(stored, candidate) for stored in recovery_hashes):
+            raise invalid_credentials
+
+    current_user.totp_enabled = False
+    current_user.totp_secret_encrypted = None
+    current_user.totp_pending_secret_encrypted = None
+    current_user.totp_last_used_step = None
+    current_user.recovery_code_hashes = []
+    current_user.auth_version += 1
+    db.commit()
+    logger.info("User reset own authenticator; user_id=%s", current_user.id)

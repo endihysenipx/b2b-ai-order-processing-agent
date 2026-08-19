@@ -76,6 +76,50 @@ def test_recovery_code_is_single_use(client):
     assert second.status_code == 401
 
 
+def test_user_can_reset_own_authenticator_and_existing_session_is_revoked(client):
+    email = "authenticator-reset@example.com"
+    password = "AuthenticatorReset123!"
+    with SessionLocal() as db:
+        db.add(
+            User(
+                full_name="Authenticator Reset",
+                email=email,
+                password_hash=hash_password(password),
+                role="operator",
+            )
+        )
+        db.commit()
+
+    login = client.post("/api/v1/auth/login", json={"email": email, "password": password}).json()
+    setup = client.post("/api/v1/auth/2fa/setup", json={"challenge_token": login["challenge_token"]}).json()
+    totp = pyotp.TOTP(setup["secret"])
+    enabled = client.post(
+        "/api/v1/auth/2fa/enable",
+        json={"challenge_token": login["challenge_token"], "code": totp.now()},
+    )
+    headers = {"Authorization": f"Bearer {enabled.json()['access_token']}"}
+
+    invalid_password = client.post(
+        "/api/v1/auth/2fa/reset",
+        headers=headers,
+        json={"password": "wrong-password", "code": enabled.json()["recovery_codes"][0]},
+    )
+    assert invalid_password.status_code == 401
+
+    reset = client.post(
+        "/api/v1/auth/2fa/reset",
+        headers=headers,
+        json={"password": password, "code": enabled.json()["recovery_codes"][0]},
+    )
+    assert reset.status_code == 204, reset.text
+    assert client.get("/api/v1/auth/me", headers=headers).status_code == 401
+
+    next_login = client.post("/api/v1/auth/login", json={"email": email, "password": password})
+    assert next_login.status_code == 200
+    assert next_login.json()["requires_2fa_setup"] is True
+    assert next_login.json()["access_token"] is None
+
+
 def test_admin_can_change_operator_client_grants(client, auth_headers):
     users = client.get("/api/v1/users", headers=auth_headers).json()
     operator = next(user for user in users if user["email"] == "operator@example.com")

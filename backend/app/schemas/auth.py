@@ -34,6 +34,11 @@ class TwoFactorChallengeRequest(BaseModel):
     code: str = Field(min_length=6, max_length=32)
 
 
+class TwoFactorResetRequest(BaseModel):
+    password: str
+    code: str = Field(min_length=6, max_length=32)
+
+
 class TwoFactorSetupRequest(BaseModel):
     challenge_token: str
 
