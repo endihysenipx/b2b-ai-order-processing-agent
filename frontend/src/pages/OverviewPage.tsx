@@ -31,7 +31,16 @@ export function OverviewPage() {
   if (error) return <p className="error-message">{error}</p>;
   if (!summary || !orders) return <p className="loading">Loading overview...</p>;
 
-  const kpis = ["OK", "Human in the Loop", "Waiting for Reply", "Failed", "ERP Ready"];
+  const kpis = [
+    "OK",
+    "Human in the Loop",
+    "Waiting for Reply",
+    "Approved",
+    "ERP Ready",
+    "XMLs Sent",
+    "Failed",
+    "Rejected",
+  ];
 
   return (
     <div className="page-stack">
