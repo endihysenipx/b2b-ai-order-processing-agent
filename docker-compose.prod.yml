@@ -68,11 +68,32 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    expose:
+      - "8080"
     volumes:
       - ./certbot/www:/var/www/certbot:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       backend:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  ngrok:
+    image: ngrok/ngrok@sha256:14d80d083e5b53145f416bbbd36238336c9de4016c43fd950eb2eb845670583b
+    restart: unless-stopped
+    init: true
+    command:
+      - "http"
+      - "http://frontend:8080"
+      - "--url"
+      - "https://kolton-unestopped-untransiently.ngrok-free.dev"
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    depends_on:
+      frontend:
         condition: service_healthy
     logging:
       options:

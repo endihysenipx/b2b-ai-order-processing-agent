@@ -82,6 +82,34 @@ jobs:
           printf '%s\n' "$SSH_KNOWN_HOSTS" | tr -d '\r' > "$HOME/.ssh/known_hosts"
           chmod 600 "$HOME/.ssh/lightsail" "$HOME/.ssh/known_hosts"
 
+      - name: Configure encrypted ngrok environment
+        env:
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+        run: |
+          test -n "$NGROK_AUTHTOKEN"
+          readonly remote_env="/tmp/b2b-order-agent-ngrok.env"
+          readonly local_env="$RUNNER_TEMP/b2b-order-agent-ngrok.env"
+          trap 'rm -f "$local_env"' EXIT
+          umask 077
+          printf 'NGROK_AUTHTOKEN=%s\nFRONTEND_URL=%s\n' \
+            "$NGROK_AUTHTOKEN" \
+            'https://kolton-unestopped-untransiently.ngrok-free.dev' \
+            > "$local_env"
+          scp \
+            -i "$HOME/.ssh/lightsail" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$local_env" \
+            "ubuntu@3.74.232.11:$remote_env"
+          ssh \
+            -i "$HOME/.ssh/lightsail" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            ubuntu@3.74.232.11 \
+            "trap 'rm -f \"$remote_env\"' EXIT; install -m 600 '$remote_env' '/home/ubuntu/b2b-ai-order-processing-agent/.env.ngrok'"
+
       - name: Deploy and verify
         run: |
           ssh \
@@ -95,6 +123,7 @@ jobs:
           readonly app_dir="/home/ubuntu/b2b-ai-order-processing-agent"
           readonly compose_file="docker-compose.prod.yml"
           readonly health_url="https://3.74.232.11/health"
+          readonly tunnel_health_url="https://kolton-unestopped-untransiently.ngrok-free.dev/health"
 
           cd "$app_dir"
           exec 9>"/tmp/b2b-order-agent-deploy.lock"
@@ -108,7 +137,7 @@ jobs:
           rollback() {
             echo "Deployment failed; rolling back to ${previous_commit}."
             git reset --hard "$previous_commit"
-            docker compose -f "$compose_file" up -d --build --remove-orphans
+            docker compose --env-file .env --env-file .env.ngrok -f "$compose_file" up -d --build --remove-orphans
           }
 
           git diff --quiet
@@ -116,7 +145,7 @@ jobs:
           git fetch --prune origin main
           git merge --ff-only origin/main
 
-          if ! docker compose -f "$compose_file" up -d --build --remove-orphans; then
+          if ! docker compose --env-file .env --env-file .env.ngrok -f "$compose_file" up -d --build --remove-orphans; then
             rollback
             exit 1
           fi
@@ -135,7 +164,21 @@ jobs:
             exit 1
           fi
 
-          docker compose -f "$compose_file" ps
+          tunnel_healthy=false
+          for _ in $(seq 1 30); do
+            if curl --fail --silent --show-error "$tunnel_health_url" >/dev/null; then
+              tunnel_healthy=true
+              break
+            fi
+            sleep 5
+          done
+
+          if [ "$tunnel_healthy" != "true" ]; then
+            rollback
+            exit 1
+          fi
+
+          docker compose --env-file .env --env-file .env.ngrok -f "$compose_file" ps
           docker image prune --force
           echo "Deployment completed successfully."
           REMOTE

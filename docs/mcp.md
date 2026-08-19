@@ -43,7 +43,7 @@ The hosted flow provides OAuth authorization-server discovery, MCP protected-res
 
 ## Connect ChatGPT Web
 
-The production MCP URL is `https://<production-host>/mcp`. In ChatGPT Developer mode, create an MCP app/connection with that URL and OAuth authentication. ChatGPT discovers the authorization endpoints automatically. When redirected to FlowForge:
+The ChatGPT production MCP URL is `https://kolton-unestopped-untransiently.ngrok-free.dev/mcp`. The persistent ngrok service forwards that stable HTTPS origin to the Lightsail reverse proxy; the direct Lightsail IP remains the deployment health-check endpoint. In ChatGPT Developer mode, create an MCP app/connection with the ngrok URL and OAuth authentication. ChatGPT discovers the authorization endpoints automatically. When redirected to FlowForge:
 
 1. Sign in with the normal production account and authenticator or recovery code.
 2. Review the read-only permission screen.
@@ -117,7 +117,8 @@ Both frontend Nginx configurations proxy the exact `/mcp` path to the backend, p
 Production requirements:
 
 - Keep `/mcp` behind HTTPS.
-- Set `FRONTEND_URL` to the public HTTPS origin. Production Compose also uses it as `PUBLIC_BASE_URL`, which defines the exact OAuth issuer and MCP resource audience.
+- Set `FRONTEND_URL` to the stable ngrok HTTPS origin through the protected `.env.ngrok` deployment file. Production Compose also uses it as `PUBLIC_BASE_URL`, which defines the exact OAuth issuer and MCP resource audience.
+- Keep `NGROK_AUTHTOKEN` only in the GitHub Actions production secret and the protected server `.env.ngrok` file. Never commit it.
 - Keep application JWT signing material and the independent `TOTP_ENCRYPTION_KEY` only in protected server configuration.
 - Retain tool invocation logs without logging tokens or raw evidence.
 - Review and tune the Nginx MCP rate limit as real usage becomes known.
