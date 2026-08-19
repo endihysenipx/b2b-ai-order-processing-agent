@@ -5,15 +5,18 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from mcp.server.auth.handlers.authorize import AuthorizationHandler
+from mcp.server.auth.handlers.token import TokenHandler
 
 from app.api.dependencies import get_current_user
-from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, orders, reports, users
+from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, oauth, orders, reports, users
 from app.core.config import settings
 from app.core.logging import configure_logging
 from app.db import base as _models  # noqa: F401
 from app.db.session import SessionLocal
 from app.mcp.server import http_app as mcp_http_app
 from app.mcp.server import lifespan_app as mcp_lifespan_app
+from app.oauth.provider import oauth_client_authenticator, oauth_provider
 from app.services.aws_document_processing import TextractJobProcessor
 from app.services.email.ingestion import GmailIngestionService
 
@@ -102,6 +105,7 @@ app.include_router(health.router)
 
 api_prefix = "/api/v1"
 app.include_router(auth.router, prefix=api_prefix)
+app.include_router(oauth.router, prefix=api_prefix)
 protected = [Depends(get_current_user)]
 app.include_router(clients.router, prefix=api_prefix, dependencies=protected)
 app.include_router(documents.router, prefix=api_prefix, dependencies=protected)
@@ -111,6 +115,34 @@ app.include_router(orders.router, prefix=api_prefix, dependencies=protected)
 app.include_router(feedback.router, prefix=api_prefix, dependencies=protected)
 app.include_router(reports.router, prefix=api_prefix, dependencies=protected)
 app.include_router(users.router, prefix=api_prefix, dependencies=protected)
+
+
+@app.get("/.well-known/oauth-authorization-server", include_in_schema=False)
+def oauth_authorization_server_metadata():
+    issuer = settings.oauth_issuer_url
+    return {
+        "issuer": issuer,
+        "authorization_endpoint": f"{issuer}/authorize",
+        "token_endpoint": f"{issuer}/token",
+        "scopes_supported": ["orders:read"],
+        "response_types_supported": ["code"],
+        "response_modes_supported": ["query"],
+        "grant_types_supported": ["authorization_code", "refresh_token"],
+        "token_endpoint_auth_methods_supported": ["private_key_jwt", "none"],
+        "token_endpoint_auth_signing_alg_values_supported": ["RS256"],
+        "code_challenge_methods_supported": ["S256"],
+        "client_id_metadata_document_supported": True,
+        "authorization_response_iss_parameter_supported": True,
+        "service_documentation": f"{issuer}/docs",
+    }
+
+
+app.add_route("/authorize", AuthorizationHandler(oauth_provider).handle, methods=["GET", "POST"])
+app.add_route(
+    "/token",
+    TokenHandler(oauth_provider, oauth_client_authenticator).handle,
+    methods=["POST"],
+)
 
 # Mount last so the MCP transport handles /mcp while the FastAPI routes above
 # retain precedence for the REST API, health endpoint, and documentation.

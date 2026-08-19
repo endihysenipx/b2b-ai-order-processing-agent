@@ -37,9 +37,20 @@ Every tool is marked read-only, non-destructive, idempotent, and closed-world. T
 
 ## Authentication
 
-The MCP transport accepts the same short-lived, MFA-verified JWT bearer tokens used by the web application. Password authentication alone never produces an access token. The token must belong to an active application user and MCP tools enforce the user's client grants.
+The MCP transport accepts both the short-lived, MFA-verified JWT bearer tokens used by Codex and OAuth 2.1 access tokens issued through the browser-based ChatGPT connection. Password authentication alone never produces an access token. The token must belong to an active application user and MCP tools enforce the user's role and client grants.
 
-The server does not yet advertise an OAuth authorization flow. Add OAuth 2.1 and MCP protected-resource discovery before publishing this endpoint as a broadly available ChatGPT or third-party integration. Do not replace bearer authentication with an unauthenticated public endpoint.
+The hosted flow provides OAuth authorization-server discovery, MCP protected-resource discovery, authorization code with S256 PKCE, ChatGPT Client ID Metadata Document validation, `private_key_jwt` client authentication, one-use authorization codes and client assertions, rotating refresh tokens, and RFC 9207 issuer identification. OAuth access tokens are audience-bound to `/mcp` and are rejected by the REST API.
+
+## Connect ChatGPT Web
+
+The production MCP URL is `https://<production-host>/mcp`. In ChatGPT Developer mode, create an MCP app/connection with that URL and OAuth authentication. ChatGPT discovers the authorization endpoints automatically. When redirected to FlowForge:
+
+1. Sign in with the normal production account and authenticator or recovery code.
+2. Review the read-only permission screen.
+3. Select **Allow read-only access**.
+4. Return to ChatGPT and test: “Give me today's production order briefing.”
+
+The connection exposes only the eight tools listed above. It does not expose order mutation, approval, email, XML/ERP transmission, deletion, or reprocessing. A ChatGPT connection can be used from the signed-in ChatGPT account after it is created; organization-wide availability requires the workspace administrator's plugin/app publication or approval flow.
 
 ## Connect Codex locally
 
@@ -106,11 +117,11 @@ Both frontend Nginx configurations proxy the exact `/mcp` path to the backend, p
 Production requirements:
 
 - Keep `/mcp` behind HTTPS.
-- Set `FRONTEND_URL` to the public HTTPS origin; the MCP transport derives its Host and Origin allowlist from this setting.
+- Set `FRONTEND_URL` to the public HTTPS origin. Production Compose also uses it as `PUBLIC_BASE_URL`, which defines the exact OAuth issuer and MCP resource audience.
 - Keep application JWT signing material and the independent `TOTP_ENCRYPTION_KEY` only in protected server configuration.
 - Retain tool invocation logs without logging tokens or raw evidence.
 - Review and tune the Nginx MCP rate limit as real usage becomes known.
-- Add OAuth 2.1 before connecting hosted ChatGPT plugins or external customer workspaces.
+- Preserve the OAuth discovery, PKCE, ChatGPT signed-client validation, consent, refresh rotation, and MCP-only audience checks when changing authentication.
 
 ## Deliberately excluded from version 1
 

@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./dev.db"
     seed_demo_data: bool = False
     frontend_url: str = "http://localhost:5173"
+    public_base_url: str = "http://localhost:8000"
     business_timezone: str = "Europe/Warsaw"
     storage_root: str = "storage"
     aws_region: str = "eu-central-1"
@@ -57,7 +58,17 @@ class Settings(BaseSettings):
                 raise ValueError("TOTP_ENCRYPTION_KEY is required in production")
             if self.totp_encryption_key == self.secret_key:
                 raise ValueError("TOTP_ENCRYPTION_KEY must be different from SECRET_KEY")
+            if not self.public_base_url.startswith("https://"):
+                raise ValueError("PUBLIC_BASE_URL must use HTTPS in production")
         return self
+
+    @property
+    def oauth_issuer_url(self) -> str:
+        return self.public_base_url.rstrip("/")
+
+    @property
+    def mcp_resource_url(self) -> str:
+        return f"{self.oauth_issuer_url}/mcp"
 
 
 @lru_cache

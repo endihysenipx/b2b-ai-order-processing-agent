@@ -8,6 +8,7 @@ import { FeedbackIssuesPage } from "../pages/FeedbackIssuesPage";
 import { LoginPage } from "../pages/LoginPage";
 import { OrderDetailsPage } from "../pages/OrderDetailsPage";
 import { OrdersPage } from "../pages/OrdersPage";
+import { OAuthAuthorizePage } from "../pages/OAuthAuthorizePage";
 import { OverviewPage } from "../pages/OverviewPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { UsersPage } from "../pages/UsersPage";
@@ -22,6 +23,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/oauth/authorize" element={<OAuthAuthorizePage />} />
         <Route element={<RequireAuth />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<OverviewPage />} />
