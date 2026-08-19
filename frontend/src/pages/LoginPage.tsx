@@ -22,9 +22,22 @@ interface SetupResult {
 
 type Stage = "credentials" | "password" | "setup" | "verify" | "recovery";
 
+function resolvePostLoginTarget(location: ReturnType<typeof useLocation>) {
+  const routeState = location.state as { from?: { pathname?: string; search?: string } } | null;
+  const stateRedirect = routeState?.from?.pathname
+    ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
+    : null;
+  const queryRedirect = new URLSearchParams(location.search).get("next");
+  const safeQueryRedirect = queryRedirect?.startsWith("/oauth/authorize?request=")
+    ? queryRedirect
+    : null;
+  return stateRedirect ?? safeQueryRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
+}
+
 export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const postLoginTarget = resolvePostLoginTarget(location);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -52,17 +65,8 @@ export function LoginPage() {
   }
 
   function navigateAfterLogin() {
-    const routeState = location.state as { from?: { pathname?: string; search?: string } } | null;
-    const stateRedirect = routeState?.from?.pathname
-      ? `${routeState.from.pathname}${routeState.from.search ?? ""}`
-      : null;
-    const queryRedirect = new URLSearchParams(location.search).get("next");
-    const safeQueryRedirect = queryRedirect?.startsWith("/oauth/authorize?request=")
-      ? queryRedirect
-      : null;
-    const target = stateRedirect ?? safeQueryRedirect ?? sessionStorage.getItem("post_login_redirect") ?? "/";
     sessionStorage.removeItem("post_login_redirect");
-    navigate(target, { replace: true });
+    navigate(postLoginTarget, { replace: true });
   }
 
   async function submitCredentials(event: FormEvent) {
@@ -148,7 +152,7 @@ export function LoginPage() {
   }
 
   if (getAccessToken() && stage !== "recovery") {
-    return <Navigate to="/" replace />;
+    return <Navigate to={postLoginTarget} replace />;
   }
 
   return (
