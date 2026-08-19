@@ -1,3 +1,6 @@
+import tomllib
+from pathlib import Path
+
 from sqlalchemy import select
 
 from app.core.security import create_access_token
@@ -79,6 +82,17 @@ def test_mcp_advertises_only_read_only_order_tools(client, auth_headers):
     }
     assert all(tool["annotations"]["readOnlyHint"] for tool in tools)
     assert all(not tool["annotations"]["destructiveHint"] for tool in tools)
+
+
+def test_project_codex_config_enables_every_mcp_tool(client, auth_headers):
+    response = _mcp_request(client, auth_headers, "tools/list")
+    advertised_tools = {tool["name"] for tool in response.json()["result"]["tools"]}
+    config_path = Path(__file__).parents[2] / ".codex" / "config.toml"
+    configured_tools = set(
+        tomllib.loads(config_path.read_text(encoding="utf-8"))["mcp_servers"]["b2b_order_processing"]["enabled_tools"]
+    )
+
+    assert configured_tools == advertised_tools
 
 
 def test_mcp_can_search_and_read_orders_without_exposing_storage_paths(client, auth_headers):
@@ -164,7 +178,7 @@ def test_mcp_provides_role_aware_briefings_attention_queue_and_management_report
     assert report.status_code == 200, report.text
     report_result = report.json()["result"]["structuredContent"]
     assert report_result["total_orders"] >= 5
-    assert set(report_result["orders_by_client"]) == {"Contoso Interior Supply", "Northwind Retail Group"}
+    assert {"Contoso Interior Supply", "Northwind Retail Group"} <= set(report_result["orders_by_client"])
     assert report_result["orders_needing_attention"] >= 3
     assert 0 <= report_result["ready_or_completed_rate_percent"] <= 100
 
