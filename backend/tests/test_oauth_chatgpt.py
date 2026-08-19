@@ -36,6 +36,7 @@ def test_oauth_discovery_and_mcp_challenge(client):
     authorization = client.get("/.well-known/oauth-authorization-server")
     assert authorization.status_code == 200
     assert authorization.json()["client_id_metadata_document_supported"] is True
+    assert authorization.json()["registration_endpoint"] == f"{settings.oauth_issuer_url}/register"
     assert authorization.json()["authorization_response_iss_parameter_supported"] is True
     assert authorization.json()["code_challenge_methods_supported"] == ["S256"]
 
@@ -57,6 +58,41 @@ def test_oauth_discovery_and_mcp_challenge(client):
     assert f'resource_metadata="{settings.oauth_issuer_url}/.well-known/oauth-protected-resource/mcp"' in challenged.headers[
         "www-authenticate"
     ]
+
+
+def test_chatgpt_dynamic_client_registration(client):
+    callback = "https://chatgpt.com/connector/oauth/test-connection"
+    registered = client.post(
+        "/register",
+        json={
+            "client_name": "ChatGPT Test Connection",
+            "redirect_uris": [callback],
+            "token_endpoint_auth_method": "none",
+            "grant_types": ["authorization_code", "refresh_token"],
+            "response_types": ["code"],
+            "scope": READ_SCOPE,
+        },
+    )
+    assert registered.status_code == 201, registered.text
+    payload = registered.json()
+    assert payload["client_id"]
+    assert payload["redirect_uris"] == [callback]
+    assert payload["token_endpoint_auth_method"] == "none"
+    assert payload["scope"] == READ_SCOPE
+
+    rejected = client.post(
+        "/register",
+        json={
+            "client_name": "Untrusted Redirect",
+            "redirect_uris": ["https://attacker.example/callback"],
+            "token_endpoint_auth_method": "none",
+            "grant_types": ["authorization_code"],
+            "response_types": ["code"],
+            "scope": READ_SCOPE,
+        },
+    )
+    assert rejected.status_code == 400
+    assert rejected.json()["error"] == "invalid_redirect_uri"
 
 
 def test_chatgpt_authorization_code_and_refresh_flow(client, auth_headers, monkeypatch):

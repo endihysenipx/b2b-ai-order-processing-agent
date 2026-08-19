@@ -39,3 +39,10 @@ class OAuthClientAssertion(Base, IdMixin, TimestampMixin):
     jti_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
     client_id: Mapped[str] = mapped_column(String(512), index=True, nullable=False)
     expires_at: Mapped[int] = mapped_column(BigInteger, index=True, nullable=False)
+
+
+class OAuthDynamicClient(Base, IdMixin, TimestampMixin):
+    __tablename__ = "oauth_dynamic_clients"
+
+    client_id: Mapped[str] = mapped_column(String(512), unique=True, index=True, nullable=False)
+    metadata_json: Mapped[dict] = mapped_column(JSON, nullable=False)

@@ -14,6 +14,7 @@ from mcp.server.auth.provider import (
     AuthorizationParams,
     AuthorizeError,
     RefreshToken,
+    RegistrationError,
     TokenError,
     construct_redirect_uri,
 )
@@ -24,7 +25,7 @@ from sqlalchemy.exc import IntegrityError
 from app.core.config import settings
 from app.core.security import ALGORITHM, create_access_token, decode_token
 from app.db.session import SessionLocal
-from app.models.oauth import OAuthAuthorizationCode, OAuthClientAssertion, OAuthRefreshToken
+from app.models.oauth import OAuthAuthorizationCode, OAuthClientAssertion, OAuthDynamicClient, OAuthRefreshToken
 from app.models.user import User
 
 logger = logging.getLogger(__name__)
@@ -126,7 +127,15 @@ class ChatGptOAuthProvider:
 
     async def get_client(self, client_id: str) -> OAuthClientInformationFull | None:
         if not _is_chatgpt_client_id(client_id):
-            return None
+            with SessionLocal() as db:
+                stored = db.scalar(select(OAuthDynamicClient).where(OAuthDynamicClient.client_id == client_id))
+            if stored is None:
+                return None
+            try:
+                return OAuthClientInformationFull.model_validate(stored.metadata_json)
+            except ValueError:
+                logger.error("Stored OAuth client metadata is invalid: client_id=%s", client_id)
+                return None
         cached = self._client_cache.get(client_id)
         if cached and cached[0] > time.monotonic():
             return cached[1]
@@ -152,7 +161,21 @@ class ChatGptOAuthProvider:
         return client
 
     async def register_client(self, client_info: OAuthClientInformationFull) -> None:
-        raise NotImplementedError("Dynamic client registration is disabled; ChatGPT CIMD is required")
+        if client_info.token_endpoint_auth_method != "none" or client_info.client_secret is not None:
+            raise RegistrationError("invalid_client_metadata", "Only public PKCE clients are supported")
+        if not client_info.redirect_uris or any(not _is_chatgpt_redirect(str(uri)) for uri in client_info.redirect_uris):
+            raise RegistrationError("invalid_redirect_uri", "Redirect URIs must use ChatGPT's HTTPS connector callback")
+        if client_info.scope not in {None, READ_SCOPE}:
+            raise RegistrationError("invalid_client_metadata", "Only orders:read may be requested")
+
+        metadata = client_info.model_copy(update={"scope": READ_SCOPE}).model_dump(mode="json")
+        with SessionLocal() as db:
+            db.add(OAuthDynamicClient(client_id=client_info.client_id, metadata_json=metadata))
+            try:
+                db.commit()
+            except IntegrityError as exc:
+                db.rollback()
+                raise RegistrationError("invalid_client_metadata", "The client ID is already registered") from exc
 
     async def authorize(self, client: OAuthClientInformationFull, params: AuthorizationParams) -> str:
         scopes = params.scopes or [READ_SCOPE]

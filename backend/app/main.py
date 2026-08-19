@@ -6,7 +6,9 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from mcp.server.auth.handlers.authorize import AuthorizationHandler
+from mcp.server.auth.handlers.register import RegistrationHandler
 from mcp.server.auth.handlers.token import TokenHandler
+from mcp.server.auth.settings import ClientRegistrationOptions
 
 from app.api.dependencies import get_current_user
 from app.api.routes import auth, clients, documents, emails, extraction, feedback, health, oauth, orders, reports, users
@@ -124,6 +126,7 @@ def oauth_authorization_server_metadata():
         "issuer": issuer,
         "authorization_endpoint": f"{issuer}/authorize",
         "token_endpoint": f"{issuer}/token",
+        "registration_endpoint": f"{issuer}/register",
         "scopes_supported": ["orders:read"],
         "response_types_supported": ["code"],
         "response_modes_supported": ["query"],
@@ -138,6 +141,14 @@ def oauth_authorization_server_metadata():
 
 
 app.add_route("/authorize", AuthorizationHandler(oauth_provider).handle, methods=["GET", "POST"])
+app.add_route(
+    "/register",
+    RegistrationHandler(
+        oauth_provider,
+        ClientRegistrationOptions(enabled=True, valid_scopes=["orders:read"], default_scopes=["orders:read"]),
+    ).handle,
+    methods=["POST"],
+)
 app.add_route(
     "/token",
     TokenHandler(oauth_provider, oauth_client_authenticator).handle,
