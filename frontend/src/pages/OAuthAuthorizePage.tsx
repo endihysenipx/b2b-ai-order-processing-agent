@@ -28,7 +28,7 @@ export function OAuthAuthorizePage() {
 
   if (!getAccessToken()) {
     sessionStorage.setItem("post_login_redirect", `${location.pathname}${location.search}`);
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
   async function decide(approved: boolean) {
