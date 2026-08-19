@@ -30,6 +30,7 @@ services:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       STORAGE_ROOT: /app/storage
       FRONTEND_URL: ${FRONTEND_URL}
+      PUBLIC_BASE_URL: ${FRONTEND_URL}
     volumes:
       - ./storage:/app/storage
     expose:

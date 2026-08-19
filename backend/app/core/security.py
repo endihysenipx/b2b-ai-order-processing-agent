@@ -24,13 +24,13 @@ def verify_password(password: str, password_hash: str) -> bool:
     return pwd_context.verify(password, password_hash)
 
 
-def _token(payload: dict, expires: datetime) -> str:
+def _token(payload: dict, expires: datetime, *, audience: str | None = None) -> str:
     now = datetime.now(UTC)
     return jwt.encode(
         {
             **payload,
             "iss": settings.token_issuer,
-            "aud": settings.token_audience,
+            "aud": audience or settings.token_audience,
             "iat": now,
             "nbf": now,
             "exp": expires,
@@ -41,11 +41,34 @@ def _token(payload: dict, expires: datetime) -> str:
     )
 
 
-def create_access_token(subject: str, role: str, auth_version: int) -> str:
+def create_access_token(
+    subject: str,
+    role: str,
+    auth_version: int,
+    *,
+    client_id: str | None = None,
+    scopes: list[str] | None = None,
+    resource: str | None = None,
+) -> str:
     expires = datetime.now(UTC) + timedelta(minutes=settings.access_token_expire_minutes)
+    oauth_claims = {}
+    if client_id is not None:
+        oauth_claims = {
+            "client_id": client_id,
+            "scope": " ".join(scopes or []),
+            "resource": resource,
+        }
     return _token(
-        {"sub": subject, "token_type": "access", "role": role, "auth_version": auth_version, "amr": ["pwd", "otp"]},
+        {
+            "sub": subject,
+            "token_type": "access",
+            "role": role,
+            "auth_version": auth_version,
+            "amr": ["pwd", "otp"],
+            **oauth_claims,
+        },
         expires,
+        audience=resource,
     )
 
 
@@ -63,11 +86,18 @@ def create_auth_challenge_token(subject: str, purpose: str, auth_version: int) -
 
 
 def decode_token(token: str) -> dict:
+    unverified = jwt.get_unverified_claims(token)
+    raw_audience = unverified.get("aud")
+    audiences = raw_audience if isinstance(raw_audience, list) else [raw_audience]
+    allowed_audiences = {settings.token_audience, settings.mcp_resource_url}
+    audience = next((candidate for candidate in audiences if candidate in allowed_audiences), None)
+    if audience is None:
+        raise jwt.JWTClaimsError("Invalid audience")
     return jwt.decode(
         token,
         settings.secret_key,
         algorithms=[ALGORITHM],
-        audience=settings.token_audience,
+        audience=audience,
         issuer=settings.token_issuer,
         options={"require_sub": True, "require_exp": True, "require_iat": True},
     )

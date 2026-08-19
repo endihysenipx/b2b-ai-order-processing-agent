@@ -6,14 +6,13 @@ from zoneinfo import ZoneInfo
 
 from jose import JWTError
 from mcp.server import MCPServer
-from mcp.server.auth.middleware.auth_context import AuthContextMiddleware, get_access_token
-from mcp.server.auth.middleware.bearer_auth import BearerAuthBackend, RequireAuthMiddleware
+from mcp.server.auth.middleware.auth_context import get_access_token
 from mcp.server.auth.provider import AccessToken, TokenVerifier
+from mcp.server.auth.settings import AuthSettings
 from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 from pydantic import BaseModel, Field
 from sqlalchemy import func, or_, select
-from starlette.middleware.authentication import AuthenticationMiddleware
 
 from app.core.config import settings
 from app.core.roles import ORGANIZATION_WIDE_READ_ROLES
@@ -215,13 +214,21 @@ class ApplicationJwtVerifier(TokenVerifier):
             role = user.role
             client_ids = [client.id for client in user.clients]
 
+        raw_scopes = payload.get("scope")
+        scopes = raw_scopes.split() if isinstance(raw_scopes, str) else ["orders:read"]
+        resource = payload.get("resource")
+        client_id = payload.get("client_id", "b2b-order-processing-agent")
+        if resource is not None and (resource != settings.mcp_resource_url or "orders:read" not in scopes):
+            return None
+
         return AccessToken(
             token=token,
-            client_id="b2b-order-processing-agent",
-            scopes=["orders:read", f"role:{role}"],
+            client_id=client_id,
+            scopes=[*scopes, f"role:{role}"],
             expires_at=int(expires_at) if expires_at is not None else None,
+            resource=resource,
             subject=user_id,
-            claims={"role": role, "client_ids": client_ids},
+            claims={"iss": payload.get("iss"), "role": role, "client_ids": client_ids},
         )
 
 
@@ -392,6 +399,12 @@ server = MCPServer(
         "Use search_orders and the order investigation tools for drill-down. Respect the access scope returned by each tool. "
         "Never claim that an order was changed, approved, emailed, exported, or sent to ERP. "
         "Use get_order_evidence only when source evidence is necessary for the user's request."
+    ),
+    token_verifier=ApplicationJwtVerifier(),
+    auth=AuthSettings(
+        issuer_url=settings.oauth_issuer_url,
+        resource_server_url=settings.mcp_resource_url,
+        required_scopes=["orders:read"],
     ),
 )
 
@@ -769,15 +782,4 @@ lifespan_app = server.streamable_http_app(
     transport_security=_transport_security(),
 )
 
-# The application currently issues first-party JWTs rather than OAuth tokens.
-# Apply the SDK's bearer-token middleware directly so phase-one MCP clients can
-# reuse those JWTs without advertising an OAuth discovery flow we do not serve.
-http_app = AuthenticationMiddleware(
-    AuthContextMiddleware(
-        RequireAuthMiddleware(
-            lifespan_app,
-            required_scopes=["orders:read"],
-        )
-    ),
-    backend=BearerAuthBackend(ApplicationJwtVerifier()),
-)
+http_app = lifespan_app

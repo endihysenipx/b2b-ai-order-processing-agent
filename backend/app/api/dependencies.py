@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.core.roles import ORGANIZATION_WIDE_READ_ROLES
 from app.core.security import decode_token
 from app.db.session import get_db
@@ -19,6 +20,8 @@ def get_current_user(
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing token")
     try:
         payload = decode_token(credentials.credentials)
+        if payload.get("aud") != settings.token_audience or payload.get("resource") is not None:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token is not valid for the REST API")
         user_id = payload.get("sub")
         if payload.get("token_type") != "access" or "otp" not in payload.get("amr", []):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Two-factor authentication required")
