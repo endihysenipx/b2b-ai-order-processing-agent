@@ -50,4 +50,19 @@ describe("OrderDetailsPage", () => {
     expect(screen.getByDisplayValue("TCK-10001")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Validate order" })).toBeInTheDocument();
   });
+  it("links matching orders and blocks approval while allowing corrections", async () => {
+    const duplicate = { ...orderDetail, duplicate_orders: [{ id: "earlier-order", ticket_number: "EARLIER",
+      commission_number: "PO-123", status: "Approved", created_at: "2026-09-05T12:00:00Z" }] };
+    vi.stubGlobal("fetch", vi.fn((url: string) => Promise.resolve(new Response(
+      JSON.stringify(url.includes("/products") ? [] : duplicate), { status: 200 }))));
+    render(<MemoryRouter initialEntries={["/orders/order-1"]}><Routes>
+      <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
+    </Routes></MemoryRouter>);
+    expect(await screen.findByRole("alert")).toHaveTextContent("Possible duplicate order");
+    expect(screen.getByRole("link", { name: "PO-123 — EARLIER" })).toHaveAttribute("href", "/orders/earlier-order");
+    expect(screen.getByRole("button", { name: "Approve" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Reject" })).toBeEnabled();
+    expect(screen.getByDisplayValue("TCK-10001")).toBeEnabled();
+  });
+
 });

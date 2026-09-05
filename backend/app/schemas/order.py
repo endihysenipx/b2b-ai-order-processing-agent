@@ -77,7 +77,18 @@ class OrderListResponse(BaseModel):
     page_size: int
 
 
+class DuplicateOrderOut(BaseModel):
+    id: str
+    ticket_number: str | None
+    commission_number: str | None
+    status: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
 class OrderDetailOut(OrderListOut):
+    duplicate_orders: list[DuplicateOrderOut] = []
     email: EmailMetadataOut
     items: list[OrderItemOut]
     attachments: list[AttachmentOut]

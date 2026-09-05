@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from decimal import Decimal
 
-from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Numeric, String
+from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Index, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, IdMixin, TimestampMixin
@@ -9,6 +9,7 @@ from app.models.base import Base, IdMixin, TimestampMixin
 
 class Order(IdMixin, TimestampMixin, Base):
     __tablename__ = "orders"
+    __table_args__ = (Index("ix_orders_duplicate_scope", "client_id", "is_demo"),)
 
     email_id: Mapped[str] = mapped_column(ForeignKey("emails.id"))
     client_id: Mapped[str] = mapped_column(ForeignKey("clients.id"))

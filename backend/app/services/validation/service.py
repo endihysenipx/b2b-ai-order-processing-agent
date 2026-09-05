@@ -11,7 +11,8 @@ class ValidationResult:
 
 
 def validate_order_data(order_data: dict, items: list[dict], is_scanned_source: bool = False, *,
-                        db=None, client_id: str | None = None) -> list[ValidationResult]:
+                        db=None, client_id: str | None = None, order_id: str | None = None,
+                        is_demo: bool = False) -> list[ValidationResult]:
     issues: list[ValidationResult] = []
     required_fields = [
         ("ticket_number", "missing ticket number"),
@@ -59,7 +60,17 @@ def validate_order_data(order_data: dict, items: list[dict], is_scanned_source: 
     if not items:
         issues.append(ValidationResult("items", "missing_required_field", "Order has no line items"))
     if db is not None:
+        from app.services.validation.duplicates import duplicate_orders
         from app.services.validation.master_data import validate_master_data
 
         issues.extend(validate_master_data(db, client_id, order_data, items))
+        matches = duplicate_orders(db, client_id, order_data.get("commission_number"),
+                                   order_id=order_id, is_demo=is_demo)
+        if matches:
+            issues.append(ValidationResult(
+                "commission_number", "duplicate_order",
+                "Repeated customer PO / commission number. Matching order(s): "
+                + ", ".join(match.id for match in matches)
+                + ". Correct the reference or reject the extra order before approval or export.",
+            ))
     return issues

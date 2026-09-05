@@ -37,6 +37,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   const [catalogError, setCatalogError] = useState("");
   const [catalogLoading, setCatalogLoading] = useState(true);
   const clientId = order?.client.id;
+  const hasDuplicates = Boolean(order?.duplicate_orders?.length);
   const hasDrafts = headerDirty || dirtyLines.size > 0;
 
   useEffect(() => {
@@ -64,7 +65,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   }
 
   function headerIssues(field: string) {
-    const issues = order?.validation_issues.filter(issue => !issue.is_resolved && issue.field_name === field) ?? [];
+    const issues = order?.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates) && issue.field_name === field) ?? [];
     return issues.length ? <span className="error-message">{issues.map(issue => issue.message).join(" ")}</span> : null;
   }
 
@@ -152,6 +153,16 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         <StatusBadge status={order.status} />
       </div>
       {error && <p role="alert" className="error-message">{error}</p>}
+      {hasDuplicates && <section className="section-panel" role="alert">
+        <h3>Possible duplicate order</h3>
+        <p>This customer's PO / commission number appears on another order. Approval and XML export are blocked.
+          Compare the orders, then correct the reference or reject the extra order. Refresh after resolving another order.</p>
+        <ul>{order.duplicate_orders?.map(match => <li key={match.id}>
+          <Link to={`/orders/${match.id}`}>{match.commission_number} — {match.ticket_number || match.id}</Link>
+          {" — "}{match.status}{" — "}{new Date(match.created_at).toLocaleString()}
+        </li>)}</ul>
+        <button onClick={() => void loadOrder()} disabled={busy || hasDrafts}>Refresh duplicate check</button>
+      </section>}
       {message && <p className="success-message">{message}</p>}
       {hasDrafts && <p role="status">Save or cancel your corrections before validating, approving, or exporting this order.</p>}
       <section className="detail-grid">
@@ -299,10 +310,10 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         </div>
         <div className="section-panel">
           <h3>Validation Issues</h3>
-          {order.validation_issues.filter(issue => !issue.is_resolved).length === 0 ? (
+          {order.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates)).length === 0 ? (
             <p className="empty-state">No open validation issues.</p>
           ) : (
-            order.validation_issues.filter(issue => !issue.is_resolved).map((issue) => (
+            order.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates)).map((issue) => (
               <p key={issue.id}>
                 <strong>{issue.severity === "error" ? "Needs correction" : "Review"} — {issue.field_name}</strong>: {issue.message}
                 {/items\[(\d+)\]/.test(issue.field_name) && <a href={`#order-line-${issue.field_name.match(/items\[(\d+)\]/)?.[1]}`}> Go to line</a>}
@@ -316,9 +327,9 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         <h3>XML Status</h3>
         <fieldset disabled={busy || hasDrafts}><div className="action-row">
           <button onClick={() => action("validate", "Validation refreshed.")}>Validate order</button>
-          <button onClick={() => action("approve", "Order approved.")}>Approve</button>
-          {isAdmin && <button onClick={() => action("generate-xml", "XML generated.")}>Generate XML</button>}
-          {isAdmin && <button onClick={() => action("send-xml", "XML sent.")}>Send XMLs</button>}
+          <button disabled={hasDuplicates} onClick={() => action("approve", "Order approved.")}>Approve</button>
+          {isAdmin && <button disabled={hasDuplicates} onClick={() => action("generate-xml", "XML generated.")}>Generate XML</button>}
+          {isAdmin && <button disabled={hasDuplicates} onClick={() => action("send-xml", "XML sent.")}>Send XMLs</button>}
           <button
             onClick={() =>
               apiRequest(`/orders/${order.id}/reject`, { method: "POST", body: JSON.stringify({ reason: "Rejected during review" }) }).then(loadOrder)

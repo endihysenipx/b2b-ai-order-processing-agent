@@ -724,7 +724,7 @@ def get_validation_issues(order_id: str) -> ValidationResult:
                 for item in order.items
             ],
             is_scanned_source=order.is_scanned_source,
-            db=db, client_id=order.client_id,
+            db=db, client_id=order.client_id, order_id=order.id, is_demo=order.is_demo,
         )
         return ValidationResult(
             order_id=order.id,

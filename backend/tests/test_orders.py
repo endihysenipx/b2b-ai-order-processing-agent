@@ -33,7 +33,7 @@ def test_order_details_returns_items(client, auth_headers):
 
 
 def test_xml_generation_creates_two_files(client, auth_headers):
-    orders = client.get("/api/v1/orders?status=OK", headers=auth_headers).json()["items"]
+    orders = client.get("/api/v1/orders?search=TCK-10001", headers=auth_headers).json()["items"]
     order_id = orders[0]["id"]
     response = client.post(f"/api/v1/orders/{order_id}/generate-xml", headers=auth_headers)
 

@@ -101,7 +101,7 @@ def test_gmail_status_endpoint_does_not_expose_password(client, auth_headers):
 
 
 def test_order_intelligence_upload_creates_explainable_idempotent_order(client, auth_headers):
-    content = build_gmail_order("<order-intelligence-upload@example.com>")
+    content = build_gmail_order("<order-intelligence-upload@example.com>").replace(b"UH4Z6A-4", b"UH4Z6A-5")
     files = {"file": ("mentor-demo.eml", content, "message/rfc822")}
 
     response = client.post("/api/v1/emails/intelligence/import", files=files, headers=auth_headers)

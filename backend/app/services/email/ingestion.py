@@ -343,7 +343,7 @@ class GmailIngestionService:
                     for item in items
                 ],
                 is_scanned_source=is_scanned,
-                db=db, client_id=order.client_id,
+                db=db, client_id=order.client_id, order_id=order.id, is_demo=order.is_demo,
             )
             if not items:
                 issues.append(

@@ -106,7 +106,8 @@ def extract_intake_order(
         order.validation_issues = [ValidationIssue(
             field_name=issue.field_name, issue_type=issue.issue_type,
             message=issue.message, severity=issue.severity,
-        ) for issue in validate_order_data(header, items, order.is_scanned_source, db=db, client_id=client.id)]
+        ) for issue in validate_order_data(header, items, order.is_scanned_source, db=db, client_id=client.id,
+                                           order_id=order.id, is_demo=order.is_demo)]
         if not items:
             order.validation_issues.append(ValidationIssue(
                 field_name="items", issue_type="missing_required_field",

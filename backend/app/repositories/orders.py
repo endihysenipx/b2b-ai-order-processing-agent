@@ -21,7 +21,13 @@ def get_order(db: Session, order_id: str, accessible_client_ids: set[str] | None
     query = select(Order).options(*order_detail_options()).where(Order.id == order_id)
     if accessible_client_ids is not None:
         query = query.where(Order.client_id.in_(accessible_client_ids) if accessible_client_ids else false())
-    return db.scalar(query)
+    order = db.scalar(query)
+    if order is not None:
+        from app.services.validation.duplicates import duplicate_orders
+
+        order.duplicate_orders = duplicate_orders(db, order.client_id, order.commission_number,
+                                                 order_id=order.id, is_demo=order.is_demo)
+    return order
 
 
 def build_order_query(

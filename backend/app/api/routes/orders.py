@@ -47,7 +47,7 @@ def refresh_validation(db, order):
                                              "delivery_address", "total_price", "currency"]},
         [{key: getattr(item, key) for key in ["article_number", "quantity", "unit_price", "total_price", "currency"]}
          for item in order.items],
-        is_scanned_source=order.is_scanned_source, db=db, client_id=order.client_id,
+        is_scanned_source=order.is_scanned_source, db=db, client_id=order.client_id, order_id=order.id, is_demo=order.is_demo,
     )
     # Retain extraction/provenance warnings; replace only prior validation findings.
     retained = [issue for issue in order.validation_issues
@@ -62,9 +62,15 @@ def refresh_validation(db, order):
 
 def require_valid_master_data(db, order, actor):
     from app.models.client import Client
+    from app.services.validation.duplicates import duplicate_orders
 
     customer = db.get(Client, order.client_id)
-    if customer and customer.master_data_enabled:
+
+    matches = duplicate_orders(db, order.client_id, order.commission_number,
+                               order_id=order.id, is_demo=order.is_demo)
+    if matches or any(i.issue_type == "duplicate_order" for i in order.validation_issues) or (
+        customer and customer.master_data_enabled
+    ):
         before = snapshot(order, ORDER_FIELDS)
         previous = (order.status, order.approved_by_user_id, order.approved_at)
         issues = refresh_validation(db, order)
