@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { apiRequest, getAuthenticatedUser } from "../api/client";
 import { StatusBadge } from "../components/common/StatusBadge";
@@ -148,6 +148,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
           <span className="eyebrow">Order {order.id.slice(0, 8)}</span>
           <h2>{order.ticket_number} {order.is_demo && <span className="demo-badge">Demo data</span>}</h2>
         </div>
+        <Link to={`/history?order_id=${encodeURIComponent(order.id)}`}>View change history</Link>
         <StatusBadge status={order.status} />
       </div>
       {error && <p role="alert" className="error-message">{error}</p>}

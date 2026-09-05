@@ -1024,3 +1024,9 @@ pre {
 .order-line-editor input[aria-invalid="true"] { border-color: #b42318; }
 .order-line-editor input[readonly] { background: #f3f4f6; }
 .order-line-editor .error-message { font-size: 0.875rem; }
+
+.history-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.history-filters label { display: grid; gap: 5px; }
+.history-entry { border-top: 1px solid #dbe2ea; padding: 16px 0; overflow-x: auto; }
+.history-value { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 120px; max-width: 420px; vertical-align: top; }
+.history-identifiers { font-size: 0.8rem; overflow-wrap: anywhere; color: #536176; }

@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 import { MasterDataPage } from "../src/pages/MasterDataPage";
 import { orderList } from "./testData";
 
@@ -15,7 +16,7 @@ describe("MasterDataPage", () => {
       return Promise.resolve(new Response(JSON.stringify(data), { status: 200 }));
     });
     vi.stubGlobal("fetch", fetchMock);
-    render(<MasterDataPage />);
+    render(<MemoryRouter><MasterDataPage /></MemoryRouter>);
     fireEvent.change(await screen.findByLabelText("Approved delivery addresses (one per line)"), { target: { value: "Warehouse A" } });
     fireEvent.click(screen.getByRole("button", { name: "Save customer" }));
     expect(await screen.findByText("Customer details saved.")).toBeInTheDocument();
@@ -24,7 +25,7 @@ describe("MasterDataPage", () => {
 
   it("shows a load error", async () => {
     vi.stubGlobal("fetch", vi.fn(() => Promise.resolve(new Response(JSON.stringify({ detail: "Service unavailable" }), { status: 503 }))));
-    render(<MasterDataPage />);
+    render(<MemoryRouter><MasterDataPage /></MemoryRouter>);
     expect(await screen.findByRole("alert")).toHaveTextContent("Service unavailable");
   });
 });

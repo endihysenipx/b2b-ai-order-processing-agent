@@ -1,4 +1,5 @@
 from app.models.attachment import Attachment
+from app.models.audit_event import AuditEvent
 from app.models.base import Base
 from app.models.client import Client
 from app.models.email import Email
@@ -13,6 +14,7 @@ from app.models.validation_issue import ValidationIssue
 
 __all__ = [
     "Attachment",
+    "AuditEvent",
     "Base",
     "Product",
     "Client",

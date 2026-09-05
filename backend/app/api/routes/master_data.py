@@ -11,6 +11,7 @@ from app.models.client import Client
 from app.models.product import Product
 from app.schemas.client import ClientOut
 from app.schemas.master_data import CustomerUpdate, ProductInput, ProductOut
+from app.services.audit import CUSTOMER_FIELDS, PRODUCT_FIELDS, record_change, snapshot
 
 router = APIRouter(prefix="/clients", tags=["master data"])
 logger = logging.getLogger(__name__)
@@ -29,8 +30,11 @@ def scoped_client(db, user, client_id):
 @router.put("/{client_id}/customer-data", response_model=ClientOut)
 def update_customer(client_id: str, payload: CustomerUpdate, db: Session = Depends(get_db), user=Depends(require_admin)):
     client = scoped_client(db, user, client_id)
+    db.refresh(client, with_for_update=True)
+    before = snapshot(client, CUSTOMER_FIELDS)
     for key, value in payload.model_dump().items():
         setattr(client, key, value)
+    record_change(db, user, client, "customer", client, before, snapshot(client, CUSTOMER_FIELDS), "customer_updated")
     db.commit()
     logger.info("Customer data updated actor=%s client=%s", user.id, client_id)
     return client
@@ -43,9 +47,12 @@ def list_products(client_id: str, db: Session = Depends(get_db), user=Depends(ge
 
 
 def save_product(db, user, client_id, payload, product=None):
-    scoped_client(db, user, client_id)
+    client = scoped_client(db, user, client_id)
     # Serialize catalog writes per client so aliases cannot race with another admin's save.
     db.scalar(select(Client).where(Client.id == client_id).with_for_update())
+    if product is not None:
+        db.refresh(product)
+    before = snapshot(product, PRODUCT_FIELDS) if product is not None else {}
     identifiers = set([payload.sku, *payload.aliases])
     for existing in db.scalars(select(Product).where(Product.client_id == client_id)):
         if product is not None and existing.id == product.id:
@@ -60,6 +67,8 @@ def save_product(db, user, client_id, payload, product=None):
         values["stock_updated_at"] = values["stock_updated_at"].replace(tzinfo=None)
     for key, value in values.items():
         setattr(product, key, value)
+    record_change(db, user, client, "product", product, before, snapshot(product, PRODUCT_FIELDS),
+                  "product_updated" if before else "product_created")
     try:
         db.commit()
     except IntegrityError as exc:

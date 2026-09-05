@@ -23,11 +23,22 @@ from app.schemas.order import (
     XmlActionResponse,
 )
 from app.schemas.order_item import OrderItemUpdate
+from app.services.audit import ITEM_FIELDS, ORDER_FIELDS, order_change, record_change, snapshot
 from app.services.decision.service import decide_order_status
 from app.services.validation.service import validate_order_data
 from app.services.xml.service import generate_header_xml, generate_items_xml, simulate_send_xml
 
 router = APIRouter(prefix="/orders", tags=["orders"])
+
+
+def lock_order(db, order_id, user):
+    query = select(Order.id).where(Order.id == order_id)
+    allowed = accessible_client_ids(user)
+    if allowed is not None:
+        query = query.where(Order.client_id.in_(allowed))
+    if db.scalar(query.with_for_update()) is None:
+        return None
+    return get_order(db, order_id, allowed)
 
 
 def refresh_validation(db, order):
@@ -49,14 +60,16 @@ def refresh_validation(db, order):
     return issues
 
 
-def require_valid_master_data(db, order):
+def require_valid_master_data(db, order, actor):
     from app.models.client import Client
 
     customer = db.get(Client, order.client_id)
     if customer and customer.master_data_enabled:
+        before = snapshot(order, ORDER_FIELDS)
         previous = (order.status, order.approved_by_user_id, order.approved_at)
         issues = refresh_validation(db, order)
         if any(issue.severity == "error" for issue in issues):
+            order_change(db, actor, order, before, "validation_blocked_action")
             db.commit()
             raise HTTPException(409, "Order has validation errors. Resolve them and validate again before approval or export.")
         order.status, order.approved_by_user_id, order.approved_at = previous
@@ -106,13 +119,15 @@ def update_order(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ) -> Order:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    before = snapshot(order, ORDER_FIELDS)
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(order, field, value)
     refresh_validation(db, order)
     order.generated_xmls.clear()
+    order_change(db, current_user, order, before, "order_corrected")
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -125,12 +140,14 @@ def update_order_item(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ) -> Order:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    before = snapshot(order, ORDER_FIELDS)
     item = db.get(OrderItem, item_id)
     if item is None or item.order_id != order_id:
         raise HTTPException(status_code=404, detail="Order item not found")
+    item_before = snapshot(item, ITEM_FIELDS)
     values = payload.model_dump(exclude_unset=True)
     for field, value in values.items():
         setattr(item, field, value)
@@ -145,6 +162,11 @@ def update_order_item(
         item.total_price = None
     refresh_validation(db, order)
     order.generated_xmls.clear()
+    record_change(db, current_user, order.client, "order_item", item, item_before, snapshot(item, ITEM_FIELDS),
+                  "line_corrected", order_id=order.id)
+    order_change(db, current_user, order, before,
+                 "approval_cleared_by_correction" if before["approved_at"] or before["approved_by_user_id"]
+                 else "order_revalidated_after_correction")
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -155,13 +177,15 @@ def approve_order(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ) -> Order:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    require_valid_master_data(db, order)
+    before = snapshot(order, ORDER_FIELDS)
+    require_valid_master_data(db, order, current_user)
     order.status = "Approved"
     order.approved_by_user_id = current_user.id
     order.approved_at = datetime.now(UTC).replace(tzinfo=None)
+    order_change(db, current_user, order, before, "order_approved")
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -175,9 +199,10 @@ def reject_order(
 ) -> Order:
     if not payload.reason.strip():
         raise HTTPException(status_code=400, detail="Rejection reason is required")
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    before = snapshot(order, ORDER_FIELDS)
     order.status = "Rejected"
     issue = FeedbackIssue(
         order_id=order.id,
@@ -187,6 +212,7 @@ def reject_order(
         status="Open",
     )
     db.add(issue)
+    order_change(db, current_user, order, before, "order_rejected")
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -219,10 +245,12 @@ def validate_order(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ) -> list[dict]:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    before = snapshot(order, ORDER_FIELDS)
     issues = refresh_validation(db, order)
+    order_change(db, current_user, order, before, "order_validated")
     db.commit()
     return [issue.__dict__ for issue in issues]
 
@@ -233,10 +261,11 @@ def generate_xml(
     db: Session = Depends(get_db),
     current_user=Depends(require_admin),
 ) -> XmlActionResponse:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    require_valid_master_data(db, order)
+    before = snapshot(order, ORDER_FIELDS)
+    require_valid_master_data(db, order, current_user)
     header_path = generate_header_xml(order)
     items_path = generate_items_xml(order)
     now = datetime.now(UTC).replace(tzinfo=None)
@@ -254,6 +283,7 @@ def generate_xml(
                 GeneratedXML(order_id=order.id, xml_type=xml_type, file_path=path, status="generated", generated_at=now)
             )
     order.status = "ERP Ready"
+    order_change(db, current_user, order, before, "xml_generated")
     db.commit()
     return XmlActionResponse(
         status="ERP Ready", message="Header and Items XML generated.", files=[header_path, items_path]
@@ -266,10 +296,11 @@ def send_xml(
     db: Session = Depends(get_db),
     current_user=Depends(require_admin),
 ) -> XmlActionResponse:
-    order = get_order(db, order_id, accessible_client_ids(current_user))
+    order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    require_valid_master_data(db, order)
+    before = snapshot(order, ORDER_FIELDS)
+    require_valid_master_data(db, order, current_user)
     if len(order.generated_xmls) < 2:
         raise HTTPException(status_code=400, detail="Generate Header and Items XML before sending")
     simulated = simulate_send_xml(order)
@@ -278,6 +309,7 @@ def send_xml(
         xml.status = "sent"
         xml.sent_at = sent_at
     order.status = "XMLs Sent"
+    order_change(db, current_user, order, before, "xml_sent")
     db.commit()
     return XmlActionResponse(
         status="XMLs Sent", message=simulated["message"], files=[xml.file_path for xml in order.generated_xmls]

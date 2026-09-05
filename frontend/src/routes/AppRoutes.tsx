@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from "rea
 import { getAccessToken } from "../api/client";
 import { AppLayout } from "../components/layout/AppLayout";
 import { MasterDataPage } from "../pages/MasterDataPage";
+import { ChangeHistoryPage } from "../pages/ChangeHistoryPage";
 import { ClientsPage } from "../pages/ClientsPage";
 import { DataExportPage } from "../pages/DataExportPage";
 import { DemoDataPage } from "../pages/DemoDataPage";
@@ -35,6 +36,7 @@ export function AppRoutes() {
             <Route path="/demo-data" element={<DemoDataPage />} />
             <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
             <Route path="/master-data" element={<MasterDataPage />} />
+            <Route path="/history" element={<ChangeHistoryPage />} />
             <Route path="/clients" element={<ClientsPage />} />
             <Route path="/data-export" element={<DataExportPage />} />
             <Route path="/feedback" element={<FeedbackIssuesPage />} />

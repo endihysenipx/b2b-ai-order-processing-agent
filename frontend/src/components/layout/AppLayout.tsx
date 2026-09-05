@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { ClipboardList, Database, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Sparkles, Users } from "lucide-react";
+import { ClipboardList, Database, History, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Sparkles, Users } from "lucide-react";
 import { clearAccessToken, getAuthenticatedUser } from "../../api/client";
 import type { User } from "../../types/user";
 
@@ -9,6 +9,7 @@ const navItems = [
   { to: "/intelligence", label: "Order Intelligence", icon: ScanSearch, adminOnly: true },
   { to: "/demo-data", label: "Demo Data", icon: Sparkles, adminOnly: true },
   { to: "/master-data", label: "Customer & Product Data", icon: Database },
+  { to: "/history", label: "Change History", icon: History },
   { to: "/clients", label: "Clients", icon: Database },
   { to: "/data-export", label: "Data Export", icon: FileDown },
   { to: "/feedback", label: "Feedback & Issues", icon: MessageSquareWarning },
@@ -55,7 +56,7 @@ export function AppLayout() {
             <h1>B2B AI Order Processing Agent</h1>
           </div>
           <div className="session-controls">
-            <span>{user?.full_name} · {user?.role}</span>
+            <span>{user?.full_name} Â· {user?.role}</span>
             <button type="button" onClick={logout}>Log out</button>
           </div>
         </header>

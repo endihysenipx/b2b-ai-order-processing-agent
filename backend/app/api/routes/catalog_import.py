@@ -10,9 +10,11 @@ from sqlalchemy.orm import Session
 from app.api.dependencies import require_admin
 from app.api.routes.master_data import scoped_client
 from app.db.session import get_db
+from app.models.base import new_id
 from app.models.client import Client
 from app.models.product import Product
 from app.schemas.master_data import ProductInput
+from app.services.audit import PRODUCT_FIELDS, record_change, snapshot
 from app.services.catalog_import import COLUMNS, MAX_BYTES, ImportProblem, preview_rows, preview_token, verify_preview
 
 router = APIRouter(prefix="/clients", tags=["catalog import"])
@@ -54,7 +56,7 @@ def preview(client_id: str, file: Annotated[UploadFile, File()],
 @router.post("/{client_id}/catalog-import/confirm")
 def confirm(client_id: str, file: Annotated[UploadFile, File()], token: Annotated[str, Form(max_length=4096)],
             confirmed: Annotated[bool, Form()], db: Session = Depends(get_db), user=Depends(require_admin)):
-    scoped_client(db, user, client_id)
+    client = scoped_client(db, user, client_id)
     if not confirmed:
         raise HTTPException(400, "Explicit confirmation is required.")
     content = uploaded_content(file)
@@ -70,11 +72,13 @@ def confirm(client_id: str, file: Annotated[UploadFile, File()], token: Annotate
         raise HTTPException(409, str(exc)) from exc
     existing = {p.sku: p for p in products}
     counts = {"created": 0, "updated": 0, "unchanged": 0}
+    batch_id = new_id()
     for row in rows:
         if row["action"] == "unchanged":
             counts["unchanged"] += 1
             continue
         product = existing.get(row["sku"])
+        before = snapshot(product, PRODUCT_FIELDS) if product is not None else {}
         if product is None:
             product = Product(client_id=client_id)
             db.add(product)
@@ -86,6 +90,8 @@ def confirm(client_id: str, file: Annotated[UploadFile, File()], token: Annotate
             values["stock_updated_at"] = values["stock_updated_at"].replace(tzinfo=None)
         for key, value in values.items():
             setattr(product, key, value)
+        record_change(db, user, client, "product", product, before, snapshot(product, PRODUCT_FIELDS),
+                      "catalog_import", batch_id=batch_id)
     try:
         db.commit()
     except IntegrityError as exc:
