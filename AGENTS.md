@@ -9,7 +9,7 @@
 - Treat changes to `.github/workflows/ci.yml`, `docker-compose.prod.yml`, frontend Nginx configuration, health checks, certificates, ports, volumes, and production environment variables as production-sensitive.
 - Never commit credentials, private keys, `.env` contents, access tokens, or customer/order data. Keep production secrets in GitHub Actions secrets and the server's protected environment configuration.
 - Do not bypass the GitHub Actions deployment path or make direct production/Lightsail changes unless the user explicitly requests it.
-- Before changing deployment behavior, preserve the existing CI gates, deployment concurrency lock, strict SSH host verification, health verification, and rollback behavior.
+- Before changing deployment behavior, preserve the existing CI gates, deployment concurrency lock, strict SSH host verification, health verification, and rollback behavior. .
 
 ## Development and verification
 
