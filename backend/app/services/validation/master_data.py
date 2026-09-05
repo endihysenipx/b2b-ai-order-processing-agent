@@ -37,6 +37,7 @@ def validate_master_data(db, client_id, header, items):
     lookup = {key: product for product in products for key in [product.sku, *product.aliases]}
     quantities = defaultdict(int)
     matched = {}
+    matched_lines = defaultdict(list)
     for index, item in enumerate(items, 1):
         prefix = f"items[{index}]"
         product = lookup.get(item.get("article_number"))
@@ -44,6 +45,7 @@ def validate_master_data(db, client_id, header, items):
             flag(prefix + ".article_number", "unknown_product", "Article is not in the customer catalog.")
             continue
         matched[product.id] = product
+        matched_lines[product.id].append(prefix)
         if not product.is_active:
             flag(prefix + ".article_number", "inactive_product", f"Product {product.sku} is inactive.")
         quantity = item.get("quantity") or 0
@@ -65,9 +67,14 @@ def validate_master_data(db, client_id, header, items):
         if stamp and stamp.tzinfo:
             stamp = stamp.astimezone(UTC).replace(tzinfo=None)
         if product.on_hand is None or stamp is None:
-            flag("items", "stock_unknown", f"Stock is unknown for {product.sku}.")
+            kind, message = "stock_unknown", f"Stock is unknown for {product.sku}."
         elif now - stamp > timedelta(hours=24) or stamp > now:
-            flag("items", "stock_stale", f"Stock for {product.sku} needs a fresh snapshot (maximum age 24 hours).")
+            kind, message = "stock_stale", f"Stock for {product.sku} needs a fresh snapshot (maximum age 24 hours)."
         elif quantities[product_id] > product.on_hand - product.reserved:
-            flag("items", "stock_shortage", f"{product.sku}: requested {quantities[product_id]}, available {product.on_hand - product.reserved} at {product.warehouse}.")
+            kind = "stock_shortage"
+            message = f"{product.sku}: requested {quantities[product_id]}, available {product.on_hand - product.reserved} at {product.warehouse}."
+        else:
+            continue
+        for prefix in matched_lines[product_id]:
+            flag(prefix + ".quantity", kind, message)
     return issues

@@ -1,4 +1,5 @@
 from datetime import UTC, date, datetime
+from decimal import Decimal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select
@@ -130,10 +131,18 @@ def update_order_item(
     item = db.get(OrderItem, item_id)
     if item is None or item.order_id != order_id:
         raise HTTPException(status_code=404, detail="Order item not found")
-    for field, value in payload.model_dump(exclude_unset=True).items():
+    values = payload.model_dump(exclude_unset=True)
+    for field, value in values.items():
         setattr(item, field, value)
     if item.quantity is not None and item.unit_price is not None:
-        item.total_price = item.quantity * item.unit_price
+        total = item.quantity * item.unit_price
+        if total >= Decimal("10000000000"):
+            raise HTTPException(422, "Line total exceeds the supported maximum of 9,999,999,999.99.")
+        if values.get("total_price") is not None and values["total_price"] != total:
+            raise HTTPException(422, "Line total must equal quantity multiplied by unit price.")
+        item.total_price = total
+    elif "total_price" not in values and {"quantity", "unit_price"}.intersection(values):
+        item.total_price = None
     refresh_validation(db, order)
     order.generated_xmls.clear()
     db.commit()

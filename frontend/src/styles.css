@@ -1017,3 +1017,10 @@ pre {
 .master-data-page input[type="checkbox"] { width: auto; }
 .master-data-page textarea { min-height: 100px; }
 .master-data-page .section-panel { overflow-x: auto; margin-bottom: 16px; }
+
+.order-line-editor { border-top: 1px solid #dbe2ea; padding: 18px 0; scroll-margin-top: 20px; }
+.order-line-editor fieldset, .edit-form fieldset, .section-panel > fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.order-line-editor .catalog-match { background: #f0f5fa; padding: 12px; border-radius: 8px; margin: 12px 0; }
+.order-line-editor input[aria-invalid="true"] { border-color: #b42318; }
+.order-line-editor input[readonly] { background: #f3f4f6; }
+.order-line-editor .error-message { font-size: 0.875rem; }
