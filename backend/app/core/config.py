@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     textract_auto_processing_enabled: bool = False
     textract_poll_interval_seconds: int = Field(default=15, ge=5, le=3600)
     textract_max_jobs_per_poll: int = Field(default=20, ge=1, le=200)
-    ai_provider: Literal["mock", "bedrock"] = "mock"
+    ai_provider: Literal["mock", "bedrock", "openai"] = "mock"
     bedrock_model_id: str | None = None
     bedrock_max_tokens: int = Field(default=4096, ge=1, le=65536)
     bedrock_temperature: float = Field(default=0, ge=0, le=1)
@@ -47,6 +47,8 @@ class Settings(BaseSettings):
     gmail_mark_as_read: bool = True
     openai_api_key: str | None = None
     openai_model: str | None = None
+    openai_max_output_tokens: int = Field(default=8192, ge=256, le=65536)
+    openai_timeout_seconds: float = Field(default=60, ge=1, le=180)
     service_name: str = Field(default="b2b-ai-order-processing-agent")
 
     @model_validator(mode="after")

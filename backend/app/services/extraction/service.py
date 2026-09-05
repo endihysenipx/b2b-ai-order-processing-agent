@@ -240,6 +240,10 @@ def build_ai_extraction_service(
     *,
     bedrock_client: Any | None = None,
 ) -> AIExtractionService:
+    if settings.ai_provider == "openai":
+        from app.services.extraction.openai_service import OpenAIExtractionService
+
+        return OpenAIExtractionService(settings)
     if settings.ai_provider == "bedrock":
         return BedrockAIExtractionService(
             settings,

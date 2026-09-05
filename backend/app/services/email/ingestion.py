@@ -29,6 +29,7 @@ from app.services.decision.service import decide_order_status
 from app.services.email.gmail import GmailGateway, GmailImapGateway, GmailMessage
 from app.services.email.intake import EmailIntakeParseError, EmailIntakePreview, IntakeNextAction, parse_email_intake
 from app.services.email.profile_detection import ClientProfile
+from app.services.extraction.intake import extract_intake_order
 from app.services.validation.service import ValidationResult, validate_order_data
 
 logger = logging.getLogger(__name__)
@@ -183,7 +184,12 @@ class GmailIngestionService:
                 return self._build_intelligence_result(db, existing, preview, parse_error, duplicate=True)
 
             attachments = self._store_message_files(stored_email, parsed, gmail_message.content)
-            self._create_orders(db, stored_email, client, preview, attachments)
+            created_orders = self._create_orders(db, stored_email, client, preview, attachments)
+            if (
+                self.settings.ai_provider == "openai" and client is not None
+                and preview is not None and preview.message_type.value == "order"
+            ):
+                extract_intake_order(db, self.settings, stored_email, client, created_orders, attachments)
             db.flush()
             self.textract_processor.start_for_attachments(db, attachments)
             db.flush()

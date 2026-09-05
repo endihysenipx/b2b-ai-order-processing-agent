@@ -6,7 +6,7 @@ AI-powered B2B order-processing platform that classifies customer order emails, 
 
 This Week 3 implementation provides the project foundation and a working local vertical slice. A user can log in, view seeded orders, open an order, edit order data, approve it, generate Header and Items XML files, and separately simulate XML sending.
 
-Amazon Bedrock structured extraction and AWS Textract/S3 document analysis are available alongside mock or simulated Outlook, OCR, and ERP boundaries.
+OpenAI structured extraction is the primary AI integration. Amazon Bedrock remains optional, and AWS Textract/S3 document analysis is available alongside mock or simulated Outlook, OCR, and ERP boundaries.
 
 ## Problem
 
@@ -23,14 +23,14 @@ The system stores client-specific prompts and rules, processes order evidence in
 - PostgreSQL schema with Alembic migration and realistic seed data.
 - React + TypeScript dashboard with Overview, Orders, Order Details, Clients, Data Export, Feedback & Issues, Users, and Settings pages.
 - Explainable Order Intelligence workflow for safe `.eml` uploads, duplicate-safe persistence, client detection, structured extraction, validation timelines, human-review routing, and unsent clarification drafts.
-- Selectable Amazon Bedrock or mock AI extraction service and mock email service interface.
+- Selectable OpenAI, Amazon Bedrock, or mock AI extraction service and mock email service interface.
 - Validation and decision services aligned with the Week 2 design.
 - Separate approval, XML generation, and simulated XML sending actions.
 - Docker Compose environment for PostgreSQL, backend, and frontend.
 
 ## Architecture Summary
 
-The MVP is a modular FastAPI monolith with a React dashboard, PostgreSQL database, and local file storage. AI extraction is isolated behind a provider interface with Amazon Bedrock and mock implementations; other external dependencies remain behind replaceable service interfaces.
+The MVP is a modular FastAPI monolith with a React dashboard, PostgreSQL database, and local file storage. AI extraction is isolated behind a provider interface with OpenAI, Amazon Bedrock, and mock implementations; other external dependencies remain behind replaceable service interfaces.
 
 ## Technology Stack
 
@@ -85,7 +85,7 @@ The backend container waits for PostgreSQL, applies Alembic migrations, creates 
 
 ## Environment Variables
 
-Use `.env.example` as the source of placeholders. Do not commit `.env`. Microsoft Graph and OpenAI values remain optional placeholders.
+Use `.env.example` as the source of placeholders. Do not commit `.env`. Microsoft Graph values remain optional placeholders.
 
 ### Authentication and authorization
 
@@ -100,7 +100,43 @@ Every active user must enroll a TOTP authenticator app at first login. Password 
 - Existing operator visibility is converted to explicit client grants by the migration.
 - Browser tokens are held in session storage and cleared on logout or when the tab session ends.
 
-### Amazon Bedrock extraction
+### OpenAI extraction (primary)
+
+Configure the backend's protected `.env` with:
+
+```dotenv
+AI_PROVIDER=openai
+OPENAI_API_KEY=your-api-key
+OPENAI_MODEL=your-accessible-structured-output-model
+OPENAI_MAX_OUTPUT_TOKENS=8192
+OPENAI_TIMEOUT_SECONDS=60
+```
+
+Choose an available model that supports the Responses API and strict Structured Outputs.
+The backend uses the existing HTTPX dependency to call `https://api.openai.com/v1/responses`.
+It requests `store=false`, validates the response schema and evidence filenames, and returns
+safe errors for access failures, rate limits, timeouts, refusals, and incomplete output.
+It never substitutes mock results when OpenAI fails. No Bedrock credentials or quota are
+needed for this provider. Keep `AI_PROVIDER=mock` for offline development and tests.
+
+The authenticated `POST /api/v1/extraction/order` endpoint accepts the text request shown
+below and returns the existing field/source/confidence response format.
+
+Gmail and Order Intelligence imports also run OpenAI extraction for classified purchase
+orders with a matched client and at most one parsed order. Email text, text-based PDFs,
+UTF-8 TXT, and CSV attachments are supplied as evidence. Validated header and item values
+are saved to the order; provenance is stored beside the original email in protected storage.
+These orders always enter Human in the Loop. Provider or mapping failures retain available
+parser results and create a visible review issue. Duplicate imports reuse stored results
+without another OpenAI call. Multi-commission emails retain the existing template parser;
+unknown clients, classification failures, image-only scans, and unsupported attachments
+still require manual review or the separate Textract workflow.
+
+Compose already passes the protected `.env` into the backend. Production configuration
+must be set through the existing protected server configuration; deploy code through
+GitHub Actions. Never put the API key in frontend variables or commit it.
+
+### Amazon Bedrock extraction (optional)
 
 The backend calls Amazon Bedrock through Boto3's `bedrock-runtime` client and the model-neutral Converse API. Set these values in `.env`:
 
