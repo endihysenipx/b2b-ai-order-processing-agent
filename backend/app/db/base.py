@@ -7,12 +7,14 @@ from app.models.generated_xml import GeneratedXML
 from app.models.oauth import OAuthAuthorizationCode, OAuthClientAssertion, OAuthRefreshToken
 from app.models.order import Order
 from app.models.order_item import OrderItem
+from app.models.product import Product
 from app.models.user import User
 from app.models.validation_issue import ValidationIssue
 
 __all__ = [
     "Attachment",
     "Base",
+    "Product",
     "Client",
     "Email",
     "FeedbackIssue",

@@ -16,6 +16,11 @@ class Client(IdMixin, TimestampMixin, Base):
     validation_rules: Mapped[dict] = mapped_column(JSON, default=dict)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
+    contact_name: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    phone: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    approved_delivery_addresses: Mapped[list[str]] = mapped_column(JSON, default=list)
+    master_data_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+
     emails = relationship("Email", back_populates="client")
     orders = relationship("Order", back_populates="client")
     users = relationship("User", secondary="user_client_access", back_populates="clients")

@@ -84,10 +84,11 @@ export function OrderDetailsPage() {
       loadOrder();
     } catch (error) {
       setError(error instanceof Error ? error.message : "The order action failed");
+      loadOrder();
     }
   }
 
-  if (error) return <p className="error-message">{error}</p>;
+  if (error && !order) return <p className="error-message">{error}</p>;
   if (!order) return <p className="loading">Loading order details...</p>;
 
   return (
@@ -99,6 +100,7 @@ export function OrderDetailsPage() {
         </div>
         <StatusBadge status={order.status} />
       </div>
+      {error && <p role="alert" className="error-message">{error}</p>}
       {message && <p className="success-message">{message}</p>}
       <section className="detail-grid">
         <form className="section-panel edit-form" onSubmit={saveHeader}>
@@ -263,6 +265,7 @@ export function OrderDetailsPage() {
       <section className="section-panel">
         <h3>XML Status</h3>
         <div className="action-row">
+          <button onClick={() => action("validate", "Validation refreshed.")}>Validate order</button>
           <button onClick={() => action("approve", "Order approved.")}>Approve</button>
           {isAdmin && <button onClick={() => action("generate-xml", "XML generated.")}>Generate XML</button>}
           {isAdmin && <button onClick={() => action("send-xml", "XML sent.")}>Send XMLs</button>}

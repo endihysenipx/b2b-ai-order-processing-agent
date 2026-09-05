@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -35,5 +35,19 @@ describe("OrderDetailsPage", () => {
     expect(screen.getByText("EUR")).toBeInTheDocument();
     expect(screen.getByText("succeeded")).toBeInTheDocument();
     expect(screen.getByText("View extracted text")).toBeInTheDocument();
+  });
+
+  it("keeps the correction form visible when approval is blocked", async () => {
+    vi.stubGlobal("fetch", vi.fn((_url: string, options?: RequestInit) => Promise.resolve(
+      new Response(JSON.stringify(options?.method === "POST" ? { detail: "Resolve stock shortage" } : orderDetail),
+        { status: options?.method === "POST" ? 409 : 200 }),
+    )));
+    render(<MemoryRouter initialEntries={["/orders/order-1"]}><Routes>
+      <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
+    </Routes></MemoryRouter>);
+    fireEvent.click(await screen.findByRole("button", { name: "Approve" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Resolve stock shortage");
+    expect(screen.getByDisplayValue("TCK-10001")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Validate order" })).toBeInTheDocument();
   });
 });

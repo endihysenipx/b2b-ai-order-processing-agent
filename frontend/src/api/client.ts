@@ -20,7 +20,11 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
       sessionStorage.setItem("post_login_redirect", `${window.location.pathname}${window.location.search}`);
       window.location.assign("/login");
     }
-    throw new Error(error.detail ?? "Request failed");
+    const detail = error.detail;
+    const message = Array.isArray(detail)
+      ? detail.map((issue: { loc?: string[]; msg?: string }) => `${issue.loc?.slice(1).join(".") || "Input"}: ${issue.msg ?? "Invalid value"}`).join("; ")
+      : typeof detail === "string" ? detail : "Request failed";
+    throw new Error(message);
   }
   if (response.status === 204) {
     return undefined as T;

@@ -13,6 +13,6 @@ def decide_order_status(
         return "Failed"
     if any(issue.issue_type == "missing_required_field" for issue in issues):
         return "Waiting for Reply"
-    if is_scanned_source or low_confidence or conflict:
+    if issues or is_scanned_source or low_confidence or conflict:
         return "Human in the Loop"
     return "OK"

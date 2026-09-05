@@ -10,6 +10,7 @@ from app.models.feedback_issue import FeedbackIssue
 from app.models.generated_xml import GeneratedXML
 from app.models.order import Order
 from app.models.order_item import OrderItem
+from app.models.validation_issue import ValidationIssue
 from app.repositories.orders import build_order_query, get_order
 from app.schemas.feedback import FeedbackIssueOut
 from app.schemas.order import (
@@ -21,10 +22,43 @@ from app.schemas.order import (
     XmlActionResponse,
 )
 from app.schemas.order_item import OrderItemUpdate
+from app.services.decision.service import decide_order_status
 from app.services.validation.service import validate_order_data
 from app.services.xml.service import generate_header_xml, generate_items_xml, simulate_send_xml
 
 router = APIRouter(prefix="/orders", tags=["orders"])
+
+
+def refresh_validation(db, order):
+    issues = validate_order_data(
+        {key: getattr(order, key) for key in ["ticket_number", "customer_number", "commission_number",
+                                             "delivery_address", "total_price", "currency"]},
+        [{key: getattr(item, key) for key in ["article_number", "quantity", "unit_price", "total_price", "currency"]}
+         for item in order.items],
+        is_scanned_source=order.is_scanned_source, db=db, client_id=order.client_id,
+    )
+    # Retain extraction/provenance warnings; replace only prior validation findings.
+    retained = [issue for issue in order.validation_issues
+                if issue.field_name == "extraction" and not issue.is_resolved]
+    order.validation_issues = retained + [ValidationIssue(**issue.__dict__) for issue in issues]
+    order.status = decide_order_status(issues, is_scanned_source=order.is_scanned_source,
+                                       low_confidence=bool(retained))
+    order.approved_by_user_id = None
+    order.approved_at = None
+    return issues
+
+
+def require_valid_master_data(db, order):
+    from app.models.client import Client
+
+    customer = db.get(Client, order.client_id)
+    if customer and customer.master_data_enabled:
+        previous = (order.status, order.approved_by_user_id, order.approved_at)
+        issues = refresh_validation(db, order)
+        if any(issue.severity == "error" for issue in issues):
+            db.commit()
+            raise HTTPException(409, "Order has validation errors. Resolve them and validate again before approval or export.")
+        order.status, order.approved_by_user_id, order.approved_at = previous
 
 
 @router.get("", response_model=OrderListResponse)
@@ -76,6 +110,8 @@ def update_order(
         raise HTTPException(status_code=404, detail="Order not found")
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(order, field, value)
+    refresh_validation(db, order)
+    order.generated_xmls.clear()
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -98,6 +134,8 @@ def update_order_item(
         setattr(item, field, value)
     if item.quantity is not None and item.unit_price is not None:
         item.total_price = item.quantity * item.unit_price
+    refresh_validation(db, order)
+    order.generated_xmls.clear()
     db.commit()
     return get_order(db, order_id, accessible_client_ids(current_user))
 
@@ -111,6 +149,7 @@ def approve_order(
     order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_valid_master_data(db, order)
     order.status = "Approved"
     order.approved_by_user_id = current_user.id
     order.approved_at = datetime.now(UTC).replace(tzinfo=None)
@@ -174,27 +213,8 @@ def validate_order(
     order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    issues = validate_order_data(
-        {
-            "ticket_number": order.ticket_number,
-            "customer_number": order.customer_number,
-            "commission_number": order.commission_number,
-            "delivery_address": order.delivery_address,
-            "total_price": order.total_price,
-            "currency": order.currency,
-        },
-        [
-            {
-                "article_number": item.article_number,
-                "quantity": item.quantity,
-                "unit_price": item.unit_price,
-                "total_price": item.total_price,
-                "currency": item.currency,
-            }
-            for item in order.items
-        ],
-        is_scanned_source=order.is_scanned_source,
-    )
+    issues = refresh_validation(db, order)
+    db.commit()
     return [issue.__dict__ for issue in issues]
 
 
@@ -207,6 +227,7 @@ def generate_xml(
     order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_valid_master_data(db, order)
     header_path = generate_header_xml(order)
     items_path = generate_items_xml(order)
     now = datetime.now(UTC).replace(tzinfo=None)
@@ -239,6 +260,7 @@ def send_xml(
     order = get_order(db, order_id, accessible_client_ids(current_user))
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_valid_master_data(db, order)
     if len(order.generated_xmls) < 2:
         raise HTTPException(status_code=400, detail="Generate Header and Items XML before sending")
     simulated = simulate_send_xml(order)

@@ -613,6 +613,7 @@ def get_order_details(order_id: str) -> OrderDetailResult:
             currency=order.currency,
             status=order.status,
             is_scanned_source=order.is_scanned_source,
+            db=db, client_id=order.client_id,
             is_demo=order.is_demo,
             created_at=order.created_at.isoformat(),
             approved_at=_iso(order.approved_at),
@@ -723,6 +724,7 @@ def get_validation_issues(order_id: str) -> ValidationResult:
                 for item in order.items
             ],
             is_scanned_source=order.is_scanned_source,
+            db=db, client_id=order.client_id,
         )
         return ValidationResult(
             order_id=order.id,

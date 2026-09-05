@@ -1010,3 +1010,10 @@ pre {
     grid-column: auto;
   }
 }
+
+.master-data-page fieldset { border: 0; padding: 0; display: grid; gap: 12px; min-width: 0; }
+.master-data-page label { display: grid; gap: 6px; }
+.master-data-page label:has(input[type="checkbox"]) { display: flex; align-items: center; }
+.master-data-page input[type="checkbox"] { width: auto; }
+.master-data-page textarea { min-height: 100px; }
+.master-data-page .section-panel { overflow-x: auto; margin-bottom: 16px; }

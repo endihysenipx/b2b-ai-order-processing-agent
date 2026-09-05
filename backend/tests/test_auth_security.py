@@ -43,6 +43,10 @@ def test_operator_access_is_limited_to_assigned_clients(client, auth_headers):
     assert operator_orders.json()["items"]
     assert all(item["client"]["client_name"].startswith("Northwind") for item in operator_orders.json()["items"])
     assert client.get(f"/api/v1/orders/{contoso_order['id']}", headers=operator_headers).status_code == 404
+    assert client.get(f"/api/v1/clients/{contoso['id']}/products", headers=operator_headers).status_code == 404
+    assert client.put(f"/api/v1/clients/{contoso['id']}/customer-data", headers=operator_headers, json={}).status_code == 403
+    assert client.post(f"/api/v1/clients/{contoso['id']}/products", headers=operator_headers,
+                       json={"sku": "TEST", "description": "Test"}).status_code == 403
     assert client.post(f"/api/v1/orders/{operator_orders.json()['items'][0]['id']}/generate-xml", headers=operator_headers).status_code == 403
 
 
