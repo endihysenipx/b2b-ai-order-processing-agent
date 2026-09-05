@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000
 const ACCESS_TOKEN_KEY = "access_token";
 const USER_KEY = "auth_user";
 
-export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+async function apiResponse(path: string, options: RequestInit = {}): Promise<Response> {
   const token = getAccessToken();
   const headers = new Headers(options.headers);
   if (!(options.body instanceof FormData)) {
@@ -26,6 +26,11 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
       : typeof detail === "string" ? detail : "Request failed";
     throw new Error(message);
   }
+  return response;
+}
+
+export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const response = await apiResponse(path, options);
   if (response.status === 204) {
     return undefined as T;
   }
@@ -52,4 +57,16 @@ export function getAccessToken() {
 export function clearAccessToken() {
   sessionStorage.removeItem(ACCESS_TOKEN_KEY);
   sessionStorage.removeItem(USER_KEY);
+}
+
+export async function apiDownload(path: string, filename: string) {
+  const response = await apiResponse(path);
+  const url = URL.createObjectURL(await response.blob());
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiRequest, getAuthenticatedUser } from "../api/client";
 import type { Client } from "../types/client";
+import { CatalogImport } from "../components/CatalogImport";
 import type { User } from "../types/user";
 
 type Customer = Client & { contact_name?: string | null; phone?: string | null; approved_delivery_addresses?: string[]; master_data_enabled?: boolean };
@@ -19,6 +20,7 @@ export function MasterDataPage() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
+  const [importBusy, setImportBusy] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => { apiRequest<Customer[]>("/clients").then(data => { setClients(data); setClientId(data[0]?.id ?? ""); }).catch(e => setError(String(e))); }, []);
   useEffect(() => {
@@ -52,12 +54,16 @@ export function MasterDataPage() {
   }
   return <div className="master-data-page">
     <section className="section-panel"><h2>Customer & product data</h2>
-      <label>Customer <select value={clientId} disabled={busy} onChange={e => { setClientId(e.target.value); setCustomer(null); setProducts([]); setEditing(""); setForm(blank); setError(""); setNotice(""); setLoading(true); }}>{clients.map(c => <option key={c.id} value={c.id}>{c.client_name}</option>)}</select></label>
+      <label>Customer <select value={clientId} disabled={busy || importBusy} onChange={e => { setClientId(e.target.value); setCustomer(null); setProducts([]); setEditing(""); setForm(blank); setError(""); setNotice(""); setLoading(true); }}>{clients.map(c => <option key={c.id} value={c.id}>{c.client_name}</option>)}</select></label>
       {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}{loading && <p>Loading customer data…</p>}
       {!clients.length && <p>No customers available.</p>}
     </section>
+    {customer && admin && <CatalogImport key={clientId} clientId={clientId} disabled={busy} onBusyChange={setImportBusy} onImported={() => {
+      apiRequest<Product[]>(`/clients/${clientId}/products`).then(setProducts).catch(e => setError(String(e)));
+      setEditing(""); setForm(blank);
+    }} />}
     {customer && <div className="detail-grid"><section className="section-panel"><h2>Customer details</h2>
-      <form onSubmit={saveCustomer}><fieldset disabled={!admin || busy}>
+      <form onSubmit={saveCustomer}><fieldset disabled={!admin || busy || importBusy}>
         <label>Contact name<input value={customer.contact_name ?? ""} maxLength={200} onChange={e => setCustomer({ ...customer, contact_name: e.target.value })} /></label>
         <label>Phone<input value={customer.phone ?? ""} maxLength={50} onChange={e => setCustomer({ ...customer, phone: e.target.value })} /></label>
         <label>Approved delivery addresses (one per line)<textarea value={addresses} onChange={e => setAddresses(e.target.value)} /></label>
@@ -67,8 +73,8 @@ export function MasterDataPage() {
         {admin && <button type="submit">Save customer</button>}
       </fieldset></form>
     </section><section className="section-panel"><h2>Products & availability</h2>
-      {!products.length ? <p>No products configured.</p> : <table><thead><tr><th>SKU / product</th><th>Available</th><th>Price</th><th>Stock updated (UTC)</th>{admin && <th>Edit</th>}</tr></thead><tbody>{products.map(p => <tr key={p.id}><td>{p.sku} — {p.description}{!p.is_active && " (inactive)"}<small> {p.unit} · {p.warehouse}</small></td><td>{p.on_hand === null ? "Unknown" : p.on_hand - p.reserved}</td><td>{p.unit_price ?? "—"} {p.currency}</td><td>{p.stock_updated_at ?? "Unknown"}</td>{admin && <td><button disabled={busy} onClick={() => edit(p)}>Edit</button></td>}</tr>)}</tbody></table>}
-      {admin && <form onSubmit={saveProduct}><h3>{editing ? "Edit product" : "Add product"}</h3><fieldset disabled={busy}>
+      {!products.length ? <p>No products configured.</p> : <table><thead><tr><th>SKU / product</th><th>Available</th><th>Price</th><th>Stock updated (UTC)</th>{admin && <th>Edit</th>}</tr></thead><tbody>{products.map(p => <tr key={p.id}><td>{p.sku} — {p.description}{!p.is_active && " (inactive)"}<small> {p.unit} · {p.warehouse}</small></td><td>{p.on_hand === null ? "Unknown" : p.on_hand - p.reserved}</td><td>{p.unit_price ?? "—"} {p.currency}</td><td>{p.stock_updated_at ?? "Unknown"}</td>{admin && <td><button disabled={busy || importBusy} onClick={() => edit(p)}>Edit</button></td>}</tr>)}</tbody></table>}
+      {admin && <form onSubmit={saveProduct}><h3>{editing ? "Edit product" : "Add product"}</h3><fieldset disabled={busy || importBusy}>
         {([ ["sku", "SKU"], ["description", "Description"], ["unit", "Unit"], ["aliases", "Customer article aliases (comma separated)"], ["unit_price", "Agreed unit price (optional)"], ["currency", "Currency (e.g. EUR)"], ["minimum_quantity", "Minimum quantity"], ["warehouse", "Warehouse"], ["on_hand", "On-hand quantity (blank = unknown)"], ["reserved", "Reserved quantity"], ["stock_updated_at", "Stock observed at (ISO date with timezone)"] ] as const).map(([key, label]) => <label key={key}>{label}<input required={["sku", "description", "unit", "minimum_quantity", "warehouse", "reserved"].includes(key)} value={form[key]} onChange={e => setForm({ ...form, [key]: e.target.value })} /></label>)}
         <label><input type="checkbox" checked={form.is_active} onChange={e => setForm({ ...form, is_active: e.target.checked })} />Active product</label>
         <button type="submit">Save product</button> <button type="button" onClick={() => { setEditing(""); setForm(blank); }}>Clear form</button>
