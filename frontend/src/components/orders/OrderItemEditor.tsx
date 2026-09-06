@@ -70,25 +70,9 @@ export function OrderItemEditor({ item, number, products, issues, disabled, onDi
   }
 
   return <form className="order-line-editor" aria-label={`Edit line ${number}`} id={`order-line-${number}`} onSubmit={save}>
-    <div className="section-heading"><h4>Line {number}: {item.article_number || "Unmatched article"}</h4>{dirty && <span>Unsaved changes</span>}</div>
     <fieldset disabled={disabled}>
-      <div className="order-form-grid">
-        <label>Search catalog<input aria-label={`Search catalog for line ${number}`} value={search} placeholder="SKU, product name or customer alias" onChange={e => setSearch(e.target.value)} /></label>
-        <label>Select matching product<select aria-label={`Catalog match for line ${number}`} value="" onChange={e => {
-          const product = products.find(p => p.id === e.target.value);
-          if (product) change({ article_number: product.sku });
-        }}><option value="">Choose a product…</option>{matches.slice(0, 25).map(p => <option key={p.id} value={p.id}>{p.sku} — {p.description}</option>)}</select></label>
-      </div>
-      {matches.length > 25 && <p>Showing 25 of {matches.length} matches. Refine your search.</p>}
-      {products.length > 0 && matches.length === 0 && <p>No active catalog matches. You can correct the article manually.</p>}
-      {matched && <div className="catalog-match">
-        <strong>{matched.sku} — {matched.description}</strong>
-        <p>{matched.is_active ? "Active" : "Inactive"} · Unit: {matched.unit} · Minimum: {matched.minimum_quantity} · Available: {matched.on_hand === null ? "Unknown" : matched.on_hand - matched.reserved - (matched.order_reserved ?? 0)} at {matched.warehouse}</p>
-        <p>Stock observed: {matched.stock_updated_at ? new Date(matched.stock_updated_at).toLocaleString() : "Unknown"}
-          {matched.stock_updated_at && now - new Date(matched.stock_updated_at).getTime() > 86400000 && " — stale (over 24 hours)"}</p>
-        {matched.unit_price !== null && <p>Agreed price: {matched.unit_price} {matched.currency} <button type="button" onClick={() => change({ unit_price: matched.unit_price!, currency: matched.currency ?? "" })}>Use agreed price for line {number}</button></p>}
-      </div>}
-      <div className="order-form-grid">
+      <div className="line-compact-row">
+        <span className="line-number" title={`Line ${number}`}>{number}</span>
         {([ ["article_number", "Article"], ["model_number", "Model"], ["quantity", "Quantity"], ["unit_price", "Unit price"], ["total_price", "Line total"], ["currency", "Currency"] ] as const).map(([field, label]) => {
           const problems = fieldIssues(field);
           const numeric = ["quantity", "unit_price", "total_price"].includes(field);
@@ -105,13 +89,32 @@ export function OrderItemEditor({ item, number, products, issues, disabled, onDi
             {problems.length > 0 && <span id={`${id}-issues`} className="error-message">{problems.map(p => p.message).join(" ")}</span>}
           </label>;
         })}
+        <div className="line-row-actions"><button type="submit" aria-label={`Save line ${number}`} disabled={!dirty && !totalNeedsCorrection}>Save</button>
+          <button type="button" aria-label={`Cancel line ${number} changes`} disabled={!dirty} onClick={() => { setDraft(original); setError(""); onDirty(item.id, false); }}>Cancel</button>
+        </div>
       </div>
-      <p>Line total is calculated when quantity and unit price are present. Otherwise, you can enter a source total. Saving reruns validation.</p>
       {totalNeedsCorrection && <p>Saved total: {item.total_price ?? "Missing"}. Save this line to use the calculated total shown above.</p>}
       {lineIssues.filter(issue => issue.field_name === prefix).map(issue => <p className="error-message" key={issue.id}>{issue.message}</p>)}
       {error && <p role="alert" className="error-message">{error}</p>}
-      <div className="action-row"><button type="submit" disabled={!dirty && !totalNeedsCorrection}>Save line {number}</button>
-        <button type="button" disabled={!dirty} onClick={() => { setDraft(original); setError(""); onDirty(item.id, false); }}>Cancel line {number} changes</button></div>
+      <details className="line-catalog-details"><summary>Catalog & stock{matched ? ` · ${matched.on_hand === null ? "Unknown stock" : `${matched.on_hand - matched.reserved - (matched.order_reserved ?? 0)} available`}` : " · Find product"}{dirty ? " · Unsaved changes" : ""}</summary>
+      <div className="order-form-grid">
+        <label>Search catalog<input aria-label={`Search catalog for line ${number}`} value={search} placeholder="SKU, product name or customer alias" onChange={e => setSearch(e.target.value)} /></label>
+        <label>Select matching product<select aria-label={`Catalog match for line ${number}`} value="" onChange={e => {
+          const product = products.find(p => p.id === e.target.value);
+          if (product) change({ article_number: product.sku });
+        }}><option value="">Choose a product…</option>{matches.slice(0, 25).map(p => <option key={p.id} value={p.id}>{p.sku} — {p.description}</option>)}</select></label>
+      </div>
+      {matches.length > 25 && <p>Showing 25 of {matches.length} matches. Refine your search.</p>}
+      {products.length > 0 && matches.length === 0 && <p>No active catalog matches. You can correct the article manually.</p>}
+      {matched && <div className="catalog-match">
+        <strong>{matched.sku} — {matched.description}</strong>
+        <p>{matched.is_active ? "Active" : "Inactive"} · Unit: {matched.unit} · Minimum: {matched.minimum_quantity} · Available: {matched.on_hand === null ? "Unknown" : matched.on_hand - matched.reserved - (matched.order_reserved ?? 0)} at {matched.warehouse}</p>
+        <p>Stock observed: {matched.stock_updated_at ? new Date(matched.stock_updated_at).toLocaleString() : "Unknown"}
+          {matched.stock_updated_at && now - new Date(matched.stock_updated_at).getTime() > 86400000 && " — stale (over 24 hours)"}</p>
+        {matched.unit_price !== null && <p>Agreed price: {matched.unit_price} {matched.currency} <button type="button" onClick={() => change({ unit_price: matched.unit_price!, currency: matched.currency ?? "" })}>Use agreed price for line {number}</button></p>}
+      </div>}
+        <small>Totals calculate from quantity × unit price. Saving reruns validation.</small>
+      </details>
     </fieldset>
   </form>;
 }

@@ -1023,6 +1023,18 @@ pre {
 .order-line-editor .catalog-match { background: #f0f5fa; padding: 12px; border-radius: 8px; margin: 12px 0; }
 .order-line-editor input[aria-invalid="true"] { border-color: #b42318; }
 .order-line-editor input[readonly] { background: #f3f4f6; }
+.order-line-editor { padding: 10px 0; }
+.line-compact-row { display: grid; grid-template-columns: 22px minmax(100px, 1.3fr) minmax(110px, 1.3fr) minmax(64px, .65fr) minmax(85px, 1fr) minmax(90px, 1fr) 65px auto; gap: 10px; align-items: start; }
+.line-compact-row label { display: grid; gap: 4px; font-size: .75rem; color: #536176; min-width: 0; }
+.line-compact-row input { width: 100%; min-width: 0; padding: 7px 8px; height: 34px; }
+.line-number { padding-top: 27px; font-size: .8rem; color: #64748b; }
+.line-row-actions { display: flex; gap: 5px; padding-top: 20px; }
+.line-row-actions button { padding: 7px 9px; height: 34px; }
+.line-catalog-details { margin: 5px 0 0 32px; font-size: .8rem; }
+.line-catalog-details summary { cursor: pointer; color: #526b83; width: fit-content; }
+.line-catalog-details[open] { padding: 10px; margin-top: 8px; background: #f8fafc; border-radius: 6px; }
+.line-catalog-details[open] summary { margin-bottom: 10px; }
+@media (max-width: 1100px) { .line-compact-row { grid-template-columns: 20px minmax(100px, 1.2fr) minmax(100px, 1.2fr) 65px 90px 95px 60px auto; gap: 6px; } .order-line-editor { overflow-x: auto; } }
 .order-line-editor .error-message { font-size: 0.875rem; }
 
 .history-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }

@@ -282,7 +282,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
 
       <section className="section-panel">
         <h3>Order Items</h3>
-        <p>Correct any line below. Selecting a product changes the article in your draft; use the agreed-price button to apply its price.</p>
+        <p>Edit items directly. Expand Catalog & stock for product matching and agreed prices.</p>
         {catalogLoading && <p>Loading customer catalog…</p>}
         {catalogError && <p className="error-message">{catalogError}</p>}
         {!catalogLoading && !catalogError && products.length === 0 && <p>No catalog products configured for this customer. Manual corrections are available.</p>}
