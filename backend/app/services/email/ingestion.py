@@ -160,7 +160,7 @@ class GmailIngestionService:
                 return self._build_intelligence_result(db, existing, preview, parse_error, duplicate=True)
 
             sender = self._first_address(parsed.get_all("From", []))
-            client = self._resolve_client(db, preview, sender)
+            client = self._resolve_client(db, preview, sender, self._message_body(parsed))
             stored_email = Email(
                 external_message_id=external_id,
                 conversation_id=self._conversation_id(parsed),
@@ -209,7 +209,18 @@ class GmailIngestionService:
         db: Session,
         preview: EmailIntakePreview | None,
         sender_email: str | None,
+        body: str = "",
     ) -> Client | None:
+        # Forwarding changes the outer sender. Explicit example account markers
+        # may select only reserved demo profiles, never a real customer account.
+        case_accounts = set(re.findall(r"(?im)^\s*(?:>\s*)?Client account:\s*(DEMO-\d+)\s*$", body))
+        if len(case_accounts) == 1:
+            case_client = db.scalar(select(Client).where(
+                Client.customer_number == next(iter(case_accounts)), Client.is_active.is_(True),
+                Client.email_domain.like("%.example"),
+            ))
+            if case_client is not None:
+                return case_client
         sender_domain = sender_email.rsplit("@", maxsplit=1)[-1].casefold() if sender_email and "@" in sender_email else None
         if sender_domain:
             client = db.scalar(
@@ -308,6 +319,7 @@ class GmailIngestionService:
                 delivery_address=parsed_order.delivery_address,
                 delivery_week=parsed_order.preferred_delivery_week,
                 status="Processing",
+                is_demo=client.customer_number.startswith("DEMO-") and client.email_domain.endswith(".example"),
                 is_scanned_source=is_scanned,
             )
             db.add(order)

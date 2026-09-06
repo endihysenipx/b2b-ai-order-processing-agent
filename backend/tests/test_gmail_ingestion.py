@@ -6,11 +6,41 @@ from sqlalchemy import select
 from app.core.config import Settings
 from app.db.session import SessionLocal
 from app.models.attachment import Attachment
+from app.models.client import Client
 from app.models.email import Email
 from app.models.order import Order
 from app.models.order_item import OrderItem
 from app.services.email.gmail import GmailMessage
 from app.services.email.ingestion import GmailIngestionService
+
+
+def test_forwarded_demo_account_selects_only_example_client(tmp_path):
+    from email import policy
+    from email.parser import BytesParser
+
+    message = BytesParser(policy=policy.default).parsebytes(build_gmail_order("<forwarded-demo-test@example.test>"))
+    message.replace_header("From", "forwarder@gmail.com")
+    part = message.get_body(preferencelist=("plain",))
+    part.set_content("Client account: DEMO-9876\n" + part.get_content())
+    with SessionLocal() as db:
+        customer = Client(client_name="Forwarded example", customer_number="DEMO-9876",
+                          email_domain="forwarded.example", extraction_prompt="Test")
+        db.add(customer)
+        db.commit()
+        client_id = customer.id
+    service = GmailIngestionService(Settings(storage_root=str(tmp_path)), SessionLocal)
+    result = service.import_uploaded_message(message.as_bytes())
+    with SessionLocal() as db:
+        stored = db.scalar(select(Email).where(Email.external_message_id == "<forwarded-demo-test@example.test>"))
+        assert stored.client_id == client_id
+        assert stored.orders[0].is_demo
+        assert stored.orders[0].items[0].quantity == 2
+        assert not result.duplicate
+        customer = db.get(Client, client_id)
+        customer.email_domain = "real-company.com"
+        db.flush()
+        assert service._resolve_client(db, None, "unrelated@example.test", "Client account: DEMO-9876") is None
+        db.rollback()
 
 
 class FakeGmailGateway:
