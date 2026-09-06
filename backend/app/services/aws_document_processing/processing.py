@@ -147,6 +147,7 @@ class TextractJobProcessor:
             return 0
 
         # Serialize with case conversion and re-read the marker after acquiring the lock.
+        db.flush()
         order = db.scalar(select(Order).where(Order.id == attachment.order_id).with_for_update()
                           .execution_options(populate_existing=True))
         if order is None or order.case_source:
