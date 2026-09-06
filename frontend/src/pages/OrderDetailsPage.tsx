@@ -146,14 +146,16 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   if (!order) return <p className="loading">Loading order details...</p>;
 
   return (
-    <div className="page-stack">
-      <div className="detail-heading">
+    <div className="page-stack order-view">
+      <div className="detail-heading order-view-heading">
         <div>
           <span className="eyebrow">Order {order.id.slice(0, 8)}</span>
           <h2>{order.ticket_number} {order.is_demo && <span className="demo-badge">Demo data</span>}</h2>
+          <p className="order-subtitle">{order.client.client_name} · {order.commission_number || "No commission number"}</p>
         </div>
-        <Link to={`/history?order_id=${encodeURIComponent(order.id)}`}>View change history</Link>
+        <div className="order-heading-actions"><Link to={`/history?order_id=${encodeURIComponent(order.id)}`}>View change history</Link>
         <StatusBadge status={order.status} />
+        </div>
       </div>
       {error && <p role="alert" className="error-message">{error}</p>}
       {order.commercial_terms?.enabled && <section className="section-panel">
@@ -163,19 +165,20 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         <p>Calculated from line prices. Freight and discounts are included in the XML commercial terms.</p>
         <Link to="/business-rules">Manage client business rules</Link>
       </section>}
-      {hasDuplicates && <section className="section-panel" role="alert">
-        <h3>Possible duplicate order</h3>
-        <p>This customer's PO / commission number appears on another order. Approval and XML export are blocked.
-          Compare the orders, then correct the reference or reject the extra order. Refresh after resolving another order.</p>
+      {hasDuplicates && <section className="review-callout" role="alert">
+        <div className="review-callout-icon">!</div><div>
+        <div className="section-heading"><div><span className="eyebrow">Action required</span><h3>Duplicate commission detected <span className="sr-only">Possible duplicate order</span></h3></div><span className="review-pill">Approval paused</span></div>
+        <p>This is a review state, not a system failure. Commission <strong>{order.commission_number}</strong> already exists on another order for this customer. Compare the records, correct the commission number, or reject this duplicate.</p>
         <ul>{order.duplicate_orders?.map(match => <li key={match.id}>
           <Link to={`/orders/${match.id}`}>{match.commission_number} — {match.ticket_number || match.id}</Link>
           {" — "}{match.status}{" — "}{new Date(match.created_at).toLocaleString()}
         </li>)}</ul>
-        <button onClick={() => void loadOrder()} disabled={busy || hasDrafts}>Refresh duplicate check</button>
+        <div className="action-row"><button onClick={() => void loadOrder()} disabled={busy || hasDrafts}>Refresh check</button><button className="button-secondary" onClick={() => apiRequest(`/orders/${order.id}/reject`, { method: "POST", body: JSON.stringify({ reason: "Duplicate commission reviewed" }) }).then(loadOrder)} disabled={busy || hasDrafts}>Reject duplicate</button></div>
+        </div>
       </section>}
       {message && <p className="success-message">{message}</p>}
       {hasDrafts && <p role="status">Save or cancel your corrections before validating, approving, or exporting this order.</p>}
-      <section className="detail-grid">
+      <section className="detail-grid order-header-grid">
         <form aria-label="Header corrections" className="section-panel edit-form" onSubmit={saveHeader} onChange={() => setHeaderDirty(true)}>
           <fieldset disabled={busy}>
           <h3>Header Data</h3>
@@ -280,12 +283,12 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         </section>
       </section>
 
-      <section className="section-panel">
-        <h3>Order Items</h3>
-        <p>Edit items directly. Expand Catalog & stock for product matching and agreed prices.</p>
+      <section className="section-panel order-items-panel">
+        <div className="section-heading"><div><span className="eyebrow">Merchandise</span><h3>Order items</h3></div><span className="items-count">{order.items.length} {order.items.length === 1 ? "line" : "lines"}</span></div>
+        <p className="section-intro">Edit quantities and prices inline. Product matching, stock, and agreed pricing stay tucked under each row.</p>
         {catalogLoading && <p>Loading customer catalog…</p>}
         {catalogError && <p className="error-message">{catalogError}</p>}
-        {!catalogLoading && !catalogError && products.length === 0 && <p>No catalog products configured for this customer. Manual corrections are available.</p>}
+        {!catalogLoading && !catalogError && products.length === 0 && <div className="empty-info"><strong>No catalog is configured for {order.client.client_name} yet.</strong><span>Manual corrections are available. Add this client’s products under Customer &amp; Product Data to enable stock and agreed-price checks.</span><Link to="/master-data">Open customer &amp; product data →</Link></div>}
         {order.items.length === 0 && <p className="empty-state">No line items were extracted. Review the source document before approval.</p>}
         {order.items.map((item, index) => <OrderItemEditor key={`${item.id}:${JSON.stringify(item)}`} item={item} number={index + 1}
           products={products} issues={order.validation_issues} disabled={busy} onDirty={lineDirty} onSave={saveItem} />)}
@@ -318,13 +321,13 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
             ))
           )}
         </div>
-        <div className="section-panel">
-          <h3>Validation Issues</h3>
+        <div className="section-panel validation-panel">
+          <div className="section-heading"><div><span className="eyebrow">Review queue</span><h3>Validation</h3></div><span className={hasDuplicates ? "review-pill" : "ok-pill"}>{hasDuplicates ? "1 action" : "Clear"}</span></div>
           {order.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates)).length === 0 ? (
             <p className="empty-state">No open validation issues.</p>
           ) : (
             order.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates)).map((issue) => (
-              <p key={issue.id}>
+              <p className={issue.issue_type === "duplicate_order" ? "validation-item validation-item-review" : "validation-item"} key={issue.id}>
                 <strong>{issue.severity === "error" ? "Needs correction" : "Review"} — {issue.field_name}</strong>: {issue.message}
                 {/items\[(\d+)\]/.test(issue.field_name) && <a href={`#order-line-${issue.field_name.match(/items\[(\d+)\]/)?.[1]}`}> Go to line</a>}
               </p>

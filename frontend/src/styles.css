@@ -1050,6 +1050,32 @@ pre {
 .notification-filters input[type="checkbox"] { width: auto; }
 .notification-unread { border-left: 4px solid #4f46e5; }
 .notification-card small { display: block; margin-bottom: 12px; }
+.order-view { --panel-radius: 12px; }
+.order-view-heading { padding-bottom: 4px; }
+.order-view-heading h2 { margin-bottom: 4px; }
+.order-subtitle { margin: 0; color: #64748b; font-size: .9rem; }
+.order-heading-actions { display: flex; align-items: center; gap: 18px; }
+.review-callout { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 20px 22px; border: 1px solid #f2c66d; border-left: 4px solid #d99000; border-radius: var(--panel-radius); background: #fffaf0; color: #513b12; }
+.review-callout h3 { margin: 3px 0 0; color: #513b12; }
+.review-callout p { max-width: 900px; line-height: 1.55; }
+.review-callout ul { margin: 10px 0 14px; padding-left: 20px; }
+.review-callout-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #d99000; color: white; font-weight: 800; }
+.review-pill, .ok-pill, .items-count { display: inline-flex; align-items: center; white-space: nowrap; border-radius: 999px; padding: 5px 10px; font-size: .75rem; font-weight: 700; }
+.review-pill { color: #8a5700; background: #ffedb8; }
+.ok-pill { color: #17623b; background: #dcfce7; }
+.items-count { color: #475569; background: #eef2f7; }
+.button-secondary { color: #475569; background: #fff; border: 1px solid #cbd5e1; }
+.order-header-grid { align-items: stretch; }
+.order-header-grid .section-panel { border-top: 3px solid #dce9f5; }
+.order-items-panel { padding-top: 18px; }
+.section-intro { margin-top: -4px; color: #64748b; }
+.empty-info { display: grid; gap: 6px; margin: 14px 0 4px; padding: 14px 16px; border: 1px solid #cbddec; border-radius: 9px; background: #f6faff; color: #475569; }
+.empty-info strong { color: #1e3a5f; }
+.empty-info a { width: fit-content; font-weight: 700; }
+.validation-panel .validation-item { margin: 8px 0; padding: 11px 13px; border-radius: 8px; background: #fff5f5; color: #7f1d1d; }
+.validation-panel .validation-item-review { background: #fff8e6; color: #713f12; }
+.validation-panel .empty-state { margin: 8px 0 0; padding: 12px; border-radius: 8px; background: #f0fdf4; color: #166534; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .rules-hero { display: flex; justify-content: space-between; gap: 32px; background: linear-gradient(120deg, #f1f5ff, #fff); }
 .rules-hero h2, .rule-card h4 { display: flex; align-items: center; gap: 10px; }
