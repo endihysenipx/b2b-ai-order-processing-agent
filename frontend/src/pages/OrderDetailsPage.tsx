@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { apiRequest, getAuthenticatedUser } from "../api/client";
 import { StatusBadge } from "../components/common/StatusBadge";
+import { ClarificationDraft } from "../components/orders/ClarificationDraft";
 import { OrderItemEditor, type CatalogProduct, type ItemCorrection } from "../components/orders/OrderItemEditor";
 import type { OrderDetail } from "../types/order";
 import type { User } from "../types/user";
@@ -323,6 +324,8 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
           )}
         </div>
       </section>
+
+      <ClarificationDraft orderId={order.id} revision={JSON.stringify(order)} disabled={busy || hasDrafts} />
 
       <section className="section-panel">
         <h3>XML Status</h3>

@@ -466,25 +466,12 @@ class GmailIngestionService:
     ) -> str | None:
         if not requires_review:
             return None
-        references = [order.ticket_number or order.commission_number for order in orders]
-        reference = ", ".join(value for value in references if value) or stored_email.subject or "your order"
-        issue_messages = list(
-            dict.fromkeys(
-                issue.message
-                for order in orders
-                for issue in order.validation_issues
-                if not issue.is_resolved
-            )
-        )
-        if preview and preview.next_action is IntakeNextAction.NEEDS_OCR:
-            issue_messages.append("Please confirm the line items shown in the scanned attachment.")
-        if not issue_messages:
-            issue_messages.append("Please confirm the order details and provide any missing line-item information.")
-        bullets = "\n".join(f"- {message}" for message in dict.fromkeys(issue_messages))
-        return (
-            f"Hello,\n\nWe are reviewing {reference} and need the following information before processing:\n"
-            f"{bullets}\n\nPlease reply with the corrected or missing details.\n\nKind regards,\nOrder Processing Team"
-        )
+        from app.services.email.clarification import draft_body, questions_for
+
+        references = [order.commission_number or order.ticket_number for order in orders]
+        reference = ", ".join(value for value in references if value) or "your order"
+        questions, _ = questions_for([issue for order in orders for issue in order.validation_issues])
+        return draft_body(reference, questions) or None
 
     @staticmethod
     def _intelligence_timeline(

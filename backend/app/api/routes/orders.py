@@ -347,3 +347,13 @@ def send_xml(
     return XmlActionResponse(
         status="XMLs Sent", message=simulated["message"], files=[xml.file_path for xml in order.generated_xmls]
     )
+
+
+@router.get("/{order_id}/clarification-draft")
+def clarification_draft(order_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    from app.services.email.clarification import build_clarification
+
+    order = get_order(db, order_id, accessible_client_ids(current_user))
+    if order is None:
+        raise HTTPException(404, "Order not found")
+    return build_clarification(db, order)
