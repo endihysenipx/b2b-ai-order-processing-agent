@@ -172,8 +172,8 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
       {hasDuplicates && <section className="review-callout" role="alert">
         <div className="review-callout-icon">!</div><div>
         <div className="section-heading"><div><span className="eyebrow">Action required</span><h3>Duplicate commission detected <span className="sr-only">Possible duplicate order</span></h3></div><span className="review-pill">Approval paused</span></div>
-        <p>This is a review state, not a system failure. Commission <strong>{order.commission_number}</strong> already exists on another order for this customer. Compare the records, correct the commission number, or reject this duplicate.</p>
-        <ul>{order.duplicate_orders?.map(match => <li key={match.id}>
+        <p>Commission <strong>{order.commission_number}</strong> already exists for this customer. Compare the matching order, correct the reference, or reject this duplicate.</p>
+        <ul className="duplicate-matches">{order.duplicate_orders?.map(match => <li key={match.id}>
           <Link to={`/orders/${match.id}`}>{match.commission_number} — {match.ticket_number || match.id}</Link>
           {" — "}{match.status}{" — "}{new Date(match.created_at).toLocaleString()}
         </li>)}</ul>

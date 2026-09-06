@@ -1055,11 +1055,12 @@ pre {
 .order-view-heading h2 { margin-bottom: 4px; }
 .order-subtitle { margin: 0; color: #64748b; font-size: .9rem; }
 .order-heading-actions { display: flex; align-items: center; gap: 18px; }
-.review-callout { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 20px 22px; border: 1px solid #f2c66d; border-left: 4px solid #d99000; border-radius: var(--panel-radius); background: #fffaf0; color: #513b12; }
+.review-callout { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 12px 16px; border: 1px solid #f2c66d; border-left: 4px solid #d99000; border-radius: var(--panel-radius); background: #fffaf0; color: #513b12; }
 .review-callout h3 { margin: 3px 0 0; color: #513b12; }
-.review-callout p { max-width: 900px; line-height: 1.55; }
-.review-callout ul { margin: 10px 0 14px; padding-left: 20px; }
-.review-callout-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #d99000; color: white; font-weight: 800; }
+.review-callout p { max-width: 900px; margin: 5px 0 7px; line-height: 1.4; font-size: .9rem; }
+.review-callout ul { margin: 5px 0 8px; padding-left: 18px; }
+.duplicate-matches li { font-size: .88rem; }
+.review-callout-icon { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: #d99000; color: white; font-weight: 800; }
 .review-pill, .ok-pill, .items-count { display: inline-flex; align-items: center; white-space: nowrap; border-radius: 999px; padding: 5px 10px; font-size: .75rem; font-weight: 700; }
 .review-pill { color: #8a5700; background: #ffedb8; }
 .ok-pill { color: #17623b; background: #dcfce7; }
