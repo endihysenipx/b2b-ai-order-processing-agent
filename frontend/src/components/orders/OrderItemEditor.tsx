@@ -4,7 +4,7 @@ import type { OrderDetail, OrderItem } from "../../types/order";
 export type CatalogProduct = {
   id: string; sku: string; description: string; aliases: string[]; is_active: boolean;
   unit: string; unit_price: string | null; currency: string | null; minimum_quantity: number;
-  on_hand: number | null; reserved: number; warehouse: string; stock_updated_at: string | null;
+  on_hand: number | null; reserved: number; order_reserved?: number; warehouse: string; stock_updated_at: string | null;
 };
 export type ItemCorrection = {
   article_number: string | null; model_number: string | null; quantity: number | null;
@@ -83,7 +83,7 @@ export function OrderItemEditor({ item, number, products, issues, disabled, onDi
       {products.length > 0 && matches.length === 0 && <p>No active catalog matches. You can correct the article manually.</p>}
       {matched && <div className="catalog-match">
         <strong>{matched.sku} — {matched.description}</strong>
-        <p>{matched.is_active ? "Active" : "Inactive"} · Unit: {matched.unit} · Minimum: {matched.minimum_quantity} · Available: {matched.on_hand === null ? "Unknown" : matched.on_hand - matched.reserved} at {matched.warehouse}</p>
+        <p>{matched.is_active ? "Active" : "Inactive"} · Unit: {matched.unit} · Minimum: {matched.minimum_quantity} · Available: {matched.on_hand === null ? "Unknown" : matched.on_hand - matched.reserved - (matched.order_reserved ?? 0)} at {matched.warehouse}</p>
         <p>Stock observed: {matched.stock_updated_at ? new Date(matched.stock_updated_at).toLocaleString() : "Unknown"}
           {matched.stock_updated_at && now - new Date(matched.stock_updated_at).getTime() > 86400000 && " — stale (over 24 hours)"}</p>
         {matched.unit_price !== null && <p>Agreed price: {matched.unit_price} {matched.currency} <button type="button" onClick={() => change({ unit_price: matched.unit_price!, currency: matched.currency ?? "" })}>Use agreed price for line {number}</button></p>}

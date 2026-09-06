@@ -25,6 +25,7 @@ from app.schemas.order import (
 from app.schemas.order_item import OrderItemUpdate
 from app.services.audit import ITEM_FIELDS, ORDER_FIELDS, order_change, record_change, snapshot
 from app.services.decision.service import decide_order_status
+from app.services.stock import release_stock, reserve_stock
 from app.services.validation.service import validate_order_data
 from app.services.xml.service import generate_header_xml, generate_items_xml, simulate_send_xml
 
@@ -32,13 +33,24 @@ router = APIRouter(prefix="/orders", tags=["orders"])
 
 
 def lock_order(db, order_id, user):
-    query = select(Order.id).where(Order.id == order_id)
+    from app.models.client import Client
+
+    query = select(Order.client_id).where(Order.id == order_id)
     allowed = accessible_client_ids(user)
     if allowed is not None:
         query = query.where(Order.client_id.in_(allowed))
-    if db.scalar(query.with_for_update()) is None:
+    client_id = db.scalar(query)
+    if client_id is None:
         return None
+    # Match catalog write lock ordering; competing approvals share this lock.
+    db.scalar(select(Client).where(Client.id == client_id).with_for_update().execution_options(populate_existing=True))
+    db.scalar(select(Order.id).where(Order.id == order_id).with_for_update())
     return get_order(db, order_id, allowed)
+
+
+def require_unsent(order):
+    if any(xml.sent_at is not None for xml in order.generated_xmls):
+        raise HTTPException(409, "This order was sent to ERP. Resolve fulfillment before changing its stock allocation.")
 
 
 def refresh_validation(db, order):
@@ -75,6 +87,7 @@ def require_valid_master_data(db, order, actor):
         previous = (order.status, order.approved_by_user_id, order.approved_at)
         issues = refresh_validation(db, order)
         if any(issue.severity == "error" for issue in issues):
+            release_stock(db, order, actor)
             order_change(db, actor, order, before, "validation_blocked_action")
             db.commit()
             raise HTTPException(409, "Order has validation errors. Resolve them and validate again before approval or export.")
@@ -128,9 +141,11 @@ def update_order(
     order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_unsent(order)
     before = snapshot(order, ORDER_FIELDS)
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(order, field, value)
+    release_stock(db, order, current_user)
     refresh_validation(db, order)
     order.generated_xmls.clear()
     order_change(db, current_user, order, before, "order_corrected")
@@ -149,6 +164,7 @@ def update_order_item(
     order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_unsent(order)
     before = snapshot(order, ORDER_FIELDS)
     item = db.get(OrderItem, item_id)
     if item is None or item.order_id != order_id:
@@ -166,6 +182,7 @@ def update_order_item(
         item.total_price = total
     elif "total_price" not in values and {"quantity", "unit_price"}.intersection(values):
         item.total_price = None
+    release_stock(db, order, current_user)
     refresh_validation(db, order)
     order.generated_xmls.clear()
     record_change(db, current_user, order.client, "order_item", item, item_before, snapshot(item, ITEM_FIELDS),
@@ -187,7 +204,9 @@ def approve_order(
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     before = snapshot(order, ORDER_FIELDS)
+    require_unsent(order)
     require_valid_master_data(db, order, current_user)
+    reserve_stock(db, order, current_user)
     order.status = "Approved"
     order.approved_by_user_id = current_user.id
     order.approved_at = datetime.now(UTC).replace(tzinfo=None)
@@ -208,7 +227,9 @@ def reject_order(
     order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_unsent(order)
     before = snapshot(order, ORDER_FIELDS)
+    release_stock(db, order, current_user)
     order.status = "Rejected"
     issue = FeedbackIssue(
         order_id=order.id,
@@ -254,7 +275,9 @@ def validate_order(
     order = lock_order(db, order_id, current_user)
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
+    require_unsent(order)
     before = snapshot(order, ORDER_FIELDS)
+    release_stock(db, order, current_user)
     issues = refresh_validation(db, order)
     order_change(db, current_user, order, before, "order_validated")
     db.commit()
@@ -271,7 +294,9 @@ def generate_xml(
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     before = snapshot(order, ORDER_FIELDS)
+    require_unsent(order)
     require_valid_master_data(db, order, current_user)
+    reserve_stock(db, order, current_user)
     header_path = generate_header_xml(order)
     items_path = generate_items_xml(order)
     now = datetime.now(UTC).replace(tzinfo=None)
@@ -306,9 +331,11 @@ def send_xml(
     if order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     before = snapshot(order, ORDER_FIELDS)
+    require_unsent(order)
     require_valid_master_data(db, order, current_user)
     if len(order.generated_xmls) < 2:
         raise HTTPException(status_code=400, detail="Generate Header and Items XML before sending")
+    reserve_stock(db, order, current_user)
     simulated = simulate_send_xml(order)
     sent_at = datetime.now(UTC).replace(tzinfo=None)
     for xml in order.generated_xmls:

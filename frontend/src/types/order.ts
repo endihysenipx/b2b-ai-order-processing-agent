@@ -30,6 +30,7 @@ export interface OrderListResponse {
 }
 
 export interface OrderDetail extends OrderListItem {
+  stock_reservations?: Array<{ product_id: string; quantity: number }>;
   duplicate_orders?: Array<{ id: string; ticket_number: string | null; commission_number: string | null; status: string; created_at: string }>;
   customer_number: string | null;
   commission_name: string | null;

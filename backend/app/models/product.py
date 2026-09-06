@@ -2,7 +2,7 @@ from datetime import datetime
 from decimal import Decimal
 
 from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, Numeric, String, UniqueConstraint
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, IdMixin, TimestampMixin
 
@@ -24,3 +24,13 @@ class Product(IdMixin, TimestampMixin, Base):
     on_hand: Mapped[int | None] = mapped_column(Integer, nullable=True)
     reserved: Mapped[int] = mapped_column(Integer, default=0)
     stock_updated_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+    stock_reservations = relationship("StockReservation", viewonly=True, lazy="selectin")
+
+    @property
+    def order_reserved(self):
+        return sum(row.quantity for row in self.stock_reservations)
+
+    @property
+    def available(self):
+        return None if self.on_hand is None else self.on_hand - self.reserved - self.order_reserved

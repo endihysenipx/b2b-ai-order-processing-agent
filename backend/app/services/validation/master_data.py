@@ -9,7 +9,7 @@ from app.models.product import Product
 from app.services.validation.service import ValidationResult
 
 
-def validate_master_data(db, client_id, header, items):
+def validate_master_data(db, client_id, header, items, order_id=None):
     issues = []
 
     def flag(field, kind, message):
@@ -61,8 +61,13 @@ def validate_master_data(db, client_id, header, items):
             if item.get("total_price") is not None and quantity > 0:
                 if Decimal(str(item["total_price"])) != product.unit_price * quantity:
                     flag(prefix + ".total_price", "price_mismatch", "Line total differs from the customer agreement.")
+    from app.models.stock_reservation import StockReservation
+
+    own = {r.product_id: r.quantity for r in db.scalars(
+        select(StockReservation).where(StockReservation.order_id == order_id))} if order_id else {}
     now = datetime.now(UTC).replace(tzinfo=None)
     for product_id, product in matched.items():
+        available = (product.available or 0) + own.get(product_id, 0)
         stamp = product.stock_updated_at
         if stamp and stamp.tzinfo:
             stamp = stamp.astimezone(UTC).replace(tzinfo=None)
@@ -70,9 +75,9 @@ def validate_master_data(db, client_id, header, items):
             kind, message = "stock_unknown", f"Stock is unknown for {product.sku}."
         elif now - stamp > timedelta(hours=24) or stamp > now:
             kind, message = "stock_stale", f"Stock for {product.sku} needs a fresh snapshot (maximum age 24 hours)."
-        elif quantities[product_id] > product.on_hand - product.reserved:
+        elif quantities[product_id] > available:
             kind = "stock_shortage"
-            message = f"{product.sku}: requested {quantities[product_id]}, available {product.on_hand - product.reserved} at {product.warehouse}."
+            message = f"{product.sku}: requested {quantities[product_id]}, available {available} at {product.warehouse}."
         else:
             continue
         for prefix in matched_lines[product_id]:

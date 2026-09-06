@@ -63,7 +63,7 @@ def validate_order_data(order_data: dict, items: list[dict], is_scanned_source: 
         from app.services.validation.duplicates import duplicate_orders
         from app.services.validation.master_data import validate_master_data
 
-        issues.extend(validate_master_data(db, client_id, order_data, items))
+        issues.extend(validate_master_data(db, client_id, order_data, items, order_id=order_id))
         matches = duplicate_orders(db, client_id, order_data.get("commission_number"),
                                    order_id=order_id, is_demo=is_demo)
         if matches:

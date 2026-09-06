@@ -87,7 +87,14 @@ class DuplicateOrderOut(BaseModel):
     model_config = {"from_attributes": True}
 
 
+class StockReservationOut(BaseModel):
+    product_id: str
+    quantity: int
+    model_config = {"from_attributes": True}
+
+
 class OrderDetailOut(OrderListOut):
+    stock_reservations: list[StockReservationOut] = []
     duplicate_orders: list[DuplicateOrderOut] = []
     email: EmailMetadataOut
     items: list[OrderItemOut]

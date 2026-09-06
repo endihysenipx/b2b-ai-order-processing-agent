@@ -91,7 +91,7 @@ def test_stock_api_timestamp_can_be_saved_again(catalog):
     from app.schemas.master_data import ProductInput, ProductOut
 
     _, _, product = catalog
-    payload = ProductOut.model_validate(product).model_dump(mode="json", exclude={"id", "client_id"})
+    payload = ProductOut.model_validate(product).model_dump(mode="json", exclude={"id", "client_id", "order_reserved", "available"})
     assert payload["stock_updated_at"].endswith("Z")
     assert ProductInput.model_validate(payload).stock_updated_at.tzinfo == UTC
 

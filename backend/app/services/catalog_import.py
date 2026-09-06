@@ -101,7 +101,7 @@ def bounded_rows(rows):
 
 
 def product_values(product):
-    return ProductOut.model_validate(product).model_dump(mode="json", exclude={"id", "client_id"})
+    return ProductOut.model_validate(product).model_dump(mode="json", exclude={"id", "client_id", "order_reserved", "available"})
 
 
 def digest(value):

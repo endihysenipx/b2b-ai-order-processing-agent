@@ -9,6 +9,7 @@ from app.models.oauth import OAuthAuthorizationCode, OAuthClientAssertion, OAuth
 from app.models.order import Order
 from app.models.order_item import OrderItem
 from app.models.product import Product
+from app.models.stock_reservation import StockReservation
 from app.models.user import User
 from app.models.validation_issue import ValidationIssue
 
@@ -17,6 +18,7 @@ __all__ = [
     "AuditEvent",
     "Base",
     "Product",
+    "StockReservation",
     "Client",
     "Email",
     "FeedbackIssue",

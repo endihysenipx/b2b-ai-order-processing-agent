@@ -46,7 +46,7 @@ def test_xml_generation_creates_two_files(client, auth_headers):
 
 
 def test_approve_then_send_xml_are_separate_actions(client, auth_headers):
-    order = client.get("/api/v1/orders?status=Human%20in%20the%20Loop", headers=auth_headers).json()["items"][0]
+    order = client.get("/api/v1/orders?search=TCK-10002", headers=auth_headers).json()["items"][0]
     approve_response = client.post(f"/api/v1/orders/{order['id']}/approve", headers=auth_headers)
 
     assert approve_response.status_code == 200

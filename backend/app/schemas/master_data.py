@@ -73,6 +73,9 @@ class ProductOut(BaseModel):
     reserved: int
     stock_updated_at: datetime | None
 
+    order_reserved: int = 0
+    available: int | None = None
+
     @field_validator("stock_updated_at")
     @classmethod
     def stock_timestamp_utc(cls, value):

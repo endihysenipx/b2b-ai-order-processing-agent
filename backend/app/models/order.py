@@ -41,3 +41,5 @@ class Order(IdMixin, TimestampMixin, Base):
     validation_issues = relationship("ValidationIssue", back_populates="order", cascade="all, delete-orphan")
     generated_xmls = relationship("GeneratedXML", back_populates="order", cascade="all, delete-orphan")
     feedback_issues = relationship("FeedbackIssue", back_populates="order")
+
+    stock_reservations = relationship("StockReservation", cascade="all, delete-orphan")

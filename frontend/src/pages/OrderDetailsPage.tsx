@@ -37,6 +37,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   const [catalogError, setCatalogError] = useState("");
   const [catalogLoading, setCatalogLoading] = useState(true);
   const clientId = order?.client.id;
+  const reservationKey = JSON.stringify(order?.stock_reservations ?? []);
   const hasDuplicates = Boolean(order?.duplicate_orders?.length);
   const hasDrafts = headerDirty || dirtyLines.size > 0;
 
@@ -51,7 +52,7 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
     }).catch(e => { if (active) setCatalogError(String(e)); })
       .finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
-  }, [clientId]);
+  }, [clientId, reservationKey]);
 
   useEffect(() => {
     if (!hasDrafts) return;
@@ -325,6 +326,8 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
 
       <section className="section-panel">
         <h3>XML Status</h3>
+        <p>Stock reserved for this order: {order.stock_reservations?.reduce((sum, row) => sum + row.quantity, 0) ?? 0} units.
+          Corrections, rejection, or revalidation release unsent allocations; approval reserves them again.</p>
         <fieldset disabled={busy || hasDrafts}><div className="action-row">
           <button onClick={() => action("validate", "Validation refreshed.")}>Validate order</button>
           <button disabled={hasDuplicates} onClick={() => action("approve", "Order approved.")}>Approve</button>
