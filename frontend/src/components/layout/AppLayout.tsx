@@ -1,10 +1,12 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { ClipboardList, Database, History, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Sparkles, Users } from "lucide-react";
+import { Bell, ClipboardList, Database, History, FileDown, Gauge, MessageSquareWarning, ScanSearch, Settings, Sparkles, Users } from "lucide-react";
 import { clearAccessToken, getAuthenticatedUser } from "../../api/client";
+import { NotificationBell } from "./NotificationBell";
 import type { User } from "../../types/user";
 
 const navItems = [
   { to: "/", label: "Overview", icon: Gauge },
+  { to: "/notifications", label: "Notifications", icon: Bell },
   { to: "/orders", label: "Orders", icon: ClipboardList },
   { to: "/intelligence", label: "Order Intelligence", icon: ScanSearch, adminOnly: true },
   { to: "/demo-data", label: "Demo Data", icon: Sparkles, adminOnly: true },
@@ -56,6 +58,7 @@ export function AppLayout() {
             <h1>B2B AI Order Processing Agent</h1>
           </div>
           <div className="session-controls">
+            <NotificationBell />
             <span>{user?.full_name} Â· {user?.role}</span>
             <button type="button" onClick={logout}>Log out</button>
           </div>

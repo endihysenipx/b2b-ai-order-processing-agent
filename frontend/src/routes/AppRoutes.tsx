@@ -11,6 +11,7 @@ import { FeedbackIssuesPage } from "../pages/FeedbackIssuesPage";
 import { LoginPage } from "../pages/LoginPage";
 import { OrderDetailsPage } from "../pages/OrderDetailsPage";
 import { OrderIntelligencePage } from "../pages/OrderIntelligencePage";
+import { NotificationsPage } from "../pages/NotificationsPage";
 import { OrdersPage } from "../pages/OrdersPage";
 import { OAuthAuthorizePage } from "../pages/OAuthAuthorizePage";
 import { OverviewPage } from "../pages/OverviewPage";
@@ -31,6 +32,7 @@ export function AppRoutes() {
         <Route element={<RequireAuth />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<OverviewPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/intelligence" element={<OrderIntelligencePage />} />
             <Route path="/demo-data" element={<DemoDataPage />} />

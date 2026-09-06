@@ -1,0 +1,11 @@
+# Order notifications
+
+The in-app notification inbox shows current attention items, not an immutable event log. Operators see assigned customers; administrators and managers see all customers. Existing orders are included. No email, push service or external messages are sent. The header unread count refreshes every minute while the app is visible, on window focus and navigation. The inbox refreshes every minute while visible and supports manual refresh.
+
+Priority is processing failures (including failed attachments and extraction), then live duplicate customer PO references, then missing customer information, then human review. Rejected and XMLs Sent orders are omitted; demo orders are excluded by default with an inbox opt-in. Duplicate checks use the established customer/commission semantics. The inbox reflects saved validation state; it does not trigger extraction, stock validation or order mutations.
+
+One current notification is shown per order. Per-user read acknowledgements persist across sessions. Status/update timestamp, unresolved issue IDs, failed attachment IDs and live duplicate IDs form a fingerprint. Changes make an earlier acknowledgement unread again. Resolved orders leave the inbox. Stale acknowledgement requests return 409. Read state does not approve or resolve orders. Historical events that resolved before the user opened the app are not retained here; Change History remains separate.
+
+GET /api/v1/notifications supports category, unread_only, include_demo, page and page_size (max 100). unread_count is across all accessible categories for the selected demo setting. PUT /api/v1/notifications/{order_id}/read accepts the displayed fingerprint and is_read. Both requests enforce current client access. Results include only a short order reference and generic guidance, no raw email contents or failure diagnostics.
+
+Migration 202609060012 creates notification_reads with a composite user/order primary key and cascading foreign keys. No existing order data is changed; downgrade removes read acknowledgements. The current implementation evaluates accessible attention candidates before pagination to compute fingerprints and unread counts; very large inboxes may need a persisted event queue or optimized aggregation later.

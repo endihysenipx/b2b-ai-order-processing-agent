@@ -5,6 +5,7 @@ from app.models.client import Client
 from app.models.email import Email
 from app.models.feedback_issue import FeedbackIssue
 from app.models.generated_xml import GeneratedXML
+from app.models.notification_read import NotificationRead
 from app.models.oauth import OAuthAuthorizationCode, OAuthClientAssertion, OAuthRefreshToken
 from app.models.order import Order
 from app.models.order_item import OrderItem
@@ -24,6 +25,7 @@ __all__ = [
     "FeedbackIssue",
     "GeneratedXML",
     "Order",
+    "NotificationRead",
     "OrderItem",
     "OAuthAuthorizationCode",
     "OAuthClientAssertion",
