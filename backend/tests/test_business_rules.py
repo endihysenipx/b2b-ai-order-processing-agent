@@ -118,6 +118,10 @@ def test_rule_change_preserves_sent_terms(client, auth_headers, rules_order):
 
 
 def test_conversion_is_audited_and_cannot_repeat(client, auth_headers, rules_order):
+    from types import SimpleNamespace
+
+    from app.services.aws_document_processing.processing import TextractJobProcessor
+
     customer, order_id, _, email_id = rules_order
     payload = {"email_id": email_id, "client_id": customer, "label": "Freight case", "article_number": "CASE-CHAIR", "quantity": 2, "unit_price": "210"}
     response = client.post("/api/v1/business-rules/cases", headers=auth_headers, json=payload)
@@ -129,6 +133,7 @@ def test_conversion_is_audited_and_cannot_repeat(client, auth_headers, rules_ord
     assert detail["items"][0]["article_number"] == "CASE-CHAIR"
     assert client.post("/api/v1/business-rules/cases", headers=auth_headers, json=payload).status_code == 409
     with SessionLocal() as db:
+        assert TextractJobProcessor._apply_mapping(db, SimpleNamespace(order_id=order_id), SimpleNamespace(items=[object()])) == 0
         audit = db.scalar(select(AuditEvent).where(AuditEvent.order_id == order_id, AuditEvent.action == "source_converted_to_client_case"))
         assert audit.changes["email"]["before"]["body"] == "Original source"
 

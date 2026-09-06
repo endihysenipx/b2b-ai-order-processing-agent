@@ -146,7 +146,9 @@ class TextractJobProcessor:
         if not attachment.order_id or not mapping.items:
             return 0
 
-        order = db.get(Order, attachment.order_id)
+        # Serialize with case conversion and re-read the marker after acquiring the lock.
+        order = db.scalar(select(Order).where(Order.id == attachment.order_id).with_for_update()
+                          .execution_options(populate_existing=True))
         if order is None or order.case_source:
             return 0
 
