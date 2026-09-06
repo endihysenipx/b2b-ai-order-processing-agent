@@ -13,6 +13,7 @@ const navItems = [
   { to: "/master-data", label: "Customer & Product Data", icon: Database },
   { to: "/history", label: "Change History", icon: History },
   { to: "/clients", label: "Clients", icon: Database },
+  { to: "/business-rules", label: "Business Rules", icon: ClipboardList },
   { to: "/data-export", label: "Data Export", icon: FileDown },
   { to: "/feedback", label: "Feedback & Issues", icon: MessageSquareWarning },
   { to: "/users", label: "Users", icon: Users, adminOnly: true },

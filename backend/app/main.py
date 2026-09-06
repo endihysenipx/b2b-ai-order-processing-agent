@@ -13,6 +13,7 @@ from mcp.server.auth.settings import ClientRegistrationOptions
 from app.api.dependencies import get_current_user
 from app.api.routes import (
     auth,
+    business_rules,
     catalog_import,
     clients,
     demo_data,
@@ -121,6 +122,7 @@ async def unhandled_exception_handler(_, exc: Exception):
 
 
 app.include_router(health.router)
+app.include_router(business_rules.router, prefix="/api/v1")
 
 api_prefix = "/api/v1"
 app.include_router(auth.router, prefix=api_prefix)

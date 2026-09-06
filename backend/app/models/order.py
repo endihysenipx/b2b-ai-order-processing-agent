@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from decimal import Decimal
 
-from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Index, Numeric, String
+from sqlalchemy import JSON, Boolean, Date, DateTime, ForeignKey, Index, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, IdMixin, TimestampMixin
@@ -32,6 +32,14 @@ class Order(IdMixin, TimestampMixin, Base):
     is_demo: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     approved_by_user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
     approved_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    business_rules_snapshot: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    case_source: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+
+    @property
+    def commercial_terms(self):
+        from app.services.business_rules import order_terms
+
+        return order_terms(self)
 
     email = relationship("Email", back_populates="orders")
     client = relationship("Client", back_populates="orders")

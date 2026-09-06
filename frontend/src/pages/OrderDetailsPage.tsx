@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { apiRequest, getAuthenticatedUser } from "../api/client";
 import { StatusBadge } from "../components/common/StatusBadge";
 import { ClarificationDraft } from "../components/orders/ClarificationDraft";
+import { CommercialTerms } from "../components/orders/CommercialTerms";
 import { OrderItemEditor, type CatalogProduct, type ItemCorrection } from "../components/orders/OrderItemEditor";
 import type { OrderDetail } from "../types/order";
 import type { User } from "../types/user";
@@ -155,6 +156,13 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
         <StatusBadge status={order.status} />
       </div>
       {error && <p role="alert" className="error-message">{error}</p>}
+      {order.commercial_terms?.enabled && <section className="section-panel">
+        <h3>Business rules & final total</h3>
+        {order.case_source && <p><strong>{order.case_source.label}</strong> — Edited client example. Original attachments are retained as source references.</p>}
+        <CommercialTerms terms={order.commercial_terms} />
+        <p>Calculated from line prices. Freight and discounts are included in the XML commercial terms.</p>
+        <Link to="/business-rules">Manage client business rules</Link>
+      </section>}
       {hasDuplicates && <section className="section-panel" role="alert">
         <h3>Possible duplicate order</h3>
         <p>This customer's PO / commission number appears on another order. Approval and XML export are blocked.

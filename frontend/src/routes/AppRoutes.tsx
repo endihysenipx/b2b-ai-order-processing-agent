@@ -5,6 +5,7 @@ import { AppLayout } from "../components/layout/AppLayout";
 import { MasterDataPage } from "../pages/MasterDataPage";
 import { ChangeHistoryPage } from "../pages/ChangeHistoryPage";
 import { ClientsPage } from "../pages/ClientsPage";
+import { BusinessRulesPage } from "../pages/BusinessRulesPage";
 import { DataExportPage } from "../pages/DataExportPage";
 import { DemoDataPage } from "../pages/DemoDataPage";
 import { FeedbackIssuesPage } from "../pages/FeedbackIssuesPage";
@@ -40,6 +41,7 @@ export function AppRoutes() {
             <Route path="/master-data" element={<MasterDataPage />} />
             <Route path="/history" element={<ChangeHistoryPage />} />
             <Route path="/clients" element={<ClientsPage />} />
+            <Route path="/business-rules" element={<BusinessRulesPage />} />
             <Route path="/data-export" element={<DataExportPage />} />
             <Route path="/feedback" element={<FeedbackIssuesPage />} />
             <Route path="/users" element={<UsersPage />} />

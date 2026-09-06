@@ -24,6 +24,7 @@ from app.schemas.order import (
 )
 from app.schemas.order_item import OrderItemUpdate
 from app.services.audit import ITEM_FIELDS, ORDER_FIELDS, order_change, record_change, snapshot
+from app.services.business_rules import freeze_rules, order_terms
 from app.services.decision.service import decide_order_status
 from app.services.stock import release_stock, reserve_stock
 from app.services.validation.service import validate_order_data
@@ -54,6 +55,7 @@ def require_unsent(order):
 
 
 def refresh_validation(db, order):
+    freeze_rules(order)
     issues = validate_order_data(
         {key: getattr(order, key) for key in ["ticket_number", "customer_number", "commission_number",
                                              "delivery_address", "total_price", "currency"]},
@@ -61,6 +63,12 @@ def refresh_validation(db, order):
          for item in order.items],
         is_scanned_source=order.is_scanned_source, db=db, client_id=order.client_id, order_id=order.id, is_demo=order.is_demo,
     )
+    from app.services.validation.service import ValidationResult
+
+    terms = order_terms(order)
+    issues.extend(ValidationResult("commercial_terms", "business_rule_blocked", message) for message in terms["blockers"])
+    if terms["review_required"]:
+        issues.append(ValidationResult("commercial_terms", "business_rule_review", "Client rules require human review of this order.", "warning"))
     # Retain extraction/provenance warnings; replace only prior validation findings.
     retained = [issue for issue in order.validation_issues
                 if issue.field_name == "extraction" and not issue.is_resolved]
@@ -80,7 +88,7 @@ def require_valid_master_data(db, order, actor):
 
     matches = duplicate_orders(db, order.client_id, order.commission_number,
                                order_id=order.id, is_demo=order.is_demo)
-    if matches or any(i.issue_type == "duplicate_order" for i in order.validation_issues) or (
+    if order_terms(order)["enabled"] or matches or any(i.issue_type == "duplicate_order" for i in order.validation_issues) or (
         customer and customer.master_data_enabled
     ):
         before = snapshot(order, ORDER_FIELDS)
@@ -206,6 +214,7 @@ def approve_order(
     before = snapshot(order, ORDER_FIELDS)
     require_unsent(order)
     require_valid_master_data(db, order, current_user)
+    freeze_rules(order)
     reserve_stock(db, order, current_user)
     order.status = "Approved"
     order.approved_by_user_id = current_user.id
@@ -296,6 +305,9 @@ def generate_xml(
     before = snapshot(order, ORDER_FIELDS)
     require_unsent(order)
     require_valid_master_data(db, order, current_user)
+    if order_terms(order)["review_required"] and order.approved_at is None:
+        raise HTTPException(409, "Client rules require approval before XML generation.")
+    freeze_rules(order)
     reserve_stock(db, order, current_user)
     header_path = generate_header_xml(order)
     items_path = generate_items_xml(order)
@@ -333,6 +345,8 @@ def send_xml(
     before = snapshot(order, ORDER_FIELDS)
     require_unsent(order)
     require_valid_master_data(db, order, current_user)
+    if order_terms(order)["review_required"] and order.approved_at is None:
+        raise HTTPException(409, "Client rules require approval before XML transmission.")
     if len(order.generated_xmls) < 2:
         raise HTTPException(status_code=400, detail="Generate Header and Items XML before sending")
     reserve_stock(db, order, current_user)

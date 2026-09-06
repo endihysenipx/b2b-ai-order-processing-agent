@@ -25,6 +25,12 @@ def generate_header_xml(order: Order) -> str:
     }
     for key, value in fields.items():
         SubElement(root, key).text = value
+    terms = order.commercial_terms
+    if terms["enabled"]:
+        commercial = SubElement(root, "CommercialTerms")
+        for name, key in [("Currency", "currency"), ("MerchandiseSubtotal", "subtotal"),
+                          ("Discount", "discount"), ("Freight", "freight"), ("TotalPayable", "total")]:
+            SubElement(commercial, name).text = terms[key] or ""
     path = Path(settings.storage_root) / "xml" / order.id / "header.xml"
     return _write_xml(path, root)
 

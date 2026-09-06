@@ -1038,3 +1038,31 @@ pre {
 .notification-filters input[type="checkbox"] { width: auto; }
 .notification-unread { border-left: 4px solid #4f46e5; }
 .notification-card small { display: block; margin-bottom: 12px; }
+
+.rules-hero { display: flex; justify-content: space-between; gap: 32px; background: linear-gradient(120deg, #f1f5ff, #fff); }
+.rules-hero h2, .rule-card h4 { display: flex; align-items: center; gap: 10px; }
+.rules-hero p { max-width: 660px; color: #536176; }
+.rules-count { display: grid; grid-template-columns: auto auto; gap: 8px 16px; align-content: center; white-space: nowrap; }
+.rules-count strong { font-size: 1.6rem; color: #4338ca; }
+.rules-count span { align-self: center; color: #536176; }
+.rules-client { max-width: 480px; }
+.business-rules-page label { display: grid; gap: 7px; }
+.business-rules-page fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.business-rules-page .rule-toggle { display: flex; align-items: center; gap: 10px; }
+.business-rules-page input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; }
+.rules-workbench { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(290px, 1fr); gap: 24px; align-items: start; }
+.rules-preview { position: sticky; top: 24px; }
+.rule-card { padding: 18px 0; border-bottom: 1px solid #e2e8f0; }
+.rule-card h4 { margin: 0 0 12px; }
+.rule-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 16px 0; }
+.commercial-totals { display: grid; gap: 14px; margin: 24px 0; }
+.commercial-totals > div { display: flex; justify-content: space-between; gap: 16px; }
+.commercial-totals dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.commercial-final { border-top: 1px solid #cbd5e1; padding-top: 16px; font-size: 1.15rem; color: #3730a3; }
+.commercial-terms li { margin-bottom: 8px; color: #475569; }
+.rule-review { padding: 12px; border-radius: 8px; background: #fef3c7; color: #92400e; }
+.rules-cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.rule-case { border: 1px solid #dbe2ea; border-radius: 12px; padding: 20px; }
+.business-rules-page summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1000px) { .rules-workbench { grid-template-columns: 1fr; } .rules-preview { position: static; } }
+@media (max-width: 600px) { .rule-fields { grid-template-columns: 1fr; } .rules-hero { flex-direction: column; } }

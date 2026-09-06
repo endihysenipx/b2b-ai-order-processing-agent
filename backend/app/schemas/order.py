@@ -94,6 +94,8 @@ class StockReservationOut(BaseModel):
 
 
 class OrderDetailOut(OrderListOut):
+    commercial_terms: dict = {}
+    case_source: dict | None = None
     stock_reservations: list[StockReservationOut] = []
     duplicate_orders: list[DuplicateOrderOut] = []
     email: EmailMetadataOut

@@ -147,7 +147,7 @@ class TextractJobProcessor:
             return 0
 
         order = db.get(Order, attachment.order_id)
-        if order is None:
+        if order is None or order.case_source:
             return 0
 
         changed = 0

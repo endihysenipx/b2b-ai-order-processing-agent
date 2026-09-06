@@ -15,6 +15,7 @@ PRODUCT_FIELDS = (
     "minimum_quantity", "warehouse", "on_hand", "reserved", "stock_updated_at",
 )
 ORDER_FIELDS = (
+    "client_id", "business_rules_snapshot", "case_source",
     "ticket_number", "customer_number", "customer_name", "commission_number", "commission_name",
     "store_address", "delivery_address", "delivery_week", "order_date", "requested_delivery_date",
     "contact_person", "phone_number", "total_price", "currency", "status", "approved_by_user_id", "approved_at",
