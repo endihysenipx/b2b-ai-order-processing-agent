@@ -40,7 +40,9 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   const [catalogLoading, setCatalogLoading] = useState(true);
   const clientId = order?.client.id;
   const reservationKey = JSON.stringify(order?.stock_reservations ?? []);
-  const hasDuplicates = Boolean(order?.duplicate_orders?.length);
+  // A rejected duplicate remains in the audit trail, but it is no longer an
+  // active correction blocking the order view.
+  const hasDuplicates = order?.status !== "Rejected" && Boolean(order?.duplicate_orders?.length);
   const hasDrafts = headerDirty || dirtyLines.size > 0;
 
   useEffect(() => {
@@ -68,7 +70,9 @@ function OrderDetailsContent({ orderId }: { orderId?: string }) {
   }
 
   function headerIssues(field: string) {
-    const issues = order?.validation_issues.filter(issue => !issue.is_resolved && (issue.issue_type !== "duplicate_order" || hasDuplicates) && issue.field_name === field) ?? [];
+    // Duplicate handling has a dedicated review card and validation panel. Do
+    // not inject its long explanation into the middle of the header form.
+    const issues = order?.validation_issues.filter(issue => !issue.is_resolved && issue.issue_type !== "duplicate_order" && issue.field_name === field) ?? [];
     return issues.length ? <span className="error-message">{issues.map(issue => issue.message).join(" ")}</span> : null;
   }
 
