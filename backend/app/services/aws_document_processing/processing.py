@@ -203,7 +203,16 @@ class TextractJobProcessor:
             )
             for issue in unresolved_item_issues:
                 db.delete(issue)
-        return changed
+        from app.services.catalog_pricing import apply_catalog_prices
+
+        db.flush()
+        db.expire(order, ["items"])
+        priced = apply_catalog_prices(db, order)
+        if priced:
+            from app.api.routes.orders import refresh_validation
+
+            refresh_validation(db, order)
+        return changed + priced
 
     @staticmethod
     def _mark_start_failed(attachment: Attachment, message: str) -> None:

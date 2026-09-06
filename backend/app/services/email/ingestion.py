@@ -335,6 +335,9 @@ class GmailIngestionService:
                 for item in parsed_order.items
             ]
             db.add_all(items)
+            from app.services.catalog_pricing import apply_catalog_prices
+
+            apply_catalog_prices(db, order, items)
             issues = validate_order_data(
                 {
                     "ticket_number": order.ticket_number,
